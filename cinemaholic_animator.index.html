@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CINEMA HOLIC — Character Animator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --border: #2a2a2a;
+    --red: #c0392b;
+    --red-light: #e74c3c;
+    --cream: #f5f0e8;
+    --muted: #666;
+    --text: #e0e0e0;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Courier Prime', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  header h1 {
+    font-family: 'Special Elite', serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: var(--cream);
+  }
+
+  header span {
+    font-size: 11px;
+    color: var(--red);
+    letter-spacing: 2px;
+    border: 1px solid var(--red);
+    padding: 2px 8px;
+  }
+
+  .app {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 57px);
+  }
+
+  /* LEFT PANEL */
+  .panel-left {
+    width: 260px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .panel-section {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .panel-section h3 {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  /* PARTS LIST */
+  .parts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .part-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 12px;
+  }
+
+  .part-item:hover { border-color: #444; }
+  .part-item.selected { border-color: var(--red); background: rgba(192,57,43,0.1); }
+  .part-item.has-image { border-color: #2d5a2d; }
+  .part-item.has-image.selected { border-color: var(--red); }
+
+  .part-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+  .part-item.has-image .part-dot { background: #27ae60; }
+  .part-item.selected .part-dot { background: var(--red); }
+
+  .part-preview {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 2px;
+  }
+
+  .part-placeholder {
+    width: 32px;
+    height: 32px;
+    background: var(--border);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  /* UPLOAD AREA */
+  .upload-area {
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .upload-area:hover { border-color: var(--red); color: var(--red); }
+  .upload-area input { display: none; }
+
+  /* MOTION CONTROLS */
+  .motion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .motion-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .motion-btn:hover { border-color: var(--red); color: var(--red-light); }
+  .motion-btn.active { background: rgba(192,57,43,0.2); border-color: var(--red); color: var(--red-light); }
+
+  /* TRANSFORM CONTROLS */
+  .transform-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 11px;
+  }
+
+  .transform-label {
+    width: 16px;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .transform-row input[type=range] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 2px;
+    background: var(--border);
+    outline: none;
+  }
+  .transform-row input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--red);
+    cursor: pointer;
+  }
+
+  .transform-value {
+    width: 36px;
+    text-align: right;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  /* CANVAS AREA */
+  .canvas-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #080808;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .canvas-bg-label {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+  }
+
+  #mainCanvas {
+    border: 1px solid var(--border);
+    cursor: crosshair;
+    image-rendering: pixelated;
+  }
+
+  .canvas-toolbar {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+  }
+
+  .toolbar-btn {
+    background: rgba(20,20,20,0.9);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 14px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+  }
+  .toolbar-btn:hover { border-color: var(--red); color: var(--red-light); }
+  .toolbar-btn.active { border-color: var(--red); background: rgba(192,57,43,0.2); color: var(--red-light); }
+
+  /* RIGHT PANEL */
+  .panel-right {
+    width: 220px;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .timeline-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .timeline-label {
+    width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .timeline-track {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .timeline-fill {
+    height: 100%;
+    background: var(--red);
+    border-radius: 3px;
+    transition: width 0.1s;
+  }
+
+  /* EXPORT */
+  .export-btn {
+    width: 100%;
+    background: var(--red);
+    border: none;
+    color: white;
+    padding: 10px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .export-btn:hover { background: var(--red-light); }
+
+  /* LAYER ORDER */
+  .layer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .layer-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 6px 10px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: grab;
+  }
+  .layer-item.selected { border-color: var(--red); }
+
+  .layer-vis {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--muted);
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    flex-shrink: 0;
+  }
+  .layer-vis.visible { background: var(--red); border-color: var(--red); color: white; }
+
+  .anim-status {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 8px;
+  }
+  .anim-status.playing { color: #27ae60; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CINEMA HOLIC</h1>
+  <span>CHARACTER ANIMATOR</span>
+</header>
+
+<div class="app">
+
+  <!-- LEFT PANEL -->
+  <div class="panel-left">
+
+    <div class="panel-section">
+      <h3>PARTS</h3>
+      <div class="parts-list" id="partsList"></div>
+    </div>
+
+    <div class="panel-section">
+      <h3>UPLOAD PART</h3>
+      <label class="upload-area">
+        <input type="file" id="uploadInput" accept="image/png,image/gif,image/webp">
+        <div>📁 選択中パーツに画像を割り当て</div>
+        <div style="font-size:10px;margin-top:4px;color:#555">PNG推奨（透過対応）</div>
+      </label>
+    </div>
+
+    <div class="panel-section">
+      <h3>MOTION</h3>
+      <div class="motion-grid" id="motionGrid">
+        <button class="motion-btn" data-motion="idle">IDLE<br><span style="font-size:9px;color:#666">待機</span></button>
+        <button class="motion-btn" data-motion="talking">TALK<br><span style="font-size:9px;color:#666">話す</span></button>
+        <button class="motion-btn" data-motion="nod">NOD<br><span style="font-size:9px;color:#666">うなずき</span></button>
+        <button class="motion-btn" data-motion="surprise">SURPRISE<br><span style="font-size:9px;color:#666">驚き</span></button>
+        <button class="motion-btn" data-motion="think">THINK<br><span style="font-size:9px;color:#666">考え中</span></button>
+        <button class="motion-btn" data-motion="sad">SAD<br><span style="font-size:9px;color:#666">落ち込み</span></button>
+      </div>
+      <div class="anim-status" id="animStatus">— STOPPED —</div>
+    </div>
+
+    <div class="panel-section">
+      <h3>TRANSFORM</h3>
+      <div id="transformControls">
+        <div style="font-size:11px;color:var(--muted);text-align:center;padding:8px 0">
+          パーツを選択してください
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CANVAS -->
+  <div class="canvas-wrap">
+    <div class="canvas-bg-label">CANVAS — 9:16</div>
+    <canvas id="mainCanvas" width="405" height="720"></canvas>
+    <div class="canvas-toolbar">
+      <button class="toolbar-btn active" id="btnSelect">SELECT</button>
+      <button class="toolbar-btn" id="btnMove">MOVE</button>
+      <button class="toolbar-btn" id="btnPlay" onclick="togglePlay()">▶ PLAY</button>
+      <button class="toolbar-btn" onclick="clearAll()">CLEAR</button>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel-right">
+
+    <div class="panel-section">
+      <h3>LAYERS</h3>
+      <div class="layer-list" id="layerList"></div>
+    </div>
+
+    <div class="panel-section">
+      <h3>TIMELINE</h3>
+      <div class="timeline" id="timeline"></div>
+    </div>
+
+    <div class="panel-section">
+      <h3>CANVAS SIZE</h3>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px">405 × 720px (9:16)</div>
+      <select id="bgColor" style="width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:6px;font-family:monospace;font-size:11px;border-radius:3px" onchange="changeBg(this.value)">
+        <option value="#00FF00">グリーンバック</option>
+        <option value="#0000FF">ブルーバック</option>
+        <option value="#1a1a1a">ダーク（部屋用）</option>
+        <option value="transparent">透過</option>
+      </select>
+    </div>
+
+    <div class="panel-section" style="border-bottom:none">
+      <h3>EXPORT</h3>
+      <button class="export-btn" onclick="exportFrame()">EXPORT FRAME</button>
+      <div style="font-size:10px;color:var(--muted);text-align:center;margin-top:8px;line-height:1.6">
+        現在のフレームを<br>PNG保存します
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+// ==========================================
+// PARTS DEFINITION
+// ==========================================
+const PARTS_DEF = [
+  { id: 'hat',       name: 'ニット帽',    emoji: '🎩', layer: 10, x: 152, y: 30,  w: 100, h: 70,  pivotX: 0.5, pivotY: 1.0 },
+  { id: 'head',      name: '頭・顔',      emoji: '🐾', layer: 9,  x: 122, y: 60,  w: 160, h: 150, pivotX: 0.5, pivotY: 1.0 },
+  { id: 'eye_l',     name: '目（左）',    emoji: '👁', layer: 11, x: 148, y: 110, w: 50,  h: 36,  pivotX: 0.5, pivotY: 0.5 },
+  { id: 'eye_r',     name: '目（右）',    emoji: '👁', layer: 11, x: 208, y: 110, w: 50,  h: 36,  pivotX: 0.5, pivotY: 0.5 },
+  { id: 'nose',      name: '鼻',          emoji: '👃', layer: 12, x: 185, y: 158, w: 36,  h: 24,  pivotX: 0.5, pivotY: 0.5 },
+  { id: 'mouth',     name: '口（開）',    emoji: '👄', layer: 12, x: 168, y: 178, w: 70,  h: 46,  pivotX: 0.5, pivotY: 0.5 },
+  { id: 'mouth_c',   name: '口（閉）',    emoji: '➖', layer: 12, x: 168, y: 188, w: 70,  h: 20,  pivotX: 0.5, pivotY: 0.5 },
+  { id: 'body',      name: '胴体',        emoji: '👕', layer: 8,  x: 112, y: 195, w: 180, h: 170, pivotX: 0.5, pivotY: 0.0 },
+  { id: 'arm_l',     name: '左腕',        emoji: '💪', layer: 7,  x: 68,  y: 200, w: 80,  h: 140, pivotX: 1.0, pivotY: 0.1 },
+  { id: 'arm_r',     name: '右腕',        emoji: '💪', layer: 7,  x: 260, y: 200, w: 80,  h: 140, pivotX: 0.0, pivotY: 0.1 },
+  { id: 'leg_l',     name: '左足',        emoji: '🦵', layer: 6,  x: 138, y: 355, w: 80,  h: 130, pivotX: 0.5, pivotY: 0.0 },
+  { id: 'leg_r',     name: '右足',        emoji: '🦵', layer: 6,  x: 190, y: 355, w: 80,  h: 130, pivotX: 0.5, pivotY: 0.0 },
+  { id: 'tail',      name: '尻尾',        emoji: '〰️', layer: 5,  x: 290, y: 340, w: 80,  h: 60,  pivotX: 0.0, pivotY: 0.5 },
+];
+
+// ==========================================
+// STATE
+// ==========================================
+let parts = PARTS_DEF.map(p => ({
+  ...p,
+  img: null,
+  visible: true,
+  rotation: 0,
+  scaleX: 1,
+  scaleY: 1,
+  opacity: 1,
+  baseX: p.x,
+  baseY: p.y,
+  baseRotation: 0,
+  animOffset: { x: 0, y: 0, r: 0, sx: 1, sy: 1 }
+}));
+
+let selectedPartId = null;
+let isDragging = false;
+let dragStart = { x: 0, y: 0 };
+let dragPartStart = { x: 0, y: 0 };
+let currentMotion = null;
+let isPlaying = false;
+let animFrame = 0;
+let animTimer = null;
+let bgColor = '#00FF00';
+let mode = 'select'; // select or move
+
+const canvas = document.getElementById('mainCanvas');
+const ctx = canvas.getContext('2d');
+
+// ==========================================
+// INIT
+// ==========================================
+function init() {
+  renderPartsList();
+  renderLayerList();
+  renderTimeline();
+  setupCanvas();
+  draw();
+}
+
+// ==========================================
+// PARTS LIST
+// ==========================================
+function renderPartsList() {
+  const list = document.getElementById('partsList');
+  list.innerHTML = '';
+  [...parts].sort((a,b) => b.layer - a.layer).forEach(p => {
+    const item = document.createElement('div');
+    item.className = 'part-item' + (p.img ? ' has-image' : '') + (p.id === selectedPartId ? ' selected' : '');
+    item.dataset.id = p.id;
+    item.onclick = () => selectPart(p.id);
+
+    const dot = document.createElement('div');
+    dot.className = 'part-dot';
+
+    const preview = document.createElement('div');
+    if (p.img) {
+      const img = document.createElement('img');
+      img.src = p.img.src;
+      img.className = 'part-preview';
+      preview.appendChild(img);
+    } else {
+      preview.className = 'part-placeholder';
+      preview.textContent = p.emoji;
+    }
+
+    const name = document.createElement('span');
+    name.textContent = p.name;
+    name.style.fontSize = '11px';
+
+    item.appendChild(dot);
+    item.appendChild(preview);
+    item.appendChild(name);
+    list.appendChild(item);
+  });
+}
+
+function renderLayerList() {
+  const list = document.getElementById('layerList');
+  list.innerHTML = '';
+  [...parts].sort((a,b) => b.layer - a.layer).forEach(p => {
+    const item = document.createElement('div');
+    item.className = 'layer-item' + (p.id === selectedPartId ? ' selected' : '');
+    item.onclick = () => selectPart(p.id);
+
+    const vis = document.createElement('div');
+    vis.className = 'layer-vis' + (p.visible ? ' visible' : '');
+    vis.textContent = p.visible ? '✓' : '';
+    vis.onclick = (e) => { e.stopPropagation(); toggleVisibility(p.id); };
+
+    const name = document.createElement('span');
+    name.textContent = p.name;
+    name.style.fontSize = '11px';
+    name.style.overflow = 'hidden';
+    name.style.textOverflow = 'ellipsis';
+    name.style.whiteSpace = 'nowrap';
+
+    item.appendChild(vis);
+    item.appendChild(name);
+    list.appendChild(item);
+  });
+}
+
+function renderTimeline() {
+  const tl = document.getElementById('timeline');
+  tl.innerHTML = '';
+  parts.filter(p => p.img).forEach(p => {
+    const row = document.createElement('div');
+    row.className = 'timeline-row';
+    const label = document.createElement('div');
+    label.className = 'timeline-label';
+    label.textContent = p.name;
+    const track = document.createElement('div');
+    track.className = 'timeline-track';
+    const fill = document.createElement('div');
+    fill.className = 'timeline-fill';
+    fill.style.width = (isPlaying ? (animFrame % 60) / 60 * 100 : 0) + '%';
+    fill.id = 'tl_' + p.id;
+    track.appendChild(fill);
+    row.appendChild(label);
+    row.appendChild(track);
+    tl.appendChild(row);
+  });
+}
+
+function renderTransformControls() {
+  const container = document.getElementById('transformControls');
+  const p = parts.find(x => x.id === selectedPartId);
+  if (!p) {
+    container.innerHTML = '<div style="font-size:11px;color:var(--muted);text-align:center;padding:8px 0">パーツを選択してください</div>';
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="transform-row">
+      <span class="transform-label">X</span>
+      <input type="range" min="0" max="405" value="${Math.round(p.x)}" oninput="updateTransform('x', this.value)">
+      <span class="transform-value" id="tv_x">${Math.round(p.x)}</span>
+    </div>
+    <div class="transform-row">
+      <span class="transform-label">Y</span>
+      <input type="range" min="0" max="720" value="${Math.round(p.y)}" oninput="updateTransform('y', this.value)">
+      <span class="transform-value" id="tv_y">${Math.round(p.y)}</span>
+    </div>
+    <div class="transform-row">
+      <span class="transform-label">R</span>
+      <input type="range" min="-180" max="180" value="${Math.round(p.rotation)}" oninput="updateTransform('rotation', this.value)">
+      <span class="transform-value" id="tv_r">${Math.round(p.rotation)}°</span>
+    </div>
+    <div class="transform-row">
+      <span class="transform-label">W</span>
+      <input type="range" min="10" max="400" value="${Math.round(p.w)}" oninput="updateTransform('w', this.value)">
+      <span class="transform-value" id="tv_w">${Math.round(p.w)}</span>
+    </div>
+    <div class="transform-row">
+      <span class="transform-label">H</span>
+      <input type="range" min="10" max="400" value="${Math.round(p.h)}" oninput="updateTransform('h', this.value)">
+      <span class="transform-value" id="tv_h">${Math.round(p.h)}</span>
+    </div>
+    <div class="transform-row">
+      <span class="transform-label">α</span>
+      <input type="range" min="0" max="100" value="${Math.round(p.opacity * 100)}" oninput="updateTransform('opacity', this.value / 100)">
+      <span class="transform-value" id="tv_opacity">${Math.round(p.opacity * 100)}%</span>
+    </div>
+  `;
+}
+
+function updateTransform(prop, value) {
+  const p = parts.find(x => x.id === selectedPartId);
+  if (!p) return;
+  p[prop] = parseFloat(value);
+  if (prop !== 'opacity') {
+    p['base' + prop.charAt(0).toUpperCase() + prop.slice(1)] = parseFloat(value);
+  }
+  const el = document.getElementById('tv_' + prop);
+  if (el) {
+    if (prop === 'rotation') el.textContent = Math.round(value) + '°';
+    else if (prop === 'opacity') el.textContent = Math.round(value * 100) + '%';
+    else el.textContent = Math.round(value);
+  }
+  draw();
+}
+
+// ==========================================
+// SELECT / VISIBILITY
+// ==========================================
+function selectPart(id) {
+  selectedPartId = id;
+  renderPartsList();
+  renderLayerList();
+  renderTransformControls();
+  draw();
+}
+
+function toggleVisibility(id) {
+  const p = parts.find(x => x.id === id);
+  if (p) p.visible = !p.visible;
+  renderLayerList();
+  draw();
+}
+
+// ==========================================
+// CANVAS SETUP
+// ==========================================
+function setupCanvas() {
+  canvas.addEventListener('mousedown', onMouseDown);
+  canvas.addEventListener('mousemove', onMouseMove);
+  canvas.addEventListener('mouseup', onMouseUp);
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); onMouseDown(e.touches[0]); }, { passive: false });
+  canvas.addEventListener('touchmove', e => { e.preventDefault(); onMouseMove(e.touches[0]); }, { passive: false });
+  canvas.addEventListener('touchend', e => { onMouseUp(e.changedTouches[0]); });
+}
+
+function getCanvasPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  return {
+    x: (e.clientX - rect.left) * scaleX,
+    y: (e.clientY - rect.top) * scaleY
+  };
+}
+
+function onMouseDown(e) {
+  const pos = getCanvasPos(e);
+  const hit = getPartAtPos(pos.x, pos.y);
+  if (hit) {
+    selectedPartId = hit.id;
+    isDragging = true;
+    dragStart = pos;
+    dragPartStart = { x: hit.x, y: hit.y };
+    renderPartsList();
+    renderLayerList();
+    renderTransformControls();
+    draw();
+  }
+}
+
+function onMouseMove(e) {
+  if (!isDragging || !selectedPartId) return;
+  const pos = getCanvasPos(e);
+  const p = parts.find(x => x.id === selectedPartId);
+  if (p) {
+    p.x = dragPartStart.x + (pos.x - dragStart.x);
+    p.y = dragPartStart.y + (pos.y - dragStart.y);
+    p.baseX = p.x;
+    p.baseY = p.y;
+    renderTransformControls();
+    draw();
+  }
+}
+
+function onMouseUp() {
+  isDragging = false;
+}
+
+function getPartAtPos(x, y) {
+  const sorted = [...parts].sort((a, b) => b.layer - a.layer);
+  for (const p of sorted) {
+    if (!p.visible || !p.img) continue;
+    const cx = p.x + p.w * p.pivotX;
+    const cy = p.y + p.h * p.pivotY;
+    const dx = x - cx;
+    const dy = y - cy;
+    const rad = -p.rotation * Math.PI / 180;
+    const lx = dx * Math.cos(rad) - dy * Math.sin(rad) + p.w * p.pivotX;
+    const ly = dx * Math.sin(rad) + dy * Math.cos(rad) + p.h * p.pivotY;
+    if (lx >= 0 && lx <= p.w && ly >= 0 && ly <= p.h) return p;
+  }
+  return null;
+}
+
+// ==========================================
+// DRAW
+// ==========================================
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Background
+  if (bgColor !== 'transparent') {
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  // Draw parts sorted by layer
+  const sorted = [...parts].sort((a, b) => a.layer - b.layer);
+  for (const p of sorted) {
+    if (!p.visible || !p.img) continue;
+
+    const ax = p.x + (p.animOffset?.x || 0);
+    const ay = p.y + (p.animOffset?.y || 0);
+    const ar = p.rotation + (p.animOffset?.r || 0);
+
+    const pivX = ax + p.w * p.pivotX;
+    const pivY = ay + p.h * p.pivotY;
+
+    ctx.save();
+    ctx.globalAlpha = p.opacity;
+    ctx.translate(pivX, pivY);
+    ctx.rotate(ar * Math.PI / 180);
+    ctx.drawImage(p.img, -p.w * p.pivotX, -p.h * p.pivotY, p.w, p.h);
+
+    // Selection outline
+    if (p.id === selectedPartId) {
+      ctx.strokeStyle = '#e74c3c';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([4, 4]);
+      ctx.strokeRect(-p.w * p.pivotX, -p.h * p.pivotY, p.w, p.h);
+      ctx.setLineDash([]);
+    }
+
+    ctx.restore();
+  }
+
+  // Grid (subtle)
+  if (!isPlaying) {
+    ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+    ctx.lineWidth = 1;
+    for (let x = 0; x < canvas.width; x += 40) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+    }
+    for (let y = 0; y < canvas.height; y += 40) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+    }
+  }
+}
+
+// ==========================================
+// UPLOAD
+// ==========================================
+document.getElementById('uploadInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file || !selectedPartId) {
+    alert('先にパーツリストからパーツを選択してください');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    const img = new Image();
+    img.onload = function() {
+      const p = parts.find(x => x.id === selectedPartId);
+      if (p) {
+        p.img = img;
+        renderPartsList();
+        renderLayerList();
+        renderTimeline();
+        draw();
+      }
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+  this.value = '';
+});
+
+// ==========================================
+// MOTIONS
+// ==========================================
+const MOTIONS = {
+  idle: {
+    name: 'IDLE',
+    duration: 120,
+    fn: (t, p) => {
+      const s = Math.sin(t * 0.05);
+      const result = { x: 0, y: 0, r: 0 };
+      if (p.id === 'body') { result.y = s * 3; result.r = s * 0.5; }
+      if (p.id === 'head') { result.y = s * 2; result.r = s * 0.3; }
+      if (p.id === 'hat') { result.y = s * 2; result.r = s * 0.3; }
+      if (p.id === 'eye_l' || p.id === 'eye_r') { result.y = s * 2; }
+      if (p.id === 'nose') { result.y = s * 2; }
+      if (p.id === 'mouth' || p.id === 'mouth_c') { result.y = s * 2; }
+      if (p.id === 'arm_l') { result.r = s * 3; result.y = s * 3; }
+      if (p.id === 'arm_r') { result.r = -s * 3; result.y = s * 3; }
+      if (p.id === 'leg_l' || p.id === 'leg_r') { result.y = s * 3; }
+      if (p.id === 'tail') { result.r = Math.sin(t * 0.08) * 15; }
+      return result;
+    }
+  },
+  talking: {
+    name: 'TALKING',
+    duration: 60,
+    fn: (t, p) => {
+      const s = Math.sin(t * 0.05);
+      const mouthOpen = Math.sin(t * 0.3) > 0;
+      const result = { x: 0, y: 0, r: 0 };
+      if (p.id === 'body') { result.y = s * 2; }
+      if (p.id === 'head') { result.y = s * 2 + Math.sin(t * 0.25) * 1.5; }
+      if (p.id === 'hat') { result.y = s * 2 + Math.sin(t * 0.25) * 1.5; }
+      if (p.id === 'eye_l' || p.id === 'eye_r') { result.y = s * 2 + Math.sin(t * 0.25) * 1.5; }
+      if (p.id === 'nose') { result.y = s * 2 + Math.sin(t * 0.25) * 1.5; }
+      if (p.id === 'mouth') {
+        result.y = s * 2 + Math.sin(t * 0.25) * 1.5;
+        result.visible = mouthOpen;
+      }
+      if (p.id === 'mouth_c') {
+        result.y = s * 2 + Math.sin(t * 0.25) * 1.5;
+        result.visible = !mouthOpen;
+      }
+      if (p.id === 'tail') { result.r = Math.sin(t * 0.1) * 12; }
+      if (p.id === 'arm_l') { result.r = s * 2; }
+      if (p.id === 'arm_r') { result.r = -s * 2; }
+      return result;
+    }
+  },
+  nod: {
+    name: 'NOD',
+    duration: 80,
+    fn: (t, p) => {
+      const nod = Math.sin(t * 0.2) * 8;
+      const result = { x: 0, y: 0, r: 0 };
+      if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id)) {
+        result.y = nod;
+        result.r = Math.sin(t * 0.2) * 2;
+      }
+      if (p.id === 'body') { result.y = nod * 0.3; }
+      if (p.id === 'tail') { result.r = Math.sin(t * 0.12) * 18; }
+      return result;
+    }
+  },
+  surprise: {
+    name: 'SURPRISE',
+    duration: 80,
+    fn: (t, p) => {
+      const shock = Math.max(0, Math.sin(t * 0.15)) * 12;
+      const result = { x: 0, y: 0, r: 0 };
+      if (p.id === 'body') { result.y = -shock * 0.5; result.r = Math.sin(t * 0.15) * -3; }
+      if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id)) {
+        result.y = -shock;
+        result.r = Math.sin(t * 0.15) * -2;
+      }
+      if (p.id === 'tail') { result.r = Math.sin(t * 0.2) * -20; }
+      return result;
+    }
+  },
+  think: {
+    name: 'THINK',
+    duration: 100,
+    fn: (t, p) => {
+      const tilt = Math.sin(t * 0.04) * 4;
+      const result = { x: 0, y: 0, r: 0 };
+      if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id)) {
+        result.y = -6 + tilt;
+        result.r = 5 + Math.sin(t * 0.04) * 2;
+      }
+      if (p.id === 'body') { result.r = 2; }
+      if (p.id === 'tail') { result.r = Math.sin(t * 0.06) * 8; }
+      return result;
+    }
+  },
+  sad: {
+    name: 'SAD',
+    duration: 120,
+    fn: (t, p) => {
+      const droop = Math.sin(t * 0.03) * 2;
+      const result = { x: 0, y: 0, r: 0 };
+      if (p.id === 'body') { result.r = 3; result.y = 5 + droop; }
+      if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id)) {
+        result.y = 8 + droop;
+        result.r = 3;
+      }
+      if (p.id === 'arm_l') { result.r = 8; result.y = 5; }
+      if (p.id === 'arm_r') { result.r = -8; result.y = 5; }
+      if (p.id === 'tail') { result.r = -5 + Math.sin(t * 0.04) * 3; }
+      return result;
+    }
+  }
+};
+
+document.getElementById('motionGrid').addEventListener('click', function(e) {
+  const btn = e.target.closest('[data-motion]');
+  if (!btn) return;
+  const motionId = btn.dataset.motion;
+  if (currentMotion === motionId && isPlaying) {
+    stopAnim();
+  } else {
+    currentMotion = motionId;
+    document.querySelectorAll('.motion-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (!isPlaying) startAnim();
+  }
+});
+
+function startAnim() {
+  if (!currentMotion) return;
+  isPlaying = true;
+  animFrame = 0;
+  document.getElementById('btnPlay').textContent = '⏹ STOP';
+  document.getElementById('btnPlay').classList.add('active');
+  document.getElementById('animStatus').textContent = '▶ ' + MOTIONS[currentMotion].name;
+  document.getElementById('animStatus').className = 'anim-status playing';
+  animLoop();
+}
+
+function stopAnim() {
+  isPlaying = false;
+  if (animTimer) cancelAnimationFrame(animTimer);
+  parts.forEach(p => { p.animOffset = { x: 0, y: 0, r: 0 }; });
+  document.getElementById('btnPlay').textContent = '▶ PLAY';
+  document.getElementById('btnPlay').classList.remove('active');
+  document.getElementById('animStatus').textContent = '— STOPPED —';
+  document.getElementById('animStatus').className = 'anim-status';
+  document.querySelectorAll('.motion-btn').forEach(b => b.classList.remove('active'));
+  currentMotion = null;
+  draw();
+}
+
+function animLoop() {
+  if (!isPlaying) return;
+  const motion = MOTIONS[currentMotion];
+  if (!motion) return;
+
+  animFrame = (animFrame + 1) % (motion.duration * 4);
+
+  parts.forEach(p => {
+    const offset = motion.fn(animFrame, p);
+    p.animOffset = offset;
+    if (offset.visible !== undefined) {
+      p.visible = offset.visible;
+    }
+  });
+
+  // Update timeline
+  parts.filter(p => p.img).forEach(p => {
+    const el = document.getElementById('tl_' + p.id);
+    if (el) el.style.width = ((animFrame % 60) / 60 * 100) + '%';
+  });
+
+  draw();
+  animTimer = requestAnimationFrame(animLoop);
+}
+
+function togglePlay() {
+  if (isPlaying) {
+    stopAnim();
+  } else {
+    if (!currentMotion) currentMotion = 'idle';
+    startAnim();
+  }
+}
+
+// ==========================================
+// UTILS
+// ==========================================
+function changeBg(val) {
+  bgColor = val;
+  draw();
+}
+
+function clearAll() {
+  if (!confirm('全パーツの画像をクリアしますか？')) return;
+  parts.forEach(p => { p.img = null; p.animOffset = { x: 0, y: 0, r: 0 }; });
+  stopAnim();
+  renderPartsList();
+  renderLayerList();
+  renderTimeline();
+  draw();
+}
+
+function exportFrame() {
+  const wasPlaying = isPlaying;
+  if (wasPlaying) stopAnim();
+  const link = document.createElement('a');
+  link.download = 'cinemaholic_frame.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+// Mode buttons
+document.getElementById('btnSelect').onclick = function() {
+  mode = 'select';
+  this.classList.add('active');
+  document.getElementById('btnMove').classList.remove('active');
+};
+document.getElementById('btnMove').onclick = function() {
+  mode = 'move';
+  this.classList.add('active');
+  document.getElementById('btnSelect').classList.remove('active');
+};
+
+// ==========================================
+// START
+// ==========================================
+init();
+</script>
+</body>
+</html>
