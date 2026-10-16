@@ -11,17 +11,22 @@ Claude Code のサブエージェントがチームとして動き、
 人間がやるのは「台本の承認」と「最終確認」の2回だけ。
 
 ```
-/new-episode <悩み> <映画>
+/setup-studio                最初に1回：制作の土台を作る
+/new-episode <悩み> <映画>   毎回：1話を作る
 ```
+
+目標品質：ギャル猫・クソメガネ級の「少し動く会話ショートアニメ」（`docs/quality-bar.md`）
 
 ## フォルダ構成
 ```
 index.html                パーツ確認ツール（GitHub Pagesで公開）
 CLAUDE.md                 プロジェクトの憲法（Claudeが毎回読む）
-.claude/agents/           サブエージェント7名の定義
-.claude/commands/         /new-episode コマンド
+.claude/agents/           サブエージェント11名の定義
+.claude/commands/         /setup-studio と /new-episode
 docs/
   team.md                 チーム構成と制作フロー
+  quality-bar.md          品質基準（動き・テンポ・テロップ・音）
+  studio-status.md        土台づくりの進捗
   brand.md                ターゲット・ペルソナ・インサイト
   lore.md                 伏線台帳
   mobile-setup.md         スマホでClaude Codeを使う手順
@@ -35,6 +40,7 @@ episodes/
   ep01-fight-club/        第1話
 schemas/timeline.schema.json  絵コンテ（タイムライン）の形式
 renderer/                 合成エンジン（これから作る）
+references/               参考動画（git管理外）と分析結果
 output/                   書き出した動画（git管理外）
 ```
 
@@ -43,8 +49,8 @@ output/                   書き出した動画（git管理外）
 - [x] 第1話台本（改訂版・ファクトチェック前）
 - [x] 背景（じょんどぅーの部屋 v1）
 - [x] エージェント定義・制作フロー
-- [ ] ごんべぇのパーツを透過PNGで1枚ずつ用意
-- [ ] renderer（口パク＋揺れの合成）を実装 ← **次にやること**
+- [ ] 参考動画を3本 references/videos/ に入れる ← **次にやること**
+- [ ] /setup-studio で土台を作る（キャラ素材・合成エンジン・テロップ・音）
 - [ ] ブランド音・BGMの確定
 - [ ] じょんどぅーのパーツ化
 

@@ -3,10 +3,28 @@
   "name": "じょんどぅー",
   "status": "パーツ未作成（ごんべぇで方式が固まってから作る）。Tシャツの絵柄は実在ポスターに見えないオリジナルに差し替える",
   "base": "johndoe_base.png",
-  "canvas": [1036, 1036],
+  "canvas": [
+    1036,
+    1036
+  ],
   "parts": [],
-  "mouth": { "open": "parts/mouth_open.png", "closed": "parts/mouth_closed.png" },
+  "mouth": {
+    "closed": "parts/mouth_closed.png",
+    "half": "parts/mouth_half.png",
+    "open": "parts/mouth_open.png"
+  },
   "expressions": {
-    "normal": {}
+    "normal": {},
+    "surprised": {},
+    "jito": {},
+    "down": {},
+    "smile": {},
+    "serious": {}
+  },
+  "blink": null,
+  "poses": {
+    "stand": "poses/stand/",
+    "sit": "poses/sit/",
+    "lean": "poses/lean/"
   }
 }

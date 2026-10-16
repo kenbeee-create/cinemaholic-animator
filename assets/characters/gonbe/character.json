@@ -3,24 +3,151 @@
   "name": "ごんべぇ",
   "status": "パーツ未完成（_sheet_gemini.png は市松模様が焼き込まれているため、透過PNGで1パーツずつ出し直しが必要）",
   "base": "gonbe_base.png",
-  "canvas": [1036, 1036],
-  "parts": [
-    { "name": "tail",     "file": "parts/tail.png",     "z": 1,  "parent": "body", "pivot": [0.0, 0.5] },
-    { "name": "leg_l",    "file": "parts/leg_l.png",    "z": 2,  "parent": "body", "pivot": [0.5, 0.0] },
-    { "name": "leg_r",    "file": "parts/leg_r.png",    "z": 2,  "parent": "body", "pivot": [0.5, 0.0] },
-    { "name": "arm_l",    "file": "parts/arm_l.png",    "z": 3,  "parent": "body", "pivot": [0.8, 0.1] },
-    { "name": "arm_r",    "file": "parts/arm_r.png",    "z": 3,  "parent": "body", "pivot": [0.2, 0.1] },
-    { "name": "body",     "file": "parts/body.png",     "z": 4,  "parent": null,   "pivot": [0.5, 1.0] },
-    { "name": "head",     "file": "parts/head.png",     "z": 5,  "parent": "body", "pivot": [0.5, 0.9] },
-    { "name": "eyes",     "file": "parts/eyes_sleepy.png", "z": 6, "parent": "head", "pivot": [0.5, 0.5] },
-    { "name": "nose",     "file": "parts/nose.png",     "z": 7,  "parent": "head", "pivot": [0.5, 0.5] },
-    { "name": "mouth",    "file": "parts/mouth_open.png", "z": 7, "parent": "head", "pivot": [0.5, 0.5] },
-    { "name": "hat",      "file": "parts/hat.png",      "z": 8,  "parent": "head", "pivot": [0.5, 1.0] }
+  "canvas": [
+    1036,
+    1036
   ],
-  "mouth": { "open": "parts/mouth_open.png", "closed": "parts/mouth_closed.png" },
+  "parts": [
+    {
+      "name": "tail",
+      "file": "parts/tail.png",
+      "z": 1,
+      "parent": "body",
+      "pivot": [
+        0.0,
+        0.5
+      ]
+    },
+    {
+      "name": "leg_l",
+      "file": "parts/leg_l.png",
+      "z": 2,
+      "parent": "body",
+      "pivot": [
+        0.5,
+        0.0
+      ]
+    },
+    {
+      "name": "leg_r",
+      "file": "parts/leg_r.png",
+      "z": 2,
+      "parent": "body",
+      "pivot": [
+        0.5,
+        0.0
+      ]
+    },
+    {
+      "name": "arm_l",
+      "file": "parts/arm_l.png",
+      "z": 3,
+      "parent": "body",
+      "pivot": [
+        0.8,
+        0.1
+      ]
+    },
+    {
+      "name": "arm_r",
+      "file": "parts/arm_r.png",
+      "z": 3,
+      "parent": "body",
+      "pivot": [
+        0.2,
+        0.1
+      ]
+    },
+    {
+      "name": "body",
+      "file": "parts/body.png",
+      "z": 4,
+      "parent": null,
+      "pivot": [
+        0.5,
+        1.0
+      ]
+    },
+    {
+      "name": "head",
+      "file": "parts/head.png",
+      "z": 5,
+      "parent": "body",
+      "pivot": [
+        0.5,
+        0.9
+      ]
+    },
+    {
+      "name": "eyes",
+      "file": "parts/eyes_sleepy.png",
+      "z": 6,
+      "parent": "head",
+      "pivot": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "nose",
+      "file": "parts/nose.png",
+      "z": 7,
+      "parent": "head",
+      "pivot": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "mouth",
+      "file": "parts/mouth_open.png",
+      "z": 7,
+      "parent": "head",
+      "pivot": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "hat",
+      "file": "parts/hat.png",
+      "z": 8,
+      "parent": "head",
+      "pivot": [
+        0.5,
+        1.0
+      ]
+    }
+  ],
+  "mouth": {
+    "closed": "parts/mouth_closed.png",
+    "half": "parts/mouth_half.png",
+    "open": "parts/mouth_open.png"
+  },
   "expressions": {
-    "normal":    { "eyes": "parts/eyes_sleepy.png" },
-    "surprised": { "eyes": "parts/eyes_wide.png" },
-    "down":      { "eyes": "parts/eyes_down.png" }
+    "normal": {
+      "eyes": "parts/eyes_normal.png"
+    },
+    "surprised": {
+      "eyes": "parts/eyes_surprised.png"
+    },
+    "jito": {
+      "eyes": "parts/eyes_jito.png"
+    },
+    "down": {
+      "eyes": "parts/eyes_down.png"
+    },
+    "smile": {
+      "eyes": "parts/eyes_smile.png"
+    },
+    "serious": {
+      "eyes": "parts/eyes_serious.png"
+    }
+  },
+  "blink": "parts/eyes_closed.png",
+  "poses": {
+    "stand": "poses/stand/",
+    "sit": "poses/sit/",
+    "point": "poses/point/"
   }
 }

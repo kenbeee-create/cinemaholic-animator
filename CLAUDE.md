@@ -32,13 +32,16 @@ Scene6 40-48秒 名言テキスト（キーワードだけ赤）
 Scene7 48-57秒 処方箋（用量・副作用）＋スタンプ音
 Scene8 57-60秒 伏線ひと言＋CTA「あなたの悩み、コメントに書いて」
 ```
-- 同じ画面を5秒以上続けない。セリフが変わったらカットを変える
+- 平均カット長1.5〜3秒・同じ画面を5秒以上続けない。キャラは常にどこかが小さく動いている状態にする
 - BGM：暗めのLo-fi（毎回同じ曲）。声の40〜50%。ブランド音は絶対に変えない
 
 ## 制作パイプライン
-`/new-episode <悩み> <映画>` で一連を実行する。担当と順番は `docs/team.md`。
-1. scriptwriter → 2. fact-checker → （**人間が台本を承認**）→ 3. storyboarder
-→ 4. art-director ＋ 5. voice（並行可）→ 6. animator → 7. qa-reviewer → （**人間が最終確認**）
+品質基準は `docs/quality-bar.md`（目標：ギャル猫・クソメガネ級の「少し動く会話アニメ」）。体制は `docs/team.md`（11名）。
+- 最初に1回：`/setup-studio` でキャラ素材・テロップ/エフェクト・音・合成エンジンの土台を作る
+- 毎回：`/new-episode <悩み> <映画>`
+  scriptwriter → fact-checker →（**人間が台本を承認**）→ storyboarder
+  → character-rigger／art-director／voice（並行）→ motion-fx → sound-designer → animator
+  → qa-reviewer（＋reference-analyst）→（**人間が最終確認**）
 
 ## 守るルール
 - **事実は必ず確認**：監督の経歴・制作背景・名言は fact-checker が出典付きで確認。確認できない話は使わない
