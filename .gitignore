@@ -1,0 +1,9 @@
+.env
+output/
+node_modules/
+renderer/node_modules/
+renderer/out/
+__pycache__/
+*.pyc
+.DS_Store
+episodes/*/audio/raw/*.m4a

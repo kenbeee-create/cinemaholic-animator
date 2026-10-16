@@ -2,841 +2,984 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CINEMA HOLIC — Character Animator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>CINEMA HOLIC — Animator</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap');
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-  :root {
-    --bg: #0a0a0a;
-    --surface: #141414;
-    --border: #2a2a2a;
-    --red: #c0392b;
-    --red-light: #e74c3c;
-    --cream: #f5f0e8;
-    --muted: #666;
-    --text: #e0e0e0;
-  }
+:root {
+  --bg: #0c0c0c;
+  --surface: #181818;
+  --surface2: #222;
+  --border: #2e2e2e;
+  --red: #c0392b;
+  --red2: #e74c3c;
+  --cream: #f0ead8;
+  --muted: #666;
+  --text: #ddd;
+  --green: #27ae60;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Courier Prime', monospace;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier Prime', monospace;
+  height: 100%;
+  overflow: hidden;
+  touch-action: manipulation;
+}
 
-  header {
-    padding: 16px 24px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+/* ===================== LAYOUT ===================== */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  height: 100vh;
+}
 
-  header h1 {
-    font-family: 'Special Elite', serif;
-    font-size: 18px;
-    letter-spacing: 3px;
-    color: var(--cream);
-  }
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  padding-top: max(10px, env(safe-area-inset-top));
+}
 
-  header span {
-    font-size: 11px;
-    color: var(--red);
-    letter-spacing: 2px;
-    border: 1px solid var(--red);
-    padding: 2px 8px;
-  }
+.header-title {
+  font-family: 'Special Elite', serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--cream);
+}
 
-  .app {
-    display: flex;
-    flex: 1;
-    height: calc(100vh - 57px);
-  }
+.header-badge {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--red);
+  border: 1px solid var(--red);
+  padding: 2px 6px;
+}
 
-  /* LEFT PANEL */
-  .panel-left {
-    width: 260px;
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-  }
+.header-save-status {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
 
-  .panel-section {
-    padding: 16px;
-    border-bottom: 1px solid var(--border);
-  }
+/* MAIN AREA */
+.main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
 
-  .panel-section h3 {
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
+/* CANVAS AREA */
+.canvas-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #080808;
+  position: relative;
+  overflow: hidden;
+}
 
-  /* PARTS LIST */
-  .parts-list {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
+#mainCanvas {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  touch-action: none;
+}
 
-  .part-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 8px 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-size: 12px;
-  }
+/* BG SELECTOR */
+.bg-selector {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  gap: 6px;
+}
 
-  .part-item:hover { border-color: #444; }
-  .part-item.selected { border-color: var(--red); background: rgba(192,57,43,0.1); }
-  .part-item.has-image { border-color: #2d5a2d; }
-  .part-item.has-image.selected { border-color: var(--red); }
+.bg-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.bg-dot.active { border-color: white; }
 
-  .part-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--border);
-    flex-shrink: 0;
-  }
-  .part-item.has-image .part-dot { background: #27ae60; }
-  .part-item.selected .part-dot { background: var(--red); }
+/* MOTION STATUS */
+.motion-status {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: all 0.2s;
+}
+.motion-status.playing {
+  color: var(--green);
+  border-color: var(--green);
+}
 
-  .part-preview {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-    border-radius: 2px;
-  }
+/* EXPORT BTN */
+.export-fab {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  background: var(--red);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(192,57,43,0.4);
+  transition: transform 0.15s;
+}
+.export-fab:active { transform: scale(0.92); }
 
-  .part-placeholder {
-    width: 32px;
-    height: 32px;
-    background: var(--border);
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-  }
+/* RIGHT PANEL */
+.panel {
+  width: 180px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
-  /* UPLOAD AREA */
-  .upload-area {
-    border: 1px dashed var(--border);
-    border-radius: 4px;
-    padding: 16px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 11px;
-    color: var(--muted);
-  }
-  .upload-area:hover { border-color: var(--red); color: var(--red); }
-  .upload-area input { display: none; }
+/* TABS */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
 
-  /* MOTION CONTROLS */
-  .motion-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-  }
+.tab {
+  flex: 1;
+  padding: 10px 4px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: 'Courier Prime', monospace;
+}
+.tab.active {
+  color: var(--red2);
+  border-bottom-color: var(--red);
+}
 
-  .motion-btn {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 8px;
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: all 0.15s;
-    text-align: center;
-  }
-  .motion-btn:hover { border-color: var(--red); color: var(--red-light); }
-  .motion-btn.active { background: rgba(192,57,43,0.2); border-color: var(--red); color: var(--red-light); }
+/* TAB CONTENT */
+.tab-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
 
-  /* TRANSFORM CONTROLS */
-  .transform-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-    font-size: 11px;
-  }
+.tab-pane { display: none; padding: 10px; }
+.tab-pane.active { display: block; }
 
-  .transform-label {
-    width: 16px;
-    color: var(--muted);
-    font-size: 10px;
-    letter-spacing: 1px;
-  }
+/* SECTION LABEL */
+.sec-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  margin-top: 4px;
+}
 
-  .transform-row input[type=range] {
-    flex: 1;
-    -webkit-appearance: none;
-    height: 2px;
-    background: var(--border);
-    outline: none;
-  }
-  .transform-row input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--red);
-    cursor: pointer;
-  }
+/* PARTS LIST */
+.parts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
-  .transform-value {
-    width: 36px;
-    text-align: right;
-    font-size: 10px;
-    color: var(--muted);
-  }
+.part-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+  min-height: 44px;
+}
+.part-row:active { opacity: 0.7; }
+.part-row.selected { border-color: var(--red); background: rgba(192,57,43,0.12); }
+.part-row.has-img { border-color: #1e4d2b; }
+.part-row.has-img.selected { border-color: var(--red); }
 
-  /* CANVAS AREA */
-  .canvas-wrap {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #080808;
-    position: relative;
-    overflow: hidden;
-  }
+.part-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 3px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background: var(--border);
+}
+.part-thumb-placeholder {
+  width: 28px;
+  height: 28px;
+  background: var(--border);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
 
-  .canvas-bg-label {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--muted);
-  }
+.part-name {
+  font-size: 10px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-  #mainCanvas {
-    border: 1px solid var(--border);
-    cursor: crosshair;
-    image-rendering: pixelated;
-  }
+.part-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+}
+.part-row.has-img .part-dot { background: var(--green); }
+.part-row.selected .part-dot { background: var(--red); }
 
-  .canvas-toolbar {
-    position: absolute;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-  }
+/* UPLOAD AREA */
+.upload-area {
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 8px;
+  display: block;
+}
+.upload-area:active { border-color: var(--red); }
+.upload-area input { display: none; }
+.upload-area .upload-icon { font-size: 22px; margin-bottom: 4px; }
+.upload-area .upload-text { font-size: 10px; color: var(--muted); line-height: 1.5; }
+.upload-area .upload-hint { font-size: 9px; color: #444; margin-top: 2px; }
 
-  .toolbar-btn {
-    background: rgba(20,20,20,0.9);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 6px 14px;
-    font-family: 'Courier Prime', monospace;
-    font-size: 11px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: all 0.15s;
-  }
-  .toolbar-btn:hover { border-color: var(--red); color: var(--red-light); }
-  .toolbar-btn.active { border-color: var(--red); background: rgba(192,57,43,0.2); color: var(--red-light); }
+.selected-name {
+  font-size: 10px;
+  color: var(--red2);
+  text-align: center;
+  margin-top: 6px;
+  padding: 4px;
+  background: rgba(192,57,43,0.1);
+  border-radius: 3px;
+  min-height: 24px;
+}
 
-  /* RIGHT PANEL */
-  .panel-right {
-    width: 220px;
-    border-left: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-  }
+/* MOTION GRID */
+.motion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  margin-bottom: 10px;
+}
 
-  /* TIMELINE */
-  .timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+.motion-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 4px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s;
+  text-align: center;
+  min-height: 44px;
+  line-height: 1.4;
+}
+.motion-btn:active { opacity: 0.7; }
+.motion-btn.active { background: rgba(192,57,43,0.2); border-color: var(--red); color: var(--red2); }
 
-  .timeline-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 10px;
-    color: var(--muted);
-  }
+.play-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s;
+  min-height: 44px;
+}
+.play-btn:active { opacity: 0.7; }
+.play-btn.playing { border-color: var(--red); color: var(--red2); background: rgba(192,57,43,0.15); }
 
-  .timeline-label {
-    width: 60px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+/* TRANSFORM */
+.transform-section { margin-top: 4px; }
 
-  .timeline-track {
-    flex: 1;
-    height: 6px;
-    background: var(--border);
-    border-radius: 3px;
-    position: relative;
-    overflow: hidden;
-  }
+.tr-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.tr-label {
+  font-size: 9px;
+  color: var(--muted);
+  width: 12px;
+  flex-shrink: 0;
+  letter-spacing: 1px;
+}
+.tr-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  height: 3px;
+  background: var(--border);
+  outline: none;
+  border-radius: 2px;
+}
+.tr-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--red);
+  cursor: pointer;
+}
+.tr-val {
+  font-size: 9px;
+  color: var(--muted);
+  width: 28px;
+  text-align: right;
+  flex-shrink: 0;
+}
 
-  .timeline-fill {
-    height: 100%;
-    background: var(--red);
-    border-radius: 3px;
-    transition: width 0.1s;
-  }
+.vis-toggle {
+  width: 100%;
+  padding: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  min-height: 44px;
+}
+.vis-toggle.hidden-part { color: var(--muted); }
 
-  /* EXPORT */
-  .export-btn {
-    width: 100%;
-    background: var(--red);
-    border: none;
-    color: white;
-    padding: 10px;
-    font-family: 'Courier Prime', monospace;
-    font-size: 12px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .export-btn:hover { background: var(--red-light); }
+.delete-btn {
+  width: 100%;
+  padding: 10px;
+  background: rgba(192,57,43,0.1);
+  border: 1px solid rgba(192,57,43,0.3);
+  color: var(--red2);
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 4px;
+  min-height: 44px;
+}
 
-  /* LAYER ORDER */
-  .layer-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+/* BOTTOM NAV */
+.bottom-nav {
+  display: flex;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  flex-shrink: 0;
+  padding-bottom: max(8px, var(--safe-bottom));
+}
 
-  .layer-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 6px 10px;
-    font-size: 11px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: grab;
-  }
-  .layer-item.selected { border-color: var(--red); }
+.nav-btn {
+  flex: 1;
+  padding: 10px 4px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: color 0.15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-height: 52px;
+  justify-content: center;
+}
+.nav-btn.active { color: var(--red2); }
+.nav-btn .nav-icon { font-size: 18px; }
 
-  .layer-vis {
-    width: 14px;
-    height: 14px;
-    border: 1px solid var(--muted);
-    border-radius: 2px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
-    flex-shrink: 0;
-  }
-  .layer-vis.visible { background: var(--red); border-color: var(--red); color: white; }
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(30,30,30,0.95);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 100;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 
-  .anim-status {
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 1px;
-    text-align: center;
-    padding: 8px;
-  }
-  .anim-status.playing { color: #27ae60; }
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+/* LOADING */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 200;
+  transition: opacity 0.3s;
+}
+.loading-overlay.hidden { opacity: 0; pointer-events: none; }
+.loading-title {
+  font-family: 'Special Elite', serif;
+  font-size: 20px;
+  letter-spacing: 4px;
+  color: var(--cream);
+}
+.loading-sub {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--muted);
+}
+.loading-bar {
+  width: 120px;
+  height: 2px;
+  background: var(--border);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.loading-fill {
+  height: 100%;
+  background: var(--red);
+  width: 0%;
+  transition: width 0.5s;
+}
 </style>
 </head>
 <body>
 
-<header>
-  <h1>CINEMA HOLIC</h1>
-  <span>CHARACTER ANIMATOR</span>
-</header>
-
-<div class="app">
-
-  <!-- LEFT PANEL -->
-  <div class="panel-left">
-
-    <div class="panel-section">
-      <h3>PARTS</h3>
-      <div class="parts-list" id="partsList"></div>
-    </div>
-
-    <div class="panel-section">
-      <h3>UPLOAD PART</h3>
-      <label class="upload-area">
-        <input type="file" id="uploadInput" accept="image/png,image/gif,image/webp">
-        <div>📁 選択中パーツに画像を割り当て</div>
-        <div style="font-size:10px;margin-top:4px;color:#555">PNG推奨（透過対応）</div>
-      </label>
-    </div>
-
-    <div class="panel-section">
-      <h3>MOTION</h3>
-      <div class="motion-grid" id="motionGrid">
-        <button class="motion-btn" data-motion="idle">IDLE<br><span style="font-size:9px;color:#666">待機</span></button>
-        <button class="motion-btn" data-motion="talking">TALK<br><span style="font-size:9px;color:#666">話す</span></button>
-        <button class="motion-btn" data-motion="nod">NOD<br><span style="font-size:9px;color:#666">うなずき</span></button>
-        <button class="motion-btn" data-motion="surprise">SURPRISE<br><span style="font-size:9px;color:#666">驚き</span></button>
-        <button class="motion-btn" data-motion="think">THINK<br><span style="font-size:9px;color:#666">考え中</span></button>
-        <button class="motion-btn" data-motion="sad">SAD<br><span style="font-size:9px;color:#666">落ち込み</span></button>
-      </div>
-      <div class="anim-status" id="animStatus">— STOPPED —</div>
-    </div>
-
-    <div class="panel-section">
-      <h3>TRANSFORM</h3>
-      <div id="transformControls">
-        <div style="font-size:11px;color:var(--muted);text-align:center;padding:8px 0">
-          パーツを選択してください
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- CANVAS -->
-  <div class="canvas-wrap">
-    <div class="canvas-bg-label">CANVAS — 9:16</div>
-    <canvas id="mainCanvas" width="405" height="720"></canvas>
-    <div class="canvas-toolbar">
-      <button class="toolbar-btn active" id="btnSelect">SELECT</button>
-      <button class="toolbar-btn" id="btnMove">MOVE</button>
-      <button class="toolbar-btn" id="btnPlay" onclick="togglePlay()">▶ PLAY</button>
-      <button class="toolbar-btn" onclick="clearAll()">CLEAR</button>
-    </div>
-  </div>
-
-  <!-- RIGHT PANEL -->
-  <div class="panel-right">
-
-    <div class="panel-section">
-      <h3>LAYERS</h3>
-      <div class="layer-list" id="layerList"></div>
-    </div>
-
-    <div class="panel-section">
-      <h3>TIMELINE</h3>
-      <div class="timeline" id="timeline"></div>
-    </div>
-
-    <div class="panel-section">
-      <h3>CANVAS SIZE</h3>
-      <div style="font-size:11px;color:var(--muted);margin-bottom:8px">405 × 720px (9:16)</div>
-      <select id="bgColor" style="width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:6px;font-family:monospace;font-size:11px;border-radius:3px" onchange="changeBg(this.value)">
-        <option value="#00FF00">グリーンバック</option>
-        <option value="#0000FF">ブルーバック</option>
-        <option value="#1a1a1a">ダーク（部屋用）</option>
-        <option value="transparent">透過</option>
-      </select>
-    </div>
-
-    <div class="panel-section" style="border-bottom:none">
-      <h3>EXPORT</h3>
-      <button class="export-btn" onclick="exportFrame()">EXPORT FRAME</button>
-      <div style="font-size:10px;color:var(--muted);text-align:center;margin-top:8px;line-height:1.6">
-        現在のフレームを<br>PNG保存します
-      </div>
-    </div>
-
-  </div>
-
+<!-- LOADING -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-title">CINEMA HOLIC</div>
+  <div class="loading-sub">ANIMATOR</div>
+  <div class="loading-bar"><div class="loading-fill" id="loadingFill"></div></div>
+  <div class="loading-sub" id="loadingMsg">データを読み込み中...</div>
 </div>
 
+<div class="app">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-title">CINEMA HOLIC</div>
+    <div class="header-save-status" id="saveStatus">💾 保存済み</div>
+    <div class="header-badge">ANIMATOR</div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- CANVAS -->
+    <div class="canvas-area">
+      <div class="bg-selector">
+        <div class="bg-dot active" style="background:#00FF00" data-bg="#00FF00" onclick="setBg(this)"></div>
+        <div class="bg-dot" style="background:#1a1a2e" data-bg="#1a1a2e" onclick="setBg(this)"></div>
+        <div class="bg-dot" style="background:#2d1b1b" data-bg="#2d1b1b" onclick="setBg(this)"></div>
+        <div class="bg-dot" style="background:transparent;border:1px solid #444" data-bg="transparent" onclick="setBg(this)"></div>
+      </div>
+      <canvas id="mainCanvas"></canvas>
+      <div class="motion-status" id="motionStatus">— STOP —</div>
+      <button class="export-fab" onclick="exportFrame()" title="書き出し">📷</button>
+    </div>
+
+    <!-- PANEL -->
+    <div class="panel">
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('parts', this)">PARTS</button>
+        <button class="tab" onclick="switchTab('motion', this)">MOTION</button>
+        <button class="tab" onclick="switchTab('edit', this)">EDIT</button>
+      </div>
+      <div class="tab-content">
+
+        <!-- PARTS TAB -->
+        <div class="tab-pane active" id="tab-parts">
+          <div class="sec-label">PART LIST</div>
+          <div class="parts-list" id="partsList"></div>
+          <label class="upload-area" id="uploadArea">
+            <input type="file" id="uploadInput" accept="image/png,image/gif,image/webp,image/jpeg">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">選択中のパーツに<br>画像を割り当て</div>
+            <div class="upload-hint">PNG推奨（透過対応）</div>
+          </label>
+          <div class="selected-name" id="selectedName">パーツを選択してください</div>
+        </div>
+
+        <!-- MOTION TAB -->
+        <div class="tab-pane" id="tab-motion">
+          <div class="sec-label">MOTION</div>
+          <div class="motion-grid" id="motionGrid">
+            <button class="motion-btn" data-motion="idle">IDLE<br>待機</button>
+            <button class="motion-btn" data-motion="talking">TALK<br>話す</button>
+            <button class="motion-btn" data-motion="nod">NOD<br>うなずき</button>
+            <button class="motion-btn" data-motion="surprise">SURP<br>驚き</button>
+            <button class="motion-btn" data-motion="think">THINK<br>考え中</button>
+            <button class="motion-btn" data-motion="sad">SAD<br>落ち込み</button>
+          </div>
+          <button class="play-btn" id="playBtn" onclick="togglePlay()">▶ PLAY</button>
+        </div>
+
+        <!-- EDIT TAB -->
+        <div class="tab-pane" id="tab-edit">
+          <div id="editContent">
+            <div style="font-size:10px;color:var(--muted);text-align:center;padding:20px 0">
+              パーツを選択してください
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
-// ==========================================
+// =============================================
+// IndexedDB
+// =============================================
+const DB_NAME = 'cinemaholic_v1';
+const DB_VER = 1;
+let db = null;
+
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, DB_VER);
+    req.onupgradeneeded = e => {
+      const d = e.target.result;
+      if (!d.objectStoreNames.contains('parts')) {
+        d.createObjectStore('parts', { keyPath: 'id' });
+      }
+      if (!d.objectStoreNames.contains('settings')) {
+        d.createObjectStore('settings', { keyPath: 'key' });
+      }
+    };
+    req.onsuccess = e => { db = e.target.result; resolve(db); };
+    req.onerror = () => reject(req.error);
+  });
+}
+
+function dbSavePart(id, dataURL) {
+  if (!db) return;
+  const tx = db.transaction('parts', 'readwrite');
+  tx.objectStore('parts').put({ id, dataURL });
+}
+
+function dbDeletePart(id) {
+  if (!db) return;
+  const tx = db.transaction('parts', 'readwrite');
+  tx.objectStore('parts').delete(id);
+}
+
+function dbSaveSetting(key, value) {
+  if (!db) return;
+  const tx = db.transaction('settings', 'readwrite');
+  tx.objectStore('settings').put({ key, value });
+}
+
+function dbLoadAll() {
+  return new Promise((resolve) => {
+    if (!db) { resolve({ parts: {}, settings: {} }); return; }
+    const result = { parts: {}, settings: {} };
+    const tx = db.transaction(['parts', 'settings'], 'readonly');
+    const partsReq = tx.objectStore('parts').getAll();
+    const settReq = tx.objectStore('settings').getAll();
+    partsReq.onsuccess = () => {
+      partsReq.result.forEach(p => result.parts[p.id] = p.dataURL);
+    };
+    settReq.onsuccess = () => {
+      settReq.result.forEach(s => result.settings[s.key] = s.value);
+      resolve(result);
+    };
+    tx.onerror = () => resolve(result);
+  });
+}
+
+// =============================================
 // PARTS DEFINITION
-// ==========================================
+// =============================================
 const PARTS_DEF = [
-  { id: 'hat',       name: 'ニット帽',    emoji: '🎩', layer: 10, x: 152, y: 30,  w: 100, h: 70,  pivotX: 0.5, pivotY: 1.0 },
-  { id: 'head',      name: '頭・顔',      emoji: '🐾', layer: 9,  x: 122, y: 60,  w: 160, h: 150, pivotX: 0.5, pivotY: 1.0 },
-  { id: 'eye_l',     name: '目（左）',    emoji: '👁', layer: 11, x: 148, y: 110, w: 50,  h: 36,  pivotX: 0.5, pivotY: 0.5 },
-  { id: 'eye_r',     name: '目（右）',    emoji: '👁', layer: 11, x: 208, y: 110, w: 50,  h: 36,  pivotX: 0.5, pivotY: 0.5 },
-  { id: 'nose',      name: '鼻',          emoji: '👃', layer: 12, x: 185, y: 158, w: 36,  h: 24,  pivotX: 0.5, pivotY: 0.5 },
-  { id: 'mouth',     name: '口（開）',    emoji: '👄', layer: 12, x: 168, y: 178, w: 70,  h: 46,  pivotX: 0.5, pivotY: 0.5 },
-  { id: 'mouth_c',   name: '口（閉）',    emoji: '➖', layer: 12, x: 168, y: 188, w: 70,  h: 20,  pivotX: 0.5, pivotY: 0.5 },
-  { id: 'body',      name: '胴体',        emoji: '👕', layer: 8,  x: 112, y: 195, w: 180, h: 170, pivotX: 0.5, pivotY: 0.0 },
-  { id: 'arm_l',     name: '左腕',        emoji: '💪', layer: 7,  x: 68,  y: 200, w: 80,  h: 140, pivotX: 1.0, pivotY: 0.1 },
-  { id: 'arm_r',     name: '右腕',        emoji: '💪', layer: 7,  x: 260, y: 200, w: 80,  h: 140, pivotX: 0.0, pivotY: 0.1 },
-  { id: 'leg_l',     name: '左足',        emoji: '🦵', layer: 6,  x: 138, y: 355, w: 80,  h: 130, pivotX: 0.5, pivotY: 0.0 },
-  { id: 'leg_r',     name: '右足',        emoji: '🦵', layer: 6,  x: 190, y: 355, w: 80,  h: 130, pivotX: 0.5, pivotY: 0.0 },
-  { id: 'tail',      name: '尻尾',        emoji: '〰️', layer: 5,  x: 290, y: 340, w: 80,  h: 60,  pivotX: 0.0, pivotY: 0.5 },
+  { id: 'hat',     name: 'ニット帽',  emoji: '🎩', layer: 10, x: 152, y: 30,  w: 100, h: 70,  px: 0.5, py: 1.0 },
+  { id: 'head',    name: '頭・顔',    emoji: '🐾', layer: 9,  x: 122, y: 60,  w: 160, h: 150, px: 0.5, py: 1.0 },
+  { id: 'eye_l',   name: '目（左）',  emoji: '👁', layer: 11, x: 148, y: 110, w: 50,  h: 36,  px: 0.5, py: 0.5 },
+  { id: 'eye_r',   name: '目（右）',  emoji: '👁', layer: 11, x: 208, y: 110, w: 50,  h: 36,  px: 0.5, py: 0.5 },
+  { id: 'nose',    name: '鼻',        emoji: '👃', layer: 12, x: 185, y: 158, w: 36,  h: 24,  px: 0.5, py: 0.5 },
+  { id: 'mouth',   name: '口（開）',  emoji: '👄', layer: 12, x: 168, y: 178, w: 70,  h: 46,  px: 0.5, py: 0.5 },
+  { id: 'mouth_c', name: '口（閉）',  emoji: '➖', layer: 12, x: 168, y: 188, w: 70,  h: 20,  px: 0.5, py: 0.5 },
+  { id: 'body',    name: '胴体',      emoji: '👕', layer: 8,  x: 112, y: 195, w: 180, h: 170, px: 0.5, py: 0.0 },
+  { id: 'arm_l',   name: '左腕',      emoji: '💪', layer: 7,  x: 68,  y: 200, w: 80,  h: 140, px: 1.0, py: 0.1 },
+  { id: 'arm_r',   name: '右腕',      emoji: '💪', layer: 7,  x: 260, y: 200, w: 80,  h: 140, px: 0.0, py: 0.1 },
+  { id: 'leg_l',   name: '左足',      emoji: '🦵', layer: 6,  x: 138, y: 355, w: 80,  h: 130, px: 0.5, py: 0.0 },
+  { id: 'leg_r',   name: '右足',      emoji: '🦵', layer: 6,  x: 190, y: 355, w: 80,  h: 130, px: 0.5, py: 0.0 },
+  { id: 'tail',    name: '尻尾',      emoji: '〰️', layer: 5,  x: 290, y: 340, w: 80,  h: 60,  px: 0.0, py: 0.5 },
 ];
 
-// ==========================================
+// =============================================
 // STATE
-// ==========================================
+// =============================================
 let parts = PARTS_DEF.map(p => ({
-  ...p,
-  img: null,
-  visible: true,
-  rotation: 0,
-  scaleX: 1,
-  scaleY: 1,
-  opacity: 1,
-  baseX: p.x,
-  baseY: p.y,
-  baseRotation: 0,
-  animOffset: { x: 0, y: 0, r: 0, sx: 1, sy: 1 }
+  ...p, img: null, visible: true, rotation: 0, w: p.w, h: p.h,
+  opacity: 1, baseX: p.x, baseY: p.y, anim: { x:0, y:0, r:0 }
 }));
 
-let selectedPartId = null;
-let isDragging = false;
-let dragStart = { x: 0, y: 0 };
-let dragPartStart = { x: 0, y: 0 };
+let selectedId = null;
+let bgColor = '#00FF00';
 let currentMotion = null;
 let isPlaying = false;
 let animFrame = 0;
-let animTimer = null;
-let bgColor = '#00FF00';
-let mode = 'select'; // select or move
+let rafId = null;
+let isDragging = false;
+let dragStart = { x: 0, y: 0 };
+let dragPartStart = { x: 0, y: 0 };
 
 const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
+const CW = 405, CH = 720;
+canvas.width = CW;
+canvas.height = CH;
 
-// ==========================================
+// =============================================
+// MOTIONS
+// =============================================
+const MOTIONS = {
+  idle: { name:'IDLE', dur:120, fn:(t,p) => {
+    const s = Math.sin(t * 0.05);
+    if (p.id === 'body') return { y: s*3, r: s*0.5 };
+    if (p.id === 'head') return { y: s*2, r: s*0.3 };
+    if (p.id === 'hat')  return { y: s*2, r: s*0.3 };
+    if (['eye_l','eye_r','nose'].includes(p.id)) return { y: s*2 };
+    if (['mouth','mouth_c'].includes(p.id)) return { y: s*2 };
+    if (p.id === 'arm_l') return { r: s*3, y: s*3 };
+    if (p.id === 'arm_r') return { r: -s*3, y: s*3 };
+    if (['leg_l','leg_r'].includes(p.id)) return { y: s*3 };
+    if (p.id === 'tail') return { r: Math.sin(t*0.08)*15 };
+    return {};
+  }},
+  talking: { name:'TALK', dur:60, fn:(t,p) => {
+    const s = Math.sin(t*0.05);
+    const mo = Math.sin(t*0.3) > 0;
+    if (p.id === 'body') return { y: s*2 };
+    if (['head','hat','eye_l','eye_r','nose'].includes(p.id))
+      return { y: s*2 + Math.sin(t*0.25)*1.5 };
+    if (p.id === 'mouth')   return { y: s*2 + Math.sin(t*0.25)*1.5, vis: mo };
+    if (p.id === 'mouth_c') return { y: s*2 + Math.sin(t*0.25)*1.5, vis: !mo };
+    if (p.id === 'tail')    return { r: Math.sin(t*0.1)*12 };
+    if (p.id === 'arm_l')   return { r: s*2 };
+    if (p.id === 'arm_r')   return { r: -s*2 };
+    return {};
+  }},
+  nod: { name:'NOD', dur:80, fn:(t,p) => {
+    const n = Math.sin(t*0.2)*8;
+    if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id))
+      return { y: n, r: Math.sin(t*0.2)*2 };
+    if (p.id === 'body') return { y: n*0.3 };
+    if (p.id === 'tail') return { r: Math.sin(t*0.12)*18 };
+    return {};
+  }},
+  surprise: { name:'SURP', dur:80, fn:(t,p) => {
+    const sh = Math.max(0, Math.sin(t*0.15))*12;
+    if (p.id === 'body') return { y: -sh*0.5, r: Math.sin(t*0.15)*-3 };
+    if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id))
+      return { y: -sh, r: Math.sin(t*0.15)*-2 };
+    if (p.id === 'tail') return { r: Math.sin(t*0.2)*-20 };
+    return {};
+  }},
+  think: { name:'THINK', dur:100, fn:(t,p) => {
+    const tl = Math.sin(t*0.04)*4;
+    if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id))
+      return { y: -6+tl, r: 5+Math.sin(t*0.04)*2 };
+    if (p.id === 'body') return { r: 2 };
+    if (p.id === 'tail') return { r: Math.sin(t*0.06)*8 };
+    return {};
+  }},
+  sad: { name:'SAD', dur:120, fn:(t,p) => {
+    const d = Math.sin(t*0.03)*2;
+    if (p.id === 'body') return { r: 3, y: 5+d };
+    if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id))
+      return { y: 8+d, r: 3 };
+    if (p.id === 'arm_l') return { r: 8, y: 5 };
+    if (p.id === 'arm_r') return { r: -8, y: 5 };
+    if (p.id === 'tail') return { r: -5+Math.sin(t*0.04)*3 };
+    return {};
+  }},
+};
+
+// =============================================
 // INIT
-// ==========================================
-function init() {
-  renderPartsList();
-  renderLayerList();
-  renderTimeline();
+// =============================================
+async function init() {
+  const fill = document.getElementById('loadingFill');
+  const msg = document.getElementById('loadingMsg');
+
+  fill.style.width = '30%';
+  msg.textContent = 'DBを初期化中...';
+  await openDB();
+
+  fill.style.width = '60%';
+  msg.textContent = 'パーツを読み込み中...';
+  const saved = await dbLoadAll();
+
+  fill.style.width = '90%';
+  // Restore images
+  for (const p of parts) {
+    if (saved.parts[p.id]) {
+      const img = new Image();
+      await new Promise(res => {
+        img.onload = res;
+        img.src = saved.parts[p.id];
+      });
+      p.img = img;
+    }
+  }
+  // Restore settings
+  if (saved.settings.bgColor) bgColor = saved.settings.bgColor;
+
+  fill.style.width = '100%';
+  await new Promise(r => setTimeout(r, 300));
+
+  document.getElementById('loadingOverlay').classList.add('hidden');
   setupCanvas();
+  renderParts();
   draw();
+  updateSaveStatus();
 }
 
-// ==========================================
-// PARTS LIST
-// ==========================================
-function renderPartsList() {
+// =============================================
+// UI RENDER
+// =============================================
+function renderParts() {
   const list = document.getElementById('partsList');
   list.innerHTML = '';
   [...parts].sort((a,b) => b.layer - a.layer).forEach(p => {
-    const item = document.createElement('div');
-    item.className = 'part-item' + (p.img ? ' has-image' : '') + (p.id === selectedPartId ? ' selected' : '');
-    item.dataset.id = p.id;
-    item.onclick = () => selectPart(p.id);
+    const row = document.createElement('div');
+    row.className = 'part-row' +
+      (p.img ? ' has-img' : '') +
+      (p.id === selectedId ? ' selected' : '');
+    row.onclick = () => selectPart(p.id);
 
     const dot = document.createElement('div');
     dot.className = 'part-dot';
 
-    const preview = document.createElement('div');
+    const thumb = document.createElement('div');
     if (p.img) {
       const img = document.createElement('img');
       img.src = p.img.src;
-      img.className = 'part-preview';
-      preview.appendChild(img);
+      img.className = 'part-thumb';
+      thumb.appendChild(img);
     } else {
-      preview.className = 'part-placeholder';
-      preview.textContent = p.emoji;
+      thumb.className = 'part-thumb-placeholder';
+      thumb.textContent = p.emoji;
     }
 
     const name = document.createElement('span');
+    name.className = 'part-name';
     name.textContent = p.name;
-    name.style.fontSize = '11px';
 
-    item.appendChild(dot);
-    item.appendChild(preview);
-    item.appendChild(name);
-    list.appendChild(item);
+    row.appendChild(dot);
+    row.appendChild(thumb);
+    row.appendChild(name);
+    list.appendChild(row);
   });
+
+  // Update selected name
+  const sel = parts.find(p => p.id === selectedId);
+  document.getElementById('selectedName').textContent =
+    sel ? `選択中：${sel.name}` : 'パーツを選択してください';
 }
 
-function renderLayerList() {
-  const list = document.getElementById('layerList');
-  list.innerHTML = '';
-  [...parts].sort((a,b) => b.layer - a.layer).forEach(p => {
-    const item = document.createElement('div');
-    item.className = 'layer-item' + (p.id === selectedPartId ? ' selected' : '');
-    item.onclick = () => selectPart(p.id);
-
-    const vis = document.createElement('div');
-    vis.className = 'layer-vis' + (p.visible ? ' visible' : '');
-    vis.textContent = p.visible ? '✓' : '';
-    vis.onclick = (e) => { e.stopPropagation(); toggleVisibility(p.id); };
-
-    const name = document.createElement('span');
-    name.textContent = p.name;
-    name.style.fontSize = '11px';
-    name.style.overflow = 'hidden';
-    name.style.textOverflow = 'ellipsis';
-    name.style.whiteSpace = 'nowrap';
-
-    item.appendChild(vis);
-    item.appendChild(name);
-    list.appendChild(item);
-  });
-}
-
-function renderTimeline() {
-  const tl = document.getElementById('timeline');
-  tl.innerHTML = '';
-  parts.filter(p => p.img).forEach(p => {
-    const row = document.createElement('div');
-    row.className = 'timeline-row';
-    const label = document.createElement('div');
-    label.className = 'timeline-label';
-    label.textContent = p.name;
-    const track = document.createElement('div');
-    track.className = 'timeline-track';
-    const fill = document.createElement('div');
-    fill.className = 'timeline-fill';
-    fill.style.width = (isPlaying ? (animFrame % 60) / 60 * 100 : 0) + '%';
-    fill.id = 'tl_' + p.id;
-    track.appendChild(fill);
-    row.appendChild(label);
-    row.appendChild(track);
-    tl.appendChild(row);
-  });
-}
-
-function renderTransformControls() {
-  const container = document.getElementById('transformControls');
-  const p = parts.find(x => x.id === selectedPartId);
+function renderEditTab() {
+  const container = document.getElementById('editContent');
+  const p = parts.find(x => x.id === selectedId);
   if (!p) {
-    container.innerHTML = '<div style="font-size:11px;color:var(--muted);text-align:center;padding:8px 0">パーツを選択してください</div>';
+    container.innerHTML = '<div style="font-size:10px;color:var(--muted);text-align:center;padding:20px 0">パーツを選択してください</div>';
     return;
   }
-
   container.innerHTML = `
-    <div class="transform-row">
-      <span class="transform-label">X</span>
-      <input type="range" min="0" max="405" value="${Math.round(p.x)}" oninput="updateTransform('x', this.value)">
-      <span class="transform-value" id="tv_x">${Math.round(p.x)}</span>
+    <div class="sec-label">${p.name}</div>
+    <div class="transform-section">
+      <div class="tr-row">
+        <span class="tr-label">X</span>
+        <input class="tr-slider" type="range" min="0" max="405" value="${Math.round(p.x)}"
+          oninput="setTransform('x',+this.value);document.getElementById('tv_x').textContent=Math.round(+this.value)">
+        <span class="tr-val" id="tv_x">${Math.round(p.x)}</span>
+      </div>
+      <div class="tr-row">
+        <span class="tr-label">Y</span>
+        <input class="tr-slider" type="range" min="0" max="720" value="${Math.round(p.y)}"
+          oninput="setTransform('y',+this.value);document.getElementById('tv_y').textContent=Math.round(+this.value)">
+        <span class="tr-val" id="tv_y">${Math.round(p.y)}</span>
+      </div>
+      <div class="tr-row">
+        <span class="tr-label">R</span>
+        <input class="tr-slider" type="range" min="-180" max="180" value="${Math.round(p.rotation)}"
+          oninput="setTransform('rotation',+this.value);document.getElementById('tv_r').textContent=Math.round(+this.value)+'°'">
+        <span class="tr-val" id="tv_r">${Math.round(p.rotation)}°</span>
+      </div>
+      <div class="tr-row">
+        <span class="tr-label">W</span>
+        <input class="tr-slider" type="range" min="10" max="400" value="${Math.round(p.w)}"
+          oninput="setTransform('w',+this.value);document.getElementById('tv_w').textContent=Math.round(+this.value)">
+        <span class="tr-val" id="tv_w">${Math.round(p.w)}</span>
+      </div>
+      <div class="tr-row">
+        <span class="tr-label">H</span>
+        <input class="tr-slider" type="range" min="10" max="400" value="${Math.round(p.h)}"
+          oninput="setTransform('h',+this.value);document.getElementById('tv_h').textContent=Math.round(+this.value)">
+        <span class="tr-val" id="tv_h">${Math.round(p.h)}</span>
+      </div>
+      <div class="tr-row">
+        <span class="tr-label">α</span>
+        <input class="tr-slider" type="range" min="0" max="100" value="${Math.round(p.opacity*100)}"
+          oninput="setTransform('opacity',+this.value/100);document.getElementById('tv_a').textContent=Math.round(+this.value)+'%'">
+        <span class="tr-val" id="tv_a">${Math.round(p.opacity*100)}%</span>
+      </div>
     </div>
-    <div class="transform-row">
-      <span class="transform-label">Y</span>
-      <input type="range" min="0" max="720" value="${Math.round(p.y)}" oninput="updateTransform('y', this.value)">
-      <span class="transform-value" id="tv_y">${Math.round(p.y)}</span>
-    </div>
-    <div class="transform-row">
-      <span class="transform-label">R</span>
-      <input type="range" min="-180" max="180" value="${Math.round(p.rotation)}" oninput="updateTransform('rotation', this.value)">
-      <span class="transform-value" id="tv_r">${Math.round(p.rotation)}°</span>
-    </div>
-    <div class="transform-row">
-      <span class="transform-label">W</span>
-      <input type="range" min="10" max="400" value="${Math.round(p.w)}" oninput="updateTransform('w', this.value)">
-      <span class="transform-value" id="tv_w">${Math.round(p.w)}</span>
-    </div>
-    <div class="transform-row">
-      <span class="transform-label">H</span>
-      <input type="range" min="10" max="400" value="${Math.round(p.h)}" oninput="updateTransform('h', this.value)">
-      <span class="transform-value" id="tv_h">${Math.round(p.h)}</span>
-    </div>
-    <div class="transform-row">
-      <span class="transform-label">α</span>
-      <input type="range" min="0" max="100" value="${Math.round(p.opacity * 100)}" oninput="updateTransform('opacity', this.value / 100)">
-      <span class="transform-value" id="tv_opacity">${Math.round(p.opacity * 100)}%</span>
-    </div>
+    <button class="vis-toggle ${p.visible ? '' : 'hidden-part'}" onclick="toggleVis()">
+      ${p.visible ? '👁 表示中' : '🚫 非表示'}
+    </button>
+    <button class="delete-btn" onclick="deletePart()">🗑 画像を削除</button>
   `;
 }
 
-function updateTransform(prop, value) {
-  const p = parts.find(x => x.id === selectedPartId);
-  if (!p) return;
-  p[prop] = parseFloat(value);
-  if (prop !== 'opacity') {
-    p['base' + prop.charAt(0).toUpperCase() + prop.slice(1)] = parseFloat(value);
-  }
-  const el = document.getElementById('tv_' + prop);
-  if (el) {
-    if (prop === 'rotation') el.textContent = Math.round(value) + '°';
-    else if (prop === 'opacity') el.textContent = Math.round(value * 100) + '%';
-    else el.textContent = Math.round(value);
-  }
-  draw();
-}
-
-// ==========================================
-// SELECT / VISIBILITY
-// ==========================================
+// =============================================
+// INTERACTIONS
+// =============================================
 function selectPart(id) {
-  selectedPartId = id;
-  renderPartsList();
-  renderLayerList();
-  renderTransformControls();
+  selectedId = id;
+  renderParts();
+  renderEditTab();
   draw();
 }
 
-function toggleVisibility(id) {
-  const p = parts.find(x => x.id === id);
-  if (p) p.visible = !p.visible;
-  renderLayerList();
+function setTransform(prop, val) {
+  const p = parts.find(x => x.id === selectedId);
+  if (!p) return;
+  p[prop] = val;
+  if (prop === 'x') p.baseX = val;
+  if (prop === 'y') p.baseY = val;
   draw();
 }
 
-// ==========================================
-// CANVAS SETUP
-// ==========================================
-function setupCanvas() {
-  canvas.addEventListener('mousedown', onMouseDown);
-  canvas.addEventListener('mousemove', onMouseMove);
-  canvas.addEventListener('mouseup', onMouseUp);
-  canvas.addEventListener('touchstart', e => { e.preventDefault(); onMouseDown(e.touches[0]); }, { passive: false });
-  canvas.addEventListener('touchmove', e => { e.preventDefault(); onMouseMove(e.touches[0]); }, { passive: false });
-  canvas.addEventListener('touchend', e => { onMouseUp(e.changedTouches[0]); });
+function toggleVis() {
+  const p = parts.find(x => x.id === selectedId);
+  if (!p) return;
+  p.visible = !p.visible;
+  renderEditTab();
+  draw();
 }
 
-function getCanvasPos(e) {
-  const rect = canvas.getBoundingClientRect();
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
-  return {
-    x: (e.clientX - rect.left) * scaleX,
-    y: (e.clientY - rect.top) * scaleY
-  };
+function deletePart() {
+  const p = parts.find(x => x.id === selectedId);
+  if (!p) return;
+  if (!confirm(`「${p.name}」の画像を削除しますか？`)) return;
+  p.img = null;
+  dbDeletePart(p.id);
+  renderParts();
+  renderEditTab();
+  draw();
+  showToast('削除しました');
+  updateSaveStatus();
 }
 
-function onMouseDown(e) {
-  const pos = getCanvasPos(e);
-  const hit = getPartAtPos(pos.x, pos.y);
-  if (hit) {
-    selectedPartId = hit.id;
-    isDragging = true;
-    dragStart = pos;
-    dragPartStart = { x: hit.x, y: hit.y };
-    renderPartsList();
-    renderLayerList();
-    renderTransformControls();
-    draw();
-  }
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  if (name === 'edit') renderEditTab();
 }
 
-function onMouseMove(e) {
-  if (!isDragging || !selectedPartId) return;
-  const pos = getCanvasPos(e);
-  const p = parts.find(x => x.id === selectedPartId);
-  if (p) {
-    p.x = dragPartStart.x + (pos.x - dragStart.x);
-    p.y = dragPartStart.y + (pos.y - dragStart.y);
-    p.baseX = p.x;
-    p.baseY = p.y;
-    renderTransformControls();
-    draw();
-  }
-}
-
-function onMouseUp() {
-  isDragging = false;
-}
-
-function getPartAtPos(x, y) {
-  const sorted = [...parts].sort((a, b) => b.layer - a.layer);
-  for (const p of sorted) {
-    if (!p.visible || !p.img) continue;
-    const cx = p.x + p.w * p.pivotX;
-    const cy = p.y + p.h * p.pivotY;
-    const dx = x - cx;
-    const dy = y - cy;
-    const rad = -p.rotation * Math.PI / 180;
-    const lx = dx * Math.cos(rad) - dy * Math.sin(rad) + p.w * p.pivotX;
-    const ly = dx * Math.sin(rad) + dy * Math.cos(rad) + p.h * p.pivotY;
-    if (lx >= 0 && lx <= p.w && ly >= 0 && ly <= p.h) return p;
-  }
-  return null;
-}
-
-// ==========================================
-// DRAW
-// ==========================================
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Background
-  if (bgColor !== 'transparent') {
-    ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  }
-
-  // Draw parts sorted by layer
-  const sorted = [...parts].sort((a, b) => a.layer - b.layer);
-  for (const p of sorted) {
-    if (!p.visible || !p.img) continue;
-
-    const ax = p.x + (p.animOffset?.x || 0);
-    const ay = p.y + (p.animOffset?.y || 0);
-    const ar = p.rotation + (p.animOffset?.r || 0);
-
-    const pivX = ax + p.w * p.pivotX;
-    const pivY = ay + p.h * p.pivotY;
-
-    ctx.save();
-    ctx.globalAlpha = p.opacity;
-    ctx.translate(pivX, pivY);
-    ctx.rotate(ar * Math.PI / 180);
-    ctx.drawImage(p.img, -p.w * p.pivotX, -p.h * p.pivotY, p.w, p.h);
-
-    // Selection outline
-    if (p.id === selectedPartId) {
-      ctx.strokeStyle = '#e74c3c';
-      ctx.lineWidth = 2;
-      ctx.setLineDash([4, 4]);
-      ctx.strokeRect(-p.w * p.pivotX, -p.h * p.pivotY, p.w, p.h);
-      ctx.setLineDash([]);
-    }
-
-    ctx.restore();
-  }
-
-  // Grid (subtle)
-  if (!isPlaying) {
-    ctx.strokeStyle = 'rgba(255,255,255,0.03)';
-    ctx.lineWidth = 1;
-    for (let x = 0; x < canvas.width; x += 40) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
-    }
-    for (let y = 0; y < canvas.height; y += 40) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
-    }
-  }
-}
-
-// ==========================================
+// =============================================
 // UPLOAD
-// ==========================================
+// =============================================
 document.getElementById('uploadInput').addEventListener('change', function(e) {
   const file = e.target.files[0];
-  if (!file || !selectedPartId) {
-    alert('先にパーツリストからパーツを選択してください');
-    return;
-  }
+  if (!file) return;
+  if (!selectedId) { showToast('先にパーツを選択してください'); return; }
   const reader = new FileReader();
-  reader.onload = function(ev) {
+  reader.onload = ev => {
     const img = new Image();
-    img.onload = function() {
-      const p = parts.find(x => x.id === selectedPartId);
+    img.onload = () => {
+      const p = parts.find(x => x.id === selectedId);
       if (p) {
         p.img = img;
-        renderPartsList();
-        renderLayerList();
-        renderTimeline();
+        dbSavePart(p.id, ev.target.result);
+        renderParts();
+        renderEditTab();
         draw();
+        showToast(`${p.name} を保存しました 💾`);
+        updateSaveStatus();
       }
     };
     img.src = ev.target.result;
@@ -845,180 +988,185 @@ document.getElementById('uploadInput').addEventListener('change', function(e) {
   this.value = '';
 });
 
-// ==========================================
-// MOTIONS
-// ==========================================
-const MOTIONS = {
-  idle: {
-    name: 'IDLE',
-    duration: 120,
-    fn: (t, p) => {
-      const s = Math.sin(t * 0.05);
-      const result = { x: 0, y: 0, r: 0 };
-      if (p.id === 'body') { result.y = s * 3; result.r = s * 0.5; }
-      if (p.id === 'head') { result.y = s * 2; result.r = s * 0.3; }
-      if (p.id === 'hat') { result.y = s * 2; result.r = s * 0.3; }
-      if (p.id === 'eye_l' || p.id === 'eye_r') { result.y = s * 2; }
-      if (p.id === 'nose') { result.y = s * 2; }
-      if (p.id === 'mouth' || p.id === 'mouth_c') { result.y = s * 2; }
-      if (p.id === 'arm_l') { result.r = s * 3; result.y = s * 3; }
-      if (p.id === 'arm_r') { result.r = -s * 3; result.y = s * 3; }
-      if (p.id === 'leg_l' || p.id === 'leg_r') { result.y = s * 3; }
-      if (p.id === 'tail') { result.r = Math.sin(t * 0.08) * 15; }
-      return result;
+// =============================================
+// CANVAS
+// =============================================
+function setupCanvas() {
+  canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+  canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+  canvas.addEventListener('touchend', onTouchEnd);
+  canvas.addEventListener('mousedown', e => {
+    const pos = getPos(e);
+    const hit = hitTest(pos.x, pos.y);
+    if (hit) {
+      selectPart(hit.id);
+      isDragging = true;
+      dragStart = pos;
+      dragPartStart = { x: hit.x, y: hit.y };
     }
-  },
-  talking: {
-    name: 'TALKING',
-    duration: 60,
-    fn: (t, p) => {
-      const s = Math.sin(t * 0.05);
-      const mouthOpen = Math.sin(t * 0.3) > 0;
-      const result = { x: 0, y: 0, r: 0 };
-      if (p.id === 'body') { result.y = s * 2; }
-      if (p.id === 'head') { result.y = s * 2 + Math.sin(t * 0.25) * 1.5; }
-      if (p.id === 'hat') { result.y = s * 2 + Math.sin(t * 0.25) * 1.5; }
-      if (p.id === 'eye_l' || p.id === 'eye_r') { result.y = s * 2 + Math.sin(t * 0.25) * 1.5; }
-      if (p.id === 'nose') { result.y = s * 2 + Math.sin(t * 0.25) * 1.5; }
-      if (p.id === 'mouth') {
-        result.y = s * 2 + Math.sin(t * 0.25) * 1.5;
-        result.visible = mouthOpen;
-      }
-      if (p.id === 'mouth_c') {
-        result.y = s * 2 + Math.sin(t * 0.25) * 1.5;
-        result.visible = !mouthOpen;
-      }
-      if (p.id === 'tail') { result.r = Math.sin(t * 0.1) * 12; }
-      if (p.id === 'arm_l') { result.r = s * 2; }
-      if (p.id === 'arm_r') { result.r = -s * 2; }
-      return result;
-    }
-  },
-  nod: {
-    name: 'NOD',
-    duration: 80,
-    fn: (t, p) => {
-      const nod = Math.sin(t * 0.2) * 8;
-      const result = { x: 0, y: 0, r: 0 };
-      if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id)) {
-        result.y = nod;
-        result.r = Math.sin(t * 0.2) * 2;
-      }
-      if (p.id === 'body') { result.y = nod * 0.3; }
-      if (p.id === 'tail') { result.r = Math.sin(t * 0.12) * 18; }
-      return result;
-    }
-  },
-  surprise: {
-    name: 'SURPRISE',
-    duration: 80,
-    fn: (t, p) => {
-      const shock = Math.max(0, Math.sin(t * 0.15)) * 12;
-      const result = { x: 0, y: 0, r: 0 };
-      if (p.id === 'body') { result.y = -shock * 0.5; result.r = Math.sin(t * 0.15) * -3; }
-      if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id)) {
-        result.y = -shock;
-        result.r = Math.sin(t * 0.15) * -2;
-      }
-      if (p.id === 'tail') { result.r = Math.sin(t * 0.2) * -20; }
-      return result;
-    }
-  },
-  think: {
-    name: 'THINK',
-    duration: 100,
-    fn: (t, p) => {
-      const tilt = Math.sin(t * 0.04) * 4;
-      const result = { x: 0, y: 0, r: 0 };
-      if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id)) {
-        result.y = -6 + tilt;
-        result.r = 5 + Math.sin(t * 0.04) * 2;
-      }
-      if (p.id === 'body') { result.r = 2; }
-      if (p.id === 'tail') { result.r = Math.sin(t * 0.06) * 8; }
-      return result;
-    }
-  },
-  sad: {
-    name: 'SAD',
-    duration: 120,
-    fn: (t, p) => {
-      const droop = Math.sin(t * 0.03) * 2;
-      const result = { x: 0, y: 0, r: 0 };
-      if (p.id === 'body') { result.r = 3; result.y = 5 + droop; }
-      if (['head','hat','eye_l','eye_r','nose','mouth','mouth_c'].includes(p.id)) {
-        result.y = 8 + droop;
-        result.r = 3;
-      }
-      if (p.id === 'arm_l') { result.r = 8; result.y = 5; }
-      if (p.id === 'arm_r') { result.r = -8; result.y = 5; }
-      if (p.id === 'tail') { result.r = -5 + Math.sin(t * 0.04) * 3; }
-      return result;
-    }
-  }
-};
+  });
+  canvas.addEventListener('mousemove', e => {
+    if (!isDragging || !selectedId) return;
+    const pos = getPos(e);
+    movePart(pos);
+  });
+  canvas.addEventListener('mouseup', () => { isDragging = false; });
+}
 
-document.getElementById('motionGrid').addEventListener('click', function(e) {
+function onTouchStart(e) {
+  e.preventDefault();
+  const pos = getTouchPos(e.touches[0]);
+  const hit = hitTest(pos.x, pos.y);
+  if (hit) {
+    selectPart(hit.id);
+    isDragging = true;
+    dragStart = pos;
+    dragPartStart = { x: hit.x, y: hit.y };
+  }
+}
+
+function onTouchMove(e) {
+  e.preventDefault();
+  if (!isDragging || !selectedId) return;
+  movePart(getTouchPos(e.touches[0]));
+}
+
+function onTouchEnd() { isDragging = false; }
+
+function movePart(pos) {
+  const p = parts.find(x => x.id === selectedId);
+  if (!p) return;
+  p.x = dragPartStart.x + (pos.x - dragStart.x);
+  p.y = dragPartStart.y + (pos.y - dragStart.y);
+  p.baseX = p.x;
+  p.baseY = p.y;
+  renderEditTab();
+  draw();
+}
+
+function getPos(e) {
+  const r = canvas.getBoundingClientRect();
+  return {
+    x: (e.clientX - r.left) * (CW / r.width),
+    y: (e.clientY - r.top) * (CH / r.height)
+  };
+}
+
+function getTouchPos(t) {
+  const r = canvas.getBoundingClientRect();
+  return {
+    x: (t.clientX - r.left) * (CW / r.width),
+    y: (t.clientY - r.top) * (CH / r.height)
+  };
+}
+
+function hitTest(x, y) {
+  const sorted = [...parts].sort((a,b) => b.layer - a.layer);
+  for (const p of sorted) {
+    if (!p.visible || !p.img) continue;
+    const ax = p.x + (p.anim?.x || 0);
+    const ay = p.y + (p.anim?.y || 0);
+    const pivX = ax + p.w * p.px;
+    const pivY = ay + p.h * p.py;
+    const dx = x - pivX, dy = y - pivY;
+    const rad = -(p.rotation + (p.anim?.r||0)) * Math.PI / 180;
+    const lx = dx*Math.cos(rad) - dy*Math.sin(rad) + p.w*p.px;
+    const ly = dx*Math.sin(rad) + dy*Math.cos(rad) + p.h*p.py;
+    if (lx >= 0 && lx <= p.w && ly >= 0 && ly <= p.h) return p;
+  }
+  return null;
+}
+
+// =============================================
+// DRAW
+// =============================================
+function draw() {
+  ctx.clearRect(0, 0, CW, CH);
+  if (bgColor !== 'transparent') {
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, CW, CH);
+  }
+  const sorted = [...parts].sort((a,b) => a.layer - b.layer);
+  for (const p of sorted) {
+    if (!p.visible || !p.img) continue;
+    const ax = p.x + (p.anim?.x || 0);
+    const ay = p.y + (p.anim?.y || 0);
+    const ar = p.rotation + (p.anim?.r || 0);
+    const pivX = ax + p.w * p.px;
+    const pivY = ay + p.h * p.py;
+    ctx.save();
+    ctx.globalAlpha = p.opacity;
+    ctx.translate(pivX, pivY);
+    ctx.rotate(ar * Math.PI / 180);
+    ctx.drawImage(p.img, -p.w*p.px, -p.h*p.py, p.w, p.h);
+    if (p.id === selectedId) {
+      ctx.strokeStyle = '#e74c3c';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([4,4]);
+      ctx.strokeRect(-p.w*p.px, -p.h*p.py, p.w, p.h);
+      ctx.setLineDash([]);
+    }
+    ctx.restore();
+  }
+}
+
+// =============================================
+// ANIMATION
+// =============================================
+document.getElementById('motionGrid').addEventListener('click', e => {
   const btn = e.target.closest('[data-motion]');
   if (!btn) return;
-  const motionId = btn.dataset.motion;
-  if (currentMotion === motionId && isPlaying) {
+  const mid = btn.dataset.motion;
+  document.querySelectorAll('.motion-btn').forEach(b => b.classList.remove('active'));
+  if (currentMotion === mid && isPlaying) {
     stopAnim();
   } else {
-    currentMotion = motionId;
-    document.querySelectorAll('.motion-btn').forEach(b => b.classList.remove('active'));
+    currentMotion = mid;
     btn.classList.add('active');
     if (!isPlaying) startAnim();
   }
 });
 
 function startAnim() {
-  if (!currentMotion) return;
   isPlaying = true;
   animFrame = 0;
-  document.getElementById('btnPlay').textContent = '⏹ STOP';
-  document.getElementById('btnPlay').classList.add('active');
-  document.getElementById('animStatus').textContent = '▶ ' + MOTIONS[currentMotion].name;
-  document.getElementById('animStatus').className = 'anim-status playing';
-  animLoop();
+  document.getElementById('playBtn').textContent = '⏹ STOP';
+  document.getElementById('playBtn').classList.add('playing');
+  document.getElementById('motionStatus').textContent = '▶ ' + MOTIONS[currentMotion].name;
+  document.getElementById('motionStatus').classList.add('playing');
+  loop();
 }
 
 function stopAnim() {
   isPlaying = false;
-  if (animTimer) cancelAnimationFrame(animTimer);
-  parts.forEach(p => { p.animOffset = { x: 0, y: 0, r: 0 }; });
-  document.getElementById('btnPlay').textContent = '▶ PLAY';
-  document.getElementById('btnPlay').classList.remove('active');
-  document.getElementById('animStatus').textContent = '— STOPPED —';
-  document.getElementById('animStatus').className = 'anim-status';
+  if (rafId) cancelAnimationFrame(rafId);
+  parts.forEach(p => { p.anim = { x:0, y:0, r:0 }; if(p.id==='mouth'||p.id==='mouth_c') p.visible = (p.id==='mouth_c'); });
+  // Reset mouth visibility
+  const m = parts.find(p=>p.id==='mouth');
+  const mc = parts.find(p=>p.id==='mouth_c');
+  if(m) m.visible = true;
+  if(mc) mc.visible = true;
+  document.getElementById('playBtn').textContent = '▶ PLAY';
+  document.getElementById('playBtn').classList.remove('playing');
+  document.getElementById('motionStatus').textContent = '— STOP —';
+  document.getElementById('motionStatus').classList.remove('playing');
   document.querySelectorAll('.motion-btn').forEach(b => b.classList.remove('active'));
   currentMotion = null;
   draw();
 }
 
-function animLoop() {
+function loop() {
   if (!isPlaying) return;
   const motion = MOTIONS[currentMotion];
   if (!motion) return;
-
-  animFrame = (animFrame + 1) % (motion.duration * 4);
-
+  animFrame = (animFrame + 1) % (motion.dur * 4);
   parts.forEach(p => {
-    const offset = motion.fn(animFrame, p);
-    p.animOffset = offset;
-    if (offset.visible !== undefined) {
-      p.visible = offset.visible;
-    }
+    const off = motion.fn(animFrame, p) || {};
+    p.anim = { x: off.x||0, y: off.y||0, r: off.r||0 };
+    if (off.vis !== undefined) p.visible = off.vis;
   });
-
-  // Update timeline
-  parts.filter(p => p.img).forEach(p => {
-    const el = document.getElementById('tl_' + p.id);
-    if (el) el.style.width = ((animFrame % 60) / 60 * 100) + '%';
-  });
-
   draw();
-  animTimer = requestAnimationFrame(animLoop);
+  rafId = requestAnimationFrame(loop);
 }
 
 function togglePlay() {
@@ -1026,25 +1174,19 @@ function togglePlay() {
     stopAnim();
   } else {
     if (!currentMotion) currentMotion = 'idle';
+    document.querySelector(`[data-motion="${currentMotion}"]`)?.classList.add('active');
     startAnim();
   }
 }
 
-// ==========================================
+// =============================================
 // UTILS
-// ==========================================
-function changeBg(val) {
-  bgColor = val;
-  draw();
-}
-
-function clearAll() {
-  if (!confirm('全パーツの画像をクリアしますか？')) return;
-  parts.forEach(p => { p.img = null; p.animOffset = { x: 0, y: 0, r: 0 }; });
-  stopAnim();
-  renderPartsList();
-  renderLayerList();
-  renderTimeline();
+// =============================================
+function setBg(el) {
+  document.querySelectorAll('.bg-dot').forEach(d => d.classList.remove('active'));
+  el.classList.add('active');
+  bgColor = el.dataset.bg;
+  dbSaveSetting('bgColor', bgColor);
   draw();
 }
 
@@ -1052,26 +1194,28 @@ function exportFrame() {
   const wasPlaying = isPlaying;
   if (wasPlaying) stopAnim();
   const link = document.createElement('a');
-  link.download = 'cinemaholic_frame.png';
+  link.download = 'cinemaholic_' + Date.now() + '.png';
   link.href = canvas.toDataURL('image/png');
   link.click();
+  showToast('📷 保存しました');
 }
 
-// Mode buttons
-document.getElementById('btnSelect').onclick = function() {
-  mode = 'select';
-  this.classList.add('active');
-  document.getElementById('btnMove').classList.remove('active');
-};
-document.getElementById('btnMove').onclick = function() {
-  mode = 'move';
-  this.classList.add('active');
-  document.getElementById('btnSelect').classList.remove('active');
-};
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
 
-// ==========================================
+function updateSaveStatus() {
+  const count = parts.filter(p => p.img).length;
+  document.getElementById('saveStatus').textContent =
+    count > 0 ? `💾 ${count}/${parts.length}パーツ保存済み` : '💾 未保存';
+}
+
+// =============================================
 // START
-// ==========================================
+// =============================================
 init();
 </script>
 </body>
