@@ -77,6 +77,8 @@
           },
           "type": {
             "enum": [
+              "chat",
+              "title",
               "brand_intro",
               "text",
               "room",

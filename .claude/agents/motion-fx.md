@@ -14,7 +14,9 @@ tools: Read, Write, Edit, Glob, Grep, Bash
 - `caption.default`：白文字＋黒フチ、下からスライド0.15秒
 - `caption.emphasis`：キーワードだけ赤・120%・ポップ
 - `caption.whisper`：小さめ・薄め（じょんどぅーのぼそっと用）
-- `text.hook`：冒頭の黒背景テキスト（1行ずつフェード）
+- `chat.screen`：冒頭のトーク画面（オリジナルのデザイン。吹き出しが1通ずつポップ、最後に「既読」）
+- `text.title`：タイトル「〇〇なそこの君に、いい薬を処方します。」＋ロゴ。毎回同じ書式
+- `text.hook`：黒背景テキスト（1行ずつフェード）
 - `text.quote`：名言用（ゆっくり、キーワード赤）
 
 エフェクト：
