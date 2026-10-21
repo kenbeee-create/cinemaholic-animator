@@ -32,7 +32,7 @@ Camera: placed where the TV is, at seated eye level, looking straight at a green
 
 Two characters sit side by side on the sofa, relaxed, facing the camera (as if watching TV), bodies turned very slightly toward each other:
 - LEFT: the brown dog from the first attached image (dark-brown knit beanie, red hoodie, navy pants, sleepy half-closed eyes). Keep his face, colors and proportions exactly the same. Mouth closed, neutral.
-- RIGHT: the round black fluffy dog from the second attached image (big black curly fur, grey shorts). Replace the T-shirt print with a PLAIN cream T-shirt with a small simple film-reel icon (no poster, no text, no real movie). Mouth closed, neutral.
+- RIGHT: the round black fluffy dog from the second attached image (big black curly fur, grey shorts). Replace the T-shirt with a completely PLAIN cream T-shirt (no print, no icon, no text). Mouth closed, neutral.
 
 Both characters fully visible from head to feet (feet may be hidden behind the table), heads at about 40–60% of the image height, both within the central 80% of the width. Leave the top 15% of the image as calm background (wall/ceiling). Keep all display spots inside the central 80% of the width. Nothing important in the bottom-right corner.
 No text, no logos, no watermarks, no real movie posters.

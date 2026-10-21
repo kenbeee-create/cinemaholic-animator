@@ -7,9 +7,9 @@ ChatGPT（画像生成）に**手動で**投げるためのプロンプト。上
 | 段階 | ChatGPTのどこで | 添付するもの |
 |---|---|---|
 | ① 完成図 | **新しいチャット** | gonbe_base.png・johndoe_base.png・johndoe_room_v1.png |
-| ② 部屋だけ | ①と**同じチャット**で続けて | なし（直前の完成図を使う） |
-| ③ ごんべぇだけ | ①と**同じチャット**で続けて | なし |
-| ④ じょんどぅーだけ | ①と**同じチャット**で続けて | なし |
+| ② 部屋だけ | **新しいチャット** | `keyvisual.png`（Tシャツを無地に直した完成図） |
+| ③ ごんべぇだけ | ②と**同じチャット**で続けて | `keyvisual.png` をもう一度 |
+| ④ じょんどぅーだけ | ②と**同じチャット**で続けて | `keyvisual.png` をもう一度 |
 | ⑤ 表情（ごんべぇ） | **新しいチャット** | ③でできた画像 |
 | ⑤ 表情（じょんどぅー） | **新しいチャット** | ④でできた画像 |
 
@@ -44,13 +44,13 @@ Camera: placed where the TV is, at seated eye level, looking straight at a green
 
 Two characters sit side by side on the sofa, relaxed, facing the camera (as if watching TV), bodies turned very slightly toward each other:
 - LEFT: the brown dog from the first attached image (dark-brown knit beanie, red hoodie, navy pants, sleepy half-closed eyes). Keep his face, colors and proportions exactly the same. Mouth closed, neutral.
-- RIGHT: the round black fluffy dog from the second attached image (big black curly fur, grey shorts). Replace the T-shirt print with a PLAIN cream T-shirt with a small simple film-reel icon (no poster, no text, no real movie). Mouth closed, neutral.
+- RIGHT: the round black fluffy dog from the second attached image (big black curly fur, grey shorts). Replace the T-shirt with a completely PLAIN cream T-shirt (no print, no icon, no text). Mouth closed, neutral.
 
 Both characters fully visible from head to feet (feet may be hidden behind the table), heads at about 40–60% of the image height, both within the central 80% of the width. Leave the top 15% of the image as calm background (wall/ceiling). Keep all display spots inside the central 80% of the width. Nothing important in the bottom-right corner.
 No text, no logos, no watermarks, no real movie posters.
 ```
 
-**チェック**：2人の顔が元の絵と同じ／じょんどぅーのTシャツが無地＋小さなマーク／2人が画面の真ん中寄り／小物を置く7つの場所（ポスター枠・壁の棚・DVD棚・窓・サイドテーブル・手前のテーブル・手前の床）が空いている
+**チェック**：2人の顔が元の絵と同じ／じょんどぅーのTシャツが無地／2人が画面の真ん中寄り／小物を置く7つの場所（ポスター枠・壁の棚・DVD棚・窓・サイドテーブル・手前のテーブル・手前の床）が空いている
 
 困ったとき（貼り足す一文）
 - 顔が変わった → `Keep both characters' faces exactly the same as the attached character images.`
@@ -59,17 +59,17 @@ No text, no logos, no watermarks, no real movie posters.
 
 ---
 
-## ② 部屋だけ（①と同じチャットで）
+## ② 部屋だけ（新しいチャット・`keyvisual.png` を添付）
 ```
-Using the key visual you just made, remove both characters completely and show the empty sofa.
+Using the attached key visual, remove both characters completely and show the empty sofa.
 Keep EVERYTHING else exactly the same: same camera, same composition, same room, same lighting, same colors, same size.
 All display spots stay empty: the poster frame, the wall shelf, the side table, the coffee table and the open floor space.
 Same vertical size. No text, no logos.
 ```
 
-## ③ ごんべぇだけ（①と同じチャットで）
+## ③ ごんべぇだけ（`keyvisual.png` を添付）
 ```
-From the previous key visual image, keep ONLY the brown dog on the left (beanie, red hoodie).
+From the attached key visual, keep ONLY the brown dog on the left (beanie, red hoodie).
 Same pose, same size, same position in the frame, exactly the same drawing.
 Remove the room, the sofa, the table and the other character.
 Output a PNG with a fully TRANSPARENT background (no floor, no shadow).
@@ -77,9 +77,9 @@ Any parts of his body that were hidden by the table or sofa should be drawn comp
 Same vertical size.
 ```
 
-## ④ じょんどぅーだけ（①と同じチャットで）
+## ④ じょんどぅーだけ（`keyvisual.png` を添付）
 ```
-From the previous key visual image, keep ONLY the round black fluffy dog on the right.
+From the attached key visual, keep ONLY the round black fluffy dog on the right.
 Same pose, same size, same position in the frame, exactly the same drawing.
 Remove the room, the sofa, the table and the other character.
 Output a PNG with a fully TRANSPARENT background (no floor, no shadow).
