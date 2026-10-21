@@ -12,7 +12,8 @@ tools: Read, Write, Edit, Glob, Bash
 - テロップの書式とエフェクトは motion-fx、効果音は sound-designer が後から追記する。ここでは枠（どこで強調・どこで感情が動くか）を決める
 
 ## 演出ルール
-- **平均カット長1.5〜3秒**。5秒を超える画面は作らない
+- 基本は部屋の固定2ショット。感情の山・ツッコミ・核心で話者アップへ。全体の平均カット長2〜4秒、山場は約1.5秒
+- テロップは1枚1〜8文字のフレーズに分割し、約1秒ごとに切り替える前提で区切りを入れる（`/` で区切る）
 - shot：`brand_intro`／`text`（黒背景）／`room`（引き）／`closeup`（話者寄り）／`extreme`（表情超寄り）／`prescription`／`end_card`
 - 各セリフに `expression`（その時の表情）と、必要なら `pose` を指定。character.json にあるものだけ使う
 - 聞き役の反応を `reaction`（nod / tilt / stare / none）で指定する
