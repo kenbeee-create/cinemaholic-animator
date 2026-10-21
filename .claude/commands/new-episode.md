@@ -14,10 +14,11 @@ argument-hint: <悩み> <映画>
 4. **ここで止まり**、台本とファクトチェック結果の要約を人間に見せて承認を待つ
 
 ### 制作
-5. **storyboarder** で `timeline.json`（カット・表情・ポーズ・反応・間）を作る
+5. `_template/look.json` をコピーし、**art-director** と相談して部屋と服の方向を決める（`docs/episode-look.md`）。**storyboarder** で `timeline.json`（カット・表情・ポーズ・反応・間）を作る
 6. 並行で進める：
    - **character-rigger**：timeline で使う表情・ポーズがライブラリに揃っているか確認し、足りなければ追加
-   - **art-director**：壁のポスター（オリジナル）と小道具
+   - **art-director**：映画に合わせた部屋の模様替え（`look.json` の room：照明・窓・ポスター・小道具・飾り）
+   - **character-rigger** は look.json の outfits（その回の服）も用意する
    - **voice**：音声と口パク用エンベロープ（録音が必要なら人間に依頼して止まる）
 7. **motion-fx** でテロップ書式とエフェクトを配置
 8. **sound-designer** で効果音・BGMを配置し、ミックス

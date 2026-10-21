@@ -1,0 +1,16 @@
+{
+  "film": "作品名（公開年）",
+  "room": {
+    "lighting": { "tint": "#3a5a40", "strength": 0.35, "note": "その映画の色合い" },
+    "tv_glow": { "color": "#9fd3ff", "flicker": "low" },
+    "window": "night_rain",
+    "poster": "assets/posters/epXX.png",
+    "table_props": ["assets/props/epXX/prop1.png"],
+    "decor": ["assets/props/library/item.png"],
+    "why": "なぜこの部屋がこの映画っぽいのか（1行。台本では説明しない）"
+  },
+  "outfits": {
+    "gonbe": { "id": "base", "note": "その日の生活が出る服" },
+    "johndoe": { "id": "base", "note": "その回の映画にちなんだ服" }
+  }
+}
