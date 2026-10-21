@@ -1,0 +1,20 @@
+{
+  "owner": "gonbe",
+  "background": "assets/backgrounds/johndoe_room_v1.png",
+  "day_label": "金曜日",
+  "time": "19:42",
+  "messages": [
+    {
+      "text": "今日上司にめっちゃ怒られた"
+    },
+    {
+      "text": "俺まったく関係ないのに"
+    },
+    {
+      "text": "上司〇してぇー"
+    },
+    {
+      "text": "今日行くわ"
+    }
+  ]
+}

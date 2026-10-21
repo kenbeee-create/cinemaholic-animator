@@ -14,8 +14,9 @@ tools: Read, Write, Edit, Glob, Grep, Bash
 - `caption.default`：白文字＋黒フチ、下からスライド0.15秒
 - `caption.emphasis`：キーワードだけ赤・120%・ポップ
 - `caption.whisper`：小さめ・薄め（じょんどぅーのぼそっと用）
-- `chat.screen`：冒頭のトーク画面（オリジナルのデザイン。吹き出しが1通ずつポップ、最後に「既読」）
-- `text.title`：タイトル「〇〇なそこの君に、いい薬を処方します。」＋ロゴ。毎回同じ書式
+- `chat.screen`：冒頭のトーク画面 → **実装済み** `renderer/templates/chat.py`
+- `text.title`：タイトル＋ロゴ → **実装済み** `renderer/templates/title.py`
+- 新しいプリセットも `renderer/templates/style.py` の色・線・文字（`docs/tone.md`）を使う
 - `text.hook`：黒背景テキスト（1行ずつフェード）
 - `text.quote`：名言用（ゆっくり、キーワード赤）
 
