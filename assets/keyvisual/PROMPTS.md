@@ -18,7 +18,15 @@ Gemini か ChatGPT の画像生成で使う。**上から順番に**作る（前
 Vertical 9:16 illustration, highest resolution.
 2D flat-color cartoon, thick dark-brown outlines, American cartoon style, muted warm palette — match the style of the attached character images exactly.
 
-Scene: a dim, cozy bedroom-living room in a family house at night (use the attached room as reference). Warm indirect light from a floor lamp. Back wall: a tall shelf packed with DVDs and books, an EMPTY vertical poster frame on the wall (no picture, no text), a small window with night outside. DVDs and magazines scattered on the floor.
+Scene: a dim, cozy bedroom-living room in a family house at night (use the attached room only as a mood reference). Warm indirect light from a floor lamp. The room is designed with clear, EMPTY display spots so that props can be added later — keep every spot below empty and clearly visible:
+1. Back wall, above the sofa, slightly left of center: a large EMPTY vertical poster frame (no picture, no text).
+2. Back wall, right of the poster: a long floating wall shelf with three empty spaces (for figures and small objects).
+3. Back wall, left: a tall DVD/book shelf, densely packed (spines are plain colors, no readable titles).
+4. Small window on the upper left wall showing plain night sky (the view will be replaced later).
+5. Left of the sofa: a small side table next to the floor lamp, with an empty top.
+6. Foreground: a low wooden coffee table in the center bottom of the frame, large and close to the camera, with a completely empty top (the main spot for props).
+7. Front-left floor: an empty open space on the rug where a box or bag can be placed.
+A few DVDs and magazines scattered on the floor near the sofa, nothing else.
 
 Camera: placed where the TV is, at seated eye level, looking straight at a green two-seater sofa against the back wall. A low wooden coffee table in the foreground at the bottom of the frame (empty table top).
 
@@ -26,11 +34,11 @@ Two characters sit side by side on the sofa, relaxed, facing the camera (as if w
 - LEFT: the brown dog from the first attached image (dark-brown knit beanie, red hoodie, navy pants, sleepy half-closed eyes). Keep his face, colors and proportions exactly the same. Mouth closed, neutral.
 - RIGHT: the round black fluffy dog from the second attached image (big black curly fur, grey shorts). Replace the T-shirt print with a PLAIN cream T-shirt with a small simple film-reel icon (no poster, no text, no real movie). Mouth closed, neutral.
 
-Both characters fully visible from head to feet (feet may be hidden behind the table), heads at about 40–60% of the image height, both within the central 80% of the width. Leave the top 20% of the image as calm background (wall). Nothing important in the bottom-right corner.
+Both characters fully visible from head to feet (feet may be hidden behind the table), heads at about 40–60% of the image height, both within the central 80% of the width. Leave the top 15% of the image as calm background (wall/ceiling). Keep all display spots inside the central 80% of the width. Nothing important in the bottom-right corner.
 No text, no logos, no watermarks, no real movie posters.
 ```
 
-**チェック：** 2人の顔が元の絵と同じか／じょんどぅーのTシャツが無地＋小さなマークか／2人が画面の中央80%に入っているか
+**チェック：** 2人の顔が元の絵と同じか／じょんどぅーのTシャツが無地＋小さなマークか／2人が画面の中央80%に入っているか／**小物を置く7つの場所が空いていて、はっきり見えるか**
 
 ---
 
@@ -40,7 +48,7 @@ No text, no logos, no watermarks, no real movie posters.
 ```
 Using the attached image, remove both characters completely and show the empty sofa.
 Keep EVERYTHING else exactly the same: same camera, same composition, same room, same lighting, same colors, same size.
-The poster frame stays empty. The coffee table top stays empty.
+All display spots stay empty: the poster frame, the wall shelf, the side table, the coffee table and the open floor space.
 Vertical 9:16, same resolution. No text, no logos.
 ```
 
