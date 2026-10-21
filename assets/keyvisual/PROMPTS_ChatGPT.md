@@ -153,6 +153,13 @@ Keep the transparent background.
 
 ### じょんどぅー（④の画像を添付）
 
+**★ 口1 口を閉じる**（完成図で口が開いているので、じょんどぅーは必須）
+```
+Edit the attached image. Change ONLY the mouth to: closed mouth, neutral.
+Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
+Keep the transparent background.
+```
+
 **★ 目2 驚き**
 ```
 Edit the attached image. Change ONLY the eyes to: wide open surprised eyes.
