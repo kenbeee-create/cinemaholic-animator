@@ -61,7 +61,7 @@ No text, no logos, no watermarks, no real movie posters.
 
 ## ② 部屋だけ（①と同じチャットで）
 ```
-Using the attached image, remove both characters completely and show the empty sofa.
+Using the key visual you just made, remove both characters completely and show the empty sofa.
 Keep EVERYTHING else exactly the same: same camera, same composition, same room, same lighting, same colors, same size.
 All display spots stay empty: the poster frame, the wall shelf, the side table, the coffee table and the open floor space.
 Same vertical size. No text, no logos.
