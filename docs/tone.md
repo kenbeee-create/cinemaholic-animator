@@ -38,6 +38,7 @@
 - 右（900px〜）：いいね・コメントのボタン列 → 文字や吹き出しを置かない。中央より少し左に寄せる
 
 ## 部品
+- `assets/brand/logo_neon.png`：**タイトルアイコン**（ネオンの2人の顔＋「シネマホリック」）。アカウントのアイコン・タイトル用。作り方は `renderer/templates/neon_logo.py`。ネオンのピンクはブランドの差し色として、ロゴまわりだけに使う
 - `assets/ui/logo.png`：ロゴ（錠剤＋シネマホリック＋CINEMA HOLIC）
 - `assets/ui/pill.png`：錠剤アイコン
 - `assets/ui/avatars/`：トーク画面のアイコン（キャラの基本画像から切り出し。リグ完成後に差し替え）

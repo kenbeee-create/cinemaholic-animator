@@ -1,20 +1,12 @@
 {
-  "owner": "gonbe",
-  "background": "assets/backgrounds/johndoe_room_v1.png",
+  "view": "receive",
   "day_label": "金曜日",
   "time": "19:42",
   "messages": [
-    {
-      "text": "今日上司にめっちゃ怒られた"
-    },
-    {
-      "text": "俺まったく関係ないのに"
-    },
-    {
-      "text": "上司〇してぇー"
-    },
-    {
-      "text": "今日行くわ"
-    }
-  ]
+    { "from": "gonbe", "text": "今日上司にめっちゃ怒られた" },
+    { "from": "gonbe", "text": "俺まったく関係ないのに", "gap": 0.35 },
+    { "from": "gonbe", "text": "上司〇してぇー", "gap": 0.35 },
+    { "from": "gonbe", "text": "今日行くわ", "gap": 0.45 }
+  ],
+  "options": { "typing": true, "typed": true, "read": true, "notify": false, "zoom": 0.06, "speed": 1.0 }
 }

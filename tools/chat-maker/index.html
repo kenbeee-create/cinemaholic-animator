@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>トーク画面メーカー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1f150f; --night:#1b1511; --night2:#2c221b; --night3:#3d3026;
+  --cream:#f0e4cc; --cream-dim:#b0a088; --parka:#b0422e; --gold:#c9a35a;
+  --font:"Noto Sans JP","Noto Sans CJK JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--night);color:var(--cream);font-family:var(--font)}
+body.headless{background:#000}
+body.headless .ui{display:none}
+body.headless .stage{padding:0}
+body.headless canvas{width:1080px!important;height:1920px!important;border:0;border-radius:0;box-shadow:none}
+.app{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:24px;padding:20px;max-width:1200px;margin:0 auto}
+@media (max-width:820px){.app{grid-template-columns:minmax(0,1fr);padding:12px 16px}}
+.app > *{min-width:0}
+html,body{overflow-x:hidden}
+.stage{position:sticky;top:12px;align-self:start;text-align:center}
+@media (max-width:820px){.stage{position:static}}
+canvas{width:100%;max-width:420px;aspect-ratio:9/16;height:auto;border:3px solid var(--ink);border-radius:18px;background:#000;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+@media (max-width:820px){canvas{max-width:300px}}
+.play{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+h1{font-size:20px;margin:0 0 4px;font-weight:900;letter-spacing:.04em}
+h1 small{display:block;font-size:12px;color:var(--cream-dim);font-weight:500;letter-spacing:0}
+.card{background:var(--night2);border:2px solid var(--ink);border-radius:14px;padding:14px;margin:12px 0}
+.card h2{font-size:14px;margin:0 0 10px;color:var(--gold);font-weight:700}
+label{font-size:12px;color:var(--cream-dim);display:block;margin-bottom:4px}
+input[type=text],input[type=number],select,textarea{width:100%;background:var(--night);color:var(--cream);border:2px solid var(--ink);border-radius:10px;padding:10px;font:inherit;font-size:16px}
+textarea{min-height:120px;font-size:13px;font-family:ui-monospace,monospace}
+.row{display:flex;gap:8px;align-items:center}
+.row > *{flex:1}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg{display:flex;border:2px solid var(--ink);border-radius:12px;overflow:hidden}
+.seg button{flex:1;min-width:0;border:0;border-radius:0;background:var(--night);color:var(--cream-dim);padding:10px 6px;font-size:13px;white-space:normal;line-height:1.35}
+.seg button.on{background:var(--parka);color:var(--cream)}
+button{background:var(--night3);color:var(--cream);border:2px solid var(--ink);border-radius:10px;padding:10px 14px;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+button.main{background:var(--parka)}
+button.ghost{background:transparent}
+button:active{transform:translateY(1px)}
+.msg{border:2px solid var(--ink);border-radius:12px;padding:10px;margin-bottom:10px;background:var(--night)}
+.msg .top{display:flex;gap:6px;align-items:center;margin-bottom:8px}
+.msg .top select{flex:1;min-width:120px}
+.msg .top input{width:72px;flex:none}
+.msg .top button{padding:8px 10px;flex:none}
+.who-gonbe{border-left:8px solid var(--parka)}
+.who-johndoe{border-left:8px solid var(--cream)}
+.check{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--cream);margin:6px 0}
+.check input{width:20px;height:20px}
+.icons{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.icons .ic{display:flex;flex-direction:column;gap:6px;align-items:center}
+.icons canvas{width:90px;height:90px;border-radius:50%;border:3px solid var(--ink);aspect-ratio:1;max-width:none;box-shadow:none}
+input[type=range]{width:100%}
+.note{font-size:12px;color:var(--cream-dim);line-height:1.6}
+.status{font-size:13px;color:var(--gold);min-height:1.4em;margin-top:6px}
+a{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="stage">
+    <canvas id="cv" width="1080" height="1920"></canvas>
+    <div class="play ui">
+      <button class="main" id="btnPlay">▶ 再生</button>
+      <button id="btnVideo">動画で保存</button>
+      <button id="btnPng">最後のコマを画像で保存</button>
+    </div>
+    <div class="status ui" id="status"></div>
+  </div>
+
+  <div class="ui">
+    <h1>トーク画面メーカー<small>シネマホリックの冒頭（Scene1）用。メッセージを打てば、そのまま動く画面になります</small></h1>
+
+    <div class="card">
+      <h2>見せ方</h2>
+      <div class="seg" id="segView">
+        <button data-v="receive">受け取る側（じょんどぅーのスマホ）</button>
+        <button data-v="send">送る側（ごんべぇのスマホ）</button>
+      </div>
+      <div class="grid2" style="margin-top:10px">
+        <div><label>日付のラベル</label><input type="text" id="day" placeholder="金曜日"></div>
+        <div><label>時刻</label><input type="text" id="time" placeholder="19:42"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>メッセージ</h2>
+      <div id="msgs"></div>
+      <button id="addMsg" class="ghost" style="width:100%">＋ メッセージを追加</button>
+      <p class="note">「間」は前のメッセージから次が来るまでの秒数です。改行は「\n」でも入れられます。</p>
+    </div>
+
+    <div class="card">
+      <h2>動き</h2>
+      <label class="check"><input type="checkbox" id="optTyping"> 相手が入力中「…」を出してから届く（続けて届くときは最初だけ）</label>
+      <label class="check"><input type="checkbox" id="optTyped"> 自分のメッセージは打ち込んでから送る</label>
+      <label class="check"><input type="checkbox" id="optRead"> 自分のメッセージに「既読」をつける</label>
+      <label class="check"><input type="checkbox" id="optNotify"> 最初に通知が上から降りてくる</label>
+      <div class="grid2" style="margin-top:8px">
+        <div><label>スマホへの寄り（0＝寄らない）</label><input type="range" id="optZoom" min="0" max="0.2" step="0.01"></div>
+        <div><label>速さ</label><input type="range" id="optSpeed" min="0.6" max="1.6" step="0.05"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>アイコン</h2>
+      <div class="icons" id="icons"></div>
+      <p class="note">画像を選ぶと、そのキャラのアイコンが差し替わります（この端末にだけ保存）。</p>
+    </div>
+
+    <div class="card">
+      <h2>保存・読み込み（制作パイプライン用）</h2>
+      <p class="note">この内容をJSONで書き出せます。<code>episodes/epXX-…/chat.json</code> に保存すると、Claude が同じ見た目で高画質に書き出します。</p>
+      <textarea id="json"></textarea>
+      <div class="row" style="margin-top:8px">
+        <button id="btnCopy">JSONをコピー</button>
+        <button id="btnLoad">上のJSONを読み込む</button>
+        <button id="btnReset" class="ghost">初期状態に戻す</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===================================================================
+   描画エンジン（ブラウザのプレビュー・動画保存・自動書き出しで共通）
+   色・線は docs/tone.md / renderer/templates/style.py と同じ値
+   =================================================================== */
+const CH = (() => {
+  const W = 1080, H = 1920;
+  const C = {
+    ink:"#1f150f", night:"#1b1511", night2:"#2c221b", night3:"#3d3026",
+    cream:"#f0e4cc", creamDim:"#b0a088", parka:"#b0422e", denim:"#24344a",
+    gold:"#c9a35a", key:"#4a3b30"
+  };
+  const FONT = '"Noto Sans JP","Noto Sans CJK JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif';
+  const LINE = 6;
+  const SPEAKER = {
+    gonbe:   {fill:C.parka, text:C.cream, name:"ごんべぇ",   iconBg:"#7a745e"},
+    johndoe: {fill:C.cream, text:C.ink,   name:"じょんどぅー", iconBg:"#c49654"},
+  };
+  // 画面の配置（1080x1920）。右のSNSボタン列を避けて、吹き出しは x<=880 に収める
+  const PHONE = {x:28, y:-70, w:1024, h:2060, r:120, bezel:26};
+  const SCREEN = {x:PHONE.x+PHONE.bezel, y:PHONE.y+PHONE.bezel, w:PHONE.w-PHONE.bezel*2, h:PHONE.h-PHONE.bezel*2};
+  const HEADER = {y:150, h:150};
+  const AREA = {top:HEADER.y+HEADER.h+110, bottom:1470, left:76, right:880};
+  const INPUT_Y = 1505;
+  const FS = 50, PADX = 34, PADY = 22, MAXW = 600, GAP = 22, AV = 78;
+  const POP = 0.26, TYPING = 0.5;
+
+  const icons = {};      // id -> {img, scale, x, y}
+  const DEFAULT_ICONS = {
+    gonbe:"../../assets/ui/avatars/gonbe_icon.png",
+    johndoe:"../../assets/ui/avatars/johndoe_icon.png"
+  };
+
+  // ---------- 小さな道具 ----------
+  const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+  const prog=(t,s,d)=>d>0?clamp((t-s)/d):(t>=s?1:0);
+  const easeOut=t=>1-Math.pow(1-clamp(t),3);
+  const easeBack=(t,s=1.7)=>{t=clamp(t)-1;return t*t*((s+1)*t+s)+1};
+  const font=(w,px)=>`${w} ${px}px ${FONT}`;
+
+  function loadImage(src){
+    return new Promise(res=>{const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src=src;});
+  }
+  async function setIcon(id, src, opts={}){
+    const img = await loadImage(src || DEFAULT_ICONS[id]);
+    icons[id] = {img, src: src || null, scale:opts.scale||1, x:opts.x||0, y:opts.y||0};
+  }
+  async function ready(cfg){
+    const ic = (cfg && cfg.icons) || {};
+    await Promise.all(["gonbe","johndoe"].map(id=>setIcon(id, ic[id]&&ic[id].src, ic[id]||{})));
+    try{ await document.fonts.load(font(700,FS)+"" ); await document.fonts.load(font(900,40)); await document.fonts.ready; }catch(e){}
+  }
+
+  // 日本語の折り返し（句読点は行頭に来ないようにぶら下げ）＋最後の行が1〜2文字にならないよう調整
+  function wrap(ctx, text, maxW){
+    const noHead = "、。，．・ー〜！？!?）」』…ぇぉゃゅょっ";
+    const lines=[]; let cur="";
+    for(const ch of text.replace(/\\n/g,"\n")){
+      if(ch==="\n"){lines.push(cur);cur="";continue;}
+      const tr=cur+ch;
+      if(ctx.measureText(tr).width<=maxW || !cur || noHead.includes(ch)) cur=tr;
+      else {lines.push(cur);cur=ch;}
+    }
+    if(cur) lines.push(cur);
+    if(lines.length>=2 && lines[lines.length-1].length<=2){
+      const all=lines.join(""); const n=lines.length; const per=Math.ceil(all.length/n);
+      const out=[]; for(let i=0;i<all.length;i+=per) out.push(all.slice(i,i+per));
+      if(out.every(l=>ctx.measureText(l).width<=maxW*1.02)) return out;
+    }
+    return lines;
+  }
+
+  function rr(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r);}
+
+  // 吹き出しの形（しっぽ付き）。mine=右側
+  function bubblePath(ctx,x,y,w,h,mine){
+    const r=Math.min(40,h/2), tail=20;
+    ctx.beginPath();
+    ctx.roundRect(x,y,w,h,r);
+    if(mine){ ctx.moveTo(x+w-r*0.9,y); ctx.lineTo(x+w+tail,y+4); ctx.lineTo(x+w-2,y+r*0.9); ctx.closePath(); }
+    else    { ctx.moveTo(x+r*0.9,y);   ctx.lineTo(x-tail,y+4);   ctx.lineTo(x+2,y+r*0.9);   ctx.closePath(); }
+  }
+
+  function measureBubble(ctx,text){
+    ctx.font=font(700,FS);
+    const lines=wrap(ctx,text,MAXW);
+    const lh=Math.round(FS*1.42);
+    const tw=Math.max(...lines.map(l=>ctx.measureText(l).width));
+    return {lines, lh, w:Math.ceil(tw)+PADX*2, h:lh*lines.length+PADY*2-4};
+  }
+
+  function drawBubble(ctx,b,x,y,mine,who){
+    const sp=SPEAKER[who];
+    ctx.save();
+    // 影
+    ctx.translate(0,7); bubblePath(ctx,x,y,b.w,b.h,mine); ctx.fillStyle="rgba(10,6,4,.55)"; ctx.fill(); ctx.translate(0,-7);
+    // 塗りと輪郭（輪郭を先に太く描いて、塗りで内側を隠す＝しっぽと本体の輪郭が1本につながる）
+    bubblePath(ctx,x,y,b.w,b.h,mine); ctx.lineJoin="round"; ctx.lineWidth=LINE*2; ctx.strokeStyle=C.ink; ctx.stroke();
+    ctx.fillStyle=sp.fill; ctx.fill();
+    ctx.fillStyle=sp.text; ctx.font=font(700,FS); ctx.textBaseline="top";
+    b.lines.forEach((l,i)=>ctx.fillText(l,x+PADX,y+PADY+i*b.lh+2));
+    ctx.restore();
+  }
+
+  function drawTyping(ctx,x,y,who,t){
+    const sp=SPEAKER[who]; const w=150,h=86;
+    ctx.save();
+    bubblePath(ctx,x,y,w,h,false); ctx.lineWidth=LINE*2; ctx.strokeStyle=C.ink; ctx.lineJoin="round"; ctx.stroke();
+    ctx.fillStyle=sp.fill; ctx.fill();
+    for(let i=0;i<3;i++){
+      const ph=(t*3.2 - i*0.18)%1; const up=Math.max(0,Math.sin(ph*Math.PI))*10;
+      ctx.beginPath(); ctx.arc(x+42+i*33,y+h/2-up,9,0,Math.PI*2); ctx.fillStyle=sp.text; ctx.globalAlpha=0.55+0.45*(up/10); ctx.fill();
+    }
+    ctx.restore();
+    return {w,h};
+  }
+
+  function drawIcon(ctx,id,cx,cy,size){
+    const ic=icons[id]; const sp=SPEAKER[id];
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx,cy,size/2,0,Math.PI*2); ctx.closePath();
+    ctx.fillStyle=sp.iconBg; ctx.fill(); ctx.clip();
+    if(ic && ic.img){
+      const s=size*ic.scale; const im=ic.img; const k=s/Math.min(im.width,im.height);
+      const w=im.width*k,h=im.height*k;
+      ctx.drawImage(im,cx-w/2+ic.x*size,cy-h/2+ic.y*size,w,h);
+    }
+    ctx.restore();
+    ctx.beginPath(); ctx.arc(cx,cy,size/2,0,Math.PI*2); ctx.lineWidth=LINE; ctx.strokeStyle=C.ink; ctx.stroke();
+  }
+
+  // ---------- 時間割（いつ何が起きるか） ----------
+  function schedule(cfg){
+    const o=cfg.options||{}; const sp=1/(o.speed||1);
+    const me=cfg.view==="send"?"gonbe":"johndoe";
+    let t=(o.notify?1.0:0.3)*sp;
+    const ev=[];
+    cfg.messages.forEach((m,i)=>{
+      const who=m.from||(me==="gonbe"?"gonbe":"gonbe");
+      const mine=who===me;
+      const gap=(m.gap!=null?m.gap:(i===0?0:0.35))*sp;
+      t+= i===0?0:gap;
+      let typeStart=null, typeEnd=null, typingStart=null;
+      const prevWho = i>0 ? (cfg.messages[i-1].from||"gonbe") : null;
+      if(!mine && o.typing && prevWho!==who){ typingStart=t; t+=TYPING*sp; } // 入力中「…」は話し手が変わったときだけ
+      if(mine && o.typed){ typeStart=t; t+=Math.min(0.9,0.05*[...m.text].length+0.15)*sp; typeEnd=t; t+=0.08*sp; }
+      ev.push({i,who,mine,text:m.text,appear:t,typingStart,typeStart,typeEnd});
+      t+=POP*sp;
+    });
+    const lastMine=[...ev].reverse().find(e=>e.mine);
+    const readAt = (o.read && lastMine) ? lastMine.appear+0.5*sp : null;
+    const end = Math.max(t, readAt?readAt+0.2:0) + 0.6*sp;
+    return {ev, me, readAt, duration: Math.max(2.5, end), sp};
+  }
+
+  // ---------- 1コマ描く ----------
+  function render(ctx, cfg, t){
+    const S=schedule(cfg); const o=cfg.options||{};
+    const partner = S.me==="gonbe"?"johndoe":"gonbe";
+    ctx.save();
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.fillStyle="#0e0907"; ctx.fillRect(0,0,W,H);
+
+    // カメラ：スマホにゆっくり寄る
+    const z=1+(o.zoom||0)*easeOut(t/S.duration);
+    ctx.translate(W*0.47,1150); ctx.scale(z,z); ctx.translate(-W*0.47,-1150);
+
+    // スマホ本体
+    ctx.save(); rr(ctx,PHONE.x,PHONE.y,PHONE.w,PHONE.h,PHONE.r); ctx.fillStyle=C.denim; ctx.fill();
+    ctx.lineWidth=LINE*2; ctx.strokeStyle=C.ink; ctx.stroke(); ctx.restore();
+    // 画面
+    ctx.save(); rr(ctx,SCREEN.x,SCREEN.y,SCREEN.w,SCREEN.h,PHONE.r-PHONE.bezel); ctx.clip();
+    const g=ctx.createLinearGradient(0,SCREEN.y,0,SCREEN.y+SCREEN.h);
+    g.addColorStop(0,"#241c16"); g.addColorStop(1,C.night); ctx.fillStyle=g; ctx.fillRect(SCREEN.x,SCREEN.y,SCREEN.w,SCREEN.h);
+
+    // ステータスバー
+    ctx.fillStyle=C.creamDim; ctx.font=font(700,30); ctx.textBaseline="middle";
+    ctx.fillText(cfg.time||"19:42",SCREEN.x+70,95);
+    ctx.fillRect(W-200,84,46,24); ctx.fillRect(W-150,90,5,12);
+    // ヘッダー
+    ctx.fillStyle=C.night2; ctx.fillRect(SCREEN.x,HEADER.y,SCREEN.w,HEADER.h);
+    ctx.fillStyle=C.ink; ctx.fillRect(SCREEN.x,HEADER.y+HEADER.h-3,SCREEN.w,LINE);
+    const hy=HEADER.y+HEADER.h/2;
+    ctx.strokeStyle=C.cream; ctx.lineWidth=8; ctx.lineCap="round"; ctx.lineJoin="round";
+    ctx.beginPath(); ctx.moveTo(98,hy-24); ctx.lineTo(74,hy); ctx.lineTo(98,hy+24); ctx.stroke();
+    drawIcon(ctx,partner,170,hy,84);
+    ctx.fillStyle=C.cream; ctx.font=font(700,46); ctx.textBaseline="middle";
+    ctx.fillText(cfg.partner_name||SPEAKER[partner].name,232,hy+2);
+    // 日付
+    if(cfg.day_label){
+      ctx.font=font(700,30); const tw=ctx.measureText(cfg.day_label).width;
+      const mx=(AREA.left+AREA.right)/2, y0=HEADER.y+HEADER.h+34;
+      rr(ctx,mx-tw/2-28,y0,tw+56,52,26); ctx.fillStyle=C.night3; ctx.fill();
+      ctx.fillStyle=C.creamDim; ctx.textAlign="center"; ctx.fillText(cfg.day_label,mx,y0+27); ctx.textAlign="left";
+    }
+
+    // メッセージを下から積む
+    const items=[];
+    for(const e of S.ev){
+      const b=measureBubble(ctx,e.text);
+      let h=0, state=null, p=0;
+      if(t>=e.appear){ p=prog(t,e.appear,POP*S.sp); h=b.h; state="bubble"; }
+      else if(e.typingStart!=null && t>=e.typingStart){ p=prog(t,e.typingStart,0.2*S.sp); h=86; state="typing"; }
+      if(!state) continue;
+      // 入力中→本文に切り替わるとき、高さをなめらかに
+      let hh=h;
+      if(state==="bubble" && e.typingStart!=null) hh=86+(b.h-86)*easeOut(p);
+      else hh=h*easeOut(p);
+      items.push({e,b,state,p,hh});
+    }
+    let y=AREA.bottom;
+    const placed=[];
+    for(let k=items.length-1;k>=0;k--){ const it=items[k]; y-=it.hh+GAP; placed.unshift({...it,y}); }
+    ctx.save(); ctx.beginPath(); ctx.rect(SCREEN.x,HEADER.y+HEADER.h,SCREEN.w,AREA.bottom+10-(HEADER.y+HEADER.h)); ctx.clip();
+    placed.forEach((it,idx)=>{
+      const {e,b,state,p}=it;
+      const prev=placed[idx-1];
+      const firstOfRun=!prev || prev.e.who!==e.who;
+      if(e.mine){
+        const x=AREA.right-b.w;
+        const sc=state==="bubble"?0.55+0.45*easeBack(p):1;
+        ctx.save(); ctx.globalAlpha=clamp(p*3);
+        ctx.translate(AREA.right, it.y); ctx.scale(sc,sc); ctx.translate(-AREA.right,-it.y);
+        // 打ち込んで送った場合は、下から上がってくる
+        if(e.typeStart!=null){ const rise=(1-easeOut(p))*120; ctx.translate(0,rise); }
+        drawBubble(ctx,b,x,it.y,true,e.who); ctx.restore();
+        if(p>=1){
+          ctx.fillStyle=C.creamDim; ctx.font=font(500,26); ctx.textAlign="right"; ctx.textBaseline="bottom";
+          const isLastMine = !placed.slice(idx+1).some(q=>q.e.mine);
+          if(isLastMine){
+            ctx.fillText(cfg.time||"19:42",x-14,it.y+b.h);
+            if(S.readAt!=null && t>=S.readAt){ ctx.globalAlpha=prog(t,S.readAt,0.15); ctx.fillText("既読",x-14,it.y+b.h-32); ctx.globalAlpha=1; }
+          }
+          ctx.textAlign="left";
+        }
+      } else {
+        const x=AREA.left+AV+14;
+        if(firstOfRun) drawIcon(ctx,e.who,AREA.left+AV/2,it.y+AV/2,AV);
+        if(state==="typing"){
+          ctx.save(); const sc=0.6+0.4*easeBack(p); ctx.globalAlpha=clamp(p*3);
+          ctx.translate(x,it.y); ctx.scale(sc,sc); ctx.translate(-x,-it.y);
+          drawTyping(ctx,x,it.y,e.who,t); ctx.restore();
+        } else {
+          const sc = e.typingStart!=null ? 1 : 0.55+0.45*easeBack(p);
+          ctx.save(); ctx.globalAlpha = e.typingStart!=null?1:clamp(p*3);
+          ctx.translate(x,it.y); ctx.scale(sc,sc); ctx.translate(-x,-it.y);
+          if(e.typingStart!=null && p<1){ // 「…」から本文へ、横に広がる
+            const k=easeOut(p); ctx.translate(x,it.y); ctx.scale(0.5+0.5*k,1); ctx.translate(-x,-it.y);
+          }
+          drawBubble(ctx,b,x,it.y,false,e.who); ctx.restore();
+          if(p>=1 && (!placed[idx+1] || placed[idx+1].e.who!==e.who)){
+            ctx.fillStyle=C.creamDim; ctx.font=font(500,26); ctx.textBaseline="bottom";
+            ctx.fillText(cfg.time||"19:42",x+b.w+16,it.y+b.h);
+          }
+        }
+      }
+    });
+    ctx.restore();
+
+    // 入力欄（打ち込み中の文字も出す）
+    const typing=S.ev.find(e=>e.typeStart!=null && t>=e.typeStart && t<e.appear);
+    ctx.fillStyle=C.night3; ctx.fillRect(SCREEN.x,INPUT_Y-22,SCREEN.w,3);
+    rr(ctx,AREA.left-10,INPUT_Y,AREA.right-AREA.left-90,84,42); ctx.fillStyle=C.night2; ctx.fill();
+    ctx.lineWidth=LINE; ctx.strokeStyle=C.ink; ctx.stroke();
+    ctx.font=font(500,34); ctx.textBaseline="middle";
+    if(typing){
+      const n=Math.ceil([...typing.text].length*prog(t,typing.typeStart,typing.typeEnd-typing.typeStart));
+      let s=[...typing.text].slice(0,n).join("").replace(/\\n|\n/g," ");
+      while(ctx.measureText(s).width>AREA.right-AREA.left-160 && s.length>1) s=s.slice(1);
+      ctx.fillStyle=C.cream; ctx.fillText(s,AREA.left+24,INPUT_Y+44);
+      if(Math.floor(t*4)%2===0){ const cw=ctx.measureText(s).width; ctx.fillRect(AREA.left+28+cw,INPUT_Y+22,4,44); }
+    } else {
+      ctx.fillStyle=C.creamDim; ctx.fillText("メッセージを入力",AREA.left+24,INPUT_Y+44);
+    }
+    // 送信ボタン
+    const sendHot = typing ? 1 : 0;
+    ctx.beginPath(); ctx.arc(AREA.right-34,INPUT_Y+42,38,0,Math.PI*2);
+    ctx.fillStyle = sendHot?C.parka:C.night3; ctx.fill(); ctx.lineWidth=LINE; ctx.strokeStyle=C.ink; ctx.stroke();
+    ctx.fillStyle=C.cream; ctx.beginPath(); const sx=AREA.right-34, sy=INPUT_Y+42;
+    ctx.moveTo(sx-14,sy-16); ctx.lineTo(sx+18,sy); ctx.lineTo(sx-14,sy+16); ctx.lineTo(sx-8,sy); ctx.closePath(); ctx.fill();
+
+    // キーボード（打ち込みを見せるときだけ）
+    if(S.ev.some(e=>e.typeStart!=null)){
+      const ky=INPUT_Y+120; ctx.fillStyle="#211913"; ctx.fillRect(SCREEN.x,ky,SCREEN.w,SCREEN.y+SCREEN.h-ky);
+      const rows=[10,10,9,7]; const kw=(SCREEN.w-60)/10;
+      rows.forEach((n,r)=>{ for(let c=0;c<n;c++){
+        const x=SCREEN.x+30+(10-n)*kw/2+c*kw+5, yy=ky+24+r*96;
+        rr(ctx,x,yy,kw-10,80,14); ctx.fillStyle=C.key; ctx.fill();
+        if(typing && Math.floor(t*14+r*3+c)%23===0){ ctx.fillStyle="rgba(240,228,204,.35)"; ctx.fill(); }
+      }});
+    }
+    ctx.restore(); // 画面の切り抜き終わり
+
+    // 通知バナー
+    if(o.notify && S.ev.length){
+      const e0=S.ev[0]; const sp=S.sp;
+      const pin=easeOut(prog(t,0.05*sp,0.25*sp)), pout=easeOut(prog(t,0.75*sp,0.25*sp));
+      const by=-200+(260+110)*pin-(260+110)*pout;
+      if(pin>0 && pout<1){
+        rr(ctx,60,by+60,840,170,40); ctx.fillStyle=C.cream; ctx.fill(); ctx.lineWidth=LINE; ctx.strokeStyle=C.ink; ctx.stroke();
+        drawIcon(ctx,e0.who,140,by+145,90);
+        ctx.fillStyle=C.ink; ctx.font=font(900,38); ctx.textBaseline="middle";
+        ctx.fillText(SPEAKER[e0.who].name,210,by+115);
+        ctx.font=font(700,34); let s=e0.text.replace(/\\n|\n/g," ");
+        while(ctx.measureText(s).width>640 && s.length>1) s=s.slice(0,-2)+"…";
+        ctx.fillText(s,210,by+168);
+      }
+    }
+    ctx.restore();
+    return S;
+  }
+
+  function cues(cfg){
+    const S=schedule(cfg); const out=[];
+    if((cfg.options||{}).notify) out.push({t:+(0.05*S.sp).toFixed(3),sfx:"brand/chat_receive",note:"通知"});
+    S.ev.forEach(e=>{
+      if(e.typingStart!=null) out.push({t:+e.typingStart.toFixed(3),sfx:null,note:"入力中…"});
+      out.push({t:+e.appear.toFixed(3),sfx:e.mine?"brand/chat_send":"brand/chat_receive"});
+    });
+    if(S.readAt!=null) out.push({t:+S.readAt.toFixed(3),sfx:null,note:"既読"});
+    return {duration:+S.duration.toFixed(3),cues:out};
+  }
+
+  return {W,H,render,schedule,cues,ready,setIcon,icons,DEFAULT_ICONS};
+})();
+
+/* ===================================================================
+   画面（編集UI）
+   =================================================================== */
+const DEFAULT = {
+  view:"receive",
+  day_label:"金曜日",
+  time:"19:42",
+  messages:[
+    {from:"gonbe",text:"今日上司にめっちゃ怒られた"},
+    {from:"gonbe",text:"俺まったく関係ないのに",gap:0.35},
+    {from:"gonbe",text:"上司〇してぇー",gap:0.35},
+    {from:"gonbe",text:"今日行くわ",gap:0.45}
+  ],
+  options:{typing:true,typed:true,read:true,notify:false,zoom:0.06,speed:1.0},
+  icons:{}
+};
+const KEY="cinemaholic-chat-maker-v1";
+let cfg;
+try{ cfg=JSON.parse(localStorage.getItem(KEY)) || null; }catch(e){ cfg=null; }
+if(!cfg) cfg=JSON.parse(JSON.stringify(DEFAULT));
+
+const cv=document.getElementById("cv"); const ctx=cv.getContext("2d");
+const $=id=>document.getElementById(id);
+let playing=false, t0=0, lastT=0;
+
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(cfg)); }catch(e){} $("json").value=JSON.stringify(exportCfg(),null,2); }
+function exportCfg(){ const c=JSON.parse(JSON.stringify(cfg)); // 端末で選んだ画像はJSONに入れない（大きすぎるため）
+  if(c.icons){ for(const k in c.icons){ if(c.icons[k].src && c.icons[k].src.startsWith("data:")) c.icons[k].src="(この端末で選んだ画像)"; } }
+  return c; }
+
+function drawStill(t){ const S=CH.render(ctx,cfg,t); return S; }
+function playLoop(now){
+  if(!playing) return;
+  const t=(now-t0)/1000; const S=CH.schedule(cfg);
+  CH.render(ctx,cfg,Math.min(t,S.duration)); lastT=t;
+  if(t>=S.duration+0.6){ playing=false; $("btnPlay").textContent="▶ 再生"; return; }
+  requestAnimationFrame(playLoop);
+}
+function play(){ playing=true; t0=performance.now(); $("btnPlay").textContent="■ 止める"; requestAnimationFrame(playLoop); }
+function stop(){ playing=false; $("btnPlay").textContent="▶ 再生"; drawStill(CH.schedule(cfg).duration); }
+
+function renderMsgs(){
+  const box=$("msgs"); box.innerHTML="";
+  cfg.messages.forEach((m,i)=>{
+    const d=document.createElement("div"); d.className="msg who-"+(m.from||"gonbe");
+    d.innerHTML=`<div class="top">
+      <select><option value="gonbe">ごんべぇ</option><option value="johndoe">じょんどぅー</option></select>
+      <input type="number" step="0.05" min="0" max="5" title="間（秒）">
+      <button title="上へ">↑</button><button title="下へ">↓</button><button title="消す">✕</button></div>
+      <input type="text">`;
+    const [sel,gap,up,down,del]=d.querySelectorAll(".top > *"); const txt=d.querySelector("input[type=text]");
+    sel.value=m.from||"gonbe"; gap.value=m.gap!=null?m.gap:(i===0?0:0.35); txt.value=m.text;
+    gap.disabled = i===0;
+    sel.onchange=()=>{m.from=sel.value; d.className="msg who-"+m.from; changed();};
+    gap.oninput=()=>{m.gap=parseFloat(gap.value)||0; changed();};
+    txt.oninput=()=>{m.text=txt.value; changed();};
+    up.onclick=()=>{ if(i>0){[cfg.messages[i-1],cfg.messages[i]]=[cfg.messages[i],cfg.messages[i-1]]; renderMsgs(); changed();} };
+    down.onclick=()=>{ if(i<cfg.messages.length-1){[cfg.messages[i+1],cfg.messages[i]]=[cfg.messages[i],cfg.messages[i+1]]; renderMsgs(); changed();} };
+    del.onclick=()=>{ if(cfg.messages.length>1){cfg.messages.splice(i,1); renderMsgs(); changed();} };
+    box.appendChild(d);
+  });
+}
+function syncForm(){
+  document.querySelectorAll("#segView button").forEach(b=>b.classList.toggle("on",b.dataset.v===cfg.view));
+  $("day").value=cfg.day_label||""; $("time").value=cfg.time||"";
+  const o=cfg.options=cfg.options||{};
+  $("optTyping").checked=!!o.typing; $("optTyped").checked=!!o.typed; $("optRead").checked=!!o.read; $("optNotify").checked=!!o.notify;
+  $("optZoom").value=o.zoom!=null?o.zoom:0.06; $("optSpeed").value=o.speed||1;
+  renderMsgs(); renderIcons();
+}
+function changed(){ save(); if(!playing) drawStill(CH.schedule(cfg).duration); }
+
+function renderIcons(){
+  const box=$("icons"); box.innerHTML="";
+  ["gonbe","johndoe"].forEach(id=>{
+    const ic=(cfg.icons=cfg.icons||{})[id]||(cfg.icons[id]={scale:1,x:0,y:0});
+    const d=document.createElement("div"); d.className="ic";
+    d.innerHTML=`<canvas width="180" height="180"></canvas><b>${id==="gonbe"?"ごんべぇ":"じょんどぅー"}</b>
+      <input type="file" accept="image/*" style="font-size:12px;max-width:100%">
+      <label>大きさ</label><input type="range" min="0.5" max="2.5" step="0.05" value="${ic.scale||1}">
+      <label>左右</label><input type="range" min="-0.5" max="0.5" step="0.01" value="${ic.x||0}">
+      <label>上下</label><input type="range" min="-0.5" max="0.5" step="0.01" value="${ic.y||0}">
+      <button class="ghost">元に戻す</button>`;
+    const pv=d.querySelector("canvas"), file=d.querySelector("input[type=file]");
+    const [rs,rx,ry]=d.querySelectorAll("input[type=range]"); const reset=d.querySelector("button");
+    const redraw=()=>{ const c=pv.getContext("2d"); c.clearRect(0,0,180,180); const t=CH.icons[id];
+      Object.assign(t,{scale:ic.scale||1,x:ic.x||0,y:ic.y||0});
+      // ミニプレビュー
+      c.save(); c.beginPath(); c.arc(90,90,90,0,Math.PI*2); c.clip(); c.fillStyle=id==="gonbe"?"#7a745e":"#c49654"; c.fillRect(0,0,180,180);
+      if(t.img){ const s=180*t.scale, k=s/Math.min(t.img.width,t.img.height); const w=t.img.width*k,h=t.img.height*k; c.drawImage(t.img,90-w/2+t.x*180,90-h/2+t.y*180,w,h);} c.restore(); };
+    file.onchange=()=>{ const f=file.files[0]; if(!f) return; const r=new FileReader();
+      r.onload=async()=>{ ic.src=r.result; await CH.setIcon(id,ic.src,ic); redraw(); changed(); }; r.readAsDataURL(f); };
+    [rs,rx,ry].forEach((el,k)=>el.oninput=()=>{ ic[["scale","x","y"][k]]=parseFloat(el.value); redraw(); changed(); });
+    reset.onclick=async()=>{ cfg.icons[id]={scale:1,x:0,y:0}; await CH.setIcon(id,null,{}); renderIcons(); changed(); };
+    box.appendChild(d); setTimeout(redraw,0);
+  });
+}
+
+function setStatus(s){ $("status").textContent=s; }
+
+async function recordVideo(){
+  const types=["video/mp4;codecs=avc1","video/mp4","video/webm;codecs=vp9","video/webm;codecs=vp8","video/webm"];
+  const type=types.find(t=>window.MediaRecorder && MediaRecorder.isTypeSupported(t));
+  if(!type){ setStatus("このブラウザは動画の保存に対応していません。ChromeかSafariで開いてください。"); return; }
+  const stream=cv.captureStream(30); const rec=new MediaRecorder(stream,{mimeType:type,videoBitsPerSecond:12_000_000});
+  const chunks=[]; rec.ondataavailable=e=>e.data.size&&chunks.push(e.data);
+  const S=CH.schedule(cfg);
+  setStatus("録画中…（"+S.duration.toFixed(1)+"秒）");
+  rec.start();
+  playing=false; const start=performance.now();
+  await new Promise(res=>{ const step=now=>{ const t=(now-start)/1000; CH.render(ctx,cfg,Math.min(t,S.duration)); if(t<S.duration+0.15) requestAnimationFrame(step); else res(); }; requestAnimationFrame(step); });
+  rec.stop(); await new Promise(r=>rec.onstop=r);
+  const ext=type.includes("mp4")?"mp4":"webm";
+  const blob=new Blob(chunks,{type:type.split(";")[0]});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="talk_"+Date.now()+"."+ext; a.click();
+  setStatus("保存しました（"+ext+"）。"+(ext==="webm"?" 編集アプリで読めない場合は、JSONをClaudeに渡せばMP4で書き出します。":""));
+}
+
+function bind(){
+  document.querySelectorAll("#segView button").forEach(b=>b.onclick=()=>{cfg.view=b.dataset.v; syncForm(); changed();});
+  $("day").oninput=e=>{cfg.day_label=e.target.value;changed();};
+  $("time").oninput=e=>{cfg.time=e.target.value;changed();};
+  [["optTyping","typing"],["optTyped","typed"],["optRead","read"],["optNotify","notify"]].forEach(([id,k])=>$(id).onchange=e=>{cfg.options[k]=e.target.checked;changed();});
+  $("optZoom").oninput=e=>{cfg.options.zoom=parseFloat(e.target.value);changed();};
+  $("optSpeed").oninput=e=>{cfg.options.speed=parseFloat(e.target.value);changed();};
+  $("addMsg").onclick=()=>{cfg.messages.push({from:cfg.messages.at(-1)?.from||"gonbe",text:"",gap:0.35}); renderMsgs(); changed();};
+  $("btnPlay").onclick=()=>playing?stop():play();
+  $("btnVideo").onclick=recordVideo;
+  $("btnPng").onclick=()=>{ drawStill(CH.schedule(cfg).duration); const a=document.createElement("a"); a.href=cv.toDataURL("image/png"); a.download="talk_last.png"; a.click(); };
+  $("btnCopy").onclick=async()=>{ try{ await navigator.clipboard.writeText($("json").value); setStatus("JSONをコピーしました"); }catch(e){ $("json").select(); setStatus("選択しました。長押しでコピーしてください"); } };
+  $("btnLoad").onclick=async()=>{ try{ const c=JSON.parse($("json").value); cfg=Object.assign(JSON.parse(JSON.stringify(DEFAULT)),c); cfg.options=Object.assign({},DEFAULT.options,c.options||{}); await CH.ready(cfg); syncForm(); changed(); setStatus("読み込みました"); }catch(e){ setStatus("JSONの形が正しくありません"); } };
+  $("btnReset").onclick=async()=>{ cfg=JSON.parse(JSON.stringify(DEFAULT)); await CH.ready(cfg); syncForm(); changed(); };
+}
+
+/* 自動書き出し用（Claude のパイプラインが使う） */
+window.CH = CH;
+window.loadCfg = async c => { cfg = Object.assign(JSON.parse(JSON.stringify(DEFAULT)), c); cfg.options=Object.assign({},DEFAULT.options,c.options||{}); await CH.ready(cfg); return CH.cues(cfg); };
+window.frameAt = t => { CH.render(ctx, cfg, t); return cv.toDataURL("image/png"); };
+
+(async()=>{
+  if(new URLSearchParams(location.search).has("headless")){ document.body.classList.add("headless"); window.__ready=true; return; }
+  await CH.ready(cfg); syncForm(); bind(); save(); drawStill(CH.schedule(cfg).duration);
+  setTimeout(play,300);
+})();
+</script>
+</body>
+</html>
