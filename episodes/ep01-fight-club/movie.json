@@ -1,0 +1,23 @@
+{
+  "title": "ファイト・クラブ",
+  "original_title": "Fight Club",
+  "year": 1999,
+  "director": "デヴィッド・フィンチャー",
+  "runtime_min": 139,
+  "one_liner": "（ひと言の紹介：あらすじではなく「どんな気持ちになる映画か」をオリジナルの言葉で。台本と一緒に確定）",
+  "poster": "assets/posters/ep01.png",
+  "streaming": [
+    {"service": "Netflix", "type": "見放題"},
+    {"service": "U-NEXT", "type": "見放題"},
+    {"service": "WOWOWオンデマンド", "type": "見放題"},
+    {"service": "TELASA", "type": "見放題・レンタル"},
+    {"service": "Prime Video", "type": "レンタル・購入"},
+    {"service": "DMM TV", "type": "レンタル"},
+    {"service": "J:COM STREAM", "type": "レンタル"},
+    {"service": "TSUTAYA DISCAS", "type": "宅配レンタル"},
+    {"service": "music.jp", "type": "レンタル"}
+  ],
+  "streaming_as_of": "2026年9月（Filmarksの表記）",
+  "checked_on": "2026-10-22",
+  "sources": ["https://filmarks.com/movies/28788"]
+}
