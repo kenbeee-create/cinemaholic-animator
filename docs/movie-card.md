@@ -4,7 +4,7 @@
 - 左：大きなポスター／右：お薬の名前（タイトル）・公開年・上映時間・監督・効きめ（ひと言）・もらえる薬局（配信サービス）
 - 右下：**白衣のじょんどぅー**がひと言（ふきだし）。はんこ「処方」
 - イメージ：`docs/storyboard/movie_intro_mock.jpg`（作り直し：`python3 renderer/preview/movie_intro.py <movie.json> <出力.png>`）
-- 白衣のじょんどぅーは、今はプログラムで白衣を描き足した仮。本番は服の素材として描き直す
+- 白衣のじょんどぅー（立ち絵）：`assets/characters/johndoe/doctor_stand.png`（ChatGPTで作成・背景と光を除去済み）
 
 （以前の試作：画面下からカードをせり上げる版 `renderer/preview/scene_demo.py`）
 
