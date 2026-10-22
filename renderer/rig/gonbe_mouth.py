@@ -50,7 +50,12 @@ def _catmull(pts, n=80):
     return out
 
 
-def mouth(depth: float, tongue: bool) -> Image.Image:
+TEETH = (238, 224, 190, 255)
+
+
+def mouth(depth: float, tongue: bool, teeth: bool = False) -> Image.Image:
+    """上唇＝基本の絵の口の線。その下に、まるく開いた口（輪郭線つき）を描く。
+    下あごの帯は描かない（参考：オーナー提供の口を開けたごんべぇ）。"""
     base = Image.open(BASE)
     W, H = base.size
     img = Image.new("RGBA", (W * K, H * K), (0, 0, 0, 0))
@@ -58,24 +63,31 @@ def mouth(depth: float, tongue: bool) -> Image.Image:
     s = lambda pts: [(x * K, y * K) for x, y in pts]
     up = _catmull(UPPER)
     n = len(up)
-    # 下唇：両端（口角）は上唇とつながり、少し右寄りがいちばん深い
-    f = lambda t: math.sin(math.pi * t ** 0.85)
+    # 下の縁：口角どうしをつなぐ深い丸み。いちばん深いのは少し左寄り
+    f = lambda t: math.sin(math.pi * t ** 0.8)
     low = [(x, y + depth * f(i / (n - 1))) for i, (x, y) in enumerate(up)]
-    # 下あごの外側：下唇の少し下を、口角ではゼロになるようにまるく
-    jaw = [(x, y + 20 * math.sin(math.pi * (i / (n - 1)) ** 0.85) ** 0.7) for i, (x, y) in enumerate(low)]
-    d.polygon(s(low + jaw[::-1]), fill=FUR)
-    d.polygon(s(up + low[::-1]), fill=MOUTH_IN)
+    shape = up + low[::-1]
+    d.polygon(s(shape), fill=MOUTH_IN)
+    inner = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    di = ImageDraw.Draw(inner)
     if tongue:
-        cx = up[int(n * 0.55)][0]
-        cy = low[int(n * 0.55)][1] - depth * 0.15
-        rx, ry = depth * 1.0, depth * 0.38
-        tg = Image.new("RGBA", img.size, (0, 0, 0, 0))
-        ImageDraw.Draw(tg).ellipse(((cx - rx) * K, (cy - ry) * K, (cx + rx) * K, (cy + ry) * K), fill=TONGUE)
-        clip = Image.new("L", img.size, 0)
-        ImageDraw.Draw(clip).polygon(s(up + low[::-1]), fill=255)
-        img.paste(tg, (0, 0), Image.composite(tg.getchannel("A"), Image.new("L", img.size, 0), clip))
-    for line in (up, low, jaw):
-        d.line(s(line), fill=INK, width=LINE * K, joint="curve")
+        i = int(n * 0.42)
+        cx, cy = low[i][0], low[i][1] - depth * 0.12
+        rx, ry = depth * 0.95, depth * 0.42
+        di.ellipse(((cx - rx) * K, (cy - ry) * K, (cx + rx) * K, (cy + ry) * K), fill=TONGUE)
+    if teeth:
+        tw, th = depth * 0.30, depth * 0.30
+        for tt in (0.30, 0.48, 0.66, 0.84):  # 上の歯
+            x, y = up[int(n * tt)]
+            di.rounded_rectangle(((x - tw / 2) * K, (y - 2) * K, (x + tw / 2) * K, (y + th) * K), int(tw * K / 3), fill=TEETH)
+        for tt in (0.42, 0.62, 0.80):       # 下の歯
+            x, y = low[int(n * tt)]
+            di.rounded_rectangle(((x - tw / 2) * K, (y - th * 0.9) * K, (x + tw / 2) * K, (y + 2) * K), int(tw * K / 3), fill=TEETH)
+    clip = Image.new("L", img.size, 0)
+    ImageDraw.Draw(clip).polygon(s(shape), fill=255)
+    img.paste(inner, (0, 0), Image.composite(inner.getchannel("A"), Image.new("L", img.size, 0), clip))
+    d.line(s(up + [up[-1]]), fill=INK, width=LINE * K, joint="curve")
+    d.line(s(low), fill=INK, width=LINE * K, joint="curve")
     for x, y in (up[0], up[-1]):
         d.ellipse(((x - LINE / 2) * K, (y - LINE / 2) * K, (x + LINE / 2) * K, (y + LINE / 2) * K), fill=INK)
     return img.resize((W, H), Image.LANCZOS)
@@ -84,8 +96,8 @@ def mouth(depth: float, tongue: bool) -> Image.Image:
 def main():
     os.makedirs(PARTS, exist_ok=True)
     os.makedirs(PREVIEW, exist_ok=True)
-    half = mouth(24, tongue=False)
-    opn = mouth(50, tongue=True)
+    half = mouth(30, tongue=True)
+    opn = mouth(58, tongue=True, teeth=True)
     half.save(os.path.join(PARTS, "mouth_half.png"))
     opn.save(os.path.join(PARTS, "mouth_open.png"))
     base = Image.open(BASE).convert("RGBA")
