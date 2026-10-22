@@ -1,8 +1,8 @@
 {
   "id": "gonbe",
   "name": "ごんべぇ",
-  "status": "パーツ未完成（_sheet_gemini.png は市松模様が焼き込まれているため、透過PNGで1パーツずつ出し直しが必要）",
-  "base": "gonbe_base.png",
+  "status": "座りポーズ（sit_source.png）＋口5種を作成済み。目の差分は expressions_source/ に受領、パーツ化はこれから",
+  "base": "sit_source.png",
   "canvas": [
     1036,
     1036
@@ -120,9 +120,12 @@
     }
   ],
   "mouth": {
-    "closed": "parts/mouth_closed.png",
+    "closed": null,
+    "small": "parts/mouth_small.png",
     "half": "parts/mouth_half.png",
-    "open": "parts/mouth_open.png"
+    "open": "parts/mouth_open.png",
+    "wide": "parts/mouth_wide.png",
+    "_note": "closed は基本の絵そのまま。他は基本の絵に重ねる透過パーツ（renderer/rig/extract_patch.py で生成AIの絵から口まわりだけ切り出し、色を基本の絵に合わせたもの）。口パクの基本は closed→half→open、叫ぶ・強調は wide"
   },
   "expressions": {
     "normal": {
