@@ -110,13 +110,14 @@ Change ONLY: a shy little laugh — mouth slightly open in a crooked smile showi
 Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness. Keep the transparent background.
 ```
 
-**へこむ（案。イメージと違えば教えてください）**
+**★ ため息（へこんだとき）**
 ```
-Edit the attached image. Keep his usual eye SHAPE (sleepy, half-closed). Make the upper eyelids droop a little lower and move the pupils to look down. Do NOT make the eyes bigger, rounder or teary.
-Change the mouth to a flat, slightly wavy line. Nothing else.
+Edit the attached image. Keep his usual eye SHAPE (sleepy, half-closed) — do NOT make the eyes bigger, rounder or teary, and do not close them into curves.
+Make the upper eyelids droop a little lower, as if exhausted, pupils looking slightly down.
+Change the mouth to a sigh: lips slightly parted, a small open mouth breathing out ("haah").
 Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness. Keep the transparent background.
 ```
-（顔の縦線やどんよりした記号は、こちらで動画の上に足します）
+（ため息の白いもや・顔の縦線などの記号は、こちらで動画の上に足します）
 
 ### じょんどぅー
 **目は毛で隠れているので、目の表情は作らない。** 口（閉・半開き・開き）はこちらで作成済み。
