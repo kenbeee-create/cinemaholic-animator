@@ -106,92 +106,142 @@ def poster(m, size):
     return p
 
 
+# 配信サービスのアイコン：assets/ui/services/<id>.png があればそれを使う（公式のアイコンをオーナーが用意）。
+# 無い間は、サービスの色の四角に名前を入れた仮のアイコン。
+SERVICES = {
+    "Netflix": ("netflix", (20, 20, 20), (229, 9, 20), "NETFLIX"),
+    "U-NEXT": ("unext", (0, 0, 0), (255, 255, 255), "U-NEXT"),
+    "WOWOWオンデマンド": ("wowow", (0, 32, 96), (255, 255, 255), "WOWOW"),
+    "TELASA": ("telasa", (240, 90, 40), (255, 255, 255), "TELASA"),
+    "Prime Video": ("primevideo", (0, 168, 225), (255, 255, 255), "prime\nvideo"),
+    "DMM TV": ("dmmtv", (30, 30, 30), (255, 255, 255), "DMM TV"),
+    "Disney+": ("disneyplus", (10, 30, 90), (255, 255, 255), "Disney+"),
+    "Hulu": ("hulu", (28, 231, 131), (20, 20, 20), "Hulu"),
+    "ABEMA": ("abema", (30, 30, 30), (255, 255, 255), "ABEMA"),
+    "Lemino": ("lemino", (60, 60, 60), (255, 255, 255), "Lemino"),
+    "FOD": ("fod", (230, 0, 18), (255, 255, 255), "FOD"),
+    "J:COM STREAM": ("jcom", (0, 80, 160), (255, 255, 255), "J:COM"),
+    "TSUTAYA DISCAS": ("discas", (0, 40, 120), (255, 255, 255), "DISCAS"),
+    "music.jp": ("musicjp", (230, 60, 120), (255, 255, 255), "music.jp"),
+}
+
+
+def service_icon(name, size):
+    sid, bg, fg, label = SERVICES.get(name, (name.lower(), (80, 80, 80), (255, 255, 255), name))
+    path = os.path.join(ROOT, f"assets/ui/services/{sid}.png")
+    if os.path.exists(path):
+        return Image.open(path).convert("RGBA").resize((size, size), Image.LANCZOS)
+    k = 3
+    im = Image.new("RGBA", (size * k, size * k), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle((0, 0, size * k - 1, size * k - 1), 26 * k, fill=bg + (255,))
+    lines = label.split("\\n") if "\\n" in label else label.split("\n")
+    fs = 30 * k
+    while max(d.textlength(l, font=f(BLACK, fs)) for l in lines) > size * k * 0.82 and fs > 10:
+        fs -= 2
+    d.multiline_text((size * k / 2, size * k / 2), "\n".join(lines), font=f(BLACK, fs), fill=fg + (255,), anchor="mm",
+                     align="center", spacing=2)
+    return im.resize((size, size), Image.LANCZOS)
+
+
+def doctor_standing():
+    """白衣のじょんどぅー（立ち絵）。ChatGPTで作った素材があればそれを使う。無ければ座りの仮。"""
+    p = os.path.join(ROOT, "assets/characters/johndoe/doctor_stand.png")
+    if os.path.exists(p):
+        im = Image.open(p).convert("RGBA")
+        return im.crop(im.getbbox()), False
+    return doctor_johndoe(), True
+
+
 def build(m, out):
     img = paper_bg()
     d = ImageDraw.Draw(img)
     # ---- 見出し（処方箋ふう） ----
-    d.text((70, 250), "処 方 箋", font=f(SERIF, 84), fill=INK, anchor="lm")
-    d.text((72, 320), "CINEMA HOLIC 映画処方所", font=f(BOLD, 28), fill=BROWN, anchor="lm")
-    d.text((880, 250), "No. 001", font=f(BOLD, 30), fill=BROWN, anchor="rm")
-    d.text((880, 300), "患者：そこの君", font=f(BOLD, 30), fill=BROWN, anchor="rm")
-    d.line((60, 360, 890, 360), fill=INK, width=5)
-    d.line((60, 370, 890, 370), fill=INK, width=2)
+    d.text((60, 262), "処 方 箋", font=f(SERIF, 80), fill=INK, anchor="lm")
+    d.text((62, 330), "CINEMA HOLIC 映画処方所", font=f(BOLD, 26), fill=BROWN, anchor="lm")
+    d.text((890, 262), "No. 001", font=f(BOLD, 28), fill=BROWN, anchor="rm")
+    d.text((890, 310), "患者：そこの君", font=f(BOLD, 28), fill=BROWN, anchor="rm")
+    d.line((50, 368, 890, 368), fill=INK, width=5)
+    d.line((50, 378, 890, 378), fill=INK, width=2)
 
-    # ---- 左：大きなポスター ----
-    px0, py0, pw, ph = 60, 410, 470, 705
+    # ---- 左：大きなポスター（2:3） ----
+    px0, py0, pw, ph = 50, 420, 560, 840
     sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     ImageDraw.Draw(sh).rectangle((px0 + 12, py0 + 16, px0 + pw + 12, py0 + ph + 16), fill=(0, 0, 0, 90))
     img.alpha_composite(sh.filter(ImageFilter.GaussianBlur(6)))
     img.alpha_composite(poster(m, (pw, ph)), (px0, py0))
     d.rectangle((px0, py0, px0 + pw, py0 + ph), outline=INK, width=6)
-    # テープ
     for tx in (px0 + 40, px0 + pw - 120):
         d.rectangle((tx, py0 - 22, tx + 80, py0 + 20), fill=(232, 220, 170, 220))
 
     # ---- 右：紹介 ----
-    rx, rw = 560, 330
-    y = 420
-    d.text((rx, y), "お薬の名前", font=f(BOLD, 24), fill=BROWN)
-    y += 40
-    for ln in wrap(d, m["title"], f(BLACK, 58), rw):
-        d.text((rx, y), ln, font=f(BLACK, 58), fill=INK)
-        y += 72
-    d.text((rx, y + 4), f"{m['year']}年／{m['runtime_min']}分", font=f(BOLD, 26), fill=BROWN)
-    y += 42
-    for ln in wrap(d, f"監督：{m['director']}", f(BOLD, 26), rw):
-        d.text((rx, y), ln, font=f(BOLD, 26), fill=BROWN)
-        y += 38
-    y += 32
+    rx, rw = 640, 250
+    y = 425
+    d.text((rx, y), "お薬の名前", font=f(BOLD, 22), fill=BROWN)
+    y += 36
+    for ln in wrap(d, m["title"], f(BLACK, 50), rw):
+        d.text((rx, y), ln, font=f(BLACK, 50), fill=INK)
+        y += 62
+    y += 6
+    for ln in [f"{m['year']}年／{m['runtime_min']}分"] + wrap(d, f"監督：{m['director']}", f(BOLD, 24), rw):
+        d.text((rx, y), ln, font=f(BOLD, 24), fill=BROWN)
+        y += 34
+    y += 18
     d.line((rx, y, rx + rw, y), fill=PAPER_LINE, width=3)
-    y += 24
-    d.text((rx, y), "効きめ", font=f(BOLD, 24), fill=BROWN)
-    y += 40
+    y += 20
+    d.text((rx, y), "効きめ", font=f(BOLD, 22), fill=BROWN)
     one = m.get("one_liner", "")
     if one.startswith("（"):
         one = "ぜんぶ持ってるのに、空っぽな夜に。"
-        d.text((rx + rw, y - 36), "※例", font=f(BOLD, 20), fill=RED, anchor="ra")
-    for ln in wrap(d, one, f(BLACK, 36), rw):
-        d.text((rx, y), ln, font=f(BLACK, 36), fill=INK)
-        y += 50
-    y += 20
+        d.text((rx + rw, y), "※例", font=f(BOLD, 20), fill=RED, anchor="ra")
+    y += 36
+    for ln in wrap(d, one, f(BLACK, 32), rw):
+        d.text((rx, y), ln, font=f(BLACK, 32), fill=INK)
+        y += 44
+    y += 16
     d.line((rx, y, rx + rw, y), fill=PAPER_LINE, width=3)
-    y += 24
-    d.text((rx, y), "もらえる薬局（配信）", font=f(BOLD, 24), fill=BROWN)
-    y += 44
+    y += 20
+    d.text((rx, y), "もらえる薬局", font=f(BOLD, 22), fill=BROWN)
+    y += 40
+    # アイコン：見放題を先に、3列×2段まで
     order = sorted(m["streaming"], key=lambda s: 0 if "見放題" in s["type"] else 1)
-    for s in order[:5]:
-        mine = "見放題" in s["type"]
-        d.rounded_rectangle((rx, y, rx + rw, y + 48), 24, fill=GREEN if mine else (255, 255, 255, 0), outline=INK, width=3)
-        fs = 26
-        while d.textlength(s["service"], font=f(BLACK, fs)) > rw - 130 and fs > 16:
-            fs -= 1
-        d.text((rx + 20, y + 24), s["service"], font=f(BLACK, fs), fill=PAPER if mine else INK, anchor="lm")
-        d.text((rx + rw - 18, y + 24), "見放題" if mine else "レンタル", font=f(BOLD, 20),
-               fill=PAPER if mine else BROWN, anchor="rm")
-        y += 58
-    rest = len(m["streaming"]) - 5
-    d.text((rx, y + 6), (f"ほか{rest}　" if rest > 0 else "") + f"{m['streaming_as_of'].split('（')[0]}時点",
-           font=f(BOLD, 20), fill=BROWN)
+    size, gap = 72, 17
+    for i, s in enumerate(order[:6]):
+        cx = rx + (i % 3) * (size + gap)
+        cy = y + (i // 3) * (size + 34)
+        img.alpha_composite(service_icon(s["service"], size), (int(cx), int(cy)))
+        d.rounded_rectangle((cx, cy, cx + size, cy + size), 18, outline=INK, width=3)
+        d.text((cx + size / 2, cy + size + 4), "見放題" if "見放題" in s["type"] else "レンタル", font=f(BOLD, 17),
+               fill=GREEN if "見放題" in s["type"] else BROWN, anchor="mt")
+    y += 2 * (size + 34) + 4
+    rest = len(m["streaming"]) - 6
+    d.text((rx, y), (f"ほか{rest}　" if rest > 0 else "") + f"{m['streaming_as_of'].split('（')[0]}時点", font=f(BOLD, 18),
+           fill=BROWN)
 
-    # ---- 右下：白衣のじょんどぅー＋ひと言 ----
-    doc = doctor_johndoe()
-    s = 360 / doc.width
-    doc = doc.resize((int(doc.width * s), int(doc.height * s)), Image.LANCZOS)
-    img.alpha_composite(doc, (W - doc.width - 190, 1430))
-    bx0, by0, bx1, by1 = 110, 1400, 540, 1560
-    d.rounded_rectangle((bx0, by0, bx1, by1), 40, fill=(255, 255, 255, 255), outline=INK, width=6)
-    d.polygon([(bx1 - 10, by0 + 60), (bx1 + 60, by0 + 100), (bx1 - 10, by0 + 110)], fill=(255, 255, 255, 255))
-    d.line([(bx1 - 4, by0 + 60), (bx1 + 60, by0 + 100), (bx1 - 4, by0 + 110)], fill=INK, width=6)
-    d.text(((bx0 + bx1) / 2, (by0 + by1) / 2), "…一人で、深夜に。\nよく効くよ。", font=f(BLACK, 38), fill=INK,
-           anchor="mm", align="center", spacing=12)
-
-    # ---- はんこ ----
-    cx, cy = 470, 1110
+    # ---- はんこ（ポスターの角） ----
+    cx, cy = px0 + pw - 85, py0 + ph - 90
     st = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     sd = ImageDraw.Draw(st)
-    sd.ellipse((cx - 85, cy - 85, cx + 85, cy + 85), outline=RED, width=9)
-    sd.text((cx, cy), "処方", font=f(BLACK, 54), fill=RED, anchor="mm")
+    sd.ellipse((cx - 80, cy - 80, cx + 80, cy + 80), outline=RED, width=9)
+    sd.text((cx, cy), "処方", font=f(BLACK, 50), fill=RED, anchor="mm")
     img.alpha_composite(st.rotate(-14, center=(cx, cy)))
+
+    # ---- 右下：白衣のじょんどぅー（立ち絵）＋ひと言 ----
+    doc, temp = doctor_standing()
+    target_h = 520
+    s = target_h / doc.height
+    doc = doc.resize((int(doc.width * s), target_h), Image.LANCZOS)
+    dx = 905 - doc.width
+    dy = 1290
+    img.alpha_composite(doc, (dx, dy))
+    if temp:
+        d.text((dx + doc.width / 2, dy - 6), "（立ち絵は作成中）", font=f(BOLD, 18), fill=BROWN, anchor="mb")
+    bx0, by0, bx1, by1 = 60, 1310, dx - 40, 1480
+    d.rounded_rectangle((bx0, by0, bx1, by1), 40, fill=(255, 255, 255, 255), outline=INK, width=6)
+    d.polygon([(bx1 - 10, by0 + 55), (bx1 + 50, by0 + 85), (bx1 - 10, by0 + 105)], fill=(255, 255, 255, 255))
+    d.line([(bx1 - 4, by0 + 55), (bx1 + 50, by0 + 85), (bx1 - 4, by0 + 105)], fill=INK, width=6)
+    d.text(((bx0 + bx1) / 2, (by0 + by1) / 2), "…一人で、深夜に。\nよく効くよ。", font=f(BLACK, 38), fill=INK,
+           anchor="mm", align="center", spacing=12)
 
     img.convert("RGB").save(out)
     print("書き出し完了:", out)

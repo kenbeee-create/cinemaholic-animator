@@ -128,3 +128,20 @@ Keep everything else exactly identical: same pose, same position, same size, sam
 ## 送るときの名前（わかれば。わからなければそのまま送ってOK）
 - ① `keyvisual.png`　② `room_base.png`　③ `gonbe_sit.png`　④ `johndoe_sit.png`
 - ⑤ `gonbe_目2.png`・`johndoe_口3.png` のように「キャラ_番号」
+
+---
+
+## ⑥ 白衣のじょんどぅー（立ち絵）
+映画紹介の画面（`docs/movie-card.md`）の右下に出す。**新しいチャット**で、`johndoe/sit_source.png`（無地Tシャツのじょんどぅー）を添付。
+
+```
+Draw the character from the attached image as a STANDING full-body pose, wearing a doctor's outfit.
+Keep his design exactly the same: the round black fluffy dog with big curly fur that completely hides his eyes, the small dark nose, a short straight closed mouth, grey shorts, the same proportions, colors and thick dark-brown outlines (2D flat cartoon, American cartoon style).
+Outfit: an open white doctor's lab coat over his plain cream T-shirt, a stethoscope around his neck, a pen in the chest pocket. No text, no logos, no name tag.
+Pose: standing facing the viewer, body turned slightly to the left, one paw raised a little as if explaining something.
+Output a PNG with a fully transparent background. Vertical image, full body visible from head to feet.
+```
+
+うまくいかないとき（貼り足す一文）
+- 目が出てしまった → `His eyes must stay completely hidden by the fur.`
+- 体型が変わった → `Keep him short and round, the same body shape as the attached image.`
