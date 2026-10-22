@@ -94,127 +94,33 @@ Same vertical size.
 **★が最低限**（各キャラ6枚）。余裕があれば残りも。
 
 ### ごんべぇ（③の画像を添付）
+**ルール：目はいつもの眠そうな半目を崩さない**（^^の笑顔・うるんだ大きな目はNG）
 
-**★ 目2 驚き**
+**★ 照れ笑い（口を閉じたまま）**
 ```
-Edit the attached image. Change ONLY the eyes to: wide open surprised eyes.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**★ 目3 ジト目**
-```
-Edit the attached image. Change ONLY the eyes to: flat unimpressed "jito-me" eyes, looking sideways.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
+Edit the attached image. Keep his usual sleepy half-closed eyes EXACTLY as they are (same eye shape, same eyelids) — do not close or curve the eyes.
+Change ONLY: a small embarrassed smirk — one corner of the closed mouth slightly raised, a light pink blush on the cheek, pupils looking slightly to the side.
+Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness. Keep the transparent background.
 ```
 
-**★ 目4 落ち込み**
+**★ 照れ笑い（「へへ」と少し口を開けて）**
 ```
-Edit the attached image. Change ONLY the eyes to: sad droopy eyes looking down.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**目5 笑顔**
-```
-Edit the attached image. Change ONLY the eyes to: happy closed curved eyes (smiling).
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
+Edit the attached image. Keep his usual sleepy half-closed eyes EXACTLY as they are — do not close or curve the eyes.
+Change ONLY: a shy little laugh — mouth slightly open in a crooked smile showing a bit of the tongue, a light pink blush on the cheek, pupils looking slightly away.
+Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness. Keep the transparent background.
 ```
 
-**目6 真顔**
+**へこむ（案。イメージと違えば教えてください）**
 ```
-Edit the attached image. Change ONLY the eyes to: serious focused eyes.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
+Edit the attached image. Keep his usual eye SHAPE (sleepy, half-closed). Make the upper eyelids droop a little lower and move the pupils to look down. Do NOT make the eyes bigger, rounder or teary.
+Change the mouth to a flat, slightly wavy line. Nothing else.
+Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness. Keep the transparent background.
 ```
+（顔の縦線やどんよりした記号は、こちらで動画の上に足します）
 
-**★ 目7 まばたき（目を閉じる）**
-```
-Edit the attached image. Change ONLY the eyes to: fully closed eyes (blink).
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**★ 口2 口を少し開ける**
-```
-Edit the attached image. Change ONLY the mouth to: slightly open mouth, talking.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**★ 口3 口を大きく開ける**
-```
-Edit the attached image. Change ONLY the mouth to: wide open mouth, talking loudly.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-### じょんどぅー（④の画像を添付）
-
-**★ 口1 口を閉じる**（完成図で口が開いているので、じょんどぅーは必須）
-```
-Edit the attached image. Change ONLY the mouth to: closed mouth, neutral.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**★ 目2 驚き**
-```
-Edit the attached image. Change ONLY the eyes to: wide open surprised eyes.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**★ 目3 ジト目**
-```
-Edit the attached image. Change ONLY the eyes to: flat unimpressed "jito-me" eyes, looking sideways.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**★ 目4 落ち込み**
-```
-Edit the attached image. Change ONLY the eyes to: sad droopy eyes looking down.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**目5 笑顔**
-```
-Edit the attached image. Change ONLY the eyes to: happy closed curved eyes (smiling).
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**目6 真顔**
-```
-Edit the attached image. Change ONLY the eyes to: serious focused eyes.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**★ 目7 まばたき（目を閉じる）**
-```
-Edit the attached image. Change ONLY the eyes to: fully closed eyes (blink).
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**★ 口2 口を少し開ける**
-```
-Edit the attached image. Change ONLY the mouth to: slightly open mouth, talking.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
-
-**★ 口3 口を大きく開ける**
-```
-Edit the attached image. Change ONLY the mouth to: wide open mouth, talking loudly.
-Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness.
-Keep the transparent background.
-```
+### じょんどぅー
+**目は毛で隠れているので、目の表情は作らない。** 口（閉・半開き・開き）はこちらで作成済み。
+リアクションは動き（うなずく・首をかしげる・跳ねる・しょんぼり など）で出すので、追加の画像は不要。
 
 ---
 

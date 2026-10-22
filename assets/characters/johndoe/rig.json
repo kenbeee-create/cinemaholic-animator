@@ -1,0 +1,39 @@
+{
+  "canvas": [
+    1024,
+    1536
+  ],
+  "layers": [
+    {
+      "name": "body",
+      "file": "parts/body.png",
+      "z": 1
+    },
+    {
+      "name": "head",
+      "file": "parts/head.png",
+      "z": 2,
+      "pivot": [
+        556,
+        688
+      ]
+    },
+    {
+      "name": "mouth",
+      "parent": "head",
+      "z": 3,
+      "states": {
+        "closed": null,
+        "half": "parts/mouth_half.png",
+        "open": "parts/mouth_open.png"
+      }
+    }
+  ],
+  "head_bbox": [
+    247,
+    260,
+    888,
+    704
+  ],
+  "note": "目は毛で隠れているので表情差分は持たない。リアクションは renderer/motion/reactions.py の動きで出す"
+}
