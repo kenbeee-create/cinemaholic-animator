@@ -30,7 +30,7 @@ MOUTH_IN = (52, 22, 16, 255)    # 口の中
 TONGUE = (214, 108, 104, 255)   # 舌
 
 # 基本の絵の「口の線」（上あご）。左端のくぼみ → 右の鼻の下のラインへつながる
-UPPER = [(626, 642), (634, 636), (645, 630), (660, 627), (680, 628), (700, 632), (720, 635), (740, 635), (754, 633)]
+UPPER = [(566, 627), (600, 622), (640, 620), (680, 621), (712, 624), (736, 628), (754, 633)]
 LINE = 7   # 線の太さ（基本の絵に合わせる）
 K = 4      # 4倍で描いて縮小（線をなめらかに）
 
@@ -71,16 +71,16 @@ def mouth(depth: float, tongue: bool, teeth: bool = False) -> Image.Image:
     inner = Image.new("RGBA", img.size, (0, 0, 0, 0))
     di = ImageDraw.Draw(inner)
     if tongue:
-        i = int(n * 0.42)
+        i = int(n * 0.33)
         cx, cy = low[i][0], low[i][1] - depth * 0.12
-        rx, ry = depth * 0.95, depth * 0.42
+        rx, ry = depth * 0.75, depth * 0.36
         di.ellipse(((cx - rx) * K, (cy - ry) * K, (cx + rx) * K, (cy + ry) * K), fill=TONGUE)
     if teeth:
-        tw, th = depth * 0.30, depth * 0.30
-        for tt in (0.30, 0.48, 0.66, 0.84):  # 上の歯
+        tw, th = depth * 0.26, depth * 0.24
+        for tt in (0.38, 0.58, 0.78):  # 上の歯
             x, y = up[int(n * tt)]
             di.rounded_rectangle(((x - tw / 2) * K, (y - 2) * K, (x + tw / 2) * K, (y + th) * K), int(tw * K / 3), fill=TEETH)
-        for tt in (0.42, 0.62, 0.80):       # 下の歯
+        for tt in (0.52, 0.72):       # 下の歯
             x, y = low[int(n * tt)]
             di.rounded_rectangle(((x - tw / 2) * K, (y - th * 0.9) * K, (x + tw / 2) * K, (y + 2) * K), int(tw * K / 3), fill=TEETH)
     clip = Image.new("L", img.size, 0)
@@ -96,8 +96,8 @@ def mouth(depth: float, tongue: bool, teeth: bool = False) -> Image.Image:
 def main():
     os.makedirs(PARTS, exist_ok=True)
     os.makedirs(PREVIEW, exist_ok=True)
-    half = mouth(30, tongue=True)
-    opn = mouth(58, tongue=True, teeth=True)
+    half = mouth(62, tongue=True)
+    opn = mouth(108, tongue=True, teeth=True)
     half.save(os.path.join(PARTS, "mouth_half.png"))
     opn.save(os.path.join(PARTS, "mouth_open.png"))
     base = Image.open(BASE).convert("RGBA")
