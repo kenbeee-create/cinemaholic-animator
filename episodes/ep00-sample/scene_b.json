@@ -1,0 +1,128 @@
+{
+ "props": {
+  "lamp": true,
+  "tv": true,
+  "dust": true,
+  "mug": true,
+  "window": "rain",
+  "tint": "#3a5a40",
+  "tintA": 0.12
+ },
+ "shots": [
+  {
+   "dur": 2.0,
+   "cam": {
+    "from": {
+     "preset": "two"
+    },
+    "to": {
+     "preset": "two"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "その人が/撮ったのが/これ",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "normal",
+    "talk": false
+   },
+   "johndoe": {
+    "reaction": "nod",
+    "talk": true
+   }
+  },
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "gonbe"
+    },
+    "to": {
+     "preset": "gonbe"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "…えぐいな",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "normal",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle",
+    "talk": false
+   }
+  },
+  {
+   "dur": 2.0,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "〇〇、/全部/入ってるよ",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "normal",
+    "talk": false
+   },
+   "johndoe": {
+    "reaction": "nod",
+    "talk": true
+   }
+  },
+  {
+   "dur": 2.0,
+   "cam": {
+    "from": {
+     "preset": "two"
+    },
+    "to": {
+     "preset": "two"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "…なんで/知ってんの",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "jito",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "look_away",
+    "talk": false
+   }
+  },
+  {
+   "dur": 1.5,
+   "cam": {
+    "from": {
+     "preset": "gonbe_face"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": null,
+   "caption": "",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "normal",
+    "talk": false
+   },
+   "johndoe": {
+    "reaction": "freeze",
+    "talk": false
+   }
+  }
+ ]
+}

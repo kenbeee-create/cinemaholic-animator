@@ -14,3 +14,7 @@
 | テロップ・エフェクトのプリセット | 未着手 | トーンは style.py を使う |
 | 音素材ライブラリ | 未着手 | |
 | 15秒テスト動画 | 未着手 | |
+
+| 文字の画面メーカー（バックボーン・名言・処方箋） | 完了 | tools/card-maker/（2026-10-23） |
+| 仮の効果音・BGM | 完了（仮） | assets/sound/placeholder/。本番素材が来たら差し替え |
+| 1本につなぐ処理 | 完了 | renderer/assemble.py。試作：episodes/ep00-sample（約50秒） |

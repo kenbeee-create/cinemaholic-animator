@@ -1,0 +1,59 @@
+{
+ "props": {
+  "lamp": true,
+  "tv": true,
+  "dust": true,
+  "mug": true,
+  "window": "neon",
+  "tint": "#3a5a40",
+  "tintA": 0.12
+ },
+ "shots": [
+  {
+   "dur": 1.8,
+   "cam": {
+    "from": {
+     "preset": "two"
+    },
+    "to": {
+     "preset": "johndoe"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "…おれも、/同じ感じの時/だったな",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "normal",
+    "talk": false
+   },
+   "johndoe": {
+    "reaction": "slump",
+    "talk": true
+   }
+  },
+  {
+   "dur": 1.8,
+   "cam": {
+    "from": {
+     "preset": "two"
+    },
+    "to": {
+     "preset": "wide"
+    }
+   },
+   "speaker": null,
+   "caption": "あなたの悩み、/コメントに書いて",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "normal",
+    "talk": false
+   },
+   "johndoe": {
+    "reaction": "idle",
+    "talk": false
+   }
+  }
+ ]
+}

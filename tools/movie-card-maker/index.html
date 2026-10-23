@@ -278,8 +278,8 @@ const MC = (() => {
     const dp=ease(prog(t,T.doc,0.45));
     if(img.doctor && dp>0){
       const tw=600, s=tw/img.doctor.width, th=img.doctor.height*s;
-      const dx=W-tw+30, dy=1330+(1-dp)*500;
-      ctx.drawImage(img.doctor,dx,dy,tw,th);
+      const dx=W-tw+30, dy=1330+(1-dp)*500+Math.sin(t*2*Math.PI/1.6)*8;
+      ctx.drawImage(img.doctor,dx,dy,tw,th*(1+0.01*Math.sin(t*2*Math.PI/1.6)));
     }
     // ふきだし
     const bp=prog(t,T.bubble,0.3);

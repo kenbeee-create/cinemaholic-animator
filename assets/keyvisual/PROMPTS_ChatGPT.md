@@ -145,3 +145,19 @@ Output a PNG with a fully transparent background. Vertical image, full body visi
 うまくいかないとき（貼り足す一文）
 - 目が出てしまった → `His eyes must stay completely hidden by the fur.`
 - 体型が変わった → `Keep him short and round, the same body shape as the attached image.`
+
+---
+
+## ⑦ ごんべぇの立ち姿（部屋に入ってくる）
+入りのひと言の場面で使う。**新しいチャット**で、`gonbe/sit_source.png`（座りのごんべぇ・透明背景）を添付。
+
+```
+Draw the character from the attached image as a STANDING full-body pose, walking in from the left and just stopping, as if entering a friend's room.
+Keep his design exactly the same: brown dog, dark-brown knit beanie, red hoodie, navy pants, his usual sleepy half-closed eyes, same proportions, colors and thick dark-brown outlines (2D flat cartoon, American cartoon style).
+Pose: body facing slightly to the right, one paw raised casually in greeting, the other paw in the hoodie pocket, mouth slightly open as if saying something. A small plastic convenience-store bag hanging from his wrist.
+No text, no logos. Output a PNG with a fully transparent background. Vertical image, full body visible from head to feet.
+```
+
+うまくいかないとき（貼り足す一文）
+- 目が変わった → `Keep his usual sleepy half-closed eyes exactly as in the attached image.`
+- 袋に文字やロゴが入った → `The plastic bag must be plain, with no text or logo.`

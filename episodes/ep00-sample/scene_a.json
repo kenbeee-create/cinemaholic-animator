@@ -1,0 +1,174 @@
+{
+ "props": {
+  "lamp": true,
+  "tv": true,
+  "dust": true,
+  "mug": true,
+  "window": "rain",
+  "tint": "#3a5a40",
+  "tintA": 0.12
+ },
+ "shots": [
+  {
+   "dur": 1.8,
+   "cam": {
+    "from": {
+     "preset": "wide"
+    },
+    "to": {
+     "preset": "two"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "Here's/Johnny!",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "normal",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle",
+    "talk": false
+   }
+  },
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "…働きすぎ。",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "normal",
+    "talk": false
+   },
+   "johndoe": {
+    "reaction": "look_away",
+    "talk": true
+   }
+  },
+  {
+   "dur": 2.2,
+   "cam": {
+    "from": {
+     "preset": "gonbe"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "…はぁ。/上司マジで/無理",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "closed",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle",
+    "talk": false
+   }
+  },
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "two"
+    },
+    "to": {
+     "preset": "two"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "そういうときは/これ",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "normal",
+    "talk": false
+   },
+   "johndoe": {
+    "reaction": "nod",
+    "talk": true
+   }
+  },
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "ファイト・クラブ、/見た？",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "normal",
+    "talk": false
+   },
+   "johndoe": {
+    "reaction": "tilt",
+    "talk": true
+   }
+  },
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "gonbe"
+    },
+    "to": {
+     "preset": "gonbe"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "殴り合う/やつじゃん",
+   "big": false,
+   "punch": false,
+   "gonbe": {
+    "eyes": "jito",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle",
+    "talk": false
+   }
+  },
+  {
+   "dur": 2.0,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe_face"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "そう思ってるやつ/損してる",
+   "big": true,
+   "punch": true,
+   "gonbe": {
+    "eyes": "normal",
+    "talk": false
+   },
+   "johndoe": {
+    "reaction": "lean_in",
+    "talk": true
+   }
+  }
+ ]
+}

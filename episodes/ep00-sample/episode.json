@@ -1,0 +1,81 @@
+{
+ "note": "試作（サンプル）。映画の作品情報と配信はFilmarksで確認ずみ。監督のバックボーン・名言・効きめは〇〇のまま（台本で確定）",
+ "segments": [
+  {
+   "tool": "chat-maker",
+   "cfg": "chat.json"
+  },
+  {
+   "tool": "title",
+   "cfg": "title.json"
+  },
+  {
+   "tool": "studio",
+   "cfg": "scene_a.json"
+  },
+  {
+   "tool": "movie-card-maker",
+   "cfg": "movie.json",
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "sfx/whoosh"
+    }
+   ]
+  },
+  {
+   "tool": "card-maker",
+   "cfg": {
+    "type": "text",
+    "dur": 5,
+    "lines": "監督の〇〇は\n【〇〇】だった",
+    "source": "（事実確認ずみの1行と出典）"
+   },
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "sfx/whoosh"
+    }
+   ]
+  },
+  {
+   "tool": "studio",
+   "cfg": "scene_b.json"
+  },
+  {
+   "tool": "card-maker",
+   "cfg": {
+    "type": "quote",
+    "dur": 6,
+    "quote": "ここに【名言】が入る",
+    "who": "〇〇",
+    "qsrc": "出典：〇〇（20XX）"
+   }
+  },
+  {
+   "tool": "card-maker",
+   "cfg": {
+    "type": "rx",
+    "dur": 5,
+    "title": "ファイト・クラブ",
+    "dose": "一人で、深夜に。",
+    "side": "〇〇したくなる。",
+    "doc": "…お大事に。"
+   },
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "sfx/whoosh"
+    }
+   ]
+  },
+  {
+   "tool": "studio",
+   "cfg": "scene_c.json"
+  }
+ ],
+ "bgm": {
+  "file": "bgm/lofi_loop.wav",
+  "db": -17
+ }
+}
