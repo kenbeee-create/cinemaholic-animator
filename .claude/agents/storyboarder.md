@@ -12,6 +12,7 @@ tools: Read, Write, Edit, Glob, Bash
 - テロップの書式とエフェクトは motion-fx、効果音は sound-designer が後から追記する。ここでは枠（どこで強調・どこで感情が動くか）を決める
 
 ## 演出ルール
+- 会話シーンの指示書は、スタジオ（`tools/studio/`）の `scene.json` の形で書く（カット・カメラのプリセット・テロップ・表情・じょんどぅーの動き）。ひな形は `episodes/_template/scene.json`。オーナーはスタジオで読み込んで微調整できる
 - 型は `docs/storyboard/README.md`（20コマの絵コンテ）。各話はこの型をもとに、台本に合わせて増減する
 - timeline.json を作ったら、`renderer/preview/storyboard.py` を参考に絵コンテのシートも出してオーナーに見せる
 - 基本は部屋の固定2ショット。感情の山・ツッコミ・核心で話者アップへ。全体の平均カット長2〜4秒、山場は約1.5秒

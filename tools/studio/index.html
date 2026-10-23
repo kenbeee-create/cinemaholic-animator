@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>シネマホリック スタジオ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1f150f;--night:#1b1511;--night2:#2c221b;--night3:#3d3026;--cream:#f0e4cc;--dim:#b0a088;--parka:#b0422e;--gold:#c9a35a;
+--font:"Noto Sans JP","Noto Sans CJK JP","Hiragino Sans",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--night);color:var(--cream);font-family:var(--font);overflow-x:hidden}
+body.headless{background:#000}
+body.headless .ui{display:none}
+body.headless canvas#cv{width:1080px!important;height:1920px!important;border:0;border-radius:0;box-shadow:none;max-width:none}
+.app{display:grid;grid-template-columns:minmax(260px,420px) minmax(0,1fr);gap:24px;padding:20px;max-width:1240px;margin:0 auto}
+@media (max-width:820px){.app{grid-template-columns:minmax(0,1fr);padding:12px 16px}}
+.app>*{min-width:0}
+.stage{position:sticky;top:12px;align-self:start;text-align:center}
+@media (max-width:820px){.stage{position:sticky;top:0;z-index:5;background:var(--night);padding-bottom:6px}}
+canvas#cv{width:100%;max-width:420px;aspect-ratio:9/16;height:auto;border:3px solid var(--ink);border-radius:18px;background:#000;box-shadow:0 10px 30px rgba(0,0,0,.5);touch-action:none}
+@media (max-width:820px){canvas#cv{max-width:230px}}
+.transport{display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+input[type=range]{width:100%}
+h1{font-size:20px;margin:0 0 4px;font-weight:900}
+h1 small{display:block;font-size:12px;color:var(--dim);font-weight:700}
+.card{background:var(--night2);border:2px solid var(--ink);border-radius:14px;padding:12px;margin:10px 0}
+.card.sel{border-color:var(--gold)}
+.card h2{font-size:14px;margin:0 0 8px;color:var(--gold);display:flex;justify-content:space-between;align-items:center;gap:6px}
+label{font-size:12px;color:var(--dim);display:block;margin:6px 0 3px}
+input[type=text],input[type=number],select,textarea{width:100%;background:var(--night);color:var(--cream);border:2px solid var(--ink);border-radius:10px;padding:8px;font:inherit;font-size:16px}
+textarea.json{min-height:110px;font-size:13px;font-family:ui-monospace,monospace}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+button{background:var(--night3);color:var(--cream);border:2px solid var(--ink);border-radius:10px;padding:8px 12px;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+button.main{background:var(--parka)}
+button.ghost{background:transparent}
+button.sm{padding:5px 9px;font-size:13px}
+.check{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--cream);margin:6px 0}
+.check input{width:18px;height:18px}
+.note{font-size:12px;color:var(--dim);line-height:1.6}
+.status{font-size:13px;color:var(--gold);min-height:1.2em;margin-top:4px}
+details summary{cursor:pointer;font-size:13px;color:var(--dim);margin-top:6px}
+.who-gonbe{border-left:8px solid var(--parka)}
+.who-johndoe{border-left:8px solid var(--cream)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="stage">
+    <canvas id="cv" width="1080" height="1920"></canvas>
+    <div class="ui">
+      <input type="range" id="seek" min="0" max="1" step="0.001" value="0">
+      <div class="transport">
+        <button class="main" id="btnPlay">▶ 再生</button>
+        <button id="btnShot">このカットだけ</button>
+        <button id="btnVideo">動画で保存</button>
+      </div>
+      <div class="status" id="status"></div>
+      <p class="note">画面をドラッグするとカメラが動きます（選んでいるカットの「終わり」の位置）。</p>
+    </div>
+  </div>
+
+  <div class="ui">
+    <h1>シネマホリック スタジオ<small>部屋のセットに2人を置いて、カットごとにカメラ・セリフ・表情・動きを決めると、そのまま動く動画になります</small></h1>
+    <div id="shots"></div>
+    <button class="ghost" id="addShot" style="width:100%">＋ カットを追加</button>
+
+    <div class="card">
+      <h2>部屋の小物（動くもの）</h2>
+      <div class="g2">
+        <label class="check"><input type="checkbox" data-p="lamp"> ランプのゆらぎ</label>
+        <label class="check"><input type="checkbox" data-p="tv"> テレビの光</label>
+        <label class="check"><input type="checkbox" data-p="stars"> 窓の星</label>
+        <label class="check"><input type="checkbox" data-p="dust"> 光の中のほこり</label>
+        <label class="check"><input type="checkbox" data-p="mug"> マグの湯気</label>
+      </div>
+      <label>照明の色（映画ごと）</label>
+      <div class="g2"><input type="color" id="tint" style="width:100%;height:40px"><input type="range" id="tintA" min="0" max="0.5" step="0.01"></div>
+    </div>
+
+    <div class="card">
+      <h2>保存・読み込み（制作パイプライン用）</h2>
+      <p class="note">このJSONを各話の <code>scene.json</code> にすると、Claude が同じ見た目で高画質に書き出します。Claude が作った scene.json を貼って読み込むこともできます。</p>
+      <textarea class="json" id="json"></textarea>
+      <div class="g3" style="margin-top:8px">
+        <button id="btnCopy">JSONをコピー</button>
+        <button id="btnLoad">読み込む</button>
+        <button class="ghost" id="btnReset">初期状態</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =================== 描画エンジン =================== */
+const ST = (() => {
+  const W=1080, H=1920, KV=W/1024, PAD=150;
+  const SANS='"Noto Sans JP","Noto Sans CJK JP","Hiragino Sans",sans-serif';
+  const font=(w,px)=>`${w} ${px}px ${SANS}`;
+  const C={ink:"#1f150f",cream:"#f0e4cc",parka:"#b0422e"};
+  // 完成図の中での置き場所（renderer/preview/johndoe_reactions.py と同じ値）
+  const PLACE={ gonbe:{s:0.345,pos:[317,537],bb:[153,192],feet:[506,1375]}, johndoe:{s:0.40,pos:[587,548],bb:[228,259]} };
+  const A="../../assets/";
+  const FILES={
+    room:"backgrounds/room_base_916.png",
+    g_base:"characters/gonbe/sit_source.png", g_jito:"characters/gonbe/parts/eyes_jito.png",
+    g_closed:"characters/gonbe/parts/eyes_closed.png", g_angry:"characters/gonbe/parts/eyes_angry.png",
+    g_half:"characters/gonbe/parts/mouth_half.png", g_open:"characters/gonbe/parts/mouth_open.png",
+    g_small:"characters/gonbe/parts/mouth_small.png", g_wide:"characters/gonbe/parts/mouth_wide.png",
+    j_head:"characters/johndoe/parts/head.png", j_body:"characters/johndoe/parts/body.png",
+    j_half:"characters/johndoe/parts/mouth_half.png", j_open:"characters/johndoe/parts/mouth_open.png"
+  };
+  const IM={}; let rig={pivot:[556,688],head_bbox:[247,260,888,704]};
+  const off=document.createElement("canvas"); off.width=W; off.height=H; const o=off.getContext("2d");
+
+  const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+  const ease=x=>1-Math.pow(1-clamp(x),3);
+  const ease2=x=>{x=clamp(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2};
+  const bump=(t,s,d)=>(t<s||t>s+d)?0:Math.sin(Math.PI*(t-s)/d);
+  const load=src=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src;});
+
+  async function ready(){
+    if(IM.room) return;
+    await Promise.all(Object.entries(FILES).map(async([k,v])=>{IM[k]=await load(A+v);}));
+    try{ const r=await fetch(A+"characters/johndoe/rig.json"); const j=await r.json(); rig={pivot:j.layers[1].pivot,head_bbox:j.head_bbox}; }catch(e){}
+    try{ await document.fonts.load(font(900,60)); await document.fonts.ready; }catch(e){}
+  }
+
+  const toScreen=(n,sx,sy)=>{const p=PLACE[n];return [(p.pos[0]+(sx-p.bb[0])*p.s)*KV,(p.pos[1]+(sy-p.bb[1])*p.s)*KV+PAD];};
+  function place(ctx,img,n,{sx=1,sy=1,anchor=[0,0],dx=0,dy=0,rot=0}={}){
+    if(!img) return; const p=PLACE[n], k=p.s*KV; const [ax,ay]=toScreen(n,anchor[0],anchor[1]);
+    ctx.save(); ctx.translate(ax+dx*k, ay+dy*k); ctx.rotate(-rot*Math.PI/180); ctx.scale(k*sx,k*sy); ctx.drawImage(img,-anchor[0],-anchor[1]); ctx.restore();
+  }
+
+  // じょんどぅーの動き（renderer/motion/reactions.py と同じ）
+  const REACTIONS={idle:"待機",nod:"うなずく",tilt:"首をかしげる",shake:"首を横に振る",bounce:"ノる・うれしい",lean_in:"乗り出して語る",slump:"しょんぼり",puff:"ゾワッ・驚き",freeze:"固まる（…）",look_away:"そっぽ・照れ"};
+  function pose(name,t){
+    const p={bdx:0,bdy:0,bsx:1,bsy:1,hdx:0,hdy:0,hrot:0,hs:1,fx:null};
+    if(name!=="freeze"){const br=Math.sin(t*2*Math.PI/2.4);p.bsy+=0.008*br;p.hdy+=-3*br;}
+    if(name==="nod"){const b=bump(t,.1,.35)+bump(t,.5,.35);p.hdy+=22*b;p.hrot+=-3*b;}
+    else if(name==="tilt"){p.hrot+=11*ease(t/.25);p.hdx+=-10*ease(t/.25);if(t>.25)p.fx="question";}
+    else if(name==="shake"){if(t<.9){const s=Math.sin(t*2*Math.PI*3.5)*(1-t/.9);p.hdx+=16*s;p.hrot+=3*s;}}
+    else if(name==="bounce"){for(let k=0;k<2;k++)p.bdy-=34*bump(t,.05+k*.4,.38);const q=bump(t,0,.08)+bump(t,.42,.08)+bump(t,.82,.1);p.bsy-=.06*q;p.bsx+=.04*q;p.fx="sparkle";}
+    else if(name==="lean_in"){const k=ease(t/.3);p.bsx+=.04*k;p.bsy+=.04*k;p.bdx-=18*k;p.hdx-=14*k;p.hrot+=4*k;}
+    else if(name==="slump"){const k=ease(t/.5);p.hdy+=30*k;p.hrot+=-5*k;p.bsy-=.035*k;if(t>.4)p.fx="gloom";}
+    else if(name==="puff"){const k=bump(t,0,.25)+(t>=.25?.6*Math.max(0,1-(t-.25)/.6):0);p.hs=1+.12*k;p.hdy-=12*k;p.bdy-=10*bump(t,0,.2);if(t<.7)p.fx="shock";}
+    else if(name==="freeze"){if(t>.2)p.fx="dots";}
+    else if(name==="look_away"){const k=ease(t/.3);p.hrot+=-7*k;p.hdx+=14*k;if(t>.3)p.fx="sweat";}
+    return p;
+  }
+  function fx(ctx,kind,x,y,t){
+    ctx.save(); ctx.lineWidth=5; ctx.strokeStyle=C.ink;
+    if(kind==="dots"){for(let i=0;i<Math.min(3,Math.floor(t*6));i++){ctx.beginPath();ctx.arc(x+i*34,y,11,0,7);ctx.fillStyle=C.cream;ctx.fill();ctx.stroke();}}
+    else if(kind==="question"){ctx.font=font(900,90);ctx.textAlign="center";ctx.textBaseline="middle";ctx.lineWidth=12;ctx.strokeText("？",x,y);ctx.fillStyle=C.cream;ctx.fillText("？",x,y);}
+    else if(kind==="sweat"){ctx.beginPath();ctx.moveTo(x,y-30);ctx.quadraticCurveTo(x+22,y,x,y+22);ctx.quadraticCurveTo(x-22,y,x,y-30);ctx.fillStyle="#aad2eb";ctx.fill();ctx.stroke();}
+    else if(kind==="sparkle"){[[0,0],[70,40],[-50,60]].forEach(([dx,dy],i)=>{const r=22+8*Math.sin(t*12+i),cx=x+dx,cy=y+dy;ctx.beginPath();for(let k=0;k<8;k++){const a=k*Math.PI/4,rr=k%2?r*.35:r;ctx.lineTo(cx+rr*Math.sin(a),cy-rr*Math.cos(a));}ctx.closePath();ctx.fillStyle="#f0d278";ctx.fill();ctx.lineWidth=3;ctx.stroke();});}
+    else if(kind==="gloom"){ctx.strokeStyle="rgba(90,90,140,.8)";ctx.lineWidth=6;for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(x-120+i*60,y);ctx.lineTo(x-120+i*60,y+120+(i%2)*30);ctx.stroke();}}
+    else if(kind==="shock"){ctx.strokeStyle=C.cream;ctx.lineWidth=8;for(let i=0;i<8;i++){const a=i*Math.PI/4;ctx.beginPath();ctx.moveTo(x+120*Math.cos(a),y+120*Math.sin(a));ctx.lineTo(x+170*Math.cos(a),y+170*Math.sin(a));ctx.stroke();}}
+    ctx.restore();
+  }
+
+  // 動く小物
+  const kv=(x,y)=>[x*KV,y*KV+PAD];
+  function rand(seed){let s=seed;return()=>{s=(s*16807)%2147483647;return s/2147483647;};}
+  function props(ctx,P,t,layer){
+    if(layer==="back"){
+      if(P.stars){const r=rand(3);for(let i=0;i<9;i++){const[x,y]=kv(8+r()*87,100+r()*155);const f=2+r()*3;const b=.5+.5*Math.sin(t*f+i);ctx.beginPath();ctx.arc(x,y,2+3*b,0,7);ctx.fillStyle=`rgba(250,240,200,${.47+.53*b})`;ctx.fill();}}
+      if(P.lamp){const[x,y]=kv(215,480);const a=(70+18*Math.sin(t*9)*Math.sin(t*2.3)+10*Math.sin(t*23))/255;const g=ctx.createRadialGradient(x,y,0,x,y,300);g.addColorStop(0,`rgba(255,190,90,${a})`);g.addColorStop(1,"rgba(255,190,90,0)");ctx.fillStyle=g;ctx.fillRect(x-300,y-300,600,600);}
+      if(P.dust){const r=rand(11);const[lx,ly]=kv(215,520);for(let i=0;i<14;i++){const ox=r()*360-180,oy=r()*460-200;const x=lx+ox+20*Math.sin(t*.7+i),y=ly+oy-((t*18+i*37)%300);const a=(90+80*Math.sin(t*2+i))/255;ctx.beginPath();ctx.arc(x,y,3,0,7);ctx.fillStyle=`rgba(255,230,170,${Math.max(0,a)})`;ctx.fill();}}
+    } else if(layer==="front"){
+      if(P.mug){const[x,y]=kv(250,1075);ctx.save();ctx.lineWidth=5;ctx.strokeStyle=C.ink;
+        ctx.beginPath();ctx.roundRect(x-34,y-70,68,70,12);ctx.fillStyle="#d67846";ctx.fill();ctx.stroke();
+        ctx.beginPath();ctx.arc(x+39,y-38,20,-Math.PI/2,Math.PI/2);ctx.lineWidth=6;ctx.stroke();
+        ctx.beginPath();ctx.ellipse(x,y-70,34,10,0,0,7);ctx.fillStyle="#5a321e";ctx.fill();ctx.lineWidth=4;ctx.stroke();
+        ctx.filter="blur(3px)";for(let k=0;k<3;k++){const ph=(t*.6+k/3)%1;ctx.beginPath();for(let j=0;j<12;j++){const u=j/11;const yy=y-90-u*95-ph*40,xx=x+(k-1)*18+14*Math.sin(u*6+t*3+k);j?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy);}ctx.strokeStyle=`rgba(245,240,230,${.6*(1-ph)})`;ctx.lineWidth=8;ctx.stroke();}
+        ctx.restore();}
+      if(P.tv){const a=(16+10*Math.sin(t*3.1)+8*Math.sin(t*7.7+1))/255;ctx.fillStyle=`rgba(110,150,220,${Math.max(0,a)})`;ctx.fillRect(0,0,W,H);}
+      if(P.tintA>0){ctx.fillStyle=P.tint||"#3a5a40";ctx.globalAlpha=P.tintA;ctx.globalCompositeOperation="multiply";ctx.fillRect(0,0,W,H);ctx.globalCompositeOperation="source-over";ctx.globalAlpha=1;}
+    }
+  }
+
+  // カメラのプリセット
+  function presets(){
+    const [gx,gy]=toScreen("gonbe",506,192), [jx,jy]=toScreen("johndoe",564,259);
+    return {
+      two:{z:1.45,x:(gx+jx)/2-20,y:(gy+jy)/2+260,label:"2ショット"},
+      gonbe:{z:2.3,x:gx,y:gy+190,label:"ごんべぇアップ"},
+      johndoe:{z:2.1,x:jx,y:jy+230,label:"じょんどぅーアップ"},
+      gonbe_face:{z:3.6,x:gx+10,y:gy+120,label:"ごんべぇの顔"},
+      johndoe_face:{z:3.2,x:jx,y:jy+120,label:"じょんどぅーの顔"},
+      wide:{z:1.0,x:W/2,y:H/2,label:"部屋全体"}
+    };
+  }
+  const camOf=c=>{ if(!c) return presets().two; if(c.preset&&!("z" in c)) return presets()[c.preset]||presets().two; return c; };
+
+  function timeline(scene){ let t=0; return scene.shots.map(s=>{const r={s,start:t,end:t+(+s.dur||1)};t=r.end;return r;}); }
+  function duration(scene){ const tl=timeline(scene); return tl.length?tl[tl.length-1].end:0; }
+
+  function drawCaption(ctx,shot,lt){
+    const text=(shot.caption||"").trim(); if(!text) return;
+    const parts=text.split("/").map(s=>s.trim()).filter(Boolean);
+    const i=Math.min(parts.length-1,Math.floor(lt/((+shot.dur||1)/parts.length)));
+    const s=parts[i]; const who=shot.speaker;
+    ctx.save(); ctx.textAlign="center"; ctx.textBaseline="middle";
+    if(shot.big){
+      ctx.font=font(900,120); const k=Math.min(1,880/ctx.measureText(s).width); ctx.font=font(900,Math.floor(120*k));
+      ctx.lineWidth=20; ctx.strokeStyle=C.ink; ctx.lineJoin="round"; ctx.strokeText(s,W*0.46,1150);
+      ctx.fillStyle=who==="gonbe"?C.parka:C.cream; ctx.fillText(s,W*0.46,1150);
+    } else {
+      ctx.font=font(900,62); const tw=ctx.measureText(s).width; const x=W*0.46, y=1380;
+      const bg=who==="gonbe"?C.parka:who==="johndoe"?C.cream:"rgba(0,0,0,.6)", fg=who==="johndoe"?C.ink:C.cream;
+      ctx.fillStyle=bg; ctx.fillRect(x-tw/2-24,y-46,tw+48,92); ctx.lineWidth=5; ctx.strokeStyle=C.ink; ctx.strokeRect(x-tw/2-24,y-46,tw+48,92);
+      ctx.fillStyle=fg; ctx.fillText(s,x,y+2);
+    }
+    ctx.restore();
+  }
+
+  function render(ctx,scene,t){
+    const tl=timeline(scene); if(!tl.length) return;
+    t=clamp(t,0,tl[tl.length-1].end-1e-4);
+    const cur=tl.find(r=>t>=r.start&&t<r.end)||tl[tl.length-1]; const shot=cur.s, lt=t-cur.start;
+    const P=scene.props||{};
+    // ---- セット（全体の絵） ----
+    o.clearRect(0,0,W,H); if(IM.room) o.drawImage(IM.room,0,0,W,H);
+    props(o,P,t,"back");
+    // ごんべぇ
+    const g=shot.gonbe||{}; const talkG=!!g.talk;
+    const br=1+0.008*Math.sin(t*2*Math.PI/2.6);
+    const gl=[IM.g_base];
+    let eyes=g.eyes||"normal";
+    if(eyes==="normal" && !talkG && (t%3.1)<0.12) eyes="closed";
+    if(eyes!=="normal") gl.push(IM["g_"+eyes]);
+    if(talkG){ const m=[null,"g_half","g_open","g_half"][Math.floor(t*10)%4]; if(m) gl.push(IM[m]); }
+    else if(g.mouth && g.mouth!=="closed") gl.push(IM["g_"+g.mouth]);
+    gl.forEach(im=>place(o,im,"gonbe",{sy:br,anchor:PLACE.gonbe.feet}));
+    // じょんどぅー
+    const j=shot.johndoe||{}; const p=pose(j.reaction||"idle",lt); const pv=rig.pivot, feet=[pv[0],1343];
+    place(o,IM.j_body,"johndoe",{sx:p.bsx,sy:p.bsy,anchor:feet,dx:p.bdx,dy:p.bdy});
+    const neck=(pv[1]-feet[1])*(p.bsy-1);
+    const head={sx:p.bsx*p.hs,sy:p.bsy*p.hs,anchor:pv,dx:p.bdx+p.hdx,dy:p.bdy+p.hdy+neck,rot:p.hrot};
+    place(o,IM.j_head,"johndoe",head);
+    if(j.talk){ const m=["j_half","j_open",null][Math.floor(t*9)%3]; if(m) place(o,IM[m],"johndoe",head); }
+    if(p.fx){ const hb=rig.head_bbox; const [hx,hy]=toScreen("johndoe",(hb[0]+hb[2])/2,hb[1]); fx(o,p.fx,hx+150,hy+10,lt); }
+    props(o,P,t,"front");
+    // ---- カメラ ----
+    const a=camOf(shot.cam&&shot.cam.from), b=camOf(shot.cam&&shot.cam.to||shot.cam&&shot.cam.from);
+    const k=ease2(lt/(+shot.dur||1));
+    let z=a.z+(b.z-a.z)*k, cx=a.x+(b.x-a.x)*k, cy=a.y+(b.y-a.y)*k;
+    if(shot.punch){ z*=1+0.12*Math.max(0,1-lt/0.25); }
+    const w=W/z,h=H/z; cx=clamp(cx,w/2,W-w/2); cy=clamp(cy,h/2,H-h/2);
+    ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.fillStyle="#000"; ctx.fillRect(0,0,W,H);
+    ctx.drawImage(off,cx-w/2,cy-h/2,w,h,0,0,W,H);
+    drawCaption(ctx,shot,lt);
+    ctx.restore();
+    return {shot:cur,index:tl.indexOf(cur)};
+  }
+  return {W,H,ready,render,duration,timeline,presets,REACTIONS,camOf};
+})();
+
+/* =================== 編集UI =================== */
+const DEFAULT={
+  props:{lamp:true,tv:true,stars:true,dust:true,mug:true,tint:"#3a5a40",tintA:0},
+  shots:[
+    {dur:1.8,cam:{from:{preset:"wide"},to:{preset:"two"}},speaker:"gonbe",caption:"Here's/Johnny!",gonbe:{eyes:"normal",talk:true},johndoe:{reaction:"idle"}},
+    {dur:1.6,cam:{from:{preset:"johndoe"},to:{preset:"johndoe"}},speaker:"johndoe",caption:"…働きすぎ。",gonbe:{eyes:"normal"},johndoe:{reaction:"look_away",talk:true}},
+    {dur:2.2,cam:{from:{preset:"gonbe"},to:{preset:"gonbe_face"}},speaker:"gonbe",caption:"…はぁ。/上司マジで/無理",gonbe:{eyes:"closed",talk:true},johndoe:{reaction:"idle"}},
+    {dur:1.6,cam:{from:{preset:"two"},to:{preset:"two"}},speaker:"johndoe",caption:"〇〇、/見た？",gonbe:{eyes:"normal"},johndoe:{reaction:"tilt",talk:true}},
+    {dur:1.6,cam:{from:{preset:"gonbe"},to:{preset:"gonbe"}},speaker:"gonbe",caption:"〇〇な/やつじゃん",gonbe:{eyes:"jito",talk:true},johndoe:{reaction:"idle"}},
+    {dur:2.0,cam:{from:{preset:"johndoe"},to:{preset:"johndoe_face"}},speaker:"johndoe",caption:"そう思ってるやつ/損してる",big:true,punch:true,gonbe:{eyes:"normal"},johndoe:{reaction:"lean_in",talk:true}}
+  ]
+};
+const KEY="cinemaholic-studio-v1";
+let scene; try{ scene=JSON.parse(localStorage.getItem(KEY)); }catch(e){}
+if(!scene||!scene.shots) scene=JSON.parse(JSON.stringify(DEFAULT));
+const cv=document.getElementById("cv"), ctx=cv.getContext("2d"), $=id=>document.getElementById(id);
+let playing=false, sel=0, tNow=0;
+
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(scene)); }catch(e){} $("json").value=JSON.stringify(scene,null,2); }
+function draw(t){ tNow=t; const r=ST.render(ctx,scene,t); $("seek").value=t/Math.max(.01,ST.duration(scene)); if(r&&r.index!==sel&&playing){ sel=r.index; markSel(); } }
+function shotStart(i){ return ST.timeline(scene)[i].start; }
+function changed(){ save(); if(!playing) draw(Math.min(tNow,ST.duration(scene))); }
+
+const PRESETS=()=>ST.presets();
+function camEditor(shot,key){
+  const c=shot.cam=shot.cam||{}; c[key]=c[key]||{preset:"two"};
+  const wrap=document.createElement("div");
+  const opts=Object.entries(PRESETS()).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join("")+`<option value="custom">手で調整</option>`;
+  wrap.innerHTML=`<label>${key==="from"?"はじめ":"おわり"}</label><select>${opts}</select>`;
+  const s=wrap.querySelector("select"); s.value=("z" in c[key])?"custom":(c[key].preset||"two");
+  s.onchange=()=>{ if(s.value==="custom"){ const cur=ST.camOf(c[key]); c[key]={z:cur.z,x:cur.x,y:cur.y}; } else c[key]={preset:s.value}; changed(); };
+  return wrap;
+}
+function renderShots(){
+  const box=$("shots"); box.innerHTML="";
+  scene.shots.forEach((s,i)=>{
+    const d=document.createElement("div"); d.className="card who-"+(s.speaker||"none")+(i===sel?" sel":"");
+    d.innerHTML=`<h2><span>カット ${i+1}</span><span>
+      <button class="sm" data-a="up">↑</button><button class="sm" data-a="down">↓</button><button class="sm" data-a="dup">複製</button><button class="sm" data-a="del">✕</button></span></h2>
+      <div class="g3"><div><label>秒</label><input type="number" step="0.1" min="0.3" data-k="dur"></div>
+      <div><label>話す人</label><select data-k="speaker"><option value="gonbe">ごんべぇ</option><option value="johndoe">じょんどぅー</option><option value="">なし</option></select></div>
+      <div><label>テロップ特大</label><label class="check"><input type="checkbox" data-k="big"> 特大</label></div></div>
+      <label>テロップ（「/」で区切ると、その順に切り替わる）</label><input type="text" data-k="caption">
+      <div class="g2">
+        <div><label>ごんべぇの目</label><select data-g="eyes"><option value="normal">いつもの半目</option><option value="jito">ジト目</option><option value="closed">目を閉じる・ため息</option><option value="angry">真顔・怒り</option></select>
+          <label class="check"><input type="checkbox" data-g="talk"> しゃべる（口パク）</label></div>
+        <div><label>じょんどぅーの動き</label><select data-j="reaction">${Object.entries(ST.REACTIONS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select>
+          <label class="check"><input type="checkbox" data-j="talk"> しゃべる（口パク）</label></div>
+      </div>
+      <label>カメラ</label><div class="g2 cam"></div>
+      <label class="check"><input type="checkbox" data-k="punch"> カットの頭でグッと寄る</label>`;
+    d.querySelectorAll("[data-k]").forEach(el=>{ const k=el.dataset.k; if(el.type==="checkbox"){ el.checked=!!s[k]; el.onchange=()=>{s[k]=el.checked;changed();}; }
+      else { el.value=s[k]??""; el.oninput=()=>{ s[k]=el.type==="number"?parseFloat(el.value)||1:el.value; if(k==="speaker") d.className="card who-"+(el.value||"none")+" sel"; changed(); }; } });
+    d.querySelectorAll("[data-g]").forEach(el=>{ const k=el.dataset.g; s.gonbe=s.gonbe||{}; if(el.type==="checkbox"){el.checked=!!s.gonbe[k];el.onchange=()=>{s.gonbe[k]=el.checked;changed();};} else {el.value=s.gonbe[k]||"normal";el.onchange=()=>{s.gonbe[k]=el.value;changed();};} });
+    d.querySelectorAll("[data-j]").forEach(el=>{ const k=el.dataset.j; s.johndoe=s.johndoe||{}; if(el.type==="checkbox"){el.checked=!!s.johndoe[k];el.onchange=()=>{s.johndoe[k]=el.checked;changed();};} else {el.value=s.johndoe[k]||"idle";el.onchange=()=>{s.johndoe[k]=el.value;changed();};} });
+    const cam=d.querySelector(".cam"); cam.appendChild(camEditor(s,"from")); cam.appendChild(camEditor(s,"to"));
+    d.querySelectorAll("[data-a]").forEach(b=>b.onclick=e=>{ e.stopPropagation(); const a=b.dataset.a, S=scene.shots;
+      if(a==="up"&&i>0)[S[i-1],S[i]]=[S[i],S[i-1]]; if(a==="down"&&i<S.length-1)[S[i+1],S[i]]=[S[i],S[i+1]];
+      if(a==="dup")S.splice(i+1,0,JSON.parse(JSON.stringify(s))); if(a==="del"&&S.length>1)S.splice(i,1);
+      sel=Math.min(sel,S.length-1); renderShots(); changed(); });
+    d.addEventListener("pointerdown",()=>{ if(sel!==i){ sel=i; markSel(); if(!playing) draw(shotStart(i)+Math.min(.5,(+s.dur||1)/2)); } },true);
+    box.appendChild(d);
+  });
+}
+function markSel(){ document.querySelectorAll("#shots .card").forEach((c,i)=>c.classList.toggle("sel",i===sel)); }
+
+function play(fromShot){
+  playing=true; $("btnPlay").textContent="■ 止める";
+  const t0=fromShot!=null?shotStart(fromShot):0, end=fromShot!=null?ST.timeline(scene)[fromShot].end:ST.duration(scene);
+  const st=performance.now();
+  const step=now=>{ if(!playing) return; const t=t0+(now-st)/1000; draw(Math.min(t,end-1e-3)); if(t<end) requestAnimationFrame(step); else stop(); };
+  requestAnimationFrame(step);
+}
+function stop(){ playing=false; $("btnPlay").textContent="▶ 再生"; }
+
+// 画面をドラッグ／ピンチ（ホイール）でカメラ（選んでいるカットの「おわり」）を動かす
+(function(){
+  let drag=null;
+  const camTo=()=>{ const s=scene.shots[sel]; s.cam=s.cam||{}; const cur=ST.camOf(s.cam.to||s.cam.from); s.cam.to={z:cur.z,x:cur.x,y:cur.y}; return s.cam.to; };
+  cv.addEventListener("pointerdown",e=>{ if(playing) return; const c=camTo(); drag={x:e.clientX,y:e.clientY,c:{...c}}; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener("pointermove",e=>{ if(!drag) return; const r=cv.getBoundingClientRect(); const k=ST.W/r.width; const c=scene.shots[sel].cam.to;
+    c.x=drag.c.x-(e.clientX-drag.x)*k/c.z; c.y=drag.c.y-(e.clientY-drag.y)*k/c.z; draw(ST.timeline(scene)[sel].end-1e-3); });
+  cv.addEventListener("pointerup",()=>{ if(drag){ drag=null; renderShots(); save(); } });
+  cv.addEventListener("wheel",e=>{ e.preventDefault(); const c=camTo(); c.z=Math.max(1,Math.min(5,c.z*(e.deltaY<0?1.06:0.94))); draw(ST.timeline(scene)[sel].end-1e-3); save(); },{passive:false});
+})();
+
+async function recordVideo(){
+  const types=["video/mp4;codecs=avc1","video/mp4","video/webm;codecs=vp9","video/webm"];
+  const type=types.find(t=>window.MediaRecorder&&MediaRecorder.isTypeSupported(t));
+  if(!type){ $("status").textContent="このブラウザは動画の保存に対応していません"; return; }
+  stop(); const rec=new MediaRecorder(cv.captureStream(30),{mimeType:type,videoBitsPerSecond:12e6}); const chunks=[];
+  rec.ondataavailable=e=>e.data.size&&chunks.push(e.data); rec.start();
+  const D=ST.duration(scene); $("status").textContent=`録画中…（${D.toFixed(1)}秒）`; const st=performance.now();
+  await new Promise(res=>{ const step=now=>{ const t=(now-st)/1000; draw(Math.min(t,D-1e-3)); if(t<D+0.1) requestAnimationFrame(step); else res(); }; requestAnimationFrame(step); });
+  rec.stop(); await new Promise(r=>rec.onstop=r);
+  const ext=type.includes("mp4")?"mp4":"webm"; const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob(chunks,{type:type.split(";")[0]})); a.download="scene."+ext; a.click();
+  $("status").textContent="保存しました（"+ext+"）";
+}
+
+function bind(){
+  $("seek").oninput=e=>{ stop(); draw(parseFloat(e.target.value)*ST.duration(scene)); };
+  $("btnPlay").onclick=()=>playing?stop():play();
+  $("btnShot").onclick=()=>{ stop(); play(sel); };
+  $("btnVideo").onclick=recordVideo;
+  $("addShot").onclick=()=>{ scene.shots.push({dur:1.6,cam:{from:{preset:"two"},to:{preset:"two"}},speaker:"gonbe",caption:"",gonbe:{eyes:"normal",talk:true},johndoe:{reaction:"idle"}}); sel=scene.shots.length-1; renderShots(); changed(); };
+  document.querySelectorAll("[data-p]").forEach(el=>{ scene.props=scene.props||{}; el.checked=!!scene.props[el.dataset.p]; el.onchange=()=>{ scene.props[el.dataset.p]=el.checked; changed(); }; });
+  $("tint").value=scene.props.tint||"#3a5a40"; $("tintA").value=scene.props.tintA||0;
+  $("tint").oninput=e=>{ scene.props.tint=e.target.value; changed(); }; $("tintA").oninput=e=>{ scene.props.tintA=parseFloat(e.target.value); changed(); };
+  $("btnCopy").onclick=async()=>{ try{ await navigator.clipboard.writeText($("json").value); $("status").textContent="コピーしました"; }catch(e){ $("json").select(); } };
+  $("btnLoad").onclick=()=>{ try{ const c=JSON.parse($("json").value); if(!c.shots) throw 0; scene=c; sel=0; renderShots(); bindProps(); changed(); $("status").textContent="読み込みました"; }catch(e){ $("status").textContent="JSONの形が正しくありません"; } };
+  $("btnReset").onclick=()=>{ scene=JSON.parse(JSON.stringify(DEFAULT)); sel=0; renderShots(); bindProps(); changed(); };
+}
+function bindProps(){ document.querySelectorAll("[data-p]").forEach(el=>el.checked=!!(scene.props||{})[el.dataset.p]); $("tint").value=(scene.props||{}).tint||"#3a5a40"; $("tintA").value=(scene.props||{}).tintA||0; }
+
+/* 自動書き出し用 */
+window.ST=ST;
+window.loadCfg=async c=>{ scene=c; await ST.ready(); return {duration:ST.duration(scene)}; };
+window.frameAt=t=>{ ST.render(ctx,scene,t); return cv.toDataURL("image/jpeg",0.95); };
+
+(async()=>{
+  await ST.ready();
+  if(new URLSearchParams(location.search).has("headless")){ document.body.classList.add("headless"); window.__ready=true; return; }
+  renderShots(); bind(); save(); draw(0); setTimeout(()=>play(),400);
+})();
+</script>
+</body>
+</html>

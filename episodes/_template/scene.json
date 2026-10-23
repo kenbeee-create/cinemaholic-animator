@@ -1,0 +1,135 @@
+{
+ "props": {
+  "lamp": true,
+  "tv": true,
+  "stars": true,
+  "dust": true,
+  "mug": true,
+  "tint": "#3a5a40",
+  "tintA": 0
+ },
+ "shots": [
+  {
+   "dur": 1.8,
+   "cam": {
+    "from": {
+     "preset": "wide"
+    },
+    "to": {
+     "preset": "two"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "Here's/Johnny!",
+   "gonbe": {
+    "eyes": "normal",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle"
+   }
+  },
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "…働きすぎ。",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "look_away",
+    "talk": true
+   }
+  },
+  {
+   "dur": 2.2,
+   "cam": {
+    "from": {
+     "preset": "gonbe"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "…はぁ。/上司マジで/無理",
+   "gonbe": {
+    "eyes": "closed",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle"
+   }
+  },
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "two"
+    },
+    "to": {
+     "preset": "two"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "〇〇、/見た？",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "tilt",
+    "talk": true
+   }
+  },
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "gonbe"
+    },
+    "to": {
+     "preset": "gonbe"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "〇〇な/やつじゃん",
+   "gonbe": {
+    "eyes": "jito",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle"
+   }
+  },
+  {
+   "dur": 2,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe_face"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "そう思ってるやつ/損してる",
+   "big": true,
+   "punch": true,
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "lean_in",
+    "talk": true
+   }
+  }
+ ]
+}
