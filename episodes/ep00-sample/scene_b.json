@@ -48,7 +48,9 @@
    "punch": false,
    "gonbe": {
     "eyes": "normal",
-    "talk": true
+    "talk": true,
+    "move": "nod",
+    "mark": "gaan"
    },
    "johndoe": {
     "reaction": "idle",
@@ -94,7 +96,8 @@
    "punch": false,
    "gonbe": {
     "eyes": "jito",
-    "talk": true
+    "talk": true,
+    "move": "lean_in"
    },
    "johndoe": {
     "reaction": "look_away",
@@ -117,7 +120,8 @@
    "punch": false,
    "gonbe": {
     "eyes": "normal",
-    "talk": false
+    "talk": false,
+    "move": "freeze"
    },
    "johndoe": {
     "reaction": "freeze",

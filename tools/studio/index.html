@@ -37,7 +37,7 @@ textarea.json{min-height:110px;font-size:13px;font-family:ui-monospace,monospace
 button{background:var(--night3);color:var(--cream);border:2px solid var(--ink);border-radius:10px;padding:8px 12px;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
 button.main{background:var(--parka)}
 button.ghost{background:transparent}
-button.sm{padding:5px 9px;font-size:13px}
+button.sm{padding:5px 9px;font-size:13px;white-space:nowrap}
 .check{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--cream);margin:6px 0}
 .check input{width:18px;height:18px}
 .note{font-size:12px;color:var(--dim);line-height:1.6}
@@ -65,6 +65,20 @@ details summary{cursor:pointer;font-size:13px;color:var(--dim);margin-top:6px}
 
   <div class="ui">
     <h1>シネマホリック スタジオ<small>部屋のセットに2人を置いて、カットごとにカメラ・セリフ・表情・動きを決めると、そのまま動く動画になります</small></h1>
+    <details class="card" id="guide" open>
+      <summary style="font-size:15px;color:var(--gold);font-weight:900">使い方（はじめての方へ）</summary>
+      <ol class="note" style="font-size:13px;padding-left:20px;margin:8px 0 0">
+        <li><b>カット</b>＝画面の1区切り。上から順に流れます。左の画面で <b>▶ 再生</b> すると通しで見られます。</li>
+        <li>カードを押すとそのカットが選ばれ（金色の枠）、<b>「このカットだけ」</b>でそこだけ再生できます。</li>
+        <li><b>テロップ</b>：「/」で区切ると、その順に約1秒ずつ切り替わります。<b>秒の「自動」</b>を押すと、文字数としゃべる速さから秒数が決まります。</li>
+        <li><b>表情と動き</b>：ごんべぇは目・動き・記号、じょんどぅーは動き・記号を選びます。「しゃべる」にチェックで口パク。</li>
+        <li><b>カメラ</b>：「はじめ」と「おわり」を選ぶと、その間をなめらかに動きます。画面をドラッグ／ホイールで「おわり」を手で調整できます。</li>
+        <li><b>灰色の札</b>が出ているところは、まだ画像が無い素材です（届けば自動で本物に変わります）。</li>
+        <li>できたら一番下の <b>「JSONをコピー」</b> → Claude に貼って送れば、同じ見た目で高画質に書き出します。直したい所は「12秒：寄りすぎ」のように秒数つきでまとめて送ると早いです。</li>
+      </ol>
+      <p class="note">編集した内容はこのブラウザに自動で残ります。「初期状態」で見本に戻せます。</p>
+    </details>
+    <button class="ghost" id="allAuto" style="width:100%;margin-bottom:6px">全部のカットの秒数を「自動」にする</button>
     <div id="shots"></div>
     <button class="ghost" id="addShot" style="width:100%">＋ カットを追加</button>
 
@@ -79,6 +93,13 @@ details summary{cursor:pointer;font-size:13px;color:var(--dim);margin-top:6px}
       </div>
       <label>照明の色（映画ごと）</label>
       <div class="g2"><input type="color" id="tint" style="width:100%;height:40px"><input type="range" id="tintA" min="0" max="0.5" step="0.01"></div>
+    </div>
+
+    <div class="card">
+      <h2>部屋に置く小物（部品の棚から）</h2>
+      <p class="note">assets/props/ に入っている小物を置けます。置いたら画面をドラッグせず、下の数字で位置と大きさを決めます（x：左右、y：上下、画面は1080×1920）。</p>
+      <div id="items"></div>
+      <div class="g2" style="margin-top:6px"><select id="itemPick"></select><button id="itemAdd">＋ 置く</button></div>
     </div>
 
     <div class="card">
@@ -106,14 +127,15 @@ const ST = (() => {
   const A="../../assets/";
   const FILES={
     room:"backgrounds/room_base_916.png",
-    g_base:"characters/gonbe/sit_source.png", g_jito:"characters/gonbe/parts/eyes_jito.png",
+    g_base:"characters/gonbe/sit_source.png", g_head:"characters/gonbe/parts/head.png", g_body:"characters/gonbe/parts/body.png",
+    g_tere:"characters/gonbe/parts/eyes_tere.png", g_sigh:"characters/gonbe/parts/eyes_sigh.png", g_stand:"characters/gonbe/stand.png", g_jito:"characters/gonbe/parts/eyes_jito.png",
     g_closed:"characters/gonbe/parts/eyes_closed.png", g_angry:"characters/gonbe/parts/eyes_angry.png",
     g_half:"characters/gonbe/parts/mouth_half.png", g_open:"characters/gonbe/parts/mouth_open.png",
     g_small:"characters/gonbe/parts/mouth_small.png", g_wide:"characters/gonbe/parts/mouth_wide.png",
     j_head:"characters/johndoe/parts/head.png", j_body:"characters/johndoe/parts/body.png",
     j_half:"characters/johndoe/parts/mouth_half.png", j_open:"characters/johndoe/parts/mouth_open.png", j_small:"characters/johndoe/parts/mouth_small.png"
   };
-  const IM={}; let rig={pivot:[556,688],head_bbox:[247,260,888,704]};
+  const IM={}, LIB={props:[]}; let rig={pivot:[556,688],head_bbox:[247,260,888,704]}, grig={pivot:[590,684],head_bbox:[251,190,816,740]};
   const off=document.createElement("canvas"); off.width=W; off.height=H; const o=off.getContext("2d");
 
   const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
@@ -122,10 +144,14 @@ const ST = (() => {
   const bump=(t,s,d)=>(t<s||t>s+d)?0:Math.sin(Math.PI*(t-s)/d);
   const load=src=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src;});
 
+  const MARK_FILES=["sweat","anger","gaan","gloom","note","sparkle","dots","exclaim","question","shock","steam"];
   async function ready(){
     if(IM.room) return;
+    MARK_FILES.forEach(m=>FILES["fx_"+m]="fx/"+m+".png");
     await Promise.all(Object.entries(FILES).map(async([k,v])=>{IM[k]=await load(A+v);}));
+    try{ const r=await fetch(A+"props/index.json"); LIB.props=(await r.json()).items||[]; }catch(e){ LIB.props=[]; }
     try{ const r=await fetch(A+"characters/johndoe/rig.json"); const j=await r.json(); rig={pivot:j.layers[1].pivot,head_bbox:j.head_bbox}; }catch(e){}
+    try{ const r=await fetch(A+"characters/gonbe/rig.json"); const j=await r.json(); grig={pivot:j.layers[1].pivot,head_bbox:j.head_bbox}; }catch(e){}
     try{ await document.fonts.load(font(900,60)); await document.fonts.ready; }catch(e){}
   }
 
@@ -137,6 +163,16 @@ const ST = (() => {
 
   // じょんどぅーの動き（renderer/motion/reactions.py と同じ）
   const REACTIONS={idle:"待機",nod:"うなずく",tilt:"首をかしげる",shake:"首を横に振る",bounce:"ノる・うれしい",lean_in:"乗り出して語る",slump:"しょんぼり",puff:"ゾワッ・驚き",freeze:"固まる（…）",look_away:"そっぽ・照れ"};
+  const GMOVES={idle:"待機",nod:"うなずく",tilt:"首をかしげる",shake:"首を横に振る",slump:"ため息で沈む",lean_in:"乗り出す",look_away:"目をそらす",puff:"ビクッ",bounce:"ノる",freeze:"固まる"};
+  // 記号（コードで描くので画像はいらない）。"auto" は動きに合わせて自動
+  const MARKS={auto:"自動（動きに合わせる）",none:"なし",sweat:"汗",blush:"赤面・照れ",anger:"怒りマーク",gaan:"ガーン（縦線）",gloom:"どんより",note:"♪",sparkle:"キラキラ",dots:"…",exclaim:"！",question:"？",shock:"ビクッ（線）",steam:"ため息の煙"};
+  // ごんべぇはじょんどぅーと向きが逆で、動きは控えめ（頭を大きく動かすと首の切れ目が見えるため）
+  function gpose(name,t){ const p=pose(name,t); const k=.6;
+    p.hdx*=-k; p.hrot*=-k; p.hdy*=k; p.bdx*=-1; p.bdy*=.6;
+    if(name==="slump"&&p.fx==="gloom") p.fx="steam";
+    if(name==="look_away"){ p.hrot=-p.hrot*.8; p.fx=null; }
+    if(name==="puff"){ p.hs=1+(p.hs-1)*.4; p.fx="shock"; if(t>.7)p.fx=null; }
+    return p; }
   function pose(name,t){
     const p={bdx:0,bdy:0,bsx:1,bsy:1,hdx:0,hdy:0,hrot:0,hs:1,fx:null};
     if(name!=="freeze"){const br=Math.sin(t*2*Math.PI/2.4);p.bsy+=0.008*br;p.hdy+=-3*br;}
@@ -152,19 +188,50 @@ const ST = (() => {
     return p;
   }
   function fx(ctx,kind,x,y,t){
+    const im=IM["fx_"+kind];
+    if(im){ // 画像の記号があればそちらを使う（assets/fx/<名前>.png）。少し揺らして置く
+      const h=170, w=h*im.width/im.height, s=1+.15*Math.max(0,1-t/.18), wob=Math.sin(t*5)*3;
+      ctx.save(); ctx.translate(x,y+wob); ctx.scale(s,s); ctx.drawImage(im,-w/2,-h/2,w,h); ctx.restore(); return; }
     ctx.save(); ctx.lineWidth=5; ctx.strokeStyle=C.ink;
     if(kind==="dots"){for(let i=0;i<Math.min(3,Math.floor(t*6));i++){ctx.beginPath();ctx.arc(x+i*34,y,11,0,7);ctx.fillStyle=C.cream;ctx.fill();ctx.stroke();}}
     else if(kind==="question"){ctx.font=font(900,90);ctx.textAlign="center";ctx.textBaseline="middle";ctx.lineWidth=12;ctx.strokeText("？",x,y);ctx.fillStyle=C.cream;ctx.fillText("？",x,y);}
     else if(kind==="sweat"){ctx.beginPath();ctx.moveTo(x,y-30);ctx.quadraticCurveTo(x+22,y,x,y+22);ctx.quadraticCurveTo(x-22,y,x,y-30);ctx.fillStyle="#aad2eb";ctx.fill();ctx.stroke();}
     else if(kind==="sparkle"){[[0,0],[70,40],[-50,60]].forEach(([dx,dy],i)=>{const r=22+8*Math.sin(t*12+i),cx=x+dx,cy=y+dy;ctx.beginPath();for(let k=0;k<8;k++){const a=k*Math.PI/4,rr=k%2?r*.35:r;ctx.lineTo(cx+rr*Math.sin(a),cy-rr*Math.cos(a));}ctx.closePath();ctx.fillStyle="#f0d278";ctx.fill();ctx.lineWidth=3;ctx.stroke();});}
     else if(kind==="gloom"){ctx.strokeStyle="rgba(90,90,140,.8)";ctx.lineWidth=6;for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(x-120+i*60,y);ctx.lineTo(x-120+i*60,y+120+(i%2)*30);ctx.stroke();}}
+    else if(kind==="anger"){ctx.strokeStyle="#c8322a";ctx.lineWidth=11;ctx.lineCap="round";const s=1+.12*Math.sin(t*14);
+      [[1,1],[-1,1],[1,-1],[-1,-1]].forEach(([a,b])=>{ctx.beginPath();ctx.moveTo(x+a*12*s,y+b*44*s);ctx.quadraticCurveTo(x+a*12*s,y+b*12*s,x+a*44*s,y+b*12*s);ctx.stroke();});}
+    else if(kind==="gaan"){ctx.strokeStyle="rgba(70,70,120,.85)";ctx.lineWidth=7;const k=Math.min(1,t/.3);for(let i=0;i<7;i++){ctx.beginPath();ctx.moveTo(x-180+i*55,y-40);ctx.lineTo(x-180+i*55,y-40+(150+(i%3)*40)*k);ctx.stroke();}}
+    else if(kind==="note"){ctx.font=font(900,80);ctx.textAlign="center";ctx.textBaseline="middle";ctx.lineWidth=10;["♪","♫"].forEach((c,i)=>{const yy=y+i*40-((t*60+i*30)%60),xx=x+i*70+10*Math.sin(t*4+i);ctx.strokeText(c,xx,yy);ctx.fillStyle="#f0d278";ctx.fillText(c,xx,yy);});}
+    else if(kind==="exclaim"){const s=1+.25*Math.max(0,1-t/.2);ctx.font=font(900,Math.round(110*s));ctx.textAlign="center";ctx.textBaseline="middle";ctx.lineWidth=12;ctx.strokeText("！",x,y);ctx.fillStyle="#f0d278";ctx.fillText("！",x,y);}
+    else if(kind==="steam"){ctx.filter="blur(2px)";for(let k=0;k<2;k++){const ph=(t*.7+k/2)%1;ctx.beginPath();ctx.ellipse(x+k*40+ph*60,y+60-ph*80,30+ph*30,18+ph*14,0,0,7);ctx.fillStyle=`rgba(235,235,240,${.75*(1-ph)})`;ctx.fill();}}
     else if(kind==="shock"){ctx.strokeStyle=C.cream;ctx.lineWidth=8;for(let i=0;i<8;i++){const a=i*Math.PI/4;ctx.beginPath();ctx.moveTo(x+120*Math.cos(a),y+120*Math.sin(a));ctx.lineTo(x+170*Math.cos(a),y+170*Math.sin(a));ctx.stroke();}}
     ctx.restore();
   }
 
+  const CHEEKS={gonbe:[[500,575],[672,588]],johndoe:[[352,590],[548,585]]};
+  function blush(ctx,n,tr){ const p=PLACE[n],k=p.s*KV; const [ax,ay]=toScreen(n,tr.anchor[0],tr.anchor[1]);
+    ctx.save(); ctx.translate(ax+tr.dx*k,ay+tr.dy*k); ctx.rotate(-tr.rot*Math.PI/180); ctx.scale(k*tr.sx,k*tr.sy); ctx.translate(-tr.anchor[0],-tr.anchor[1]);
+    CHEEKS[n].forEach(([x,y])=>{ ctx.beginPath(); ctx.ellipse(x,y,46,20,0,0,7); ctx.fillStyle="rgba(235,95,105,.55)"; ctx.fill();
+      ctx.strokeStyle="rgba(200,60,70,.8)"; ctx.lineWidth=5; for(let i=-1;i<=1;i++){ ctx.beginPath(); ctx.moveTo(x+i*18-6,y+10); ctx.lineTo(x+i*18+6,y-10); ctx.stroke(); } });
+    ctx.restore(); }
+  // 素材がまだ無いときの「灰色の代役」と札
+  function badge(ctx,x,y,text){ ctx.save(); ctx.font=font(900,34); const w=ctx.measureText(text).width+36; ctx.fillStyle="rgba(120,120,120,.92)"; ctx.strokeStyle=C.ink; ctx.lineWidth=4;
+    ctx.beginPath(); ctx.roundRect(x-w/2,y-30,w,60,14); ctx.fill(); ctx.stroke(); ctx.fillStyle="#fff"; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText(text,x,y+2); ctx.restore(); }
+  function standIn(ctx,cx,feetY,h,label){ ctx.save(); ctx.fillStyle="rgba(150,150,150,.9)"; ctx.strokeStyle=C.ink; ctx.lineWidth=6;
+    const r=h*.16; ctx.beginPath(); ctx.arc(cx,feetY-h+r,r,0,7); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.roundRect(cx-h*.2,feetY-h+2*r+8,h*.4,h*.45,30); ctx.fill(); ctx.stroke();
+    ctx.lineWidth=22; ctx.lineCap="round"; ctx.beginPath(); ctx.moveTo(cx-h*.1,feetY-h*.24); ctx.lineTo(cx-h*.12,feetY); ctx.moveTo(cx+h*.1,feetY-h*.24); ctx.lineTo(cx+h*.12,feetY); ctx.stroke();
+    ctx.restore(); badge(ctx,cx,feetY-h-40,label); }
+
   // 動く小物
   const kv=(x,y)=>[x*KV,y*KV+PAD];
   function rand(seed){let s=seed;return()=>{s=(s*16807)%2147483647;return s/2147483647;};}
+  // 部品の棚（assets/props/）から置いた小物。move：なし／ゆらゆら／ふわふわ
+  async function loadItem(f){ if(!(("it_"+f) in IM)) IM["it_"+f]=await load(A+f); return IM["it_"+f]; }
+  function items(ctx,list,t,layer){ (list||[]).forEach((it,i)=>{ if((it.layer||"back")!==layer) return; const im=IM["it_"+it.file]; const sc=it.scale||1;
+      let dx=0,dy=0,rot=0; if(it.move==="sway") rot=Math.sin(t*2+i)*3; if(it.move==="bob") dy=Math.sin(t*2.2+i)*8;
+      if(!im){ badge(ctx,it.x,it.y,(it.label||it.file)+"（無い）"); return; }
+      const w=im.width*sc*.5, h=im.height*sc*.5; ctx.save(); ctx.translate(it.x+dx,it.y+dy); ctx.rotate(rot*Math.PI/180); ctx.drawImage(im,-w/2,-h,w,h); ctx.restore(); }); }
   function props(ctx,P,t,layer){
     if(layer==="back"){
       const win=P.window||(P.stars?"stars":"none");
@@ -206,13 +273,18 @@ const ST = (() => {
   }
   const camOf=c=>{ if(!c) return presets().two; if(c.preset&&!("z" in c)) return presets()[c.preset]||presets().two; return c; };
 
-  function timeline(scene){ let t=0; return scene.shots.map(s=>{const r={s,start:t,end:t+(+s.dur||1)};t=r.end;return r;}); }
+  // 秒数「auto」：テロップの文字数から、しゃべる速さで見積もる（ごんべぇは早口、じょんどぅーはゆっくり＋間）
+  function autoDur(s){ const n=(s.caption||"").replace(/[\/\s]/g,"").length; if(!n) return 1.2;
+    const per=s.speaker==="johndoe"?.17:s.speaker==="gonbe"?.12:.14, pad=s.speaker==="johndoe"?.6:.4;
+    return Math.round(Math.max(1.0,n*per+pad)*10)/10; }
+  const durOf=s=>(s.dur==="auto"||s.dur==null)?autoDur(s):(+s.dur||1);
+  function timeline(scene){ let t=0; return scene.shots.map(s=>{const r={s,start:t,end:t+durOf(s)};t=r.end;return r;}); }
   function duration(scene){ const tl=timeline(scene); return tl.length?tl[tl.length-1].end:0; }
 
   function drawCaption(ctx,shot,lt){
     const text=(shot.caption||"").trim(); if(!text) return;
     const parts=text.split("/").map(s=>s.trim()).filter(Boolean);
-    const i=Math.min(parts.length-1,Math.floor(lt/((+shot.dur||1)/parts.length)));
+    const i=Math.min(parts.length-1,Math.floor(lt/(durOf(shot)/parts.length)));
     const s=parts[i]; const who=shot.speaker;
     ctx.save(); ctx.textAlign="center"; ctx.textBaseline="middle";
     if(shot.big){
@@ -235,17 +307,33 @@ const ST = (() => {
     const P=scene.props||{};
     // ---- セット（全体の絵） ----
     o.clearRect(0,0,W,H); if(IM.room) o.drawImage(IM.room,0,0,W,H);
-    props(o,P,t,"back");
+    props(o,P,t,"back"); items(o,scene.items,t,"back");
     // ごんべぇ
-    const g=shot.gonbe||{}; const talkG=!!g.talk;
-    const br=1+0.008*Math.sin(t*2*Math.PI/2.6);
-    const gl=[IM.g_base];
+    const g=shot.gonbe||{}; const talkG=!!g.talk; const notes=[];
+    const gp=gpose(g.move||"idle",lt+.37);  // 0.37：2人の呼吸がそろわないようにずらす
     let eyes=g.eyes||"normal";
     if(eyes==="normal" && !talkG && (t%3.1)<0.12) eyes="closed";
-    if(eyes!=="normal") gl.push(IM["g_"+eyes]);
-    if(talkG){ const m=[null,"g_half","g_open","g_half"][Math.floor(t*10)%4]; if(m) gl.push(IM[m]); }
-    else if(g.mouth && g.mouth!=="closed") gl.push(IM["g_"+g.mouth]);
-    gl.forEach(im=>place(o,im,"gonbe",{sy:br,anchor:PLACE.gonbe.feet}));
+    const gfeet=PLACE.gonbe.feet, gpv=grig.pivot;
+    let ghead=null;
+    if(g.pose==="stand"&&!IM.g_stand){
+      const [fx0,fy0]=toScreen("gonbe",gfeet[0],gfeet[1]); standIn(o,fx0,fy0,860,"ごんべぇ立ち姿（素材待ち）");
+    } else if(g.pose==="stand"){
+      place(o,IM.g_stand,"gonbe",{sy:1+0.008*Math.sin(t*2*Math.PI/2.6),anchor:gfeet});
+    } else {
+      const gl=[];
+      if(eyes==="tere"||eyes==="sigh"){ if(IM["g_"+eyes]) gl.push(IM["g_"+eyes]); else { if(eyes==="sigh") gl.push(IM.g_closed); notes.push(eyes==="tere"?"照れ笑い（素材待ち）":"ため息の目（素材待ち）"); } }
+      else if(eyes!=="normal") gl.push(IM["g_"+eyes]);
+      if(talkG){ const m=[null,"g_half","g_open","g_half"][Math.floor(t*10)%4]; if(m) gl.push(IM[m]); }
+      else if(g.mouth && g.mouth!=="closed") gl.push(IM["g_"+g.mouth]);
+      if(IM.g_head&&IM.g_body){
+        place(o,IM.g_body,"gonbe",{sx:gp.bsx,sy:gp.bsy,anchor:gfeet,dx:gp.bdx,dy:gp.bdy});
+        const neckG=(gpv[1]-gfeet[1])*(gp.bsy-1);
+        ghead={sx:gp.bsx*gp.hs,sy:gp.bsy*gp.hs,anchor:gpv,dx:gp.bdx+gp.hdx,dy:gp.bdy+gp.hdy+neckG,rot:gp.hrot};
+        place(o,IM.g_head,"gonbe",ghead); gl.forEach(im=>place(o,im,"gonbe",ghead));
+      } else {
+        const br=1+0.008*Math.sin(t*2*Math.PI/2.6); [IM.g_base,...gl].forEach(im=>place(o,im,"gonbe",{sy:br,anchor:gfeet}));
+      }
+    }
     // じょんどぅー
     const j=shot.johndoe||{}; const p=pose(j.reaction||"idle",lt); const pv=rig.pivot, feet=[pv[0],1343];
     place(o,IM.j_body,"johndoe",{sx:p.bsx,sy:p.bsy,anchor:feet,dx:p.bdx,dy:p.bdy});
@@ -253,11 +341,18 @@ const ST = (() => {
     const head={sx:p.bsx*p.hs,sy:p.bsy*p.hs,anchor:pv,dx:p.bdx+p.hdx,dy:p.bdy+p.hdy+neck,rot:p.hrot};
     place(o,IM.j_head,"johndoe",head);
     if(j.talk){ const m=["j_small","j_half","j_open","j_half",null,"j_half"][Math.floor(t*8)%6]; if(m) place(o,IM[m],"johndoe",head); }  // ゆっくり・ぼそっと話すので、なめらかに開け閉め
-    if(p.fx){ const hb=rig.head_bbox; const [hx,hy]=toScreen("johndoe",(hb[0]+hb[2])/2,hb[1]); fx(o,p.fx,hx+150,hy+10,lt); }
-    props(o,P,t,"front");
+    const jm=(j.mark&&j.mark!=="auto")?j.mark:p.fx;
+    if(jm==="blush") blush(o,"johndoe",head);
+    else if(jm&&jm!=="none"){ const hb=rig.head_bbox; const [hx,hy]=toScreen("johndoe",(hb[0]+hb[2])/2,hb[1]); fx(o,jm,hx+150,hy+10,lt); }
+    // ごんべぇの記号（顔の左上に出す）
+    const gm=(g.mark&&g.mark!=="auto")?g.mark:gp.fx;
+    if(gm==="blush"&&ghead) blush(o,"gonbe",ghead);
+    else if(gm&&gm!=="none"&&gm!=="blush"){ const hb=grig.head_bbox; const [hx,hy]=toScreen("gonbe",(hb[0]+hb[2])/2,hb[1]); const wide=(gm==="gaan"||gm==="gloom"); fx(o,gm,wide?hx+40:hx-130,wide?hy+40:hy+20,lt); }
+    notes.forEach((n,i)=>{ const hb=grig.head_bbox; const [hx,hy]=toScreen("gonbe",(hb[0]+hb[2])/2,hb[1]); badge(o,hx,hy-50-i*70,n); });
+    items(o,scene.items,t,"front"); props(o,P,t,"front");
     // ---- カメラ ----
     const a=camOf(shot.cam&&shot.cam.from), b=camOf(shot.cam&&shot.cam.to||shot.cam&&shot.cam.from);
-    const k=ease2(lt/(+shot.dur||1));
+    const k=ease2(lt/durOf(shot));
     let z=a.z+(b.z-a.z)*k, cx=a.x+(b.x-a.x)*k, cy=a.y+(b.y-a.y)*k;
     if(shot.punch){ z*=1+0.12*Math.max(0,1-lt/0.25); }
     const w=W/z,h=H/z; cx=clamp(cx,w/2,W-w/2); cy=clamp(cy,h/2,H-h/2);
@@ -267,7 +362,8 @@ const ST = (() => {
     ctx.restore();
     return {shot:cur,index:tl.indexOf(cur)};
   }
-  return {W,H,ready,render,duration,timeline,presets,REACTIONS,camOf};
+  async function prepare(scene){ await ready(); await Promise.all((scene.items||[]).map(it=>loadItem(it.file))); }
+  return {W,H,ready,prepare,render,duration,timeline,presets,REACTIONS,GMOVES,MARKS,LIB,camOf,autoDur,durOf};
 })();
 
 /* =================== 編集UI =================== */
@@ -309,30 +405,48 @@ function renderShots(){
     const d=document.createElement("div"); d.className="card who-"+(s.speaker||"none")+(i===sel?" sel":"");
     d.innerHTML=`<h2><span>カット ${i+1}</span><span>
       <button class="sm" data-a="up">↑</button><button class="sm" data-a="down">↓</button><button class="sm" data-a="dup">複製</button><button class="sm" data-a="del">✕</button></span></h2>
-      <div class="g3"><div><label>秒</label><input type="number" step="0.1" min="0.3" data-k="dur"></div>
+      <div class="g3"><div><label>秒 <span class="note" data-autolabel></span></label><div style="display:flex;gap:4px"><input type="number" step="0.1" min="0.3" data-k="dur"><button class="sm" data-a="auto" title="テロップの文字数から秒数を決める">自動</button></div></div>
       <div><label>話す人</label><select data-k="speaker"><option value="gonbe">ごんべぇ</option><option value="johndoe">じょんどぅー</option><option value="">なし</option></select></div>
       <div><label>テロップ特大</label><label class="check"><input type="checkbox" data-k="big"> 特大</label></div></div>
       <label>テロップ（「/」で区切ると、その順に切り替わる）</label><input type="text" data-k="caption">
       <div class="g2">
-        <div><label>ごんべぇの目</label><select data-g="eyes"><option value="normal">いつもの半目</option><option value="jito">ジト目</option><option value="closed">目を閉じる・ため息</option><option value="angry">真顔・怒り</option></select>
+        <div><label>ごんべぇの目</label><select data-g="eyes"><option value="normal">いつもの半目</option><option value="jito">ジト目</option><option value="closed">目を閉じる</option><option value="angry">真顔・怒り</option><option value="tere">照れ笑い</option><option value="sigh">ため息</option></select>
+          <label>ごんべぇの動き</label><select data-g="move">${Object.entries(ST.GMOVES).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select>
+          <label>ごんべぇの記号</label><select data-g="mark">${Object.entries(ST.MARKS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select>
+          <label>ごんべぇの姿勢</label><select data-g="pose"><option value="sit">座り</option><option value="stand">立ち（入ってくる）</option></select>
           <label class="check"><input type="checkbox" data-g="talk"> しゃべる（口パク）</label></div>
         <div><label>じょんどぅーの動き</label><select data-j="reaction">${Object.entries(ST.REACTIONS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select>
+          <label>じょんどぅーの記号</label><select data-j="mark">${Object.entries(ST.MARKS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select>
           <label class="check"><input type="checkbox" data-j="talk"> しゃべる（口パク）</label></div>
       </div>
       <label>カメラ</label><div class="g2 cam"></div>
       <label class="check"><input type="checkbox" data-k="punch"> カットの頭でグッと寄る</label>`;
     d.querySelectorAll("[data-k]").forEach(el=>{ const k=el.dataset.k; if(el.type==="checkbox"){ el.checked=!!s[k]; el.onchange=()=>{s[k]=el.checked;changed();}; }
-      else { el.value=s[k]??""; el.oninput=()=>{ s[k]=el.type==="number"?parseFloat(el.value)||1:el.value; if(k==="speaker") d.className="card who-"+(el.value||"none")+" sel"; changed(); }; } });
-    d.querySelectorAll("[data-g]").forEach(el=>{ const k=el.dataset.g; s.gonbe=s.gonbe||{}; if(el.type==="checkbox"){el.checked=!!s.gonbe[k];el.onchange=()=>{s.gonbe[k]=el.checked;changed();};} else {el.value=s.gonbe[k]||"normal";el.onchange=()=>{s.gonbe[k]=el.value;changed();};} });
-    d.querySelectorAll("[data-j]").forEach(el=>{ const k=el.dataset.j; s.johndoe=s.johndoe||{}; if(el.type==="checkbox"){el.checked=!!s.johndoe[k];el.onchange=()=>{s.johndoe[k]=el.checked;changed();};} else {el.value=s.johndoe[k]||"idle";el.onchange=()=>{s.johndoe[k]=el.value;changed();};} });
+      else { el.value=(k==="dur"&&s.dur==="auto")?ST.autoDur(s):(s[k]??""); el.oninput=()=>{ s[k]=el.type==="number"?parseFloat(el.value)||1:el.value; if(k==="speaker") d.className="card who-"+(el.value||"none")+" sel"; changed(); }; } });
+    d.querySelectorAll("[data-g]").forEach(el=>{ const k=el.dataset.g; s.gonbe=s.gonbe||{}; if(el.type==="checkbox"){el.checked=!!s.gonbe[k];el.onchange=()=>{s.gonbe[k]=el.checked;changed();};} else {el.value=s.gonbe[k]||({eyes:"normal",move:"idle",mark:"auto",pose:"sit"})[k];el.onchange=()=>{s.gonbe[k]=el.value;changed();};} });
+    d.querySelectorAll("[data-j]").forEach(el=>{ const k=el.dataset.j; s.johndoe=s.johndoe||{}; if(el.type==="checkbox"){el.checked=!!s.johndoe[k];el.onchange=()=>{s.johndoe[k]=el.checked;changed();};} else {el.value=s.johndoe[k]||({reaction:"idle",mark:"auto"})[k];el.onchange=()=>{s.johndoe[k]=el.value;changed();};} });
+    const al=d.querySelector("[data-autolabel]"); if(al) al.textContent=s.dur==="auto"?"（自動）":"";
     const cam=d.querySelector(".cam"); cam.appendChild(camEditor(s,"from")); cam.appendChild(camEditor(s,"to"));
     d.querySelectorAll("[data-a]").forEach(b=>b.onclick=e=>{ e.stopPropagation(); const a=b.dataset.a, S=scene.shots;
       if(a==="up"&&i>0)[S[i-1],S[i]]=[S[i],S[i-1]]; if(a==="down"&&i<S.length-1)[S[i+1],S[i]]=[S[i],S[i+1]];
+      if(a==="auto"){ s.dur="auto"; }
       if(a==="dup")S.splice(i+1,0,JSON.parse(JSON.stringify(s))); if(a==="del"&&S.length>1)S.splice(i,1);
       sel=Math.min(sel,S.length-1); renderShots(); changed(); });
-    d.addEventListener("pointerdown",()=>{ if(sel!==i){ sel=i; markSel(); if(!playing) draw(shotStart(i)+Math.min(.5,(+s.dur||1)/2)); } },true);
+    d.addEventListener("pointerdown",()=>{ if(sel!==i){ sel=i; markSel(); if(!playing) draw(shotStart(i)+Math.min(.5,ST.durOf(s)/2)); } },true);
     box.appendChild(d);
   });
+}
+function renderItems(){
+  const box=$("items"); box.innerHTML=""; scene.items=scene.items||[];
+  scene.items.forEach((it,i)=>{ const d=document.createElement("div"); d.className="g3"; d.style.marginTop="6px";
+    d.innerHTML=`<div><label>${it.label||it.file}</label><select data-i="move"><option value="none">動かない</option><option value="sway">ゆらゆら</option><option value="bob">ふわふわ</option></select></div>
+      <div><label>x / y</label><div style="display:flex;gap:4px"><input type="number" data-i="x"><input type="number" data-i="y"></div></div>
+      <div><label>大きさ・前後</label><div style="display:flex;gap:4px"><input type="number" step="0.1" data-i="scale"><select data-i="layer"><option value="back">奥</option><option value="front">手前</option></select><button class="sm" data-del>✕</button></div></div>`;
+    d.querySelectorAll("[data-i]").forEach(el=>{ const k=el.dataset.i; el.value=it[k]??({move:"none",scale:1,layer:"back"})[k];
+      el.oninput=el.onchange=()=>{ it[k]=el.type==="number"?parseFloat(el.value):el.value; changed(); }; });
+    d.querySelector("[data-del]").onclick=()=>{ scene.items.splice(i,1); renderItems(); changed(); };
+    box.appendChild(d); });
+  const pick=$("itemPick"); pick.innerHTML=ST.LIB.props.length?ST.LIB.props.map(p=>`<option value="${p.file}">${p.label}</option>`).join(""):`<option value="">（棚はまだ空です）</option>`;
 }
 function markSel(){ document.querySelectorAll("#shots .card").forEach((c,i)=>c.classList.toggle("sel",i===sel)); }
 
@@ -375,26 +489,31 @@ function bind(){
   $("btnPlay").onclick=()=>playing?stop():play();
   $("btnShot").onclick=()=>{ stop(); play(sel); };
   $("btnVideo").onclick=recordVideo;
+  $("allAuto").onclick=()=>{ scene.shots.forEach(s=>s.dur="auto"); renderShots(); changed(); };
+  $("itemAdd").onclick=async()=>{ const f=$("itemPick").value; if(!f) return; const p=ST.LIB.props.find(x=>x.file===f)||{};
+    scene.items=scene.items||[]; scene.items.push({file:f,label:p.label||f,x:540,y:1200,scale:1,layer:"back",move:"none"}); await ST.prepare(scene); renderItems(); changed(); };
   $("addShot").onclick=()=>{ scene.shots.push({dur:1.6,cam:{from:{preset:"two"},to:{preset:"two"}},speaker:"gonbe",caption:"",gonbe:{eyes:"normal",talk:true},johndoe:{reaction:"idle"}}); sel=scene.shots.length-1; renderShots(); changed(); };
   document.querySelectorAll("[data-p]").forEach(el=>{ scene.props=scene.props||{}; el.checked=!!scene.props[el.dataset.p]; el.onchange=()=>{ scene.props[el.dataset.p]=el.checked; changed(); }; });
   $("win").value=scene.props.window||(scene.props.stars?"stars":"none"); $("win").onchange=e=>{ scene.props.window=e.target.value; changed(); };
   $("tint").value=scene.props.tint||"#3a5a40"; $("tintA").value=scene.props.tintA||0;
   $("tint").oninput=e=>{ scene.props.tint=e.target.value; changed(); }; $("tintA").oninput=e=>{ scene.props.tintA=parseFloat(e.target.value); changed(); };
   $("btnCopy").onclick=async()=>{ try{ await navigator.clipboard.writeText($("json").value); $("status").textContent="コピーしました"; }catch(e){ $("json").select(); } };
-  $("btnLoad").onclick=()=>{ try{ const c=JSON.parse($("json").value); if(!c.shots) throw 0; scene=c; sel=0; renderShots(); bindProps(); changed(); $("status").textContent="読み込みました"; }catch(e){ $("status").textContent="JSONの形が正しくありません"; } };
-  $("btnReset").onclick=()=>{ scene=JSON.parse(JSON.stringify(DEFAULT)); sel=0; renderShots(); bindProps(); changed(); };
+  $("btnLoad").onclick=()=>{ try{ const c=JSON.parse($("json").value); if(!c.shots) throw 0; scene=c; sel=0; ST.prepare(scene).then(()=>{ renderShots(); renderItems(); bindProps(); changed(); }); $("status").textContent="読み込みました"; }catch(e){ $("status").textContent="JSONの形が正しくありません"; } };
+  $("btnReset").onclick=()=>{ scene=JSON.parse(JSON.stringify(DEFAULT)); sel=0; renderShots(); renderItems(); bindProps(); changed(); };
 }
 function bindProps(){ $("win").value=(scene.props||{}).window||((scene.props||{}).stars?"stars":"none"); document.querySelectorAll("[data-p]").forEach(el=>el.checked=!!(scene.props||{})[el.dataset.p]); $("tint").value=(scene.props||{}).tint||"#3a5a40"; $("tintA").value=(scene.props||{}).tintA||0; }
 
 /* 自動書き出し用 */
 window.ST=ST;
-window.loadCfg=async c=>{ scene=c; await ST.ready(); return {duration:ST.duration(scene)}; };
-window.frameAt=t=>{ ST.render(ctx,scene,t); return cv.toDataURL("image/jpeg",0.95); };
+window.loadCfg=async c=>{ scene=c; await ST.prepare(scene); return {duration:ST.duration(scene)}; };
+window.frameAt=(t,q)=>{ ST.render(ctx,scene,t); return cv.toDataURL("image/jpeg",q||0.95); };
 
 (async()=>{
   await ST.ready();
   if(new URLSearchParams(location.search).has("headless")){ document.body.classList.add("headless"); window.__ready=true; return; }
-  renderShots(); bind(); save(); draw(0); setTimeout(()=>play(),400);
+  await ST.prepare(scene); renderShots(); renderItems(); bind(); save(); draw(0);
+  try{ if(localStorage.getItem(KEY+"-guide")) $("guide").open=false; localStorage.setItem(KEY+"-guide","1"); }catch(e){}
+  setTimeout(()=>play(),400);
 })();
 </script>
 </body>

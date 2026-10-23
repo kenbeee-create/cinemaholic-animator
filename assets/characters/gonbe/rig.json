@@ -1,0 +1,39 @@
+{
+  "canvas": [
+    1024,
+    1535
+  ],
+  "layers": [
+    {
+      "name": "body",
+      "file": "parts/body.png",
+      "z": 1
+    },
+    {
+      "name": "head",
+      "file": "parts/head.png",
+      "z": 2,
+      "pivot": [
+        590,
+        684
+      ]
+    },
+    {
+      "name": "eyes",
+      "parent": "head",
+      "z": 3
+    },
+    {
+      "name": "mouth",
+      "parent": "head",
+      "z": 3
+    }
+  ],
+  "head_bbox": [
+    251,
+    190,
+    816,
+    740
+  ],
+  "note": "目と口の部品は元の絵と同じ位置。頭と同じ動きで重ねる。目はいつもの半目が基本（docs/characters.md）"
+}

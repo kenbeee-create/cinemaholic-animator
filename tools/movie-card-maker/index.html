@@ -393,7 +393,7 @@ function bind(){
 /* 自動書き出し用 */
 window.MC=MC;
 window.loadCfg=async c=>{ cfg=Object.assign(JSON.parse(JSON.stringify(DEFAULT)),c); await MC.ready(cfg); return MC.cues(); };
-window.frameAt=t=>{ MC.render(ctx,cfg,t); return cv.toDataURL("image/png"); };
+window.frameAt=(t,q)=>{ MC.render(ctx,cfg,t); return q&&q<0.9?cv.toDataURL("image/jpeg",q):cv.toDataURL("image/png"); };
 
 (async()=>{
   if(new URLSearchParams(location.search).has("headless")){ document.body.classList.add("headless"); await MC.ready({}); window.__ready=true; return; }

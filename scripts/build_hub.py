@@ -43,13 +43,14 @@ IMAGES = [
 DOCS = [
     ("キャラクター設定書", "docs/characters.md"), ("冒頭（トーク画面・タイトル）", "docs/opening.md"),
     ("回ごとの見た目（部屋と服）", "docs/episode-look.md"), ("映画紹介の画面", "docs/movie-card.md"),
-    ("スタジオの使い方", "docs/studio.md"), ("動画の作り方", "docs/production-flow.md"),
+    ("スタジオの使い方", "docs/studio.md"), ("絵柄のルール（AIっぽさを消す）", "docs/style-bible.md"), ("動画の作り方", "docs/production-flow.md"),
     ("品質基準", "docs/quality-bar.md"), ("トーン（色・文字）", "docs/tone.md"),
     ("入りのひと言の台帳", "docs/opening-lines.md"), ("絵コンテ（型）", "docs/storyboard/README.md"),
     ("進捗", "docs/studio-status.md"), ("CLAUDE.md（全体のルール）", "CLAUDE.md"),
 ]
 
 PREVIEWS = [
+    ("下書き動画（段階2・540×960・秒数の透かし入り）", "hub/media/ep00-sample-draft.mp4", "video"),
     ("通しの試作（約50秒・声なし）", "hub/media/ep00-sample.mp4", "video"),
     ("最新の絵コンテ（試作の実際のコマ）", "docs/storyboard/latest_storyboard.jpg", "img"),
     ("最初の絵コンテ（型）", "docs/storyboard/format_storyboard.jpg", "img"),

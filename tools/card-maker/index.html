@@ -220,7 +220,7 @@ function bind(){
   $("btnReset").onclick=()=>{ store.cards[store.cur]=JSON.parse(JSON.stringify(DEF[store.cur])); cfg=store.cards[store.cur]; sync(); changed(); };
 }
 window.loadCfg=async c=>{ cfg=Object.assign({},DEF[c.type||"text"],c); await CM.ready(); return CM.cues(cfg); };
-window.frameAt=t=>{ CM.render(ctx,cfg,t); return cv.toDataURL("image/jpeg",0.95); };
+window.frameAt=(t,q)=>{ CM.render(ctx,cfg,t); return cv.toDataURL("image/jpeg",q||0.95); };
 (async()=>{ await CM.ready(); if(new URLSearchParams(location.search).has("headless")){ document.body.classList.add("headless"); window.__ready=true; return; }
   sync(); bind(); save(); still(); setTimeout(play,300); })();
 </script>

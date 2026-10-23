@@ -161,3 +161,44 @@ No text, no logos. Output a PNG with a fully transparent background. Vertical im
 うまくいかないとき（貼り足す一文）
 - 目が変わった → `Keep his usual sleepy half-closed eyes exactly as in the attached image.`
 - 袋に文字やロゴが入った → `The plastic bag must be plain, with no text or logo.`
+
+---
+
+## ⑧ 記号シート（汗・怒りマークなど9個。新しいチャット・`keyvisual.png` を添付）
+添付：`keyvisual.png`
+できた画像はそのままClaudeに送る（自動で9個に切り分けて、スタジオの記号が画像に切り替わる）。絵柄のルールは `docs/style-bible.md`。
+
+```
+STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+- Every object fully visible and separated by wide empty space. Background: solid flat pure magenta (#FF00FF), no shadows on the background, no floor.
+
+Make a sprite sheet of 9 Japanese manga emotion symbols for this cartoon, arranged in a clean 3x3 grid, each centered in its own cell, same size, with wide empty magenta space between them. Square image.
+Row 1: (1) a single sweat drop, pale blue; (2) a dusty-red "anger vein" cross mark; (3) a block of 6 vertical gloomy lines ("gaan" shock lines), dark blue-gray.
+Row 2: (4) a small dark wavy gloom cloud with drips; (5) two music notes; (6) a cluster of three mustard-yellow sparkles.
+Row 3: (7) a bold exclamation mark "!" in mustard yellow; (8) a bold question mark "?" in cream; (9) a small puff of sigh smoke, pale gray-cream.
+No characters, only the symbols.
+```
+
+## ⑨ 小物シート（部屋に置くもの9個。新しいチャット・`keyvisual.png` を添付）
+添付：`keyvisual.png`
+下の「Row」の中身を、その回に置きたい物に書き換えて使う（例は「ファイト・クラブ」の回）。実在のロゴ・パッケージ・ポスターは描かせない。
+送るときに「1:soap:石けん 2:… 」のように番号と名前を一緒に書いてもらえると、その名前で棚に入れる（無ければこちらで付ける）。
+
+```
+STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+- Every object fully visible and separated by wide empty space. Background: solid flat pure magenta (#FF00FF), no shadows on the background, no floor.
+
+Make a sprite sheet of 9 small props for the apartment room in the reference image, arranged in a clean 3x3 grid, each centered in its own cell, front view, same scale as they would appear in the room. Square image.
+Row 1: (1) a pink bar of soap; (2) a stack of three blank VHS tapes; (3) a crumpled paper cup of coffee.
+Row 2: (4) a cracked smartphone face down; (5) a small potted cactus; (6) an empty pizza box, closed, plain.
+Row 3: (7) a desk lamp; (8) a pair of worn sneakers; (9) a framed blank picture (empty frame, no image).
+No characters, no text or labels on anything.
+```

@@ -54,18 +54,18 @@ class Renderer:
             self.pages[tool] = p
         return self.pages[tool]
 
-    def render(self, tool, cfg, out_mp4, last_png=None):
+    def render(self, tool, cfg, out_mp4, last_png=None, fps=FPS, quality=0.95):
         p = self.page(tool)
         info = p.evaluate("c => window.loadCfg(c)", cfg)
         dur = float(info["duration"])
-        n = max(1, int(round(dur * FPS)))
+        n = max(1, int(round(dur * fps)))
         os.makedirs(os.path.dirname(os.path.abspath(out_mp4)), exist_ok=True)
-        ff = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "image2pipe", "-framerate", str(FPS), "-i", "-",
-                               "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "17", "-r", str(FPS), out_mp4],
+        ff = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "image2pipe", "-framerate", str(fps), "-i", "-",
+                               "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "17", "-r", str(fps), out_mp4],
                               stdin=subprocess.PIPE)
         last = None
         for i in range(n):
-            last = base64.b64decode(p.evaluate("t => window.frameAt(t)", min(i / FPS, dur - 1e-3)).split(",", 1)[1])
+            last = base64.b64decode(p.evaluate("([t, q]) => window.frameAt(t, q)", [min(i / fps, dur - 1e-3), quality]).split(",", 1)[1])
             ff.stdin.write(last)
         ff.stdin.close()
         if ff.wait() != 0:

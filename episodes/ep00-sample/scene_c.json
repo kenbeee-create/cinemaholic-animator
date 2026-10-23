@@ -25,7 +25,8 @@
    "punch": false,
    "gonbe": {
     "eyes": "normal",
-    "talk": false
+    "talk": false,
+    "move": "nod"
    },
    "johndoe": {
     "reaction": "slump",
