@@ -59,7 +59,7 @@ footer{color:var(--dim);font-size:12px;padding:30px 0}
 <body>
 <div class="wrap">
 <header><h1>シネマホリック まとめ</h1><p>道具・プロンプト・画像・資料へのリンクを全部ここに。更新：2026-10-23</p></header>
-<nav><a href="#tools">道具</a><a href="#prompts">ChatGPTプロンプト</a><a href="#images">添付する画像</a><a href="#todo">必要な素材</a><a href="#preview">確認用</a><a href="#docs">資料</a></nav>
+<nav><a href="#tools">道具</a><a href="#prompts">ChatGPTプロンプト</a><a href="#batch">まとめ作り</a><a href="#images">添付する画像</a><a href="#todo">必要な素材</a><a href="#preview">確認用</a><a href="#docs">資料</a></nav>
 
 <section id="tools"><h2 class="sec">道具</h2><div class="tools"><a class="tool" href="../tools/studio/"><b>スタジオ</b><span>部屋のセットに2人を置いて、カットごとにカメラ・セリフ・表情・動きを決めて会話シーンを作る</span></a><a class="tool" href="../tools/chat-maker/"><b>トーク画面メーカー</b><span>冒頭のトーク画面（S1）。メッセージを打つと動く画面になる</span></a><a class="tool" href="../tools/movie-card-maker/"><b>映画紹介メーカー</b><span>処方箋ふうの映画紹介（ポスター・効きめ・もらえる薬局）</span></a><a class="tool" href="../tools/card-maker/"><b>文字の画面メーカー</b><span>バックボーン（S5）・名言（S7）・処方箋（S8）</span></a><a class="tool" href="../"><b>（旧）アニメーター</b><span>最初に作ったキャラを動かす道具</span></a></div>
 <p class="note">どれもスマホ・PCのブラウザで使えます。「JSONをコピー」して Claude に渡すと、同じ見た目で高画質に書き出します。</p></section>
@@ -275,6 +275,1081 @@ Row 3: (7) a desk lamp; (8) a pair of worn sneakers; (9) a framed blank picture 
 No characters, no text or labels on anything.
 </code></pre></div></details></section>
 
+<section id="batch"><h2 class="sec">素材のまとめ作り（バッチ1・52本）</h2>
+<p class="note">家でデスクトップアプリとリンクしたら、Claude がこの順番で ChatGPT に頼みます。手でやるときもこの順でコピペ。★が優先。</p>
+
+<p>全52本（★優先 26本）。Claude がブラウザで ChatGPT を操作するときは上から順に使う。手でやるときもこの順でコピペ。</p>
+
+<details class="step"><summary>使い方</summary><div class="inner">
+<ul>
+<li><strong>添付</strong>の画像は、まとめページの「添付する画像」から保存できる</li>
+<li><strong>チャット</strong>が「新しいチャット」のものは新しく開く。「〇〇と同じチャット」は続けて送る（絵柄がそろう）</li>
+<li>できた画像は<strong>保存名</strong>で保存してClaudeに送る（名前が違っても大丈夫）。切り抜き・仕上げ・登録はClaude</li>
+<li>絵柄のルール（STYLE LOCK）は <code>docs/style-bible.md</code>。シートは無地のマゼンタ背景で頼む（自動で切り抜くため）</li>
+<li>ChatGPTには時間あたりの画像の枚数制限がある。止められたら★だけ先に</li>
+</ul>
+</div></details>
+<details class="step"><summary>一覧</summary><div class="inner">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>優先</th>
+<th>種類</th>
+<th>内容</th>
+<th>チャット</th>
+<th>保存名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td>★</td>
+<td>表情</td>
+<td>ごんべぇ 照れ笑い（口を閉じて）</td>
+<td>新しいチャット</td>
+<td><code>gonbe_tere.png</code></td>
+</tr>
+<tr>
+<td>A2</td>
+<td>★</td>
+<td>表情</td>
+<td>ごんべぇ ため息</td>
+<td>A1と同じ</td>
+<td><code>gonbe_sigh.png</code></td>
+</tr>
+<tr>
+<td>A3</td>
+<td>★</td>
+<td>表情</td>
+<td>ごんべぇ にやけ（下心）</td>
+<td>A1と同じ</td>
+<td><code>gonbe_niyake.png</code></td>
+</tr>
+<tr>
+<td>A4</td>
+<td>★</td>
+<td>表情</td>
+<td>ごんべぇ 口ぽかん（あぜん）</td>
+<td>A1と同じ</td>
+<td><code>gonbe_pokan.png</code></td>
+</tr>
+<tr>
+<td>A5</td>
+<td></td>
+<td>表情</td>
+<td>ごんべぇ イラッ（歯を食いしばる）</td>
+<td>A1と同じ</td>
+<td><code>gonbe_ira.png</code></td>
+</tr>
+<tr>
+<td>A6</td>
+<td></td>
+<td>表情</td>
+<td>ごんべぇ 「は？」（片方の口角が下がる）</td>
+<td>A1と同じ</td>
+<td><code>gonbe_ha.png</code></td>
+</tr>
+<tr>
+<td>A7</td>
+<td></td>
+<td>表情</td>
+<td>じょんどぅー にやり（口だけ）</td>
+<td>新しいチャット</td>
+<td><code>johndoe_niyari.png</code></td>
+</tr>
+<tr>
+<td>A8</td>
+<td></td>
+<td>表情</td>
+<td>じょんどぅー への字口</td>
+<td>A7と同じ</td>
+<td><code>johndoe_henoji.png</code></td>
+</tr>
+<tr>
+<td>B1</td>
+<td>★</td>
+<td>ポーズ</td>
+<td>ごんべぇ 立ち姿（入ってくる）</td>
+<td>新しいチャット</td>
+<td><code>gonbe_stand.png</code></td>
+</tr>
+<tr>
+<td>B2</td>
+<td>★</td>
+<td>ポーズ</td>
+<td>ごんべぇ ソファに突っ伏す（フック用）</td>
+<td>新しいチャット</td>
+<td><code>gonbe_flop.png</code></td>
+</tr>
+<tr>
+<td>B3</td>
+<td>★</td>
+<td>ポーズ</td>
+<td>ごんべぇ 床で大の字（「…死んでる？」用）</td>
+<td>新しいチャット</td>
+<td><code>gonbe_daiji.png</code></td>
+</tr>
+<tr>
+<td>B4</td>
+<td></td>
+<td>ポーズ</td>
+<td>ごんべぇ 頭を抱える（座り）</td>
+<td>新しいチャット</td>
+<td><code>gonbe_atama.png</code></td>
+</tr>
+<tr>
+<td>B5</td>
+<td>★</td>
+<td>ポーズ</td>
+<td>ごんべぇ スマホを見て固まる（座り）</td>
+<td>新しいチャット</td>
+<td><code>gonbe_sumaho.png</code></td>
+</tr>
+<tr>
+<td>B6</td>
+<td></td>
+<td>ポーズ</td>
+<td>ごんべぇ 体育座りでいじける</td>
+<td>新しいチャット</td>
+<td><code>gonbe_taiiku.png</code></td>
+</tr>
+<tr>
+<td>B7</td>
+<td></td>
+<td>ポーズ</td>
+<td>ごんべぇ 歩き2コマ（横向き）</td>
+<td>新しいチャット</td>
+<td><code>gonbe_walk.png</code></td>
+</tr>
+<tr>
+<td>B8</td>
+<td>★</td>
+<td>ポーズ</td>
+<td>じょんどぅー DVDを差し出す（処方のポーズ）</td>
+<td>新しいチャット</td>
+<td><code>johndoe_dvd.png</code></td>
+</tr>
+<tr>
+<td>B9</td>
+<td>★</td>
+<td>ポーズ</td>
+<td>じょんどぅー ポテチを食べる（座り）</td>
+<td>B8と同じ</td>
+<td><code>johndoe_chips.png</code></td>
+</tr>
+<tr>
+<td>B10</td>
+<td></td>
+<td>ポーズ</td>
+<td>じょんどぅー 寝転がって本を読む</td>
+<td>B8と同じ</td>
+<td><code>johndoe_yomu.png</code></td>
+</tr>
+<tr>
+<td>B11</td>
+<td></td>
+<td>ポーズ</td>
+<td>じょんどぅー 振り向き（後ろ姿→こっち）</td>
+<td>B8と同じ</td>
+<td><code>johndoe_furimuki.png</code></td>
+</tr>
+<tr>
+<td>C1</td>
+<td>★</td>
+<td>服</td>
+<td>ごんべぇ くたびれたスーツ（仕事の回）</td>
+<td>新しいチャット</td>
+<td><code>gonbe_suit.png</code></td>
+</tr>
+<tr>
+<td>C2</td>
+<td></td>
+<td>服</td>
+<td>ごんべぇ 無地バンドT＋ネルシャツ</td>
+<td>C1と同じ</td>
+<td><code>gonbe_flannel.png</code></td>
+</tr>
+<tr>
+<td>C3</td>
+<td></td>
+<td>服</td>
+<td>ごんべぇ 大きめカーディガン</td>
+<td>C1と同じ</td>
+<td><code>gonbe_cardigan.png</code></td>
+</tr>
+<tr>
+<td>C4</td>
+<td></td>
+<td>服</td>
+<td>じょんどぅー 部屋着ジャージ</td>
+<td>新しいチャット</td>
+<td><code>johndoe_jersey.png</code></td>
+</tr>
+<tr>
+<td>C5</td>
+<td></td>
+<td>服</td>
+<td>じょんどぅー 冬のパーカー</td>
+<td>C4と同じ</td>
+<td><code>johndoe_hoodie.png</code></td>
+</tr>
+<tr>
+<td>D1</td>
+<td>★</td>
+<td>挿絵</td>
+<td>会議室で詰められるごんべぇ（上司は影）</td>
+<td>新しいチャット</td>
+<td><code>cut_kaigi.png</code></td>
+</tr>
+<tr>
+<td>D2</td>
+<td>★</td>
+<td>挿絵</td>
+<td>満員電車でつぶれるごんべぇ</td>
+<td>D1と同じ</td>
+<td><code>cut_densha.png</code></td>
+</tr>
+<tr>
+<td>D3</td>
+<td></td>
+<td>挿絵</td>
+<td>深夜のオフィスでひとり残業</td>
+<td>D1と同じ</td>
+<td><code>cut_zangyo.png</code></td>
+</tr>
+<tr>
+<td>D4</td>
+<td></td>
+<td>挿絵</td>
+<td>夜のコンビニ前で缶コーヒー</td>
+<td>D1と同じ</td>
+<td><code>cut_konbini.png</code></td>
+</tr>
+<tr>
+<td>D5</td>
+<td></td>
+<td>挿絵</td>
+<td>日曜の夜、ベッドで天井を見る</td>
+<td>D1と同じ</td>
+<td><code>cut_nichiyou.png</code></td>
+</tr>
+<tr>
+<td>D6</td>
+<td></td>
+<td>挿絵</td>
+<td>スマホで同期の結婚報告（画面は見せない）</td>
+<td>D1と同じ</td>
+<td><code>cut_kekkon.png</code></td>
+</tr>
+<tr>
+<td>D7</td>
+<td>★</td>
+<td>挿絵</td>
+<td>学生時代のごんべぇ、レンタル店でDVDを選ぶ（回想）</td>
+<td>D1と同じ</td>
+<td><code>cut_rental.png</code></td>
+</tr>
+<tr>
+<td>D8</td>
+<td></td>
+<td>挿絵</td>
+<td>映画館の暗い客席（スクリーンは無地）</td>
+<td>D1と同じ</td>
+<td><code>cut_eigakan.png</code></td>
+</tr>
+<tr>
+<td>D9</td>
+<td>★</td>
+<td>挿絵</td>
+<td>撮影現場のシルエット（裏話用・人物は影）</td>
+<td>D1と同じ</td>
+<td><code>cut_satsuei.png</code></td>
+</tr>
+<tr>
+<td>D10</td>
+<td>★</td>
+<td>挿絵</td>
+<td>作り手の散らかった机（裏話用）</td>
+<td>D1と同じ</td>
+<td><code>cut_tsukue.png</code></td>
+</tr>
+<tr>
+<td>D11</td>
+<td>★</td>
+<td>挿絵</td>
+<td>腫れた顔で出社するシルエット（裏話用）</td>
+<td>D1と同じ</td>
+<td><code>cut_shussha.png</code></td>
+</tr>
+<tr>
+<td>E1</td>
+<td>★</td>
+<td>記号</td>
+<td>記号シート①（汗・怒りマーク など9個）</td>
+<td>新しいチャット</td>
+<td><code>sheet_fx1.png</code></td>
+</tr>
+<tr>
+<td>E2</td>
+<td>★</td>
+<td>記号</td>
+<td>記号シート②（ハート・稲妻 など9個）</td>
+<td>E1と同じ</td>
+<td><code>sheet_fx2.png</code></td>
+</tr>
+<tr>
+<td>E3</td>
+<td></td>
+<td>記号</td>
+<td>モザイク・ピー用の札（隠すふり）</td>
+<td>E1と同じ</td>
+<td><code>sheet_censor.png</code></td>
+</tr>
+<tr>
+<td>F1</td>
+<td>★</td>
+<td>小物</td>
+<td>だらだらセット（毎回使う）</td>
+<td>新しいチャット</td>
+<td><code>sheet_props_darada.png</code></td>
+</tr>
+<tr>
+<td>F2</td>
+<td>★</td>
+<td>小物</td>
+<td>映画オタクの棚セット（毎回使う）</td>
+<td>F1と同じ</td>
+<td><code>sheet_props_otaku.png</code></td>
+</tr>
+<tr>
+<td>F3</td>
+<td>★</td>
+<td>小物</td>
+<td>ファイト・クラブの回</td>
+<td>F1と同じ</td>
+<td><code>sheet_props_fightclub.png</code></td>
+</tr>
+<tr>
+<td>F4</td>
+<td></td>
+<td>小物</td>
+<td>仕事の悩みの回（オフィス）</td>
+<td>F1と同じ</td>
+<td><code>sheet_props_office.png</code></td>
+</tr>
+<tr>
+<td>F5</td>
+<td></td>
+<td>小物</td>
+<td>SF・夜の街の回</td>
+<td>F1と同じ</td>
+<td><code>sheet_props_sf.png</code></td>
+</tr>
+<tr>
+<td>F6</td>
+<td></td>
+<td>小物</td>
+<td>ホラー・ゾンビの回</td>
+<td>F1と同じ</td>
+<td><code>sheet_props_horror.png</code></td>
+</tr>
+<tr>
+<td>F7</td>
+<td></td>
+<td>小物</td>
+<td>恋愛・青春の回</td>
+<td>F1と同じ</td>
+<td><code>sheet_props_seishun.png</code></td>
+</tr>
+<tr>
+<td>F8</td>
+<td></td>
+<td>小物</td>
+<td>夏・休日の回</td>
+<td>F1と同じ</td>
+<td><code>sheet_props_natsu.png</code></td>
+</tr>
+<tr>
+<td>F9</td>
+<td>★</td>
+<td>小物</td>
+<td>壁の飾り</td>
+<td>F1と同じ</td>
+<td><code>sheet_props_kabe.png</code></td>
+</tr>
+<tr>
+<td>F10</td>
+<td>★</td>
+<td>小物</td>
+<td>処方の小物（お医者さんごっこ）</td>
+<td>F1と同じ</td>
+<td><code>sheet_props_shoho.png</code></td>
+</tr>
+<tr>
+<td>G1</td>
+<td>★</td>
+<td>ポスター</td>
+<td>オリジナルの映画ふうポスター9枚（文字なし）</td>
+<td>新しいチャット</td>
+<td><code>sheet_posters.png</code></td>
+</tr>
+<tr>
+<td>H1</td>
+<td>★</td>
+<td>背景</td>
+<td>じょんどぅーの本棚のアップ（次回ヒント用）</td>
+<td>新しいチャット</td>
+<td><code>bg_tana.png</code></td>
+</tr>
+<tr>
+<td>H2</td>
+<td></td>
+<td>背景</td>
+<td>ローテーブルの上のアップ</td>
+<td>H1と同じ</td>
+<td><code>bg_table.png</code></td>
+</tr>
+<tr>
+<td>H3</td>
+<td></td>
+<td>背景</td>
+<td>部屋の入口（ごんべぇが入ってくる）</td>
+<td>H1と同じ</td>
+<td><code>bg_door.png</code></td>
+</tr>
+</tbody>
+</table>
+</div></details>
+<details class="step"><summary>A1 ★ ごんべぇ 照れ笑い（口を閉じて）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_tere.png</code></p>
+<pre><code>Edit the attached image. Keep his usual sleepy half-closed eyes EXACTLY as they are (same eye shape, same eyelids) — do not close or curve the eyes.
+Change ONLY: a small embarrassed smirk — one corner of the closed mouth slightly raised, a light pink blush on the cheeks, pupils looking slightly to the side.
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：表情の部品にする（目・口・頬を切り出し）→ parts/eyes_tere.png</p>
+</div></details>
+<details class="step"><summary>A2 ★ ごんべぇ ため息</summary><div class="inner">
+<p>チャット：A1 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_sigh.png</code></p>
+<pre><code>Edit the attached image. Keep his usual eye SHAPE (sleepy, half-closed) — do NOT make the eyes bigger, rounder or teary, and do not close them into curves.
+Make the upper eyelids droop a little lower, as if exhausted, pupils looking slightly down.
+Change the mouth to a sigh: lips slightly parted, a small open mouth breathing out.
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：parts/eyes_sigh.png ＋ 口</p>
+</div></details>
+<details class="step"><summary>A3 ★ ごんべぇ にやけ（下心）</summary><div class="inner">
+<p>チャット：A1 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_niyake.png</code></p>
+<pre><code>Edit the attached image. Keep his usual sleepy half-closed eyes exactly — same shape — but make the pupils glance sideways with a sly look.
+Change ONLY the mouth: a sly, slightly pervy grin — wide closed-mouth smirk stretching to one side. Add a light pink blush.
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：表情の部品</p>
+</div></details>
+<details class="step"><summary>A4 ★ ごんべぇ 口ぽかん（あぜん）</summary><div class="inner">
+<p>チャット：A1 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_pokan.png</code></p>
+<pre><code>Edit the attached image. Keep his usual sleepy half-closed eye shape, but make the pupils tiny dots, as if stunned.
+Change ONLY the mouth: dropped wide open in disbelief, a tall oval mouth showing a dark inside and a bit of tongue.
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：表情の部品</p>
+</div></details>
+<details class="step"><summary>A5 ごんべぇ イラッ（歯を食いしばる）</summary><div class="inner">
+<p>チャット：A1 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_ira.png</code></p>
+<pre><code>Edit the attached image. Keep his usual sleepy half-closed eye shape, but lower the brows into an annoyed frown.
+Change ONLY the mouth: clenched teeth in a tight, wide grimace.
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：表情の部品</p>
+</div></details>
+<details class="step"><summary>A6 ごんべぇ 「は？」（片方の口角が下がる）</summary><div class="inner">
+<p>チャット：A1 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_ha.png</code></p>
+<pre><code>Edit the attached image. Keep his usual sleepy half-closed eyes, one brow raised in skeptical disbelief.
+Change ONLY the mouth: a small crooked open mouth as if saying &quot;huh?&quot;, one corner pulled down.
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：表情の部品</p>
+</div></details>
+<details class="step"><summary>A7 じょんどぅー にやり（口だけ）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>　保存名：<code>johndoe_niyari.png</code></p>
+<pre><code>Edit the attached image. His eyes must stay completely hidden by the fur.
+Change ONLY the mouth: a small smug closed-mouth smile, curved up like a cat mouth (ω shape).
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：口の部品 parts/mouth_niyari.png</p>
+</div></details>
+<details class="step"><summary>A8 じょんどぅー への字口</summary><div class="inner">
+<p>チャット：A7 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>　保存名：<code>johndoe_henoji.png</code></p>
+<pre><code>Edit the attached image. His eyes must stay completely hidden by the fur.
+Change ONLY the mouth: a small sulky downturned mouth (upside-down U shape).
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：口の部品</p>
+</div></details>
+<details class="step"><summary>B1 ★ ごんべぇ 立ち姿（入ってくる）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_stand.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Draw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) as a STANDING full-body pose, walking in from the left and just stopping, as if entering a friend's room.
+Pose: body facing slightly to the right, one paw raised casually in greeting, the other paw in the hoodie pocket, mouth slightly open. A small plain plastic convenience-store bag hanging from his wrist.
+Keep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+</code></pre>
+<p>あとの処理：切り抜き → assets/characters/gonbe/stand.png（スタジオの灰色の代役が本物になる）</p>
+</div></details>
+<details class="step"><summary>B2 ★ ごんべぇ ソファに突っ伏す（フック用）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_flop.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Draw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) lying face-down flat on his stomach, completely exhausted, arms limp at his sides, legs straight, as if he just collapsed onto a sofa. Seen from the side, head turned toward the viewer with a dead-tired face. Do not draw the sofa.
+Keep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+</code></pre>
+<p>あとの処理：ポーズの部品</p>
+</div></details>
+<details class="step"><summary>B3 ★ ごんべぇ 床で大の字（「…死んでる？」用）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_daiji.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Draw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) lying flat on his back spread-eagle on the floor, seen from directly above, arms and legs stretched out, staring blankly at the ceiling. Do not draw the floor.
+Square image, character fills about 80% of the image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+</code></pre>
+<p>あとの処理：ポーズの部品（真上から）</p>
+</div></details>
+<details class="step"><summary>B4 ごんべぇ 頭を抱える（座り）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_atama.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Draw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) sitting in the same position as the attached image, but holding his head with both paws in despair, beanie slightly pushed, eyes still sleepy half-closed, mouth a wobbly line.
+Keep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+</code></pre>
+<p>あとの処理：ポーズの部品</p>
+</div></details>
+<details class="step"><summary>B5 ★ ごんべぇ スマホを見て固まる（座り）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_sumaho.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Draw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) sitting in the same position as the attached image, holding a plain smartphone in both paws close to his face (the screen faces him, we see the back of the phone), frozen, a single sweat drop.
+Keep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+</code></pre>
+<p>あとの処理：ポーズの部品（上司のLINEを見て固まる小ネタ）</p>
+</div></details>
+<details class="step"><summary>B6 ごんべぇ 体育座りでいじける</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_taiiku.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Draw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) sitting on the floor hugging his knees, sulking, seen from a slight side angle, eyes sleepy half-closed looking down.
+Keep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+</code></pre>
+<p>あとの処理：ポーズの部品</p>
+</div></details>
+<details class="step"><summary>B7 ごんべぇ 歩き2コマ（横向き）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_walk.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Draw TWO walking frames of the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.), side view facing right, hands in hoodie pocket, lazy slouched walk. Frame 1: left foot forward. Frame 2: right foot forward. Place the two frames side by side with wide space between them, same size, same height. Landscape 3:2 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+</code></pre>
+<p>あとの処理：シート切り抜き（2個）</p>
+</div></details>
+<details class="step"><summary>B8 ★ じょんどぅー DVDを差し出す（処方のポーズ）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>　保存名：<code>johndoe_dvd.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Draw the character from the attached image (Johndoe: round fluffy black dog, big curly fur that COMPLETELY hides his eyes (eyes never visible), small dark nose, small mouth, plain cream T-shirt, grey shorts, short round body.) sitting in the same position as the attached image, but holding out a plain DVD case toward the left with one paw (blank cover, no text, no art), like a doctor handing over medicine. Eyes stay hidden by the fur.
+Keep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+</code></pre>
+<p>あとの処理：ポーズの部品（処方の合図）</p>
+</div></details>
+<details class="step"><summary>B9 ★ じょんどぅー ポテチを食べる（座り）</summary><div class="inner">
+<p>チャット：B8 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>　保存名：<code>johndoe_chips.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Draw the character from the attached image (Johndoe: round fluffy black dog, big curly fur that COMPLETELY hides his eyes (eyes never visible), small dark nose, small mouth, plain cream T-shirt, grey shorts, short round body.) sitting in the same position as the attached image, holding an open plain potato-chip bag (no logo, no text) in one paw and a chip near his mouth with the other. Eyes stay hidden by the fur.
+Keep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+</code></pre>
+<p>あとの処理：ポーズの部品</p>
+</div></details>
+<details class="step"><summary>B10 じょんどぅー 寝転がって本を読む</summary><div class="inner">
+<p>チャット：B8 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>　保存名：<code>johndoe_yomu.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Draw the character from the attached image (Johndoe: round fluffy black dog, big curly fur that COMPLETELY hides his eyes (eyes never visible), small dark nose, small mouth, plain cream T-shirt, grey shorts, short round body.) lying on his stomach, reading a plain hardcover book (blank cover), legs kicked up behind him, relaxed. Side view. Eyes stay hidden by the fur.
+Keep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+</code></pre>
+<p>あとの処理：ポーズの部品</p>
+</div></details>
+<details class="step"><summary>B11 じょんどぅー 振り向き（後ろ姿→こっち）</summary><div class="inner">
+<p>チャット：B8 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>　保存名：<code>johndoe_furimuki.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Draw the character from the attached image (Johndoe: round fluffy black dog, big curly fur that COMPLETELY hides his eyes (eyes never visible), small dark nose, small mouth, plain cream T-shirt, grey shorts, short round body.) standing with his back to the viewer, turning his head over his shoulder to look back toward the viewer. Eyes stay hidden by the fur.
+Keep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+</code></pre>
+<p>あとの処理：ポーズの部品</p>
+</div></details>
+<details class="step"><summary>C1 ★ ごんべぇ くたびれたスーツ（仕事の回）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_suit.png</code></p>
+<pre><code>Edit the attached image. Change ONLY his clothes: a slightly wrinkled navy suit jacket and trousers, white shirt, loose dark-red necktie pulled down. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur and body shape exactly identical.
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：assets/characters/gonbe/outfits/suit/</p>
+</div></details>
+<details class="step"><summary>C2 ごんべぇ 無地バンドT＋ネルシャツ</summary><div class="inner">
+<p>チャット：C1 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_flannel.png</code></p>
+<pre><code>Edit the attached image. Change ONLY his clothes: an open mustard-and-brown flannel shirt over a plain black T-shirt (no print, no text), the same navy pants. Keep his beanie, face, eyes, fur and body shape exactly identical.
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：outfits/flannel/</p>
+</div></details>
+<details class="step"><summary>C3 ごんべぇ 大きめカーディガン</summary><div class="inner">
+<p>チャット：C1 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_cardigan.png</code></p>
+<pre><code>Edit the attached image. Change ONLY his clothes: an oversized olive-green knit cardigan over a cream T-shirt, the same navy pants. Keep his beanie, face, eyes, fur and body shape exactly identical.
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：outfits/cardigan/</p>
+</div></details>
+<details class="step"><summary>C4 じょんどぅー 部屋着ジャージ</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>　保存名：<code>johndoe_jersey.png</code></p>
+<pre><code>Edit the attached image. Change ONLY his clothes: a faded navy track jacket (zipped halfway, no logo) over the plain cream T-shirt, grey shorts. Eyes stay hidden. Keep his fur, face and body shape exactly identical.
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：outfits/jersey/</p>
+</div></details>
+<details class="step"><summary>C5 じょんどぅー 冬のパーカー</summary><div class="inner">
+<p>チャット：C4 と同じチャットで続けて　添付：<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>　保存名：<code>johndoe_hoodie.png</code></p>
+<pre><code>Edit the attached image. Change ONLY his clothes: a thick mustard hoodie (no print), grey sweatpants. Eyes stay hidden. Keep his fur, face and body shape exactly identical.
+Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>あとの処理：outfits/hoodie/</p>
+</div></details>
+<details class="step"><summary>D1 ★ 会議室で詰められるごんべぇ（上司は影）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_kaigi.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.
+Scene: a small dull office meeting room. Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. wearing a wrinkled navy suit and loose red tie (beanie still on), sitting small at the table, shoulders hunched, sweating. Across the table, his boss is drawn ONLY as a big dark featureless silhouette leaning forward and pointing. Fluorescent cold light. Comic, slightly exaggerated.
+</code></pre>
+<p>あとの処理：assets/cutaways/kaigi.png</p>
+</div></details>
+<details class="step"><summary>D2 ★ 満員電車でつぶれるごんべぇ</summary><div class="inner">
+<p>チャット：D1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_densha.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.
+Scene: a packed morning commuter train. Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. in a navy suit (beanie still on) squashed between faceless grey silhouette passengers, face pressed flat, dead eyes (still his half-closed sleepy shape). Comic.
+</code></pre>
+<p>あとの処理：assets/cutaways/densha.png</p>
+</div></details>
+<details class="step"><summary>D3 深夜のオフィスでひとり残業</summary><div class="inner">
+<p>チャット：D1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_zangyo.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.
+Scene: a dark empty office at night, only one desk lamp on. Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. in a suit, alone at his desk in front of a glowing blank monitor (no text on screen), cold coffee cup, slumped.
+</code></pre>
+<p>あとの処理：assets/cutaways/zangyo.png</p>
+</div></details>
+<details class="step"><summary>D4 夜のコンビニ前で缶コーヒー</summary><div class="inner">
+<p>チャット：D1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_konbini.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.
+Scene: night, outside a small generic convenience store (no logos, no signs with text), Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. in his red hoodie crouching by the wall holding a plain can of coffee, staring at nothing.
+</code></pre>
+<p>あとの処理：assets/cutaways/konbini.png</p>
+</div></details>
+<details class="step"><summary>D5 日曜の夜、ベッドで天井を見る</summary><div class="inner">
+<p>チャット：D1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_nichiyou.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.
+Scene: a small one-room apartment at night, Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. lying on his back in bed under a blanket, staring at the ceiling with dread (Sunday night before Monday). A plain alarm clock on the floor.
+</code></pre>
+<p>あとの処理：assets/cutaways/nichiyou.png</p>
+</div></details>
+<details class="step"><summary>D6 スマホで同期の結婚報告（画面は見せない）</summary><div class="inner">
+<p>チャット：D1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_kekkon.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.
+Scene: Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. in his red hoodie sitting alone on a convenience-store bench at night, looking at his smartphone (we see the back of the phone), soft light on his face, a complicated half-smile. Tiny cartoon hearts and confetti floating up from the phone (no text).
+</code></pre>
+<p>あとの処理：assets/cutaways/kekkon.png</p>
+</div></details>
+<details class="step"><summary>D7 ★ 学生時代のごんべぇ、レンタル店でDVDを選ぶ（回想）</summary><div class="inner">
+<p>チャット：D1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_rental.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.
+Scene: a cozy old video rental shop with shelves of plain DVD/VHS cases (blank covers, no titles). A younger Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. (same beanie, school uniform blazer instead of hoodie) holding several cases, happy in his own sleepy way.
+</code></pre>
+<p>あとの処理：assets/cutaways/rental.png</p>
+</div></details>
+<details class="step"><summary>D8 映画館の暗い客席（スクリーンは無地）</summary><div class="inner">
+<p>チャット：D1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_eigakan.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.
+Scene: inside a dark old movie theater seen from behind the seats, a glowing plain white screen, Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. and Johndoe: round fluffy black dog, big curly fur that COMPLETELY hides his eyes (eyes never visible), small dark nose, small mouth, plain cream T-shirt, grey shorts, short round body. sitting side by side seen from behind, silhouettes lit by the screen.
+</code></pre>
+<p>あとの処理：assets/cutaways/eigakan.png</p>
+</div></details>
+<details class="step"><summary>D9 ★ 撮影現場のシルエット（裏話用・人物は影）</summary><div class="inner">
+<p>チャット：D1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_satsuei.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.
+Scene: a film set seen from behind the camera: a big old film camera on a tripod, a director's chair (blank, no name), studio lights, and several crew members drawn ONLY as dark featureless silhouettes. Moody, warm light. No recognizable real people.
+</code></pre>
+<p>あとの処理：assets/cutaways/satsuei.png</p>
+</div></details>
+<details class="step"><summary>D10 ★ 作り手の散らかった机（裏話用）</summary><div class="inner">
+<p>チャット：D1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_tsukue.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.
+Scene: a messy writer's desk at night seen from above at an angle: an old typewriter, crumpled paper balls, a blank notebook, a coffee mug, film reels and a desk lamp. No text on any paper.
+</code></pre>
+<p>あとの処理：assets/cutaways/tsukue.png</p>
+</div></details>
+<details class="step"><summary>D11 ★ 腫れた顔で出社するシルエット（裏話用）</summary><div class="inner">
+<p>チャット：D1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_shussha.png</code></p>
+<p>メモ：ファイト・クラブの回の裏話用（事実確認が通った場合だけ使う）</p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.
+Scene: an office floor; a figure drawn as a dark featureless silhouette with a visibly swollen, bandaged face walks in; coworkers (also faceless silhouettes) at their desks keep staring at their monitors, ignoring him. Comic and a bit sad. No recognizable real people.
+</code></pre>
+<p>あとの処理：assets/cutaways/shussha.png</p>
+</div></details>
+<details class="step"><summary>E1 ★ 記号シート①（汗・怒りマーク など9個）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_fx1.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 Japanese manga emotion symbols for this cartoon. No characters, only the symbols. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) a single sweat drop, pale blue; (2) a dusty-red anger vein cross mark; (3) a block of 6 vertical gloomy lines, dark blue-gray.
+Row 2: (4) a small dark wavy gloom cloud with drips; (5) two music notes; (6) a cluster of three mustard-yellow sparkles.
+Row 3: (7) a bold exclamation mark in mustard yellow; (8) a bold question mark in cream; (9) a small puff of sigh smoke, pale gray-cream.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; fx</p>
+</div></details>
+<details class="step"><summary>E2 ★ 記号シート②（ハート・稲妻 など9個）</summary><div class="inner">
+<p>チャット：E1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_fx2.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 more Japanese manga emotion symbols for this cartoon. No characters, only the symbols. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) a small dusty-pink heart; (2) two angry nose-snort puffs; (3) a mustard lightning bolt.
+Row 2: (4) a dizzy spiral; (5) three falling flower petals, dusty pink; (6) three angry steam puffs.
+Row 3: (7) three small cold-sweat drops in a row; (8) a tiny rain cloud with three drops; (9) a light bulb (idea), mustard.
+</code></pre>
+<p>あとの処理：切り抜き → assets/fx/（heart, snort, bolt, dizzy, petals, angry_steam, cold_sweat, raincloud, idea）</p>
+</div></details>
+<details class="step"><summary>E3 モザイク・ピー用の札（隠すふり）</summary><div class="inner">
+<p>チャット：E1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_censor.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 3 comedic censor graphics, side by side with wide space between them. Landscape 3:2 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+(1) a square pixel-mosaic block in warm browns and creams (big chunky pixels); (2) a thick black censor bar with rounded ends; (3) a round cartoon &quot;bleep&quot; starburst in mustard and dusty red, empty inside (no text).
+</code></pre>
+<p>あとの処理：切り抜き → assets/fx/（mosaic, censor_bar, bleep）</p>
+</div></details>
+<details class="step"><summary>F1 ★ だらだらセット（毎回使う）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_darada.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) an open potato-chip bag, plain; (2) a plain soda can; (3) a closed plain pizza box.
+Row 2: (4) a generic game controller; (5) a TV remote; (6) a squishy cushion.
+Row 3: (7) a crumpled blanket; (8) a stack of three plain comic books; (9) a cup noodle with a fork on the lid, plain.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>F2 ★ 映画オタクの棚セット（毎回使う）</summary><div class="inner">
+<p>チャット：F1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_otaku.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) a stack of plain DVD cases (blank spines); (2) three plain VHS tapes; (3) a film reel.
+Row 2: (4) a clapperboard (blank, no writing); (5) a small vintage CRT TV; (6) a small home projector.
+Row 3: (7) a striped popcorn bucket; (8) a pair of 3D glasses; (9) a pile of plain movie pamphlets (no text).
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>F3 ★ ファイト・クラブの回</summary><div class="inner">
+<p>チャット：F1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_fightclub.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) a pink bar of soap; (2) a stack of three blank VHS tapes; (3) a crumpled paper coffee cup.
+Row 2: (4) a cracked smartphone face down; (5) a small potted cactus; (6) a pair of worn sneakers.
+Row 3: (7) a plain necktie hanging loose; (8) a first-aid kit; (9) a framed blank picture (empty frame).
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>F4 仕事の悩みの回（オフィス）</summary><div class="inner">
+<p>チャット：F1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_office.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) a plain ID badge on a lanyard; (2) a tall stack of documents; (3) a plain energy-drink can.
+Row 2: (4) a necktie; (5) a briefcase; (6) a plain wall clock.
+Row 3: (7) a stapler; (8) a desk calendar (no numbers); (9) a coffee thermos.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>F5 SF・夜の街の回</summary><div class="inner">
+<p>チャット：F1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_sf.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) a small neon-tube sign shaped like a wave (no letters); (2) a toy robot; (3) a toy rocket.
+Row 2: (4) an origami unicorn; (5) a plain umbrella; (6) a retro handheld game.
+Row 3: (7) a lava lamp; (8) a globe; (9) a model of a planet with a ring.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>F6 ホラー・ゾンビの回</summary><div class="inner">
+<p>チャット：F1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_horror.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) a carved pumpkin; (2) a candle with dripping wax; (3) a toy skull.
+Row 2: (4) a flashlight; (5) a baseball bat wrapped in tape; (6) a rubber zombie hand toy.
+Row 3: (7) an old radio; (8) a canned food stack, plain; (9) a crow plush toy.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>F7 恋愛・青春の回</summary><div class="inner">
+<p>チャット：F1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_seishun.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) a cassette tape with blank label; (2) a pair of headphones; (3) a small bouquet.
+Row 2: (4) a polaroid photo (blank); (5) a vinyl record; (6) a paper airplane.
+Row 3: (7) a ukulele; (8) a sealed letter with a heart sticker; (9) a snow globe.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>F8 夏・休日の回</summary><div class="inner">
+<p>チャット：F1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_natsu.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) a paper fan; (2) a wind chime; (3) a watermelon slice.
+Row 2: (4) a straw hat; (5) a desk fan; (6) a popsicle.
+Row 3: (7) a mosquito coil; (8) beach sandals; (9) a bottle of ramune soda, plain.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>F9 ★ 壁の飾り</summary><div class="inner">
+<p>チャット：F1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_kabe.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) a blank pennant flag; (2) a round wall clock; (3) a cork board with blank notes.
+Row 2: (4) a hanging plant; (5) a vinyl record in a frame; (6) an acoustic guitar.
+Row 3: (7) string lights; (8) an empty picture frame; (9) a small shelf with a plant.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>F10 ★ 処方の小物（お医者さんごっこ）</summary><div class="inner">
+<p>チャット：F1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_shoho.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Row 1: (1) a paper medicine bag (blank); (2) a two-color capsule pill; (3) a blister pack of pills.
+Row 2: (4) a stethoscope; (5) a clipboard with a blank chart; (6) a blank prescription paper.
+Row 3: (7) a round rubber stamp; (8) an amber medicine bottle (blank label); (9) a white doctor's coat on a hanger.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>G1 ★ オリジナルの映画ふうポスター9枚（文字なし）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_posters.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Make a sheet of 9 ORIGINAL minimalist vertical poster artworks to hang on the wall of the room in the reference image. Each poster: a simple bold graphic with one strong image, flat colors, a thin frame. NO text, NO titles, NO logos, not based on any real movie poster. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.
+Themes: (1) a single pink soap bar; (2) a rainy neon city street; (3) a lone astronaut; (4) a zombie hand rising from the ground; (5) a summer sea horizon; (6) two umbrellas in the rain; (7) a cassette tape and headphones; (8) a forest with one red balloon; (9) an old cinema building at night.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props poster_soap:ポスター石けん …</p>
+</div></details>
+<details class="step"><summary>H1 ★ じょんどぅーの本棚のアップ（次回ヒント用）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>・<a class="file" href="../assets/backgrounds/room_base_source.png" download="room_base_source.png"><code>room_base_source.png</code> ⬇</a>　保存名：<code>bg_tana.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 background illustration, no characters. A close-up of the bookshelf from the attached room: rows of plain DVD cases and books (blank spines, no text), a few small figures and knick-knacks, warm dim lamp light. Leave one empty space on the middle shelf (we will place a prop there later).
+</code></pre>
+<p>あとの処理：assets/backgrounds/shelf_close.png</p>
+</div></details>
+<details class="step"><summary>H2 ローテーブルの上のアップ</summary><div class="inner">
+<p>チャット：H1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>・<a class="file" href="../assets/backgrounds/room_base_source.png" download="room_base_source.png"><code>room_base_source.png</code> ⬇</a>　保存名：<code>bg_table.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 background illustration, no characters. A close-up looking down at the low wooden coffee table from the attached room: wood grain kept simple, a mug and a remote at the edges, the center left empty (we will place props there later).
+</code></pre>
+<p>あとの処理：assets/backgrounds/table_close.png</p>
+</div></details>
+<details class="step"><summary>H3 部屋の入口（ごんべぇが入ってくる）</summary><div class="inner">
+<p>チャット：H1 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>・<a class="file" href="../assets/backgrounds/room_base_source.png" download="room_base_source.png"><code>room_base_source.png</code> ⬇</a>　保存名：<code>bg_door.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image:
+- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.
+- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.
+- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.
+- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.
+
+Vertical 9:16 background illustration, no characters. The door side of the attached room: a half-open wooden door with a dim hallway behind it, a shoe rack, coats on hooks, same warm lighting and colors as the room.
+</code></pre>
+<p>あとの処理：assets/backgrounds/door.png</p></div></details></section>
+
 <section id="images"><h2 class="sec">添付する画像（押すと保存）</h2><div class="imgs"><a class="img" href="../assets/characters/gonbe/gonbe_base.png" download="gonbe_base.png"><img loading="lazy" src="../assets/characters/gonbe/gonbe_base.png" alt=""><span>ごんべぇ（最初の基本の絵）<small>gonbe_base.png</small></span></a><a class="img" href="../assets/characters/johndoe/johndoe_base.png" download="johndoe_base.png"><img loading="lazy" src="../assets/characters/johndoe/johndoe_base.png" alt=""><span>じょんどぅー（最初の基本の絵）<small>johndoe_base.png</small></span></a><a class="img" href="../assets/backgrounds/johndoe_room_v1.png" download="johndoe_room_v1.png"><img loading="lazy" src="../assets/backgrounds/johndoe_room_v1.png" alt=""><span>部屋（最初の絵）<small>johndoe_room_v1.png</small></span></a><a class="img" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><img loading="lazy" src="../assets/keyvisual/keyvisual.png" alt=""><span>完成図（Tシャツ無地版）<small>keyvisual.png</small></span></a><a class="img" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><img loading="lazy" src="../assets/characters/gonbe/sit_source.png" alt=""><span>ごんべぇ（座り・透明背景）<small>gonbe/sit_source.png</small></span></a><a class="img" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><img loading="lazy" src="../assets/characters/johndoe/sit_source.png" alt=""><span>じょんどぅー（座り・無地Tシャツ・透明背景）<small>johndoe/sit_source.png</small></span></a><a class="img" href="../assets/characters/johndoe/doctor_stand.png" download="doctor_stand.png"><img loading="lazy" src="../assets/characters/johndoe/doctor_stand.png" alt=""><span>白衣のじょんどぅー（立ち絵）<small>doctor_stand.png</small></span></a><a class="img" href="../assets/backgrounds/room_base_source.png" download="room_base_source.png"><img loading="lazy" src="../assets/backgrounds/room_base_source.png" alt=""><span>2人がいない部屋<small>room_base_source.png</small></span></a></div></section>
 
 <section id="todo"><h2 class="sec">まだ必要な素材</h2><div class="box">
@@ -355,7 +1430,7 @@ No characters, no text or labels on anything.
 
 <section id="preview"><h2 class="sec">確認用</h2><div class="prev"><figure><video src="../hub/media/ep00-sample-draft.mp4" controls playsinline preload="metadata"></video><figcaption>下書き動画（段階2・540×960・秒数の透かし入り）</figcaption></figure><figure><video src="../hub/media/ep00-sample.mp4" controls playsinline preload="metadata"></video><figcaption>通しの試作（約50秒・声なし）</figcaption></figure><figure><a href="../docs/storyboard/latest_storyboard.jpg"><img loading="lazy" src="../docs/storyboard/latest_storyboard.jpg" alt=""></a><figcaption>最新の絵コンテ（試作の実際のコマ）</figcaption></figure><figure><a href="../docs/storyboard/format_storyboard.jpg"><img loading="lazy" src="../docs/storyboard/format_storyboard.jpg" alt=""></a><figcaption>最初の絵コンテ（型）</figcaption></figure><figure><a href="../docs/storyboard/movie_intro_mock.jpg"><img loading="lazy" src="../docs/storyboard/movie_intro_mock.jpg" alt=""></a><figcaption>映画紹介の画面</figcaption></figure><figure><a href="../assets/characters/gonbe/_preview/expressions.png"><img loading="lazy" src="../assets/characters/gonbe/_preview/expressions.png" alt=""></a><figcaption>ごんべぇの表情</figcaption></figure></div></section>
 
-<section id="docs"><h2 class="sec">資料（GitHub）</h2><div class="docs"><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/characters.md">キャラクター設定書</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/opening.md">冒頭（トーク画面・タイトル）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/episode-look.md">回ごとの見た目（部屋と服）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/movie-card.md">映画紹介の画面</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/studio.md">スタジオの使い方</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/style-bible.md">絵柄のルール（AIっぽさを消す）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/production-flow.md">動画の作り方</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/quality-bar.md">品質基準</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/tone.md">トーン（色・文字）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/opening-lines.md">入りのひと言の台帳</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/storyboard/README.md">絵コンテ（型）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/studio-status.md">進捗</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/CLAUDE.md">CLAUDE.md（全体のルール）</a></div></section>
+<section id="docs"><h2 class="sec">資料（GitHub）</h2><div class="docs"><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/characters.md">キャラクター設定書</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/opening.md">冒頭（トーク画面・タイトル）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/episode-look.md">回ごとの見た目（部屋と服）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/movie-card.md">映画紹介の画面</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/studio.md">スタジオの使い方</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/style-bible.md">絵柄のルール（AIっぽさを消す）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/production-flow.md">動画の作り方</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/format-v2.md">動画の構成v2（提案）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/quality-bar.md">品質基準</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/tone.md">トーン（色・文字）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/opening-lines.md">入りのひと言の台帳</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/storyboard/README.md">絵コンテ（型）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/studio-status.md">進捗</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/CLAUDE.md">CLAUDE.md（全体のルール）</a></div></section>
 
 <footer>このページは <code>python3 scripts/build_hub.py</code> で作り直せます。</footer>
 </div>

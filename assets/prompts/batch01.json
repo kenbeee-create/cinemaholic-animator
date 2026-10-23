@@ -1,0 +1,736 @@
+{
+ "style_lock": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.",
+ "items": [
+  {
+   "id": "A1",
+   "group": "表情",
+   "priority": 1,
+   "title": "ごんべぇ 照れ笑い（口を閉じて）",
+   "chat": "new",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. Keep his usual sleepy half-closed eyes EXACTLY as they are (same eye shape, same eyelids) — do not close or curve the eyes.\nChange ONLY: a small embarrassed smirk — one corner of the closed mouth slightly raised, a light pink blush on the cheeks, pupils looking slightly to the side.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "gonbe_tere.png",
+   "post": "表情の部品にする（目・口・頬を切り出し）→ parts/eyes_tere.png",
+   "note": ""
+  },
+  {
+   "id": "A2",
+   "group": "表情",
+   "priority": 1,
+   "title": "ごんべぇ ため息",
+   "chat": "same:A1",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. Keep his usual eye SHAPE (sleepy, half-closed) — do NOT make the eyes bigger, rounder or teary, and do not close them into curves.\nMake the upper eyelids droop a little lower, as if exhausted, pupils looking slightly down.\nChange the mouth to a sigh: lips slightly parted, a small open mouth breathing out.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "gonbe_sigh.png",
+   "post": "parts/eyes_sigh.png ＋ 口",
+   "note": ""
+  },
+  {
+   "id": "A3",
+   "group": "表情",
+   "priority": 1,
+   "title": "ごんべぇ にやけ（下心）",
+   "chat": "same:A1",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. Keep his usual sleepy half-closed eyes exactly — same shape — but make the pupils glance sideways with a sly look.\nChange ONLY the mouth: a sly, slightly pervy grin — wide closed-mouth smirk stretching to one side. Add a light pink blush.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "gonbe_niyake.png",
+   "post": "表情の部品",
+   "note": ""
+  },
+  {
+   "id": "A4",
+   "group": "表情",
+   "priority": 1,
+   "title": "ごんべぇ 口ぽかん（あぜん）",
+   "chat": "same:A1",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. Keep his usual sleepy half-closed eye shape, but make the pupils tiny dots, as if stunned.\nChange ONLY the mouth: dropped wide open in disbelief, a tall oval mouth showing a dark inside and a bit of tongue.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "gonbe_pokan.png",
+   "post": "表情の部品",
+   "note": ""
+  },
+  {
+   "id": "A5",
+   "group": "表情",
+   "priority": 2,
+   "title": "ごんべぇ イラッ（歯を食いしばる）",
+   "chat": "same:A1",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. Keep his usual sleepy half-closed eye shape, but lower the brows into an annoyed frown.\nChange ONLY the mouth: clenched teeth in a tight, wide grimace.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "gonbe_ira.png",
+   "post": "表情の部品",
+   "note": ""
+  },
+  {
+   "id": "A6",
+   "group": "表情",
+   "priority": 2,
+   "title": "ごんべぇ 「は？」（片方の口角が下がる）",
+   "chat": "same:A1",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. Keep his usual sleepy half-closed eyes, one brow raised in skeptical disbelief.\nChange ONLY the mouth: a small crooked open mouth as if saying \"huh?\", one corner pulled down.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "gonbe_ha.png",
+   "post": "表情の部品",
+   "note": ""
+  },
+  {
+   "id": "A7",
+   "group": "表情",
+   "priority": 2,
+   "title": "じょんどぅー にやり（口だけ）",
+   "chat": "new",
+   "attach": [
+    "johndoe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. His eyes must stay completely hidden by the fur.\nChange ONLY the mouth: a small smug closed-mouth smile, curved up like a cat mouth (ω shape).\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "johndoe_niyari.png",
+   "post": "口の部品 parts/mouth_niyari.png",
+   "note": ""
+  },
+  {
+   "id": "A8",
+   "group": "表情",
+   "priority": 2,
+   "title": "じょんどぅー への字口",
+   "chat": "same:A7",
+   "attach": [
+    "johndoe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. His eyes must stay completely hidden by the fur.\nChange ONLY the mouth: a small sulky downturned mouth (upside-down U shape).\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "johndoe_henoji.png",
+   "post": "口の部品",
+   "note": ""
+  },
+  {
+   "id": "B1",
+   "group": "ポーズ",
+   "priority": 1,
+   "title": "ごんべぇ 立ち姿（入ってくる）",
+   "chat": "new",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nDraw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) as a STANDING full-body pose, walking in from the left and just stopping, as if entering a friend's room.\nPose: body facing slightly to the right, one paw raised casually in greeting, the other paw in the hoodie pocket, mouth slightly open. A small plain plastic convenience-store bag hanging from his wrist.\nKeep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.",
+   "save": "gonbe_stand.png",
+   "post": "切り抜き → assets/characters/gonbe/stand.png（スタジオの灰色の代役が本物になる）",
+   "note": ""
+  },
+  {
+   "id": "B2",
+   "group": "ポーズ",
+   "priority": 1,
+   "title": "ごんべぇ ソファに突っ伏す（フック用）",
+   "chat": "new",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nDraw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) lying face-down flat on his stomach, completely exhausted, arms limp at his sides, legs straight, as if he just collapsed onto a sofa. Seen from the side, head turned toward the viewer with a dead-tired face. Do not draw the sofa.\nKeep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.",
+   "save": "gonbe_flop.png",
+   "post": "ポーズの部品",
+   "note": ""
+  },
+  {
+   "id": "B3",
+   "group": "ポーズ",
+   "priority": 1,
+   "title": "ごんべぇ 床で大の字（「…死んでる？」用）",
+   "chat": "new",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nDraw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) lying flat on his back spread-eagle on the floor, seen from directly above, arms and legs stretched out, staring blankly at the ceiling. Do not draw the floor.\nSquare image, character fills about 80% of the image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.",
+   "save": "gonbe_daiji.png",
+   "post": "ポーズの部品（真上から）",
+   "note": ""
+  },
+  {
+   "id": "B4",
+   "group": "ポーズ",
+   "priority": 2,
+   "title": "ごんべぇ 頭を抱える（座り）",
+   "chat": "new",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nDraw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) sitting in the same position as the attached image, but holding his head with both paws in despair, beanie slightly pushed, eyes still sleepy half-closed, mouth a wobbly line.\nKeep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.",
+   "save": "gonbe_atama.png",
+   "post": "ポーズの部品",
+   "note": ""
+  },
+  {
+   "id": "B5",
+   "group": "ポーズ",
+   "priority": 1,
+   "title": "ごんべぇ スマホを見て固まる（座り）",
+   "chat": "new",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nDraw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) sitting in the same position as the attached image, holding a plain smartphone in both paws close to his face (the screen faces him, we see the back of the phone), frozen, a single sweat drop.\nKeep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.",
+   "save": "gonbe_sumaho.png",
+   "post": "ポーズの部品（上司のLINEを見て固まる小ネタ）",
+   "note": ""
+  },
+  {
+   "id": "B6",
+   "group": "ポーズ",
+   "priority": 2,
+   "title": "ごんべぇ 体育座りでいじける",
+   "chat": "new",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nDraw the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.) sitting on the floor hugging his knees, sulking, seen from a slight side angle, eyes sleepy half-closed looking down.\nKeep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.",
+   "save": "gonbe_taiiku.png",
+   "post": "ポーズの部品",
+   "note": ""
+  },
+  {
+   "id": "B7",
+   "group": "ポーズ",
+   "priority": 2,
+   "title": "ごんべぇ 歩き2コマ（横向き）",
+   "chat": "new",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nDraw TWO walking frames of the character from the attached image (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose.), side view facing right, hands in hoodie pocket, lazy slouched walk. Frame 1: left foot forward. Frame 2: right foot forward. Place the two frames side by side with wide space between them, same size, same height. Landscape 3:2 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.",
+   "save": "gonbe_walk.png",
+   "post": "シート切り抜き（2個）",
+   "note": ""
+  },
+  {
+   "id": "B8",
+   "group": "ポーズ",
+   "priority": 1,
+   "title": "じょんどぅー DVDを差し出す（処方のポーズ）",
+   "chat": "new",
+   "attach": [
+    "johndoe/sit_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nDraw the character from the attached image (Johndoe: round fluffy black dog, big curly fur that COMPLETELY hides his eyes (eyes never visible), small dark nose, small mouth, plain cream T-shirt, grey shorts, short round body.) sitting in the same position as the attached image, but holding out a plain DVD case toward the left with one paw (blank cover, no text, no art), like a doctor handing over medicine. Eyes stay hidden by the fur.\nKeep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.",
+   "save": "johndoe_dvd.png",
+   "post": "ポーズの部品（処方の合図）",
+   "note": ""
+  },
+  {
+   "id": "B9",
+   "group": "ポーズ",
+   "priority": 1,
+   "title": "じょんどぅー ポテチを食べる（座り）",
+   "chat": "same:B8",
+   "attach": [
+    "johndoe/sit_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nDraw the character from the attached image (Johndoe: round fluffy black dog, big curly fur that COMPLETELY hides his eyes (eyes never visible), small dark nose, small mouth, plain cream T-shirt, grey shorts, short round body.) sitting in the same position as the attached image, holding an open plain potato-chip bag (no logo, no text) in one paw and a chip near his mouth with the other. Eyes stay hidden by the fur.\nKeep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.",
+   "save": "johndoe_chips.png",
+   "post": "ポーズの部品",
+   "note": ""
+  },
+  {
+   "id": "B10",
+   "group": "ポーズ",
+   "priority": 2,
+   "title": "じょんどぅー 寝転がって本を読む",
+   "chat": "same:B8",
+   "attach": [
+    "johndoe/sit_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nDraw the character from the attached image (Johndoe: round fluffy black dog, big curly fur that COMPLETELY hides his eyes (eyes never visible), small dark nose, small mouth, plain cream T-shirt, grey shorts, short round body.) lying on his stomach, reading a plain hardcover book (blank cover), legs kicked up behind him, relaxed. Side view. Eyes stay hidden by the fur.\nKeep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.",
+   "save": "johndoe_yomu.png",
+   "post": "ポーズの部品",
+   "note": ""
+  },
+  {
+   "id": "B11",
+   "group": "ポーズ",
+   "priority": 2,
+   "title": "じょんどぅー 振り向き（後ろ姿→こっち）",
+   "chat": "same:B8",
+   "attach": [
+    "johndoe/sit_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nDraw the character from the attached image (Johndoe: round fluffy black dog, big curly fur that COMPLETELY hides his eyes (eyes never visible), small dark nose, small mouth, plain cream T-shirt, grey shorts, short round body.) standing with his back to the viewer, turning his head over his shoulder to look back toward the viewer. Eyes stay hidden by the fur.\nKeep his design exactly the same as the attached image: same face, same proportions, same colors, same thick outlines. Full body visible, character about 75% of the image height. Vertical 2:3 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.",
+   "save": "johndoe_furimuki.png",
+   "post": "ポーズの部品",
+   "note": ""
+  },
+  {
+   "id": "C1",
+   "group": "服",
+   "priority": 1,
+   "title": "ごんべぇ くたびれたスーツ（仕事の回）",
+   "chat": "new",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. Change ONLY his clothes: a slightly wrinkled navy suit jacket and trousers, white shirt, loose dark-red necktie pulled down. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur and body shape exactly identical.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "gonbe_suit.png",
+   "post": "assets/characters/gonbe/outfits/suit/",
+   "note": ""
+  },
+  {
+   "id": "C2",
+   "group": "服",
+   "priority": 2,
+   "title": "ごんべぇ 無地バンドT＋ネルシャツ",
+   "chat": "same:C1",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. Change ONLY his clothes: an open mustard-and-brown flannel shirt over a plain black T-shirt (no print, no text), the same navy pants. Keep his beanie, face, eyes, fur and body shape exactly identical.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "gonbe_flannel.png",
+   "post": "outfits/flannel/",
+   "note": ""
+  },
+  {
+   "id": "C3",
+   "group": "服",
+   "priority": 2,
+   "title": "ごんべぇ 大きめカーディガン",
+   "chat": "same:C1",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. Change ONLY his clothes: an oversized olive-green knit cardigan over a cream T-shirt, the same navy pants. Keep his beanie, face, eyes, fur and body shape exactly identical.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "gonbe_cardigan.png",
+   "post": "outfits/cardigan/",
+   "note": ""
+  },
+  {
+   "id": "C4",
+   "group": "服",
+   "priority": 2,
+   "title": "じょんどぅー 部屋着ジャージ",
+   "chat": "new",
+   "attach": [
+    "johndoe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. Change ONLY his clothes: a faded navy track jacket (zipped halfway, no logo) over the plain cream T-shirt, grey shorts. Eyes stay hidden. Keep his fur, face and body shape exactly identical.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "johndoe_jersey.png",
+   "post": "outfits/jersey/",
+   "note": ""
+  },
+  {
+   "id": "C5",
+   "group": "服",
+   "priority": 2,
+   "title": "じょんどぅー 冬のパーカー",
+   "chat": "same:C4",
+   "attach": [
+    "johndoe/sit_source.png"
+   ],
+   "prompt": "Edit the attached image. Change ONLY his clothes: a thick mustard hoodie (no print), grey sweatpants. Eyes stay hidden. Keep his fur, face and body shape exactly identical.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "save": "johndoe_hoodie.png",
+   "post": "outfits/hoodie/",
+   "note": ""
+  },
+  {
+   "id": "D1",
+   "group": "挿絵",
+   "priority": 1,
+   "title": "会議室で詰められるごんべぇ（上司は影）",
+   "chat": "new",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.\nScene: a small dull office meeting room. Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. wearing a wrinkled navy suit and loose red tie (beanie still on), sitting small at the table, shoulders hunched, sweating. Across the table, his boss is drawn ONLY as a big dark featureless silhouette leaning forward and pointing. Fluorescent cold light. Comic, slightly exaggerated.",
+   "save": "cut_kaigi.png",
+   "post": "assets/cutaways/kaigi.png",
+   "note": ""
+  },
+  {
+   "id": "D2",
+   "group": "挿絵",
+   "priority": 1,
+   "title": "満員電車でつぶれるごんべぇ",
+   "chat": "same:D1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.\nScene: a packed morning commuter train. Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. in a navy suit (beanie still on) squashed between faceless grey silhouette passengers, face pressed flat, dead eyes (still his half-closed sleepy shape). Comic.",
+   "save": "cut_densha.png",
+   "post": "assets/cutaways/densha.png",
+   "note": ""
+  },
+  {
+   "id": "D3",
+   "group": "挿絵",
+   "priority": 2,
+   "title": "深夜のオフィスでひとり残業",
+   "chat": "same:D1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.\nScene: a dark empty office at night, only one desk lamp on. Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. in a suit, alone at his desk in front of a glowing blank monitor (no text on screen), cold coffee cup, slumped.",
+   "save": "cut_zangyo.png",
+   "post": "assets/cutaways/zangyo.png",
+   "note": ""
+  },
+  {
+   "id": "D4",
+   "group": "挿絵",
+   "priority": 2,
+   "title": "夜のコンビニ前で缶コーヒー",
+   "chat": "same:D1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.\nScene: night, outside a small generic convenience store (no logos, no signs with text), Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. in his red hoodie crouching by the wall holding a plain can of coffee, staring at nothing.",
+   "save": "cut_konbini.png",
+   "post": "assets/cutaways/konbini.png",
+   "note": ""
+  },
+  {
+   "id": "D5",
+   "group": "挿絵",
+   "priority": 2,
+   "title": "日曜の夜、ベッドで天井を見る",
+   "chat": "same:D1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.\nScene: a small one-room apartment at night, Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. lying on his back in bed under a blanket, staring at the ceiling with dread (Sunday night before Monday). A plain alarm clock on the floor.",
+   "save": "cut_nichiyou.png",
+   "post": "assets/cutaways/nichiyou.png",
+   "note": ""
+  },
+  {
+   "id": "D6",
+   "group": "挿絵",
+   "priority": 2,
+   "title": "スマホで同期の結婚報告（画面は見せない）",
+   "chat": "same:D1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.\nScene: Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. in his red hoodie sitting alone on a convenience-store bench at night, looking at his smartphone (we see the back of the phone), soft light on his face, a complicated half-smile. Tiny cartoon hearts and confetti floating up from the phone (no text).",
+   "save": "cut_kekkon.png",
+   "post": "assets/cutaways/kekkon.png",
+   "note": ""
+  },
+  {
+   "id": "D7",
+   "group": "挿絵",
+   "priority": 1,
+   "title": "学生時代のごんべぇ、レンタル店でDVDを選ぶ（回想）",
+   "chat": "same:D1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.\nScene: a cozy old video rental shop with shelves of plain DVD/VHS cases (blank covers, no titles). A younger Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. (same beanie, school uniform blazer instead of hoodie) holding several cases, happy in his own sleepy way.",
+   "save": "cut_rental.png",
+   "post": "assets/cutaways/rental.png",
+   "note": ""
+  },
+  {
+   "id": "D8",
+   "group": "挿絵",
+   "priority": 2,
+   "title": "映画館の暗い客席（スクリーンは無地）",
+   "chat": "same:D1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.\nScene: inside a dark old movie theater seen from behind the seats, a glowing plain white screen, Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, his usual sleepy half-closed bored eyes (never wide, never teary, never curved ^^), big dark nose. and Johndoe: round fluffy black dog, big curly fur that COMPLETELY hides his eyes (eyes never visible), small dark nose, small mouth, plain cream T-shirt, grey shorts, short round body. sitting side by side seen from behind, silhouettes lit by the screen.",
+   "save": "cut_eigakan.png",
+   "post": "assets/cutaways/eigakan.png",
+   "note": ""
+  },
+  {
+   "id": "D9",
+   "group": "挿絵",
+   "priority": 1,
+   "title": "撮影現場のシルエット（裏話用・人物は影）",
+   "chat": "same:D1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.\nScene: a film set seen from behind the camera: a big old film camera on a tripod, a director's chair (blank, no name), studio lights, and several crew members drawn ONLY as dark featureless silhouettes. Moody, warm light. No recognizable real people.",
+   "save": "cut_satsuei.png",
+   "post": "assets/cutaways/satsuei.png",
+   "note": ""
+  },
+  {
+   "id": "D10",
+   "group": "挿絵",
+   "priority": 1,
+   "title": "作り手の散らかった机（裏話用）",
+   "chat": "same:D1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.\nScene: a messy writer's desk at night seen from above at an angle: an old typewriter, crumpled paper balls, a blank notebook, a coffee mug, film reels and a desk lamp. No text on any paper.",
+   "save": "cut_tsukue.png",
+   "post": "assets/cutaways/tsukue.png",
+   "note": ""
+  },
+  {
+   "id": "D11",
+   "group": "挿絵",
+   "priority": 1,
+   "title": "腫れた顔で出社するシルエット（裏話用）",
+   "chat": "same:D1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner.\nScene: an office floor; a figure drawn as a dark featureless silhouette with a visibly swollen, bandaged face walks in; coworkers (also faceless silhouettes) at their desks keep staring at their monitors, ignoring him. Comic and a bit sad. No recognizable real people.",
+   "save": "cut_shussha.png",
+   "post": "assets/cutaways/shussha.png",
+   "note": "ファイト・クラブの回の裏話用（事実確認が通った場合だけ使う）"
+  },
+  {
+   "id": "E1",
+   "group": "記号",
+   "priority": 1,
+   "title": "記号シート①（汗・怒りマーク など9個）",
+   "chat": "new",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 Japanese manga emotion symbols for this cartoon. No characters, only the symbols. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) a single sweat drop, pale blue; (2) a dusty-red anger vein cross mark; (3) a block of 6 vertical gloomy lines, dark blue-gray.\nRow 2: (4) a small dark wavy gloom cloud with drips; (5) two music notes; (6) a cluster of three mustard-yellow sparkles.\nRow 3: (7) a bold exclamation mark in mustard yellow; (8) a bold question mark in cream; (9) a small puff of sigh smoke, pale gray-cream.",
+   "save": "sheet_fx1.png",
+   "post": "python3 scripts/slice_sheet.py <画像> fx",
+   "note": ""
+  },
+  {
+   "id": "E2",
+   "group": "記号",
+   "priority": 1,
+   "title": "記号シート②（ハート・稲妻 など9個）",
+   "chat": "same:E1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 more Japanese manga emotion symbols for this cartoon. No characters, only the symbols. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) a small dusty-pink heart; (2) two angry nose-snort puffs; (3) a mustard lightning bolt.\nRow 2: (4) a dizzy spiral; (5) three falling flower petals, dusty pink; (6) three angry steam puffs.\nRow 3: (7) three small cold-sweat drops in a row; (8) a tiny rain cloud with three drops; (9) a light bulb (idea), mustard.",
+   "save": "sheet_fx2.png",
+   "post": "切り抜き → assets/fx/（heart, snort, bolt, dizzy, petals, angry_steam, cold_sweat, raincloud, idea）",
+   "note": ""
+  },
+  {
+   "id": "E3",
+   "group": "記号",
+   "priority": 2,
+   "title": "モザイク・ピー用の札（隠すふり）",
+   "chat": "same:E1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 3 comedic censor graphics, side by side with wide space between them. Landscape 3:2 image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\n(1) a square pixel-mosaic block in warm browns and creams (big chunky pixels); (2) a thick black censor bar with rounded ends; (3) a round cartoon \"bleep\" starburst in mustard and dusty red, empty inside (no text).",
+   "save": "sheet_censor.png",
+   "post": "切り抜き → assets/fx/（mosaic, censor_bar, bleep）",
+   "note": ""
+  },
+  {
+   "id": "F1",
+   "group": "小物",
+   "priority": 1,
+   "title": "だらだらセット（毎回使う）",
+   "chat": "new",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) an open potato-chip bag, plain; (2) a plain soda can; (3) a closed plain pizza box.\nRow 2: (4) a generic game controller; (5) a TV remote; (6) a squishy cushion.\nRow 3: (7) a crumpled blanket; (8) a stack of three plain comic books; (9) a cup noodle with a fork on the lid, plain.",
+   "save": "sheet_props_darada.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "note": ""
+  },
+  {
+   "id": "F2",
+   "group": "小物",
+   "priority": 1,
+   "title": "映画オタクの棚セット（毎回使う）",
+   "chat": "same:F1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) a stack of plain DVD cases (blank spines); (2) three plain VHS tapes; (3) a film reel.\nRow 2: (4) a clapperboard (blank, no writing); (5) a small vintage CRT TV; (6) a small home projector.\nRow 3: (7) a striped popcorn bucket; (8) a pair of 3D glasses; (9) a pile of plain movie pamphlets (no text).",
+   "save": "sheet_props_otaku.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "note": ""
+  },
+  {
+   "id": "F3",
+   "group": "小物",
+   "priority": 1,
+   "title": "ファイト・クラブの回",
+   "chat": "same:F1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) a pink bar of soap; (2) a stack of three blank VHS tapes; (3) a crumpled paper coffee cup.\nRow 2: (4) a cracked smartphone face down; (5) a small potted cactus; (6) a pair of worn sneakers.\nRow 3: (7) a plain necktie hanging loose; (8) a first-aid kit; (9) a framed blank picture (empty frame).",
+   "save": "sheet_props_fightclub.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "note": ""
+  },
+  {
+   "id": "F4",
+   "group": "小物",
+   "priority": 2,
+   "title": "仕事の悩みの回（オフィス）",
+   "chat": "same:F1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) a plain ID badge on a lanyard; (2) a tall stack of documents; (3) a plain energy-drink can.\nRow 2: (4) a necktie; (5) a briefcase; (6) a plain wall clock.\nRow 3: (7) a stapler; (8) a desk calendar (no numbers); (9) a coffee thermos.",
+   "save": "sheet_props_office.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "note": ""
+  },
+  {
+   "id": "F5",
+   "group": "小物",
+   "priority": 2,
+   "title": "SF・夜の街の回",
+   "chat": "same:F1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) a small neon-tube sign shaped like a wave (no letters); (2) a toy robot; (3) a toy rocket.\nRow 2: (4) an origami unicorn; (5) a plain umbrella; (6) a retro handheld game.\nRow 3: (7) a lava lamp; (8) a globe; (9) a model of a planet with a ring.",
+   "save": "sheet_props_sf.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "note": ""
+  },
+  {
+   "id": "F6",
+   "group": "小物",
+   "priority": 2,
+   "title": "ホラー・ゾンビの回",
+   "chat": "same:F1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) a carved pumpkin; (2) a candle with dripping wax; (3) a toy skull.\nRow 2: (4) a flashlight; (5) a baseball bat wrapped in tape; (6) a rubber zombie hand toy.\nRow 3: (7) an old radio; (8) a canned food stack, plain; (9) a crow plush toy.",
+   "save": "sheet_props_horror.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "note": ""
+  },
+  {
+   "id": "F7",
+   "group": "小物",
+   "priority": 2,
+   "title": "恋愛・青春の回",
+   "chat": "same:F1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) a cassette tape with blank label; (2) a pair of headphones; (3) a small bouquet.\nRow 2: (4) a polaroid photo (blank); (5) a vinyl record; (6) a paper airplane.\nRow 3: (7) a ukulele; (8) a sealed letter with a heart sticker; (9) a snow globe.",
+   "save": "sheet_props_seishun.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "note": ""
+  },
+  {
+   "id": "F8",
+   "group": "小物",
+   "priority": 2,
+   "title": "夏・休日の回",
+   "chat": "same:F1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) a paper fan; (2) a wind chime; (3) a watermelon slice.\nRow 2: (4) a straw hat; (5) a desk fan; (6) a popsicle.\nRow 3: (7) a mosquito coil; (8) beach sandals; (9) a bottle of ramune soda, plain.",
+   "save": "sheet_props_natsu.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "note": ""
+  },
+  {
+   "id": "F9",
+   "group": "小物",
+   "priority": 1,
+   "title": "壁の飾り",
+   "chat": "same:F1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) a blank pennant flag; (2) a round wall clock; (3) a cork board with blank notes.\nRow 2: (4) a hanging plant; (5) a vinyl record in a frame; (6) an acoustic guitar.\nRow 3: (7) string lights; (8) an empty picture frame; (9) a small shelf with a plant.",
+   "save": "sheet_props_kabe.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "note": ""
+  },
+  {
+   "id": "F10",
+   "group": "小物",
+   "priority": 1,
+   "title": "処方の小物（お医者さんごっこ）",
+   "chat": "same:F1",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sprite sheet of 9 small props for the apartment room in the reference image, front view, the scale they would have in the room. No characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nRow 1: (1) a paper medicine bag (blank); (2) a two-color capsule pill; (3) a blister pack of pills.\nRow 2: (4) a stethoscope; (5) a clipboard with a blank chart; (6) a blank prescription paper.\nRow 3: (7) a round rubber stamp; (8) an amber medicine bottle (blank label); (9) a white doctor's coat on a hanger.",
+   "save": "sheet_props_shoho.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "note": ""
+  },
+  {
+   "id": "G1",
+   "group": "ポスター",
+   "priority": 1,
+   "title": "オリジナルの映画ふうポスター9枚（文字なし）",
+   "chat": "new",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nMake a sheet of 9 ORIGINAL minimalist vertical poster artworks to hang on the wall of the room in the reference image. Each poster: a simple bold graphic with one strong image, flat colors, a thin frame. NO text, NO titles, NO logos, not based on any real movie poster. Arrange them in a clean 3x3 grid, each centered in its own cell, all at the same scale, separated by wide empty space. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background, no floor.\nThemes: (1) a single pink soap bar; (2) a rainy neon city street; (3) a lone astronaut; (4) a zombie hand rising from the ground; (5) a summer sea horizon; (6) two umbrellas in the rain; (7) a cassette tape and headphones; (8) a forest with one red balloon; (9) an old cinema building at night.",
+   "save": "sheet_posters.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props poster_soap:ポスター石けん …",
+   "note": ""
+  },
+  {
+   "id": "H1",
+   "group": "背景",
+   "priority": 1,
+   "title": "じょんどぅーの本棚のアップ（次回ヒント用）",
+   "chat": "new",
+   "attach": [
+    "keyvisual.png",
+    "room_base_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 background illustration, no characters. A close-up of the bookshelf from the attached room: rows of plain DVD cases and books (blank spines, no text), a few small figures and knick-knacks, warm dim lamp light. Leave one empty space on the middle shelf (we will place a prop there later).",
+   "save": "bg_tana.png",
+   "post": "assets/backgrounds/shelf_close.png",
+   "note": ""
+  },
+  {
+   "id": "H2",
+   "group": "背景",
+   "priority": 2,
+   "title": "ローテーブルの上のアップ",
+   "chat": "same:H1",
+   "attach": [
+    "keyvisual.png",
+    "room_base_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 background illustration, no characters. A close-up looking down at the low wooden coffee table from the attached room: wood grain kept simple, a mug and a remote at the edges, the center left empty (we will place props there later).",
+   "save": "bg_table.png",
+   "post": "assets/backgrounds/table_close.png",
+   "note": ""
+  },
+  {
+   "id": "H3",
+   "group": "背景",
+   "priority": 2,
+   "title": "部屋の入口（ごんべぇが入ってくる）",
+   "chat": "same:H1",
+   "attach": [
+    "keyvisual.png",
+    "room_base_source.png"
+   ],
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image:\n- Flat 2D cartoon cel style. Bold, uniform-weight dark brown-black outlines (#1f150f), slightly hand-inked.\n- Flat color fills with only ONE simple shadow tone. NO gradients, NO airbrush, NO glow, NO bloom, NO texture, NO glossy highlights, NO lens effects.\n- Muted warm palette: browns, dark brown, mustard, dusty red, cream, olive green, navy.\n- Simple rounded shapes, low detail. No tiny patterns, no text, no logos, no watermarks, no signatures.\n\nVertical 9:16 background illustration, no characters. The door side of the attached room: a half-open wooden door with a dim hallway behind it, a shoe rack, coats on hooks, same warm lighting and colors as the room.",
+   "save": "bg_door.png",
+   "post": "assets/backgrounds/door.png",
+   "note": ""
+  }
+ ]
+}
