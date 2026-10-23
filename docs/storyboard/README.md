@@ -1,4 +1,8 @@
-# 絵コンテ（フォーマットの型）
+# 絵コンテ
+
+**最新**：`latest_storyboard.jpg`（試作 ep00-sample を実際に書き出したコマから作成。作り直し：`python3 scripts/storyboard_from_episode.py episodes/ep00-sample/episode.json`）
+
+## 最初に作った型
 
 `format_storyboard.jpg` が、60秒・9シーンの型を実際の素材で描いた絵コンテ（例：上司に怒られた回。映画・監督・名言は 〇〇）。
 作り直し：`python3 renderer/preview/storyboard.py output/storyboard`

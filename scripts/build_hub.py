@@ -51,7 +51,8 @@ DOCS = [
 
 PREVIEWS = [
     ("通しの試作（約50秒・声なし）", "hub/media/ep00-sample.mp4", "video"),
-    ("絵コンテ（20コマ）", "docs/storyboard/format_storyboard.jpg", "img"),
+    ("最新の絵コンテ（試作の実際のコマ）", "docs/storyboard/latest_storyboard.jpg", "img"),
+    ("最初の絵コンテ（型）", "docs/storyboard/format_storyboard.jpg", "img"),
     ("映画紹介の画面", "docs/storyboard/movie_intro_mock.jpg", "img"),
     ("ごんべぇの表情", "assets/characters/gonbe/_preview/expressions.png", "img"),
 ]
