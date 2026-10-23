@@ -3,7 +3,12 @@
 じょんどぅーが映画のタイトルを言ったら、**画面ごと切り替えて**、処方箋ふうの紹介画面を出す（イメージ調整中）。
 - 左：大きなポスター／右：お薬の名前（タイトル）・公開年・上映時間・監督・効きめ（ひと言）・もらえる薬局（配信サービス）
 - 右下：**白衣のじょんどぅー**がひと言（ふきだし）。はんこ「処方」
-- イメージ：`docs/storyboard/movie_intro_mock.jpg`（作り直し：`python3 renderer/preview/movie_intro.py <movie.json> <出力.png>`）
+- **毎回の作り方：映画紹介メーカー**（`tools/movie-card-maker/`、ブラウザで使える）
+  公開URL：https://kenbeee-create.github.io/cinemaholic-animator/tools/movie-card-maker/
+  - タイトル・監督・年・時間・効きめ・配信・ひと言を入力し、ポスター画像を選ぶ → その場で画面が変わる
+  - 「動画で保存」：要素が順に出てくる約4秒の動画（はんこがドン、アイコンがポン）。「画像で保存」も可
+  - 「JSONをコピー」＝各話の `movie.json` と同じ形。Claude は `python3 renderer/templates/movie_card.py <movie.json> <出力>` で同じ見た目を高画質に書き出す
+- イメージ（静止画の試作）：`docs/storyboard/movie_intro_mock.jpg`
 - 白衣のじょんどぅー（立ち絵）：`assets/characters/johndoe/doctor_stand.png`（ChatGPTで作成・背景と光を除去済み）
 
 （以前の試作：画面下からカードをせり上げる版 `renderer/preview/scene_demo.py`）
