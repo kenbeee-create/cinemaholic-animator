@@ -50,6 +50,8 @@ DOCS = [
 ]
 
 PREVIEWS = [
+    ("her 構成v2の絵コンテ（47秒・26コマ）", "docs/storyboard/ep02_her_storyboard.jpg", "img"),
+    ("her 構成v2の下書き動画", "hub/media/ep02-her-draft.mp4", "video"),
     ("ファイト・クラブ 構成v2の絵コンテ（46秒・26コマ）", "docs/storyboard/ep01_v2_storyboard.jpg", "img"),
     ("ファイト・クラブ 構成v2の下書き動画", "hub/media/ep01-v2-draft.mp4", "video"),
     ("下書き動画（試作の回）", "hub/media/ep00-sample-draft.mp4", "video"),

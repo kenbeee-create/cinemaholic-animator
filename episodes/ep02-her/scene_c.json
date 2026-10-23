@@ -1,0 +1,36 @@
+{
+ "props": {
+  "lamp": true,
+  "tv": true,
+  "window": "neon",
+  "dust": true,
+  "mug": true,
+  "tint": "#c8553d",
+  "tintA": 0.14,
+  "karte": "処方 No.02"
+ },
+ "items": [],
+ "shots": [
+  {
+   "dur": 1.5,
+   "cam": {
+    "from": {
+     "preset": "gonbe_face"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": "",
+   "caption": "",
+   "gonbe": {
+    "eyes": "sigh",
+    "move": "nod"
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "dim": 0.15
+  }
+ ]
+}

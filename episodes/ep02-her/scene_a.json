@@ -1,0 +1,164 @@
+{
+ "props": {
+  "lamp": true,
+  "tv": true,
+  "window": "neon",
+  "dust": true,
+  "mug": true,
+  "tint": "#c8553d",
+  "tintA": 0.14,
+  "karte": "処方 No.02"
+ },
+ "items": [],
+ "shots": [
+  {
+   "dur": 2.0,
+   "cam": {
+    "from": {
+     "preset": "gonbe_face"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "今日しゃべったの、/レジだけ",
+   "gonbe": {
+    "eyes": "normal",
+    "move": "slump",
+    "mark": "gloom",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "big": true,
+   "punch": true,
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "brand/low_hit"
+    }
+   ]
+  },
+  {
+   "dur": 1.3,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "…いま、おれと/しゃべってる",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "tilt",
+    "talk": true
+   }
+  },
+  {
+   "dur": 0.9,
+   "cam": {
+    "from": {
+     "preset": "gonbe_face"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "お前はノーカン",
+   "gonbe": {
+    "eyes": "jito",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "punch": true
+  },
+  {
+   "dur": 2.0,
+   "cam": {
+    "from": {
+     "preset": "two"
+    },
+    "to": {
+     "preset": "two"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "“袋いりますか”/“…大丈夫です”",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "cutaway": "cutaways/konbini.png",
+   "cutawayLabel": "夜のコンビニ。レジでの一言だけの会話",
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "sfx/whoosh"
+    }
+   ]
+  },
+  {
+   "dur": 1.8,
+   "cam": {
+    "from": {
+     "preset": "gonbe"
+    },
+    "to": {
+     "preset": "gonbe"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "帰っても無音だから/テレビつける",
+   "gonbe": {
+    "eyes": "closed",
+    "move": "slump",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle"
+   }
+  },
+  {
+   "dur": 1.8,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe_face"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "…それ、/効くやつあるよ",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "lean_in",
+    "talk": true
+   },
+   "sfx": [
+    {
+     "t": 1.2,
+     "sfx": "brand/pill_clink"
+    },
+    {
+     "t": 1.6,
+     "sfx": "brand/low_hit"
+    }
+   ]
+  }
+ ]
+}

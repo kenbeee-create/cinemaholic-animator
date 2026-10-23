@@ -1,0 +1,44 @@
+{
+ "title": "her／世界でひとつの彼女",
+ "original_title": "her",
+ "year": 2013,
+ "director": "スパイク・ジョーンズ",
+ "runtime_min": 120,
+ "one_liner": "“話す相手がいない夜”に効く。",
+ "poster": null,
+ "streaming": [
+  {
+   "service": "U-NEXT",
+   "type": "見放題"
+  },
+  {
+   "service": "TELASA",
+   "type": "見放題"
+  },
+  {
+   "service": "J:COM STREAM",
+   "type": "見放題"
+  },
+  {
+   "service": "Prime Video",
+   "type": "レンタル・購入"
+  },
+  {
+   "service": "Lemino",
+   "type": "レンタル"
+  },
+  {
+   "service": "TSUTAYA DISCAS",
+   "type": "宅配レンタル"
+  }
+ ],
+ "streaming_as_of": "2026年9月（Filmarksの表記）",
+ "checked_on": "2026-10-23",
+ "sources": [
+  "https://filmarks.com/movies/55484"
+ ],
+ "no": "002",
+ "patient": "そこの君",
+ "bubble": "…ひとりの夜に。\nよく効くよ。",
+ "speed": 1.6
+}

@@ -1,0 +1,128 @@
+{
+ "props": {
+  "lamp": true,
+  "tv": true,
+  "window": "neon",
+  "dust": true,
+  "mug": true,
+  "tint": "#c8553d",
+  "tintA": 0.14,
+  "karte": "処方 No.02"
+ },
+ "items": [],
+ "shots": [
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "gonbe"
+    },
+    "to": {
+     "preset": "gonbe"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "…見たら、/感想言いに来るわ",
+   "gonbe": {
+    "eyes": "tere",
+    "move": "look_away",
+    "talk": true,
+    "mark": "blush"
+   },
+   "johndoe": {
+    "reaction": "idle"
+   }
+  },
+  {
+   "dur": 1.0,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "…おう",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "nod",
+    "talk": true
+   }
+  },
+  {
+   "dur": 1.4,
+   "cam": {
+    "from": {
+     "preset": "johndoe_face"
+    },
+    "to": {
+     "preset": "johndoe_face"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "…42回目、/付き合う",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "bounce",
+    "talk": true,
+    "mark": "sparkle"
+   }
+  },
+  {
+   "dur": 1.0,
+   "cam": {
+    "from": {
+     "preset": "gonbe_face"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "病院行け",
+   "gonbe": {
+    "eyes": "angry",
+    "move": "lean_in",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "big": true,
+   "punch": true,
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "sfx/pop"
+    }
+   ]
+  },
+  {
+   "dur": 2.4,
+   "cam": {
+    "from": {
+     "preset": "wide"
+    },
+    "to": {
+     "preset": "wide"
+    }
+   },
+   "speaker": "",
+   "caption": "次の処方、/わかった？",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "cutaway": "backgrounds/shelf_close.png",
+   "cutawayLabel": "本棚のアップ。次の映画のヒントの小物が1つ"
+  }
+ ]
+}

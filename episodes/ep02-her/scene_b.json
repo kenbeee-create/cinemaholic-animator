@@ -1,0 +1,266 @@
+{
+ "props": {
+  "lamp": true,
+  "tv": true,
+  "window": "neon",
+  "dust": true,
+  "mug": true,
+  "tint": "#c8553d",
+  "tintA": 0.14,
+  "karte": "処方 No.02"
+ },
+ "items": [],
+ "shots": [
+  {
+   "dur": 1.4,
+   "cam": {
+    "from": {
+     "preset": "gonbe"
+    },
+    "to": {
+     "preset": "gonbe"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "AIと恋する/やつでしょ",
+   "gonbe": {
+    "eyes": "jito",
+    "move": "tilt",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle"
+   }
+  },
+  {
+   "dur": 1.4,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "…撮影のとき、/AIの声は",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "lean_in",
+    "talk": true
+   }
+  },
+  {
+   "dur": 1.8,
+   "cam": {
+    "from": {
+     "preset": "two"
+    },
+    "to": {
+     "preset": "two"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "別の女優が/やってた",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "cutaway": "cutaways/satsuei.png",
+   "cutawayLabel": "撮影現場（スタッフは影）",
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "sfx/whoosh"
+    }
+   ]
+  },
+  {
+   "dur": 1.4,
+   "cam": {
+    "from": {
+     "preset": "two"
+    },
+    "to": {
+     "preset": "two"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "完成後に/声だけ差しかえ",
+   "gonbe": {
+    "eyes": "normal",
+    "move": "puff",
+    "mark": "exclaim"
+   },
+   "johndoe": {
+    "reaction": "nod",
+    "talk": true
+   },
+   "big": true,
+   "punch": true,
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "brand/low_hit"
+    }
+   ]
+  },
+  {
+   "dur": 1.3,
+   "cam": {
+    "from": {
+     "preset": "gonbe_face"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "え、こわ。/もう1回見る",
+   "gonbe": {
+    "eyes": "normal",
+    "move": "look_away",
+    "talk": true,
+    "mark": "sweat"
+   },
+   "johndoe": {
+    "reaction": "idle"
+   }
+  },
+  {
+   "dur": 2.2,
+   "cam": {
+    "from": {
+     "preset": "two"
+    },
+    "to": {
+     "preset": "two"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "きっかけは、/AIとチャットできる/サイトの記事",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "cutaway": "cutaways/tsukue.png",
+   "cutawayLabel": "作り手の散らかった机",
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "sfx/whoosh"
+    }
+   ]
+  },
+  {
+   "dur": 1.8,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "監督が初めて1人で書いて/アカデミー脚本賞",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "bounce",
+    "talk": true,
+    "mark": "sparkle"
+   }
+  },
+  {
+   "dur": 1.8,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe_face"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "主人公の仕事は、/他人の手紙の代筆",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "tilt",
+    "talk": true
+   }
+  },
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "gonbe_face"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "…人の気持ちは/書けるのに",
+   "gonbe": {
+    "eyes": "jito",
+    "move": "slump",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle"
+   }
+  },
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "自分のは、/誰にも言えない",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "nod",
+    "talk": true
+   }
+  },
+  {
+   "dur": 1.3,
+   "cam": {
+    "from": {
+     "preset": "gonbe_face"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": "",
+   "caption": "",
+   "gonbe": {
+    "eyes": "closed",
+    "move": "slump",
+    "mark": "steam"
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "dim": 0.25
+  }
+ ]
+}

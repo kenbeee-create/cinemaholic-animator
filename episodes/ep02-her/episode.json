@@ -1,0 +1,57 @@
+{
+ "note": "構成v2。悩み9「今日の会話、レジだけ」。裏話・名言は事実確認ずみ（script.md の出典）",
+ "segments": [
+  {
+   "tool": "studio",
+   "cfg": "scene_a.json"
+  },
+  {
+   "tool": "movie-card-maker",
+   "cfg": "movie.json"
+  },
+  {
+   "tool": "studio",
+   "cfg": "scene_b.json"
+  },
+  {
+   "tool": "card-maker",
+   "cfg": {
+    "type": "quote",
+    "dur": 3.6,
+    "quote": "感じることは全部、\nもう【感じた】気がする。",
+    "who": "セオドア",
+    "qsrc": "映画『her／世界でひとつの彼女』（2013）より"
+   }
+  },
+  {
+   "tool": "studio",
+   "cfg": "scene_c.json"
+  },
+  {
+   "tool": "card-maker",
+   "cfg": {
+    "type": "rx",
+    "dur": 4.2,
+    "title": "her／世界でひとつの彼女",
+    "dose": "ひとりの夜、イヤホンで。",
+    "side": "見終わると、誰かに感想を言いたくなる。",
+    "doc": "…お大事に。",
+    "no": "002"
+   },
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "sfx/whoosh"
+    }
+   ]
+  },
+  {
+   "tool": "studio",
+   "cfg": "scene_d.json"
+  }
+ ],
+ "bgm": {
+  "file": "bgm/lofi_loop.wav",
+  "db": -17
+ }
+}
