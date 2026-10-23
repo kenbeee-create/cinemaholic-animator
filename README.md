@@ -1,5 +1,7 @@
 # 🎬 CINEMA HOLIC（シネマホリック）
 
+**まとめページ**（道具・ChatGPTプロンプト・添付画像・資料のリンク集）：https://kenbeee-create.github.io/cinemaholic-animator/hub/
+
 > 映画は、作った人間の痛みから生まれている。だから、見た人間の痛みに効く。
 
 日常の悩みに「映画」を処方するショートアニメのプロジェクト。

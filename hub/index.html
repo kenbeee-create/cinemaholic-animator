@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>シネマホリック まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1f150f;--night:#1b1511;--night2:#2c221b;--night3:#3d3026;--cream:#f0e4cc;--dim:#b0a088;--parka:#b0422e;--gold:#c9a35a;--green:#4a6e58}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--night);color:var(--cream);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;overflow-x:hidden;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+header{padding:18px 0 6px}
+header h1{font-size:26px;font-weight:900;margin:0;letter-spacing:.04em}
+header p{margin:4px 0 0;color:var(--dim);font-size:13px}
+nav{position:sticky;top:0;z-index:5;background:var(--night);display:flex;gap:6px;overflow-x:auto;padding:10px 0;border-bottom:2px solid var(--ink)}
+nav a{flex:none;color:var(--cream);text-decoration:none;background:var(--night2);border:2px solid var(--ink);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700}
+section{margin:26px 0}
+h2.sec{font-size:19px;font-weight:900;color:var(--gold);margin:0 0 10px;border-left:6px solid var(--parka);padding-left:10px}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.tool{display:block;background:var(--parka);color:var(--cream);text-decoration:none;border:2px solid var(--ink);border-radius:14px;padding:14px}
+.tool b{display:block;font-size:17px}
+.tool span{font-size:12px;opacity:.9}
+.tool:last-child{background:var(--night3)}
+details.step{background:var(--night2);border:2px solid var(--ink);border-radius:14px;margin:10px 0;overflow:hidden}
+details.step>summary{cursor:pointer;padding:12px 14px;font-weight:900;font-size:16px;list-style:none}
+details.step>summary::before{content:"▸ ";color:var(--gold)}
+details.step[open]>summary::before{content:"▾ "}
+.inner{padding:0 14px 14px}
+.inner h3{font-size:15px;color:var(--gold);margin:16px 0 6px}
+pre{position:relative;background:#120d0a;border:2px solid var(--ink);border-radius:10px;padding:12px 12px 44px;white-space:pre-wrap;word-break:break-word;font-size:13px;line-height:1.55;color:#e8dcc4}
+pre button.copy{position:absolute;right:8px;bottom:8px;background:var(--parka);color:var(--cream);border:2px solid var(--ink);border-radius:8px;padding:6px 12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+pre button.copy.done{background:var(--green)}
+code{background:var(--night3);border-radius:5px;padding:1px 5px;font-size:.92em}
+pre code{background:none;padding:0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--night3);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--night3)}
+a{color:var(--gold)}
+a.file{text-decoration:none;white-space:nowrap}
+.imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.img{display:block;background:var(--night2);border:2px solid var(--ink);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--cream)}
+.img img{display:block;width:100%;aspect-ratio:2/3;object-fit:contain;background:repeating-conic-gradient(#3d3026 0 25%,#2c221b 0 50%) 0 0/20px 20px}
+.img span{display:block;padding:8px;font-size:12px;font-weight:700}
+.img small{display:block;color:var(--dim);font-weight:500;word-break:break-all}
+.docs{display:flex;flex-wrap:wrap;gap:8px}
+.doc{background:var(--night2);border:2px solid var(--ink);border-radius:10px;padding:8px 12px;text-decoration:none;color:var(--cream);font-size:14px}
+.prev{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+figure{margin:0;background:var(--night2);border:2px solid var(--ink);border-radius:12px;overflow:hidden}
+figure img,figure video{display:block;width:100%;background:#000}
+figcaption{padding:8px;font-size:13px;font-weight:700}
+.box{background:var(--night2);border:2px solid var(--ink);border-radius:14px;padding:4px 14px}
+.note{font-size:12px;color:var(--dim)}
+footer{color:var(--dim);font-size:12px;padding:30px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>シネマホリック まとめ</h1><p>道具・プロンプト・画像・資料へのリンクを全部ここに。更新：2026-10-23</p></header>
+<nav><a href="#tools">道具</a><a href="#prompts">ChatGPTプロンプト</a><a href="#images">添付する画像</a><a href="#todo">必要な素材</a><a href="#preview">確認用</a><a href="#docs">資料</a></nav>
+
+<section id="tools"><h2 class="sec">道具</h2><div class="tools"><a class="tool" href="../tools/studio/"><b>スタジオ</b><span>部屋のセットに2人を置いて、カットごとにカメラ・セリフ・表情・動きを決めて会話シーンを作る</span></a><a class="tool" href="../tools/chat-maker/"><b>トーク画面メーカー</b><span>冒頭のトーク画面（S1）。メッセージを打つと動く画面になる</span></a><a class="tool" href="../tools/movie-card-maker/"><b>映画紹介メーカー</b><span>処方箋ふうの映画紹介（ポスター・効きめ・もらえる薬局）</span></a><a class="tool" href="../tools/card-maker/"><b>文字の画面メーカー</b><span>バックボーン（S5）・名言（S7）・処方箋（S8）</span></a><a class="tool" href="../"><b>（旧）アニメーター</b><span>最初に作ったキャラを動かす道具</span></a></div>
+<p class="note">どれもスマホ・PCのブラウザで使えます。「JSONをコピー」して Claude に渡すと、同じ見た目で高画質に書き出します。</p></section>
+
+<section id="prompts"><h2 class="sec">ChatGPTプロンプト</h2>
+<p class="note">各プロンプトの「コピー」ボタンで写せます。添付するファイル名（⬇）を押すと画像を保存できます。</p>
+
+<p>ChatGPT（画像生成）に<strong>手動で</strong>投げるためのプロンプト。上から順番に進める。
+できた画像は<strong>そのままこのチャット（Claude）に送る</strong>。切り抜き・層分け・登録はこちらでやる。</p>
+
+<details class="step"><summary>進め方</summary><div class="inner">
+<table>
+<thead>
+<tr>
+<th>段階</th>
+<th>ChatGPTのどこで</th>
+<th>添付するもの</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 完成図</td>
+<td><strong>新しいチャット</strong></td>
+<td>gonbe_base.png・johndoe_base.png・johndoe_room_v1.png</td>
+</tr>
+<tr>
+<td>② 部屋だけ</td>
+<td><strong>新しいチャット</strong></td>
+<td><a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>（Tシャツを無地に直した完成図）</td>
+</tr>
+<tr>
+<td>③ ごんべぇだけ</td>
+<td>②と<strong>同じチャット</strong>で続けて</td>
+<td><a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a> をもう一度</td>
+</tr>
+<tr>
+<td>④ じょんどぅーだけ</td>
+<td>②と<strong>同じチャット</strong>で続けて</td>
+<td><a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a> をもう一度</td>
+</tr>
+<tr>
+<td>⑤ 表情（ごんべぇ）</td>
+<td><strong>新しいチャット</strong></td>
+<td>③でできた画像</td>
+</tr>
+<tr>
+<td>⑤ 表情（じょんどぅー）</td>
+<td><strong>新しいチャット</strong></td>
+<td>④でできた画像</td>
+</tr>
+</tbody>
+</table>
+</div></details>
+<details class="step"><summary>コツ</summary><div class="inner">
+<ul>
+<li>画像は「＋」から添付してからプロンプトを貼る</li>
+<li>①は気に入るまで何回か作り直してよい（「もう1枚」「〇〇だけ直して」）。<strong>①が全部の土台</strong>なので、ここだけは妥協しない</li>
+<li>直すときは作り直すより「〇〇だけ直して、ほかは同じで」と頼む方が安定する</li>
+<li>縦長（2:3）で出てくる。動画の9:16にはこちらで合わせる</li>
+<li>③④で背景が透明にならず白や市松模様になったら、「背景を透明にして」と1回だけ頼む。それでもダメなら気にせず送ってOK（こちらで抜く）</li>
+<li>ダウンロードは画像を長押し（スマホ）か、右上の保存ボタン（PC）</li>
+</ul>
+<hr />
+</div></details>
+<details class="step"><summary>① 完成図（新しいチャット）</summary><div class="inner">
+<p>添付：<a class="file" href="../assets/characters/gonbe/gonbe_base.png" download="gonbe_base.png"><code>gonbe_base.png</code> ⬇</a>・<a class="file" href="../assets/characters/johndoe/johndoe_base.png" download="johndoe_base.png"><code>johndoe_base.png</code> ⬇</a>・<a class="file" href="../assets/backgrounds/johndoe_room_v1.png" download="johndoe_room_v1.png"><code>johndoe_room_v1.png</code> ⬇</a></p>
+<pre><code>Vertical portrait illustration (2:3), highest quality.
+2D flat-color cartoon, thick dark-brown outlines, American cartoon style, muted warm palette — match the style of the attached character images exactly.
+
+Scene: a dim, cozy bedroom-living room in a family house at night (use the attached room only as a mood reference). Warm indirect light from a floor lamp. The room is designed with clear, EMPTY display spots so that props can be added later — keep every spot below empty and clearly visible:
+1. Back wall, above the sofa, slightly left of center: a large EMPTY vertical poster frame (no picture, no text).
+2. Back wall, right of the poster: a long floating wall shelf with three empty spaces (for figures and small objects).
+3. Back wall, left: a tall DVD/book shelf, densely packed (spines are plain colors, no readable titles).
+4. Small window on the upper left wall showing plain night sky (the view will be replaced later).
+5. Left of the sofa: a small side table next to the floor lamp, with an empty top.
+6. Foreground: a low wooden coffee table in the center bottom of the frame, large and close to the camera, with a completely empty top (the main spot for props).
+7. Front-left floor: an empty open space on the rug where a box or bag can be placed.
+A few DVDs and magazines scattered on the floor near the sofa, nothing else.
+
+Camera: placed where the TV is, at seated eye level, looking straight at a green two-seater sofa against the back wall. A low wooden coffee table in the foreground at the bottom of the frame (empty table top).
+
+Two characters sit side by side on the sofa, relaxed, facing the camera (as if watching TV), bodies turned very slightly toward each other:
+- LEFT: the brown dog from the first attached image (dark-brown knit beanie, red hoodie, navy pants, sleepy half-closed eyes). Keep his face, colors and proportions exactly the same. Mouth closed, neutral.
+- RIGHT: the round black fluffy dog from the second attached image (big black curly fur, grey shorts). Replace the T-shirt with a completely PLAIN cream T-shirt (no print, no icon, no text). Mouth closed, neutral.
+
+Both characters fully visible from head to feet (feet may be hidden behind the table), heads at about 40–60% of the image height, both within the central 80% of the width. Leave the top 15% of the image as calm background (wall/ceiling). Keep all display spots inside the central 80% of the width. Nothing important in the bottom-right corner.
+No text, no logos, no watermarks, no real movie posters.
+</code></pre>
+<p><strong>チェック</strong>：2人の顔が元の絵と同じ／じょんどぅーのTシャツが無地／2人が画面の真ん中寄り／小物を置く7つの場所（ポスター枠・壁の棚・DVD棚・窓・サイドテーブル・手前のテーブル・手前の床）が空いている</p>
+<p>困ったとき（貼り足す一文）
+- 顔が変わった → <code>Keep both characters' faces exactly the same as the attached character images.</code>
+- 小物が置かれてしまった → <code>Remove all objects from the poster frame, wall shelf, side table, coffee table and floor space. Keep them empty.</code>
+- 文字が入った → <code>Remove all text and logos.</code></p>
+<hr />
+</div></details>
+<details class="step"><summary>② 部屋だけ（新しいチャット・<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a> を添付）</summary><div class="inner">
+<pre><code>Using the attached key visual, remove both characters completely and show the empty sofa.
+Keep EVERYTHING else exactly the same: same camera, same composition, same room, same lighting, same colors, same size.
+All display spots stay empty: the poster frame, the wall shelf, the side table, the coffee table and the open floor space.
+Same vertical size. No text, no logos.
+</code></pre>
+</div></details>
+<details class="step"><summary>③ ごんべぇだけ（<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a> を添付）</summary><div class="inner">
+<pre><code>From the attached key visual, keep ONLY the brown dog on the left (beanie, red hoodie).
+Same pose, same size, same position in the frame, exactly the same drawing.
+Remove the room, the sofa, the table and the other character.
+Output a PNG with a fully TRANSPARENT background (no floor, no shadow).
+Any parts of his body that were hidden by the table or sofa should be drawn completely.
+Same vertical size.
+</code></pre>
+</div></details>
+<details class="step"><summary>④ じょんどぅーだけ（<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a> を添付）</summary><div class="inner">
+<pre><code>From the attached key visual, keep ONLY the round black fluffy dog on the right.
+Same pose, same size, same position in the frame, exactly the same drawing.
+Remove the room, the sofa, the table and the other character.
+Output a PNG with a fully TRANSPARENT background (no floor, no shadow).
+Any parts of his body that were hidden by the table or sofa should be drawn completely.
+Same vertical size.
+</code></pre>
+<hr />
+</div></details>
+<details class="step"><summary>⑤ 表情の差分</summary><div class="inner">
+<p>キャラごとに<strong>新しいチャット</strong>を開き、③（または④）の画像を添付して、下を<strong>1つずつ</strong>送る。
+<strong>★が最低限</strong>（各キャラ6枚）。余裕があれば残りも。</p>
+<h3>ごんべぇ（③の画像を添付）</h3>
+<p><strong>ルール：目はいつもの眠そうな半目を崩さない</strong>（^^の笑顔・うるんだ大きな目はNG）</p>
+<p><strong>★ 照れ笑い（口を閉じたまま）</strong></p>
+<pre><code>Edit the attached image. Keep his usual sleepy half-closed eyes EXACTLY as they are (same eye shape, same eyelids) — do not close or curve the eyes.
+Change ONLY: a small embarrassed smirk — one corner of the closed mouth slightly raised, a light pink blush on the cheek, pupils looking slightly to the side.
+Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p><strong>★ 照れ笑い（「へへ」と少し口を開けて）</strong></p>
+<pre><code>Edit the attached image. Keep his usual sleepy half-closed eyes EXACTLY as they are — do not close or curve the eyes.
+Change ONLY: a shy little laugh — mouth slightly open in a crooked smile showing a bit of the tongue, a light pink blush on the cheek, pupils looking slightly away.
+Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p><strong>★ ため息（へこんだとき）</strong></p>
+<pre><code>Edit the attached image. Keep his usual eye SHAPE (sleepy, half-closed) — do NOT make the eyes bigger, rounder or teary, and do not close them into curves.
+Make the upper eyelids droop a little lower, as if exhausted, pupils looking slightly down.
+Change the mouth to a sigh: lips slightly parted, a small open mouth breathing out (&quot;haah&quot;).
+Keep everything else exactly identical: same pose, same position, same size, same colors, same line thickness. Keep the transparent background.
+</code></pre>
+<p>（ため息の白いもや・顔の縦線などの記号は、こちらで動画の上に足します）</p>
+<h3>じょんどぅー</h3>
+<p><strong>目は毛で隠れているので、目の表情は作らない。</strong> 口（閉・半開き・開き）はこちらで作成済み。
+リアクションは動き（うなずく・首をかしげる・跳ねる・しょんぼり など）で出すので、追加の画像は不要。</p>
+<hr />
+</div></details>
+<details class="step"><summary>送るときの名前（わかれば。わからなければそのまま送ってOK）</summary><div class="inner">
+<ul>
+<li>① <a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　② <code>room_base.png</code>　③ <code>gonbe_sit.png</code>　④ <code>johndoe_sit.png</code></li>
+<li>⑤ <code>gonbe_目2.png</code>・<code>johndoe_口3.png</code> のように「キャラ_番号」</li>
+</ul>
+<hr />
+</div></details>
+<details class="step"><summary>⑥ 白衣のじょんどぅー（立ち絵）</summary><div class="inner">
+<p>映画紹介の画面（<code>docs/movie-card.md</code>）の右下に出す。<strong>新しいチャット</strong>で、<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>（無地Tシャツのじょんどぅー）を添付。</p>
+<pre><code>Draw the character from the attached image as a STANDING full-body pose, wearing a doctor's outfit.
+Keep his design exactly the same: the round black fluffy dog with big curly fur that completely hides his eyes, the small dark nose, a short straight closed mouth, grey shorts, the same proportions, colors and thick dark-brown outlines (2D flat cartoon, American cartoon style).
+Outfit: an open white doctor's lab coat over his plain cream T-shirt, a stethoscope around his neck, a pen in the chest pocket. No text, no logos, no name tag.
+Pose: standing facing the viewer, body turned slightly to the left, one paw raised a little as if explaining something.
+Output a PNG with a fully transparent background. Vertical image, full body visible from head to feet.
+</code></pre>
+<p>うまくいかないとき（貼り足す一文）
+- 目が出てしまった → <code>His eyes must stay completely hidden by the fur.</code>
+- 体型が変わった → <code>Keep him short and round, the same body shape as the attached image.</code></p>
+<hr />
+</div></details>
+<details class="step"><summary>⑦ ごんべぇの立ち姿（部屋に入ってくる）</summary><div class="inner">
+<p>入りのひと言の場面で使う。<strong>新しいチャット</strong>で、<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>（座りのごんべぇ・透明背景）を添付。</p>
+<pre><code>Draw the character from the attached image as a STANDING full-body pose, walking in from the left and just stopping, as if entering a friend's room.
+Keep his design exactly the same: brown dog, dark-brown knit beanie, red hoodie, navy pants, his usual sleepy half-closed eyes, same proportions, colors and thick dark-brown outlines (2D flat cartoon, American cartoon style).
+Pose: body facing slightly to the right, one paw raised casually in greeting, the other paw in the hoodie pocket, mouth slightly open as if saying something. A small plastic convenience-store bag hanging from his wrist.
+No text, no logos. Output a PNG with a fully transparent background. Vertical image, full body visible from head to feet.
+</code></pre>
+<p>うまくいかないとき（貼り足す一文）
+- 目が変わった → <code>Keep his usual sleepy half-closed eyes exactly as in the attached image.</code>
+- 袋に文字やロゴが入った → <code>The plastic bag must be plain, with no text or logo.</code></p></div></details></section>
+
+<section id="images"><h2 class="sec">添付する画像（押すと保存）</h2><div class="imgs"><a class="img" href="../assets/characters/gonbe/gonbe_base.png" download="gonbe_base.png"><img loading="lazy" src="../assets/characters/gonbe/gonbe_base.png" alt=""><span>ごんべぇ（最初の基本の絵）<small>gonbe_base.png</small></span></a><a class="img" href="../assets/characters/johndoe/johndoe_base.png" download="johndoe_base.png"><img loading="lazy" src="../assets/characters/johndoe/johndoe_base.png" alt=""><span>じょんどぅー（最初の基本の絵）<small>johndoe_base.png</small></span></a><a class="img" href="../assets/backgrounds/johndoe_room_v1.png" download="johndoe_room_v1.png"><img loading="lazy" src="../assets/backgrounds/johndoe_room_v1.png" alt=""><span>部屋（最初の絵）<small>johndoe_room_v1.png</small></span></a><a class="img" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><img loading="lazy" src="../assets/keyvisual/keyvisual.png" alt=""><span>完成図（Tシャツ無地版）<small>keyvisual.png</small></span></a><a class="img" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><img loading="lazy" src="../assets/characters/gonbe/sit_source.png" alt=""><span>ごんべぇ（座り・透明背景）<small>gonbe/sit_source.png</small></span></a><a class="img" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><img loading="lazy" src="../assets/characters/johndoe/sit_source.png" alt=""><span>じょんどぅー（座り・無地Tシャツ・透明背景）<small>johndoe/sit_source.png</small></span></a><a class="img" href="../assets/characters/johndoe/doctor_stand.png" download="doctor_stand.png"><img loading="lazy" src="../assets/characters/johndoe/doctor_stand.png" alt=""><span>白衣のじょんどぅー（立ち絵）<small>doctor_stand.png</small></span></a><a class="img" href="../assets/backgrounds/room_base_source.png" download="room_base_source.png"><img loading="lazy" src="../assets/backgrounds/room_base_source.png" alt=""><span>2人がいない部屋<small>room_base_source.png</small></span></a></div></section>
+
+<section id="todo"><h2 class="sec">まだ必要な素材</h2><div class="box">
+<h2>1話目までに必要</h2>
+<table>
+<thead>
+<tr>
+<th>素材</th>
+<th>用途</th>
+<th>作る人・入手先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ごんべぇの立ち姿（入ってくる）</td>
+<td>S3 入りのひと言</td>
+<td>オーナー：ChatGPT（PROMPTS_ChatGPT.md ⑦）</td>
+</tr>
+<tr>
+<td>ごんべぇの照れ笑い・ため息</td>
+<td>表情</td>
+<td>オーナー：ChatGPT（PROMPTS_ChatGPT.md ⑤）</td>
+</tr>
+<tr>
+<td>声</td>
+<td>全セリフ</td>
+<td>未定：自分で録音／AIの読み上げ</td>
+</tr>
+<tr>
+<td>ブランド音4つ（通知音・錠剤「カラン」・低音「ジャン」・はんこ「ドン」）</td>
+<td>毎回同じ音</td>
+<td>オーナー：商用利用OKの効果音サイトからダウンロード</td>
+</tr>
+<tr>
+<td>BGM（暗めのLo-fi、毎回同じ）</td>
+<td>全編</td>
+<td>オーナー：商用利用OKの音楽サイトからダウンロード</td>
+</tr>
+<tr>
+<td>効果音（ポン・タイプ音・ドア・ため息など）</td>
+<td>演出</td>
+<td>オーナー：同上</td>
+</tr>
+<tr>
+<td>配信サービスのアイコン</td>
+<td>映画紹介</td>
+<td>オーナー：各サービスの公式プレスキット</td>
+</tr>
+<tr>
+<td>ポスター（その回の映画）</td>
+<td>映画紹介・部屋の壁</td>
+<td>方針が未定（オリジナル絵／公式）</td>
+</tr>
+</tbody>
+</table>
+<h2>Claude が作った（済）</h2>
+<ul>
+<li>処方箋（S8）・名言（S7）・バックボーン（S5）の画面 → 文字の画面メーカー <code>tools/card-maker/</code></li>
+<li>1本につなぐ処理と音のミックス → <code>renderer/assemble.py</code></li>
+<li>窓の外（雨・ネオン・雪）→ スタジオ</li>
+<li><strong>仮の効果音とBGM</strong>（プログラムで合成）→ <code>assets/sound/placeholder/</code>。本番の音を <code>assets/sound/brand/stamp.wav</code> のように同じ名前で置くと、そちらが優先される</li>
+</ul>
+<h2>あとで（回ごと・余裕があれば）</h2>
+<ul>
+<li>映画ごとの小物（テーブル・飾り棚）・服違い（ごんべぇのスーツなど）</li>
+<li>丸ゴシック系のフォント（使う場合はTTFファイル）</li>
+</ul></div></section>
+
+<section id="preview"><h2 class="sec">確認用</h2><div class="prev"><figure><video src="../hub/media/ep00-sample.mp4" controls playsinline preload="metadata"></video><figcaption>通しの試作（約50秒・声なし）</figcaption></figure><figure><a href="../docs/storyboard/format_storyboard.jpg"><img loading="lazy" src="../docs/storyboard/format_storyboard.jpg" alt=""></a><figcaption>絵コンテ（20コマ）</figcaption></figure><figure><a href="../docs/storyboard/movie_intro_mock.jpg"><img loading="lazy" src="../docs/storyboard/movie_intro_mock.jpg" alt=""></a><figcaption>映画紹介の画面</figcaption></figure><figure><a href="../assets/characters/gonbe/_preview/expressions.png"><img loading="lazy" src="../assets/characters/gonbe/_preview/expressions.png" alt=""></a><figcaption>ごんべぇの表情</figcaption></figure></div></section>
+
+<section id="docs"><h2 class="sec">資料（GitHub）</h2><div class="docs"><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/characters.md">キャラクター設定書</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/opening.md">冒頭（トーク画面・タイトル）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/episode-look.md">回ごとの見た目（部屋と服）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/movie-card.md">映画紹介の画面</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/studio.md">スタジオの使い方</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/production-flow.md">動画の作り方</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/quality-bar.md">品質基準</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/tone.md">トーン（色・文字）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/opening-lines.md">入りのひと言の台帳</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/storyboard/README.md">絵コンテ（型）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/studio-status.md">進捗</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/CLAUDE.md">CLAUDE.md（全体のルール）</a></div></section>
+
+<footer>このページは <code>python3 scripts/build_hub.py</code> で作り直せます。</footer>
+</div>
+<script>
+document.querySelectorAll("pre").forEach(pre=>{
+  const b=document.createElement("button"); b.className="copy"; b.textContent="コピー";
+  b.onclick=async()=>{ const text=pre.querySelector("code")?.innerText||pre.innerText;
+    try{ await navigator.clipboard.writeText(text); }catch(e){ const r=document.createRange(); r.selectNodeContents(pre.querySelector("code")||pre); const s=getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand("copy"); s.removeAllRanges(); }
+    b.textContent="コピーしました"; b.classList.add("done"); setTimeout(()=>{ b.textContent="コピー"; b.classList.remove("done"); },1600); };
+  pre.appendChild(b);
+});
+// 開いていた手順を覚えておく（この端末だけ）
+document.querySelectorAll("details.step").forEach((d,i)=>{ try{ if(localStorage.getItem("hub-open-"+i)==="1") d.open=true; }catch(e){}
+  d.addEventListener("toggle",()=>{ try{ localStorage.setItem("hub-open-"+i,d.open?"1":"0"); }catch(e){} }); });
+</script>
+</body>
+</html>
