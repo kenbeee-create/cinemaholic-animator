@@ -24,6 +24,7 @@
       "z": 3,
       "states": {
         "closed": null,
+        "small": "parts/mouth_small.png",
         "half": "parts/mouth_half.png",
         "open": "parts/mouth_open.png"
       }

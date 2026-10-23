@@ -111,7 +111,7 @@ const ST = (() => {
     g_half:"characters/gonbe/parts/mouth_half.png", g_open:"characters/gonbe/parts/mouth_open.png",
     g_small:"characters/gonbe/parts/mouth_small.png", g_wide:"characters/gonbe/parts/mouth_wide.png",
     j_head:"characters/johndoe/parts/head.png", j_body:"characters/johndoe/parts/body.png",
-    j_half:"characters/johndoe/parts/mouth_half.png", j_open:"characters/johndoe/parts/mouth_open.png"
+    j_half:"characters/johndoe/parts/mouth_half.png", j_open:"characters/johndoe/parts/mouth_open.png", j_small:"characters/johndoe/parts/mouth_small.png"
   };
   const IM={}; let rig={pivot:[556,688],head_bbox:[247,260,888,704]};
   const off=document.createElement("canvas"); off.width=W; off.height=H; const o=off.getContext("2d");
@@ -242,7 +242,7 @@ const ST = (() => {
     const neck=(pv[1]-feet[1])*(p.bsy-1);
     const head={sx:p.bsx*p.hs,sy:p.bsy*p.hs,anchor:pv,dx:p.bdx+p.hdx,dy:p.bdy+p.hdy+neck,rot:p.hrot};
     place(o,IM.j_head,"johndoe",head);
-    if(j.talk){ const m=["j_half","j_open",null][Math.floor(t*9)%3]; if(m) place(o,IM[m],"johndoe",head); }
+    if(j.talk){ const m=["j_small","j_half","j_open","j_half",null,"j_half"][Math.floor(t*8)%6]; if(m) place(o,IM[m],"johndoe",head); }  // ゆっくり・ぼそっと話すので、なめらかに開け閉め
     if(p.fx){ const hb=rig.head_bbox; const [hx,hy]=toScreen("johndoe",(hb[0]+hb[2])/2,hb[1]); fx(o,p.fx,hx+150,hy+10,lt); }
     props(o,P,t,"front");
     // ---- カメラ ----

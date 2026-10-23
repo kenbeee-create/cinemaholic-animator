@@ -131,8 +131,24 @@ def build():
             dd.ellipse(((mx - ex * 0.55) * K, (cy - ey * 0.6) * K, (mx + ex * 0.55) * K, (cy + ey * 0.1) * K), fill=MOUTH_DARK)
         return img.resize((W, H), Image.LANCZOS)
 
-    mouth(0.45, 0.85).save(os.path.join(J, "parts", "mouth_half.png"))
-    mouth(1.0).save(os.path.join(J, "parts", "mouth_open.png"))
+    # オーナー指示：口は元の絵（ChatGPT）の赤い楕円そのままの見た目にする。
+    # 開き＝元の絵の口をそのまま切り抜く。半開き＝同じ口を、上の縁をそろえて縦に縮める。
+    K2 = 4
+    pad = 8
+    m = Image.new("L", (W * K2, H * K2), 0)
+    ImageDraw.Draw(m).ellipse(((mx - rx - pad) * K2, (my - ry - pad) * K2, (mx + rx + pad) * K2, (my + ry + pad) * K2), fill=255)
+    m = m.resize((W, H), Image.LANCZOS)
+    opn = src.copy()
+    opn.putalpha(m)
+    opn.save(os.path.join(J, "parts", "mouth_open.png"))
+    box = (int(mx - rx - pad - 2), int(my - ry - pad - 2), int(mx + rx + pad + 3), int(my + ry + pad + 3))
+    piece = opn.crop(box)
+    for name, k in (("mouth_half", 0.5), ("mouth_small", 0.3)):
+        h2 = max(4, int(piece.height * k))
+        sm = piece.resize((piece.width, h2), Image.LANCZOS)
+        out = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        out.alpha_composite(sm, (box[0], box[1] + int(piece.height * (1 - k) * 0.35)))
+        out.save(os.path.join(J, "parts", f"{name}.png"))
 
     # 4) リグ情報
     hb = Image.fromarray((np.array(hm) > 0).astype(np.uint8) * 255).getbbox()
@@ -141,7 +157,7 @@ def build():
         "layers": [{"name": "body", "file": "parts/body.png", "z": 1},
                    {"name": "head", "file": "parts/head.png", "z": 2, "pivot": [cx, top]},
                    {"name": "mouth", "parent": "head", "z": 3,
-                    "states": {"closed": None, "half": "parts/mouth_half.png", "open": "parts/mouth_open.png"}}],
+                    "states": {"closed": None, "small": "parts/mouth_small.png", "half": "parts/mouth_half.png", "open": "parts/mouth_open.png"}}],
         "head_bbox": list(hb),
         "note": "目は毛で隠れているので表情差分は持たない。リアクションは renderer/motion/reactions.py の動きで出す",
     }
