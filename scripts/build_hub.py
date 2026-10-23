@@ -50,7 +50,9 @@ DOCS = [
 ]
 
 PREVIEWS = [
-    ("下書き動画（段階2・540×960・秒数の透かし入り）", "hub/media/ep00-sample-draft.mp4", "video"),
+    ("ファイト・クラブ 構成v2の絵コンテ（46秒・26コマ）", "docs/storyboard/ep01_v2_storyboard.jpg", "img"),
+    ("ファイト・クラブ 構成v2の下書き動画", "hub/media/ep01-v2-draft.mp4", "video"),
+    ("下書き動画（試作の回）", "hub/media/ep00-sample-draft.mp4", "video"),
     ("通しの試作（約50秒・声なし）", "hub/media/ep00-sample.mp4", "video"),
     ("最新の絵コンテ（試作の実際のコマ）", "docs/storyboard/latest_storyboard.jpg", "img"),
     ("最初の絵コンテ（型）", "docs/storyboard/format_storyboard.jpg", "img"),

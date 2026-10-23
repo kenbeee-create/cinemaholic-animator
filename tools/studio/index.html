@@ -300,11 +300,33 @@ const ST = (() => {
     ctx.restore();
   }
 
+  // カルテ番号（「処方 No.01」）を左上に小さく
+  function karte(ctx,scene){ const k=(scene.props||{}).karte; if(!k) return; ctx.save(); ctx.font=font(900,34); const w=ctx.measureText(k).width+40;
+    ctx.fillStyle="rgba(240,228,204,.92)"; ctx.strokeStyle=C.ink; ctx.lineWidth=4; ctx.beginPath(); ctx.roundRect(40,250,w,58,10); ctx.fill(); ctx.stroke();
+    ctx.fillStyle=C.parka; ctx.textBaseline="middle"; ctx.fillText(k,60,281); ctx.restore(); }
+  // 効果音のタイミング（各カットの "sfx": [{"t":秒, "sfx":"名前"}]）
+  function cues(scene){ const out=[]; timeline(scene).forEach(r=>(r.s.sfx||[]).forEach(c=>out.push({t:r.start+(+c.t||0),sfx:c.sfx}))); return out; }
   function render(ctx,scene,t){
     const tl=timeline(scene); if(!tl.length) return;
     t=clamp(t,0,tl[tl.length-1].end-1e-4);
     const cur=tl.find(r=>t>=r.start&&t<r.end)||tl[tl.length-1]; const shot=cur.s, lt=t-cur.start;
     const P=scene.props||{};
+    // ---- 挿絵（カットアウェイ）：部屋を離れて1枚絵を見せるカット ----
+    if(shot.cutaway){
+      const im=IM["it_"+shot.cutaway]; const k=ease2(lt/durOf(shot));
+      ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.fillStyle="#2a221c"; ctx.fillRect(0,0,W,H);
+      const z=1+0.08*k+(shot.punch?0.12*Math.max(0,1-lt/0.25):0);
+      if(im){ const sc=Math.max(W/im.width,H/im.height)*z, w=im.width*sc, h=im.height*sc; ctx.drawImage(im,(W-w)/2,(H-h)/2,w,h); }
+      else { // 素材待ち：灰色の絵札
+        ctx.translate(W/2,H/2); ctx.scale(z,z); ctx.translate(-W/2,-H/2);
+        ctx.fillStyle="#6b6b6b"; ctx.fillRect(60,330,W-120,1100); ctx.strokeStyle=C.ink; ctx.lineWidth=8; ctx.strokeRect(60,330,W-120,1100);
+        ctx.strokeStyle="rgba(255,255,255,.18)"; ctx.lineWidth=4; ctx.beginPath(); ctx.moveTo(60,330); ctx.lineTo(W-60,1430); ctx.moveTo(W-60,330); ctx.lineTo(60,1430); ctx.stroke();
+        ctx.fillStyle="#fff"; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.font=font(900,44); ctx.fillText("挿絵（素材待ち）",W/2,560);
+        ctx.font=font(900,56); const words=(shot.cutawayLabel||shot.cutaway).match(/.{1,14}/g)||[]; words.forEach((w,i)=>ctx.fillText(w,W/2,700+i*80));
+      }
+      ctx.restore(); ctx.save(); ctx.setTransform(1,0,0,1,0,0); drawCaption(ctx,shot,lt); karte(ctx,scene); ctx.restore();
+      return {shot:cur,index:tl.indexOf(cur)};
+    }
     // ---- セット（全体の絵） ----
     o.clearRect(0,0,W,H); if(IM.room) o.drawImage(IM.room,0,0,W,H);
     props(o,P,t,"back"); items(o,scene.items,t,"back");
@@ -350,6 +372,7 @@ const ST = (() => {
     else if(gm&&gm!=="none"&&gm!=="blush"){ const hb=grig.head_bbox; const [hx,hy]=toScreen("gonbe",(hb[0]+hb[2])/2,hb[1]); const wide=(gm==="gaan"||gm==="gloom"); fx(o,gm,wide?hx+40:hx-130,wide?hy+40:hy+20,lt); }
     notes.forEach((n,i)=>{ const hb=grig.head_bbox; const [hx,hy]=toScreen("gonbe",(hb[0]+hb[2])/2,hb[1]); badge(o,hx,hy-50-i*70,n); });
     items(o,scene.items,t,"front"); props(o,P,t,"front");
+    if(shot.dim){ o.fillStyle=`rgba(10,6,4,${+shot.dim})`; o.fillRect(0,0,W,H); }  // 部屋を少し暗く（名言の前など）
     // ---- カメラ ----
     const a=camOf(shot.cam&&shot.cam.from), b=camOf(shot.cam&&shot.cam.to||shot.cam&&shot.cam.from);
     const k=ease2(lt/durOf(shot));
@@ -358,12 +381,12 @@ const ST = (() => {
     const w=W/z,h=H/z; cx=clamp(cx,w/2,W-w/2); cy=clamp(cy,h/2,H-h/2);
     ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.fillStyle="#000"; ctx.fillRect(0,0,W,H);
     ctx.drawImage(off,cx-w/2,cy-h/2,w,h,0,0,W,H);
-    drawCaption(ctx,shot,lt);
+    drawCaption(ctx,shot,lt); karte(ctx,scene);
     ctx.restore();
     return {shot:cur,index:tl.indexOf(cur)};
   }
-  async function prepare(scene){ await ready(); await Promise.all((scene.items||[]).map(it=>loadItem(it.file))); }
-  return {W,H,ready,prepare,render,duration,timeline,presets,REACTIONS,GMOVES,MARKS,LIB,camOf,autoDur,durOf};
+  async function prepare(scene){ await ready(); await Promise.all([...(scene.items||[]).map(it=>loadItem(it.file)),...scene.shots.filter(s=>s.cutaway).map(s=>loadItem(s.cutaway))]); }
+  return {W,H,ready,prepare,render,cues,duration,timeline,presets,REACTIONS,GMOVES,MARKS,LIB,camOf,autoDur,durOf};
 })();
 
 /* =================== 編集UI =================== */
@@ -505,7 +528,7 @@ function bindProps(){ $("win").value=(scene.props||{}).window||((scene.props||{}
 
 /* 自動書き出し用 */
 window.ST=ST;
-window.loadCfg=async c=>{ scene=c; await ST.prepare(scene); return {duration:ST.duration(scene)}; };
+window.loadCfg=async c=>{ scene=c; await ST.prepare(scene); return {duration:ST.duration(scene),cues:ST.cues(scene)}; };
 window.frameAt=(t,q)=>{ ST.render(ctx,scene,t); return cv.toDataURL("image/jpeg",q||0.95); };
 
 (async()=>{

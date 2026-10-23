@@ -1,0 +1,107 @@
+{
+ "props": {
+  "lamp": true,
+  "tv": true,
+  "window": "rain",
+  "dust": true,
+  "mug": true,
+  "tint": "#5a6a3a",
+  "tintA": 0.12,
+  "karte": "処方 No.01"
+ },
+ "items": [],
+ "shots": [
+  {
+   "dur": 1.4,
+   "cam": {
+    "from": {
+     "preset": "gonbe"
+    },
+    "to": {
+     "preset": "gonbe"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "…お前これ/何回見たの",
+   "gonbe": {
+    "eyes": "jito",
+    "move": "tilt",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle"
+   }
+  },
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "johndoe"
+    },
+    "to": {
+     "preset": "johndoe"
+    }
+   },
+   "speaker": "johndoe",
+   "caption": "…今日で/41回目",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "bounce",
+    "talk": true,
+    "mark": "sparkle"
+   }
+  },
+  {
+   "dur": 1.1,
+   "cam": {
+    "from": {
+     "preset": "gonbe_face"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": "gonbe",
+   "caption": "病院行け",
+   "gonbe": {
+    "eyes": "angry",
+    "move": "lean_in",
+    "talk": true
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "big": true,
+   "punch": true,
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "sfx/pop"
+    }
+   ]
+  },
+  {
+   "dur": 2.4,
+   "cam": {
+    "from": {
+     "preset": "wide"
+    },
+    "to": {
+     "preset": "wide"
+    }
+   },
+   "speaker": "",
+   "caption": "次の処方、/わかった？",
+   "gonbe": {
+    "eyes": "normal"
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "cutaway": "backgrounds/shelf_close.png",
+   "cutawayLabel": "本棚のアップ。次の映画のヒントの小物が1つ"
+  }
+ ]
+}

@@ -25,6 +25,11 @@ CARD_LABEL = {"text": "バックボーン", "quote": "名言", "rx": "処方箋"
 CAM = {"two": "2ショット", "gonbe": "ごんべぇアップ", "johndoe": "じょんどぅーアップ", "gonbe_face": "ごんべぇの顔",
        "johndoe_face": "じょんどぅーの顔", "wide": "部屋全体"}
 EYES = {"normal": "半目", "jito": "ジト目", "closed": "目を閉じる", "angry": "真顔"}
+MOVE = {"idle": "", "nod": "うなずく", "tilt": "首かしげ", "shake": "首を振る", "slump": "沈む", "lean_in": "乗り出す",
+        "look_away": "目をそらす", "puff": "ビクッ", "bounce": "ノる", "freeze": "固まる"}
+MARK = {"sweat": "汗", "blush": "赤面", "anger": "怒りマーク", "gaan": "ガーン", "gloom": "どんより", "note": "♪", "sparkle": "キラキラ",
+        "dots": "…", "exclaim": "！", "question": "？", "shock": "ビクッ線", "steam": "ため息の煙"}
+EYES_EXTRA = {"tere": "照れ笑い", "sigh": "ため息"}
 REACT = {"idle": "待機", "nod": "うなずく", "tilt": "首かしげ", "shake": "首を振る", "bounce": "ノる", "lean_in": "乗り出す",
          "slump": "しょんぼり", "puff": "ゾワッ", "freeze": "固まる", "look_away": "そっぽ"}
 SPK = {"gonbe": "ごんべぇ", "johndoe": "じょんどぅー"}
@@ -57,11 +62,11 @@ def cam_label(c):
     return a if a == b else f"{a}→{b}"
 
 
-def main(ep_path, out=None):
+def main(ep_path, out=None, draft=False):
     ep = json.load(open(ep_path, encoding="utf-8"))
     base = os.path.dirname(os.path.abspath(ep_path))
     slug = os.path.basename(base)
-    seg_dir = os.path.join(ROOT, "output", slug, "segments")
+    seg_dir = os.path.join(ROOT, "output", slug, "segments_draft" if draft else "segments")
     tmp = os.path.join(seg_dir, "_sb")
     os.makedirs(tmp, exist_ok=True)
     panels, t0 = [], 0.0
@@ -78,22 +83,31 @@ def main(ep_path, out=None):
                 cap = (s.get("caption") or "").replace("/", "")
                 who = SPK.get(s.get("speaker"), "")
                 g, j = s.get("gonbe", {}), s.get("johndoe", {})
-                lines = [cam_label(s.get("cam")) + ("・グッと寄る" if s.get("punch") else "")]
+                kind = "挿絵" if s.get("cutaway") else "会話"
+                lines = [("挿絵：" + s.get("cutawayLabel", s.get("cutaway"))) if s.get("cutaway")
+                         else cam_label(s.get("cam")) + ("・グッと寄る" if s.get("punch") else "")]
                 if cap:
                     lines.append(f"{who}「{cap}」" + ("（特大）" if s.get("big") else ""))
-                lines.append(f"ごんべぇ：{EYES.get(g.get('eyes', 'normal'))}{'・話す' if g.get('talk') else ''}"
-                             f"／じょんどぅー：{REACT.get(j.get('reaction', 'idle'))}{'・話す' if j.get('talk') else ''}")
-                panels.append(dict(img=img, kind="会話", t=(t0 + st, t0 + st + sd), lines=lines, who=s.get("speaker")))
+                if not s.get("cutaway"):
+                    gm = "・".join(x for x in (EYES.get(g.get('eyes', 'normal')) or EYES_EXTRA.get(g.get('eyes'), ""),
+                                                 MOVE.get(g.get("move", "idle"), ""), MARK.get(g.get("mark"), ""),
+                                                 "話す" if g.get("talk") else "") if x)
+                    jm = "・".join(x for x in (REACT.get(j.get('reaction', 'idle')), MARK.get(j.get("mark"), ""),
+                                                 "話す" if j.get("talk") else "") if x)
+                    lines.append(f"ごんべぇ：{gm}／じょんどぅー：{jm}")
+                if s.get("sfx"):
+                    lines.append("音：" + "・".join(c["sfx"].split("/")[-1] for c in s["sfx"]))
+                panels.append(dict(img=img, kind=kind, t=(t0 + st, t0 + st + sd), lines=lines, who=s.get("speaker")))
                 st += sd
         else:
             label = CARD_LABEL.get(cfg.get("type"), "文字") if tool == "card-maker" else TOOL_LABEL[tool]
-            img = grab(mp4, d - 0.05, os.path.join(tmp, f"{i}.jpg"))
+            img = grab(mp4, d - 0.15, os.path.join(tmp, f"{i}.jpg"))
             if tool == "chat-maker":
                 lines = ["「" + "」「".join(m["text"] for m in cfg["messages"]) + "」"]
             elif tool == "title":
                 lines = [f"{cfg.get('worry')} {cfg.get('lead', '')}{cfg.get('rest', '')}"]
             elif tool == "movie-card-maker":
-                lines = [f"{cfg.get('title')}（{cfg.get('year')}）", "ポスター・効きめ・もらえる薬局・白衣のじょんどぅー"]
+                lines = [f"{cfg.get('title')}（{cfg.get('year')}）", "ポスター・効きめ・配信・白衣のじょんどぅー"]
             elif cfg.get("type") == "text":
                 lines = [cfg.get("lines", "").replace("\n", " ").replace("【", "").replace("】", "")]
             elif cfg.get("type") == "quote":
@@ -112,7 +126,7 @@ def main(ep_path, out=None):
     sheet = Image.new("RGB", (W, head + rows * (cell_h + 24) + 24), (27, 21, 17))
     d = ImageDraw.Draw(sheet)
     d.text((24, 26), f"シネマホリック 絵コンテ（{slug}・{t0:.0f}秒・{len(panels)}コマ）", font=f(BLACK, 38), fill=CREAM)
-    d.text((24, 80), "実際に書き出した動画のコマ。〇〇は台本で確定するところ。声・ポスター・照れ笑いなどは素材待ち",
+    d.text((24, 80), "下書き動画から実際に切り出したコマ。灰色の札・挿絵は素材待ち（画像が届けば自動で差し替わる）",
            font=f(BOLD, 22), fill=DIM)
     for n, p in enumerate(panels):
         x = 24 + (n % cols) * (tw + 24)
@@ -145,4 +159,5 @@ def main(ep_path, out=None):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
+    a = [x for x in sys.argv[1:] if not x.startswith("--")]
+    main(a[0], a[1] if len(a) > 1 else None, draft="--draft" in sys.argv)

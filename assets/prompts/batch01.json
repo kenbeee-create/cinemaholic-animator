@@ -33,12 +33,12 @@
    "id": "A3",
    "group": "表情",
    "priority": 1,
-   "title": "ごんべぇ にやけ（下心）",
+   "title": "ごんべぇ にやけ（得意げ）",
    "chat": "same:A1",
    "attach": [
     "gonbe/sit_source.png"
    ],
-   "prompt": "Edit the attached image. Keep his usual sleepy half-closed eyes exactly — same shape — but make the pupils glance sideways with a sly look.\nChange ONLY the mouth: a sly, slightly pervy grin — wide closed-mouth smirk stretching to one side. Add a light pink blush.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
+   "prompt": "Edit the attached image. Keep his usual sleepy half-closed eyes exactly — same shape — but make the pupils glance sideways with a smug look.\nChange ONLY the mouth: a smug, self-satisfied grin — wide closed-mouth smirk stretching to one side.\nKeep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.",
    "save": "gonbe_niyake.png",
    "post": "表情の部品",
    "note": ""

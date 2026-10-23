@@ -16,7 +16,7 @@
 |---|---|---|---|---|---|
 | A1 | ★ | 表情 | ごんべぇ 照れ笑い（口を閉じて） | 新しいチャット | `gonbe_tere.png` |
 | A2 | ★ | 表情 | ごんべぇ ため息 | A1と同じ | `gonbe_sigh.png` |
-| A3 | ★ | 表情 | ごんべぇ にやけ（下心） | A1と同じ | `gonbe_niyake.png` |
+| A3 | ★ | 表情 | ごんべぇ にやけ（得意げ） | A1と同じ | `gonbe_niyake.png` |
 | A4 | ★ | 表情 | ごんべぇ 口ぽかん（あぜん） | A1と同じ | `gonbe_pokan.png` |
 | A5 |  | 表情 | ごんべぇ イラッ（歯を食いしばる） | A1と同じ | `gonbe_ira.png` |
 | A6 |  | 表情 | ごんべぇ 「は？」（片方の口角が下がる） | A1と同じ | `gonbe_ha.png` |
@@ -88,12 +88,12 @@ Keep everything else exactly identical: same pose, same position, same size, sam
 ```
 あとの処理：parts/eyes_sigh.png ＋ 口
 
-## A3 ★ ごんべぇ にやけ（下心）
+## A3 ★ ごんべぇ にやけ（得意げ）
 チャット：A1 と同じチャットで続けて　添付：`gonbe/sit_source.png`　保存名：`gonbe_niyake.png`
 
 ```
-Edit the attached image. Keep his usual sleepy half-closed eyes exactly — same shape — but make the pupils glance sideways with a sly look.
-Change ONLY the mouth: a sly, slightly pervy grin — wide closed-mouth smirk stretching to one side. Add a light pink blush.
+Edit the attached image. Keep his usual sleepy half-closed eyes exactly — same shape — but make the pupils glance sideways with a smug look.
+Change ONLY the mouth: a smug, self-satisfied grin — wide closed-mouth smirk stretching to one side.
 Keep everything else exactly identical: same pose, same position, same size, same canvas, same colors, same line thickness. Keep the transparent background.
 ```
 あとの処理：表情の部品

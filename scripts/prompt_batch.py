@@ -52,9 +52,9 @@ Edit the attached image. Keep his usual eye SHAPE (sleepy, half-closed) — do N
 Make the upper eyelids droop a little lower, as if exhausted, pupils looking slightly down.
 Change the mouth to a sigh: lips slightly parted, a small open mouth breathing out.
 {EDIT_KEEP}""", "gonbe_sigh.png", "parts/eyes_sigh.png ＋ 口", chat="same:A1")
-add("A3", "表情", 1, "ごんべぇ にやけ（下心）", GS, f"""
-Edit the attached image. Keep his usual sleepy half-closed eyes exactly — same shape — but make the pupils glance sideways with a sly look.
-Change ONLY the mouth: a sly, slightly pervy grin — wide closed-mouth smirk stretching to one side. Add a light pink blush.
+add("A3", "表情", 1, "ごんべぇ にやけ（得意げ）", GS, f"""
+Edit the attached image. Keep his usual sleepy half-closed eyes exactly — same shape — but make the pupils glance sideways with a smug look.
+Change ONLY the mouth: a smug, self-satisfied grin — wide closed-mouth smirk stretching to one side.
 {EDIT_KEEP}""", "gonbe_niyake.png", "表情の部品", chat="same:A1")
 add("A4", "表情", 1, "ごんべぇ 口ぽかん（あぜん）", GS, f"""
 Edit the attached image. Keep his usual sleepy half-closed eye shape, but make the pupils tiny dots, as if stunned.

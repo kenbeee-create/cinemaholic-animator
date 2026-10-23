@@ -1,0 +1,37 @@
+{
+ "props": {
+  "lamp": true,
+  "tv": true,
+  "window": "rain",
+  "dust": true,
+  "mug": true,
+  "tint": "#5a6a3a",
+  "tintA": 0.12,
+  "karte": "処方 No.01"
+ },
+ "items": [],
+ "shots": [
+  {
+   "dur": 1.6,
+   "cam": {
+    "from": {
+     "preset": "gonbe_face"
+    },
+    "to": {
+     "preset": "gonbe_face"
+    }
+   },
+   "speaker": "",
+   "caption": "",
+   "gonbe": {
+    "eyes": "tere",
+    "move": "look_away",
+    "mark": "blush"
+   },
+   "johndoe": {
+    "reaction": "idle"
+   },
+   "dim": 0.15
+  }
+ ]
+}

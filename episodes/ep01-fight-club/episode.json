@@ -1,0 +1,56 @@
+{
+ "note": "構成v2（docs/format-v2.md）。裏話・名言は事実確認ずみ（script_v2.md の出典）",
+ "segments": [
+  {
+   "tool": "studio",
+   "cfg": "scene_a.json"
+  },
+  {
+   "tool": "movie-card-maker",
+   "cfg": "movie.json"
+  },
+  {
+   "tool": "studio",
+   "cfg": "scene_b.json"
+  },
+  {
+   "tool": "card-maker",
+   "cfg": {
+    "type": "quote",
+    "dur": 3.4,
+    "quote": "お前は【仕事】じゃない。",
+    "who": "タイラー・ダーデン",
+    "qsrc": "映画『ファイト・クラブ』（1999）より"
+   }
+  },
+  {
+   "tool": "studio",
+   "cfg": "scene_c.json"
+  },
+  {
+   "tool": "card-maker",
+   "cfg": {
+    "type": "rx",
+    "dur": 4.2,
+    "title": "ファイト・クラブ",
+    "dose": "金曜の夜、ひとりで。",
+    "side": "月曜、ネクタイが首輪に見える。",
+    "doc": "…お大事に。"
+   },
+   "sfx": [
+    {
+     "t": 0,
+     "sfx": "sfx/whoosh"
+    }
+   ]
+  },
+  {
+   "tool": "studio",
+   "cfg": "scene_d.json"
+  }
+ ],
+ "bgm": {
+  "file": "bgm/lofi_loop.wav",
+  "db": -17
+ }
+}

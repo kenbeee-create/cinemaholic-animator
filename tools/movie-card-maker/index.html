@@ -392,8 +392,10 @@ function bind(){
 
 /* 自動書き出し用 */
 window.MC=MC;
-window.loadCfg=async c=>{ cfg=Object.assign(JSON.parse(JSON.stringify(DEFAULT)),c); await MC.ready(cfg); return MC.cues(); };
-window.frameAt=(t,q)=>{ MC.render(ctx,cfg,t); return q&&q<0.9?cv.toDataURL("image/jpeg",q):cv.toDataURL("image/png"); };
+// "speed": 1.6 のようにすると、同じ動きを速く（短く）再生する（構成v2では2.5秒）
+window.loadCfg=async c=>{ cfg=Object.assign(JSON.parse(JSON.stringify(DEFAULT)),c); await MC.ready(cfg); const r=MC.cues(), k=+cfg.speed||1;
+  return {duration:r.duration/k, cues:r.cues.map(x=>({...x,t:x.t/k}))}; };
+window.frameAt=(t,q)=>{ MC.render(ctx,cfg,Math.min(MC.T.end,t*(+cfg.speed||1))); return q&&q<0.9?cv.toDataURL("image/jpeg",q):cv.toDataURL("image/png"); };
 
 (async()=>{
   if(new URLSearchParams(location.search).has("headless")){ document.body.classList.add("headless"); await MC.ready({}); window.__ready=true; return; }
