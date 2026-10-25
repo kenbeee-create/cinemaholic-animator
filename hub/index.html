@@ -58,8 +58,8 @@ footer{color:var(--dim);font-size:12px;padding:30px 0}
 </head>
 <body>
 <div class="wrap">
-<header><h1>シネマホリック まとめ</h1><p>道具・プロンプト・画像・資料へのリンクを全部ここに。更新：2026-10-24</p></header>
-<nav><a href="#tools">道具</a><a href="#prompts">ChatGPTプロンプト</a><a href="#batch">まとめ作り</a><a href="#images">添付する画像</a><a href="#todo">必要な素材</a><a href="#preview">確認用</a><a href="#docs">資料</a></nav>
+<header><h1>シネマホリック まとめ</h1><p>道具・プロンプト・画像・資料へのリンクを全部ここに。更新：2026-10-25</p></header>
+<nav><a href="#tools">道具</a><a href="#prompts">ChatGPTプロンプト</a><a href="#batch">まとめ作り</a><a href="#sbp">絵コンテ用</a><a href="#images">添付する画像</a><a href="#todo">必要な素材</a><a href="#preview">確認用</a><a href="#docs">資料</a></nav>
 
 <section id="tools"><h2 class="sec">道具</h2><div class="tools"><a class="tool" href="../tools/studio/"><b>スタジオ</b><span>部屋のセットに2人を置いて、カットごとにカメラ・セリフ・表情・動きを決めて会話シーンを作る</span></a><a class="tool" href="../tools/chat-maker/"><b>トーク画面メーカー</b><span>冒頭のトーク画面（S1）。メッセージを打つと動く画面になる</span></a><a class="tool" href="../tools/movie-card-maker/"><b>映画紹介メーカー</b><span>処方箋ふうの映画紹介（ポスター・効きめ・もらえる薬局）</span></a><a class="tool" href="../tools/card-maker/"><b>文字の画面メーカー</b><span>バックボーン（S5）・名言（S7）・処方箋（S8）</span></a><a class="tool" href="../"><b>（旧）アニメーター</b><span>最初に作ったキャラを動かす道具</span></a></div>
 <p class="note">どれもスマホ・PCのブラウザで使えます。「JSONをコピー」して Claude に渡すと、同じ見た目で高画質に書き出します。</p></section>
@@ -1349,6 +1349,96 @@ Vertical 9:16 background illustration, no characters. A close-up looking down at
 Vertical 9:16 background illustration, no characters. The door side of the attached room: a half-open wooden door with a dim hallway behind it, a shoe rack, coats on hooks, same warm lighting and colors as the room.
 </code></pre>
 <p>あとの処理：assets/backgrounds/door.png</p></div></details></section>
+
+<section id="sbp"><h2 class="sec">絵コンテ用プロンプト（新作予習・映画館・エモーショナル版）</h2>
+<p class="note">新しいチャットで3枚添付 → 共通の前置き → ①〜⑧を順に。</p>
+
+<p>ChatGPTで<strong>イメージ絵コンテ</strong>（1コマずつの絵）を作るためのプロンプト。<strong>新しいチャット</strong>で、最初に <a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a> と <a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>・<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a> の3枚を添付してから「共通の前置き」を送り、そのあと①から順に1つずつ送る。
+スクリーンには<strong>本物の映画・予告は描かない</strong>（光と色、またはオリジナルのモチーフだけ）。</p>
+
+<details class="step"><summary>エモーションの作り方（このシリーズの決まり）</summary><div class="inner">
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>やり方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>光</td>
+<td>部屋は暗く、光源は<strong>スクリーンだけ</strong>。光が顔と毛の輪郭に当たり、背中側は闇に沈む</td>
+</tr>
+<tr>
+<td>色</td>
+<td>1コマに主役の色は2つまで（スクリーンの色＋暗い赤茶）。気持ちが動くコマだけ色が変わる</td>
+</tr>
+<tr>
+<td>構図</td>
+<td>2人を画面の下3分の1に小さく置き、上に大きな空間（光・闇）を残す。孤独と期待が同時に出る</td>
+</tr>
+<tr>
+<td>間</td>
+<td>何も起きないコマ（光の粒が漂うだけ・ポップコーンを持つ手が止まる）を必ず1つ入れる</td>
+</tr>
+<tr>
+<td>顔</td>
+<td>正面からのアップは1回だけ（スクリーン側から2人の顔を見る「切り返し」）。ここが山場</td>
+</tr>
+</tbody>
+</table>
+</div></details>
+<details class="step"><summary>共通の前置き（最初に1回だけ送る）</summary><div class="inner">
+<pre><code>You will draw storyboard frames for a short anime-style video, one frame per message, all in ONE consistent look.
+Characters (exactly as in the attached images): Gonbe — brown floppy-eared dog, dark-brown knit beanie (always on), red hoodie, navy pants, sleepy half-closed bored eyes (never wide, never teary). Johndoe — round fluffy black dog whose curly fur COMPLETELY hides his eyes, plain cream T-shirt, grey shorts.
+Look: the same flat 2D cartoon style and bold dark outlines as the attached key visual, but CINEMATIC and EMOTIONAL: a dark old movie theater lit ONLY by the screen; soft colored light from the screen spills onto their fur and rims their outlines; deep shadows; visible dust floating in the projector beam; quiet, lonely-but-warm mood, like a late weeknight show with almost nobody there.
+Rules: vertical 9:16. The screen NEVER shows a real movie, real characters, logos or text — only soft blurry colored light or simple original abstract shapes. No text or letters anywhere in the image. Keep the characters' designs identical in every frame.
+Reply &quot;OK&quot; and wait for frame 1.
+</code></pre>
+</div></details>
+<details class="step"><summary>① 0–2秒 フック：ほぼ誰もいない映画館</summary><div class="inner">
+<pre><code>Frame 1. Wide shot from the back of the theater, high and far. Rows of empty dark-red seats. Only Gonbe and Johndoe sit in the middle of the room, small in the lower third of the frame, seen from behind. The big screen glows deep magenta and cyan, filling the top half with light; a long projector beam cuts diagonally through the dark with floating dust. Their outlines glow faintly in the screen color. Mood: two people alone in a huge dark room, about to see something.
+</code></pre>
+</div></details>
+<details class="step"><summary>② 2–4秒 後ろ姿に寄る：ささやく</summary><div class="inner">
+<pre><code>Frame 2. Medium shot from directly behind their seats, at head height. Gonbe leans his head toward Johndoe, whispering; Johndoe's big fluffy head tilts slightly to listen. Between them a striped popcorn bucket on the armrest catches the light. The screen beyond them is a soft out-of-focus wash of warm orange. Strong rim light on the fur edges of both heads, faces unseen.
+</code></pre>
+</div></details>
+<details class="step"><summary>③ 4–6秒 光の中：スクリーンの色が変わる瞬間</summary><div class="inner">
+<pre><code>Frame 3. Over-the-shoulder shot from behind Gonbe's left shoulder (the back of his beanie and ear soft and dark in the foreground). The screen fills most of the frame: blurry original abstract shapes suggesting a rainy neon city at night (pink and blue blobs, vertical streaks of light, no buildings in detail, no text). The colored light just changed and floods over Gonbe's ear and beanie. Projector dust sparkles.
+</code></pre>
+</div></details>
+<details class="step"><summary>④ 6–8秒 間：何も起きないコマ</summary><div class="inner">
+<pre><code>Frame 4. Extreme close-up of Gonbe's paw holding a single piece of popcorn, frozen halfway to his mouth, lit only by flickering blue screen light. Everything else is soft darkness. A quiet, suspended moment.
+</code></pre>
+</div></details>
+<details class="step"><summary>⑤ 8–11秒 山場：スクリーン側からの切り返し</summary><div class="inner">
+<pre><code>Frame 5. Reverse shot from the screen's point of view looking back at the audience. Gonbe and Johndoe sit side by side facing us in the dark seats, their faces fully washed in soft glowing screen light (warm gold fading to blue). Gonbe keeps his usual sleepy half-closed eyes, but his brows lift slightly and his mouth is slightly open in quiet wonder; the screen light reflects as a tiny highlight in his pupils. Johndoe's fur glows at the edges, mouth slightly open. Empty seats fade into darkness behind them. This is the emotional peak: two people quietly moved.
+</code></pre>
+</div></details>
+<details class="step"><summary>⑥ 11–13秒 じょんどぅーの横顔</summary><div class="inner">
+<pre><code>Frame 6. Side profile close-up of Johndoe in the dark, facing right toward the screen. The screen light draws a thin bright line along the curls of his fur, the tip of his nose and his small mouth. Behind him, out of focus, Gonbe's beanie silhouette. Calm, knowing mood, as if he has seen this many times and still loves it.
+</code></pre>
+</div></details>
+<details class="step"><summary>⑦ 13–16秒 余韻：エンドロールの光</summary><div class="inner">
+<pre><code>Frame 7. Wide shot from behind again, the same angle as frame 1 but closer. The screen is now nearly dark with thin white vertical lines of light slowly scrolling (like end credits, but no readable text). The theater is darker; the two silhouettes sit still, not leaving yet. A single soft beam from the projector. Bittersweet, quiet.
+</code></pre>
+</div></details>
+<details class="step"><summary>⑧ 16–20秒 外へ：夜の街</summary><div class="inner">
+<pre><code>Frame 8. Outside the old cinema at night after the show. Light rain, wet street reflecting the warm marquee lights (the marquee has no letters, just glowing bulbs). Gonbe and Johndoe walk away side by side under one plain umbrella, seen from behind, small in the frame. Gonbe's red hoodie is the only strong color. Lonely streets but they are together.
+</code></pre>
+</div></details>
+<details class="step"><summary>うまくいかないとき（貼り足す一文）</summary><div class="inner">
+<ul>
+<li>スクリーンに映画の場面や文字が出た → <code>The screen must show only blurry colored light, no images, no text.</code></li>
+<li>ごんべぇの目が大きく・うるうるになった → <code>Keep Gonbe's eyes sleepy and half-closed, exactly like the reference.</code></li>
+<li>じょんどぅーの目が見えた → <code>Johndoe's eyes must stay completely hidden by his fur.</code></li>
+<li>明るすぎる → <code>Make it much darker; the only light source is the screen.</code></li>
+<li>絵柄がリアルになった → <code>Keep the flat 2D cartoon style with bold outlines from the key visual.</code></li>
+</ul>
+</div></details>
+<details class="step"><summary>できたら</summary><div class="inner">
+<p>8枚をClaudeに送る（名前は <code>sb_theater_01.png</code> 〜 <code>08.png</code>。違っていても大丈夫）。セリフ・秒数・カメラの動きを書き込んだ絵コンテのシートにまとめ、そのまま下書き動画にする。</p></div></details></section>
 
 <section id="images"><h2 class="sec">添付する画像（押すと保存）</h2><div class="imgs"><a class="img" href="../assets/characters/gonbe/gonbe_base.png" download="gonbe_base.png"><img loading="lazy" src="../assets/characters/gonbe/gonbe_base.png" alt=""><span>ごんべぇ（最初の基本の絵）<small>gonbe_base.png</small></span></a><a class="img" href="../assets/characters/johndoe/johndoe_base.png" download="johndoe_base.png"><img loading="lazy" src="../assets/characters/johndoe/johndoe_base.png" alt=""><span>じょんどぅー（最初の基本の絵）<small>johndoe_base.png</small></span></a><a class="img" href="../assets/backgrounds/johndoe_room_v1.png" download="johndoe_room_v1.png"><img loading="lazy" src="../assets/backgrounds/johndoe_room_v1.png" alt=""><span>部屋（最初の絵）<small>johndoe_room_v1.png</small></span></a><a class="img" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><img loading="lazy" src="../assets/keyvisual/keyvisual.png" alt=""><span>完成図（Tシャツ無地版）<small>keyvisual.png</small></span></a><a class="img" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><img loading="lazy" src="../assets/characters/gonbe/sit_source.png" alt=""><span>ごんべぇ（座り・透明背景）<small>gonbe/sit_source.png</small></span></a><a class="img" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><img loading="lazy" src="../assets/characters/johndoe/sit_source.png" alt=""><span>じょんどぅー（座り・無地Tシャツ・透明背景）<small>johndoe/sit_source.png</small></span></a><a class="img" href="../assets/characters/johndoe/doctor_stand.png" download="doctor_stand.png"><img loading="lazy" src="../assets/characters/johndoe/doctor_stand.png" alt=""><span>白衣のじょんどぅー（立ち絵）<small>doctor_stand.png</small></span></a><a class="img" href="../assets/backgrounds/room_base_source.png" download="room_base_source.png"><img loading="lazy" src="../assets/backgrounds/room_base_source.png" alt=""><span>2人がいない部屋<small>room_base_source.png</small></span></a></div></section>
 
