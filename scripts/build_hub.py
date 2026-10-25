@@ -113,7 +113,7 @@ def build():
                  else f'<a href="{rel(p)}"><img loading="lazy" src="{rel(p)}" alt=""></a>')
         prev += f'<figure>{media}<figcaption>{html.escape(label)}</figcaption></figure>'
     today = datetime.date.today().isoformat()
-    page = TEMPLATE.replace("{{TOOLS}}", tools).replace("{{PROMPTS}}", prompts_html()).replace("{{BATCH}}", prompts_html("assets/prompts/batch01.md")).replace("{{SBP}}", prompts_html("assets/prompts/storyboard_theater.md")).replace("{{IMAGES}}", imgs) \
+    page = TEMPLATE.replace("{{TOOLS}}", tools).replace("{{PROMPTS}}", prompts_html()).replace("{{BATCH}}", prompts_html("assets/prompts/batch01.md")).replace("{{SBP}}", prompts_html("assets/prompts/storyboard_theater.md") + prompts_html("assets/prompts/storyboard_rental.md")).replace("{{IMAGES}}", imgs) \
         .replace("{{TODO}}", todo).replace("{{DOCS}}", docs).replace("{{PREVIEWS}}", prev).replace("{{DATE}}", today)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     open(OUT, "w", encoding="utf-8").write(page)
@@ -194,8 +194,8 @@ footer{color:var(--dim);font-size:12px;padding:30px 0}
 <p class="note">家でデスクトップアプリとリンクしたら、Claude がこの順番で ChatGPT に頼みます。手でやるときもこの順でコピペ。★が優先。</p>
 {{BATCH}}</section>
 
-<section id="sbp"><h2 class="sec">絵コンテ用プロンプト（新作予習・映画館・エモーショナル版）</h2>
-<p class="note">新しいチャットで3枚添付 → 共通の前置き → ①〜⑧を順に。</p>
+<section id="sbp"><h2 class="sec">絵コンテ用プロンプト（エモーショナル版）</h2>
+<p class="note">映画館（新作予習・8コマ）と、高校時代のレンタル店（名作なのに観てない・10コマ）。どちらも新しいチャットで3枚添付 → 共通の前置き → ①から順に。</p>
 {{SBP}}</section>
 
 <section id="images"><h2 class="sec">添付する画像（押すと保存）</h2><div class="imgs">{{IMAGES}}</div></section>
