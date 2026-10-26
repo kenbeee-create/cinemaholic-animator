@@ -1,0 +1,21 @@
+{
+ "gonbe_outfit": "gonbe_suit",
+ "johndoe_outfit": "johndoe_tee",
+ "room": {
+  "tint": "#b0603a",
+  "tintA": 0.14,
+  "window": "rain",
+  "poster": "（オリジナル）朝焼けの階段",
+  "props_sheet": "sheet_props_ep03.png"
+ },
+ "cutaways": [
+  {
+   "file": "cutaways/slack_ep03.png",
+   "label": "会社のパソコンに昇進のお知らせ、拍手の絵文字が並ぶ（文字は読めない）"
+  },
+  {
+   "file": "cutaways/typewriter_ep03.png",
+   "label": "安アパートの夜、タイプライターに向かう影（3日半）"
+  }
+ ]
+}

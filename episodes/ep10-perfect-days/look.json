@@ -1,0 +1,21 @@
+{
+ "gonbe_outfit": "gonbe_coverall",
+ "johndoe_outfit": "johndoe_jersey",
+ "room": {
+  "tint": "#5a8a6a",
+  "tintA": 0.14,
+  "window": "stars",
+  "poster": "（オリジナル）木もれ日",
+  "props_sheet": "sheet_props_ep10.png"
+ },
+ "cutaways": [
+  {
+   "file": "cutaways/donichi_ep10.png",
+   "label": "日曜の夜、YouTubeの光と寝ぐせ"
+  },
+  {
+   "file": "cutaways/komorebi_ep10.png",
+   "label": "木もれ日を見上げる、作業着の後ろ姿（影）"
+  }
+ ]
+}

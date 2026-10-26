@@ -1,0 +1,21 @@
+{
+ "gonbe_outfit": "gonbe_vest",
+ "johndoe_outfit": "johndoe_tee",
+ "room": {
+  "tint": "#c8a050",
+  "tintA": 0.14,
+  "window": "stars",
+  "poster": "（オリジナル）ロケットと星空",
+  "props_sheet": "sheet_props_ep06.png"
+ },
+ "cutaways": [
+  {
+   "file": "cutaways/ai5min_ep06.png",
+   "label": "AIの5分と、ごんべぇの3時間"
+  },
+  {
+   "file": "cutaways/ibm_ep06.png",
+   "label": "1960年代の巨大な計算機の部屋（人は影）"
+  }
+ ]
+}

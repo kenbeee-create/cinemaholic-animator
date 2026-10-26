@@ -1,0 +1,21 @@
+{
+ "gonbe_outfit": "gonbe_jacket",
+ "johndoe_outfit": "johndoe_tee",
+ "room": {
+  "tint": "#4a6a8a",
+  "tintA": 0.14,
+  "window": "stars",
+  "poster": "（オリジナル）雲の上の飛行機",
+  "props_sheet": "sheet_props_ep04.png"
+ },
+ "cutaways": [
+  {
+   "file": "cutaways/shiryou_ep04.png",
+   "label": "誰も見ない会議の資料"
+  },
+  {
+   "file": "cutaways/audition_ep04.png",
+   "label": "廊下で待つ、仕事を失った人たち（影）"
+  }
+ ]
+}

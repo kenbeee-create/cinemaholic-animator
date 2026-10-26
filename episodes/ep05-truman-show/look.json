@@ -1,0 +1,21 @@
+{
+ "gonbe_outfit": "gonbe_cardigan_shirt",
+ "johndoe_outfit": "johndoe_aloha",
+ "room": {
+  "tint": "#7aa0b8",
+  "tintA": 0.14,
+  "window": "none",
+  "poster": "（オリジナル）空に描かれた雲の壁",
+  "props_sheet": "sheet_props_ep05.png"
+ },
+ "cutaways": [
+  {
+   "file": "cutaways/aisowarai_ep05.png",
+   "label": "上司の話に笑うごんべぇ（上司は影）"
+  },
+  {
+   "file": "cutaways/seaside_ep05.png",
+   "label": "パステルの家が並ぶ、作り物みたいに完ぺきな海辺の町"
+  }
+ ]
+}

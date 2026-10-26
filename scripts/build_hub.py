@@ -43,7 +43,7 @@ IMAGES = [
 DOCS = [
     ("キャラクター設定書", "docs/characters.md"), ("冒頭（トーク画面・タイトル）", "docs/opening.md"),
     ("回ごとの見た目（部屋と服）", "docs/episode-look.md"), ("映画紹介の画面", "docs/movie-card.md"),
-    ("スタジオの使い方", "docs/studio.md"), ("絵柄のルール（AIっぽさを消す）", "docs/style-bible.md"), ("動画の作り方", "docs/production-flow.md"), ("動画の構成v2（提案）", "docs/format-v2.md"),
+    ("スタジオの使い方", "docs/studio.md"), ("絵柄のルール（AIっぽさを消す）", "docs/style-bible.md"), ("動画の作り方", "docs/production-flow.md"), ("動画の構成v2（提案）", "docs/format-v2.md"), ("シーズン1（本編10本）", "docs/season1.md"),
     ("品質基準", "docs/quality-bar.md"), ("トーン（色・文字）", "docs/tone.md"),
     ("入りのひと言の台帳", "docs/opening-lines.md"), ("絵コンテ（型）", "docs/storyboard/README.md"),
     ("進捗", "docs/studio-status.md"), ("CLAUDE.md（全体のルール）", "CLAUDE.md"),
@@ -113,7 +113,7 @@ def build():
                  else f'<a href="{rel(p)}"><img loading="lazy" src="{rel(p)}" alt=""></a>')
         prev += f'<figure>{media}<figcaption>{html.escape(label)}</figcaption></figure>'
     today = datetime.date.today().isoformat()
-    page = TEMPLATE.replace("{{TOOLS}}", tools).replace("{{PROMPTS}}", prompts_html()).replace("{{BATCH}}", prompts_html("assets/prompts/batch01.md")).replace("{{SBP}}", prompts_html("assets/prompts/storyboard_theater.md") + prompts_html("assets/prompts/storyboard_rental.md")).replace("{{IMAGES}}", imgs) \
+    page = TEMPLATE.replace("{{TOOLS}}", tools).replace("{{PROMPTS}}", prompts_html()).replace("{{BATCH}}", prompts_html("assets/prompts/batch01.md")).replace("{{BATCH2}}", prompts_html("assets/prompts/batch02.md")).replace("{{SBP}}", prompts_html("assets/prompts/storyboard_theater.md") + prompts_html("assets/prompts/storyboard_rental.md")).replace("{{IMAGES}}", imgs) \
         .replace("{{TODO}}", todo).replace("{{DOCS}}", docs).replace("{{PREVIEWS}}", prev).replace("{{DATE}}", today)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     open(OUT, "w", encoding="utf-8").write(page)
@@ -181,7 +181,7 @@ footer{color:var(--dim);font-size:12px;padding:30px 0}
 <body>
 <div class="wrap">
 <header><h1>シネマホリック まとめ</h1><p>道具・プロンプト・画像・資料へのリンクを全部ここに。更新：{{DATE}}</p></header>
-<nav><a href="#tools">道具</a><a href="#prompts">ChatGPTプロンプト</a><a href="#batch">まとめ作り</a><a href="#sbp">絵コンテ用</a><a href="#images">添付する画像</a><a href="#todo">必要な素材</a><a href="#preview">確認用</a><a href="#docs">資料</a></nav>
+<nav><a href="#tools">道具</a><a href="#prompts">ChatGPTプロンプト</a><a href="#batch">まとめ作り</a><a href="#batch2">バッチ2</a><a href="#sbp">絵コンテ用</a><a href="#images">添付する画像</a><a href="#todo">必要な素材</a><a href="#preview">確認用</a><a href="#docs">資料</a></nav>
 
 <section id="tools"><h2 class="sec">道具</h2><div class="tools">{{TOOLS}}</div>
 <p class="note">どれもスマホ・PCのブラウザで使えます。「JSONをコピー」して Claude に渡すと、同じ見た目で高画質に書き出します。</p></section>
@@ -193,6 +193,10 @@ footer{color:var(--dim);font-size:12px;padding:30px 0}
 <section id="batch"><h2 class="sec">素材のまとめ作り（バッチ1・52本）</h2>
 <p class="note">家でデスクトップアプリとリンクしたら、Claude がこの順番で ChatGPT に頼みます。手でやるときもこの順でコピペ。★が優先。</p>
 {{BATCH}}</section>
+
+<section id="batch2"><h2 class="sec">素材のまとめ作り（バッチ2・本編10本ぶん：服・小物・挿絵）</h2>
+<p class="note">服は座りの絵を添付して「元の画像を編集」。小物と挿絵は完成図を添付。一覧は資料の「シーズン1」。</p>
+{{BATCH2}}</section>
 
 <section id="sbp"><h2 class="sec">絵コンテ用プロンプト（エモーショナル版）</h2>
 <p class="note">映画館（新作予習・8コマ）と、高校時代のレンタル店（名作なのに観てない・10コマ）。どちらも新しいチャットで3枚添付 → 共通の前置き → ①から順に。</p>

@@ -1,0 +1,437 @@
+{
+ "style_lock": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks.",
+ "items": [
+  {
+   "id": "O-gonbe_jacket",
+   "group": "服",
+   "title": "ごんべぇ：紺のジャケット＋白T（オフィスカジュアル）（ep04）",
+   "chat": "new",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "save": "gonbe_jacket.png",
+   "post": "assets/characters/gonbe/outfits/jacket/ に置き、頭と体を分けるリグを作る",
+   "prompt": "Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: an unstructured navy blazer over a plain white T-shirt, beige chino trousers. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background."
+  },
+  {
+   "id": "O-gonbe_cardigan_shirt",
+   "group": "服",
+   "title": "ごんべぇ：白シャツ＋グレーのカーディガン（ep05）",
+   "chat": "same:O-gonbe_jacket",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "save": "gonbe_cardigan_shirt.png",
+   "post": "assets/characters/gonbe/outfits/cardigan_shirt/ に置き、頭と体を分けるリグを作る",
+   "prompt": "Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a white button-up shirt with a thin grey cardigan, navy trousers. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background."
+  },
+  {
+   "id": "O-gonbe_vest",
+   "group": "服",
+   "title": "ごんべぇ：ワイシャツ＋ニットベスト＋社員証（ep06）",
+   "chat": "same:O-gonbe_jacket",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "save": "gonbe_vest.png",
+   "post": "assets/characters/gonbe/outfits/vest/ に置き、頭と体を分けるリグを作る",
+   "prompt": "Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a light-blue dress shirt with a brown knit sweater vest and a plain ID badge on a lanyard (blank badge, no text), navy trousers. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background."
+  },
+  {
+   "id": "O-gonbe_knit",
+   "group": "服",
+   "title": "ごんべぇ：マスタードのざっくりニット（ep07）",
+   "chat": "same:O-gonbe_jacket",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "save": "gonbe_knit.png",
+   "post": "assets/characters/gonbe/outfits/knit/ に置き、頭と体を分けるリグを作る",
+   "prompt": "Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a chunky mustard-yellow cable-knit sweater, dark olive cargo pants. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background."
+  },
+  {
+   "id": "O-gonbe_border",
+   "group": "服",
+   "title": "ごんべぇ：ボーダーT＋デニムジャケット（ep09）",
+   "chat": "same:O-gonbe_jacket",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "save": "gonbe_border.png",
+   "post": "assets/characters/gonbe/outfits/border/ に置き、頭と体を分けるリグを作る",
+   "prompt": "Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a navy-and-cream striped long-sleeve T-shirt under a faded denim jacket, black pants. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background."
+  },
+  {
+   "id": "O-gonbe_coverall",
+   "group": "服",
+   "title": "ごんべぇ：紺のカバーオール（作業着ふう）（ep10）",
+   "chat": "same:O-gonbe_jacket",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "save": "gonbe_coverall.png",
+   "post": "assets/characters/gonbe/outfits/coverall/ に置き、頭と体を分けるリグを作る",
+   "prompt": "Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a plain navy work coverall jacket over a grey T-shirt, navy work pants (no logos, no name tag). Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background."
+  },
+  {
+   "id": "O-gonbe_sweat",
+   "group": "服",
+   "title": "ごんべぇ：古着のくすんだ緑スウェット（ep11）",
+   "chat": "same:O-gonbe_jacket",
+   "attach": [
+    "gonbe/sit_source.png"
+   ],
+   "save": "gonbe_sweat.png",
+   "post": "assets/characters/gonbe/outfits/sweat/ に置き、頭と体を分けるリグを作る",
+   "prompt": "Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a faded dusty-green vintage crewneck sweatshirt (plain, no print), light-blue jeans. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background."
+  },
+  {
+   "id": "O-johndoe_aloha",
+   "group": "服",
+   "title": "じょんどぅー：派手めのアロハシャツ（ep05）",
+   "chat": "new",
+   "attach": [
+    "johndoe/sit_source.png"
+   ],
+   "save": "johndoe_aloha.png",
+   "post": "assets/characters/johndoe/outfits/aloha/ に置き、頭と体を分けるリグを作る",
+   "prompt": "Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a loose short-sleeved Hawaiian shirt with a simple pattern of big mustard and dusty-red flowers (no text), grey shorts. His eyes must stay completely hidden by the fur. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background."
+  },
+  {
+   "id": "O-johndoe_turtle",
+   "group": "服",
+   "title": "じょんどぅー：黒のタートルネック（ep11）",
+   "chat": "same:O-johndoe_aloha",
+   "attach": [
+    "johndoe/sit_source.png"
+   ],
+   "save": "johndoe_turtle.png",
+   "post": "assets/characters/johndoe/outfits/turtle/ に置き、頭と体を分けるリグを作る",
+   "prompt": "Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a fitted black turtleneck sweater, grey shorts — like a serious film critic. His eyes must stay completely hidden by the fur. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background."
+  },
+  {
+   "id": "P-ep03",
+   "group": "小物",
+   "title": "ep03 ロッキー の小物9個",
+   "chat": "new",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "sheet_props_ep03.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a pair of worn boxing gloves hanging by laces; (2) a jump rope; (3) a carton of eggs. Row 2: (4) a plain grey sweatshirt folded; (5) a small dumbbell; (6) a plain alarm clock. Row 3: (7) a plain trophy with no text; (8) a hand towel; (9) a pair of old running shoes."
+  },
+  {
+   "id": "C-ep03-slack",
+   "group": "挿絵",
+   "title": "ep03 ロッキー：会社のパソコンに昇進のお知らせ、拍手の絵文字が並ぶ（文字は読めない）",
+   "chat": "new",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_slack_ep03.png",
+   "post": "assets/cutaways/slack_ep03.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a laptop screen in a dim office showing a blank chat window full of tiny confetti and clapping-hand icons (no readable text), Gonbe's paw frozen over the keyboard, in a navy suit sleeve."
+  },
+  {
+   "id": "C-ep03-typewriter",
+   "group": "挿絵",
+   "title": "ep03 ロッキー：安アパートの夜、タイプライターに向かう影（3日半）",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_typewriter_ep03.png",
+   "post": "assets/cutaways/typewriter_ep03.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a cheap small apartment at night, a lone figure drawn only as a dark featureless silhouette typing on a typewriter by a desk lamp, crumpled papers everywhere, a TV in the corner glowing (no image on it)."
+  },
+  {
+   "id": "P-ep04",
+   "group": "小物",
+   "title": "ep04 マイレージ、マイライフ の小物9個",
+   "chat": "same:P-ep03",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "sheet_props_ep04.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a small carry-on suitcase; (2) a neck pillow; (3) a plain boarding pass with no text. Row 2: (4) a backpack; (5) an airline-style coffee cup, plain; (6) a hotel key card, plain. Row 3: (7) a laptop closed; (8) a toy airplane; (9) a plain luggage tag."
+  },
+  {
+   "id": "C-ep04-shiryou",
+   "group": "挿絵",
+   "title": "ep04 マイレージ、マイライフ：誰も見ない会議の資料",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_shiryou_ep04.png",
+   "post": "assets/cutaways/shiryou_ep04.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a meeting room where everyone's faces are dark featureless silhouettes looking at their phones, while Gonbe (in a navy blazer) holds up a neat chart on a screen that no one is looking at (chart with simple shapes, no text)."
+  },
+  {
+   "id": "C-ep04-audition",
+   "group": "挿絵",
+   "title": "ep04 マイレージ、マイライフ：廊下で待つ、仕事を失った人たち（影）",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_audition_ep04.png",
+   "post": "assets/cutaways/audition_ep04.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a plain office interview room, a single chair, a row of different ordinary people drawn only as dark featureless silhouettes waiting on chairs in a hallway, cold light, quiet and sad."
+  },
+  {
+   "id": "P-ep05",
+   "group": "小物",
+   "title": "ep05 トゥルーマン・ショー の小物9個",
+   "chat": "same:P-ep03",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "sheet_props_ep05.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a small toy sailboat; (2) a plain studio spotlight; (3) a vintage TV camera on a tripod. Row 2: (4) a plain lunchbox; (5) a sun hat; (6) a small model of a cute pastel house. Row 3: (7) a plain coffee mug; (8) a briefcase; (9) a clapperboard with no writing."
+  },
+  {
+   "id": "C-ep05-aisowarai",
+   "group": "挿絵",
+   "title": "ep05 トゥルーマン・ショー：上司の話に笑うごんべぇ（上司は影）",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_aisowarai_ep05.png",
+   "post": "assets/cutaways/aisowarai_ep05.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: an office break room: Gonbe in a white shirt and grey cardigan forcing a big fake smile with sweat, while his boss is drawn only as a dark featureless silhouette talking with big gestures."
+  },
+  {
+   "id": "C-ep05-seaside",
+   "group": "挿絵",
+   "title": "ep05 トゥルーマン・ショー：パステルの家が並ぶ、作り物みたいに完ぺきな海辺の町",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_seaside_ep05.png",
+   "post": "assets/cutaways/seaside_ep05.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a too-perfect pastel seaside small town with neat white picket fences and identical cute houses under a clear blue sky, a faint grid line visible in the sky like a painted backdrop, no people, no text."
+  },
+  {
+   "id": "P-ep06",
+   "group": "小物",
+   "title": "ep06 ドリーム の小物9個",
+   "chat": "same:P-ep03",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "sheet_props_ep06.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a small toy rocket; (2) a chalkboard with simple chalk curves and dots (no numbers, no letters); (3) a vintage room-sized computer cabinet in miniature with blinking lights. Row 2: (4) a slide rule; (5) a stack of punch cards (blank); (6) a pair of cat-eye glasses. Row 3: (7) a pencil and eraser; (8) a thermos; (9) a globe."
+  },
+  {
+   "id": "C-ep06-ai5min",
+   "group": "挿絵",
+   "title": "ep06 ドリーム：AIの5分と、ごんべぇの3時間",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_ai5min_ep06.png",
+   "post": "assets/cutaways/ai5min_ep06.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: an office at night: Gonbe in a light-blue shirt and knit vest, exhausted, surrounded by piles of paper, while on the next desk a sleek laptop glows smugly with a tiny cute robot icon (no text); a big round wall clock."
+  },
+  {
+   "id": "C-ep06-ibm",
+   "group": "挿絵",
+   "title": "ep06 ドリーム：1960年代の巨大な計算機の部屋（人は影）",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_ibm_ep06.png",
+   "post": "assets/cutaways/ibm_ep06.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a 1960s computing room with huge refrigerator-sized computer cabinets with reels and blinking lights; several women drawn only as dark featureless silhouettes in 1960s dresses studying a thick manual together, warm hopeful light."
+  },
+  {
+   "id": "P-ep07",
+   "group": "小物",
+   "title": "ep07 LIFE! の小物9個",
+   "chat": "same:P-ep03",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "sheet_props_ep07.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a vintage film camera; (2) a roll of film negatives; (3) a skateboard (longboard). Row 2: (4) a hiking backpack; (5) a thermos; (6) a paper map, folded, no text. Row 3: (7) a pair of binoculars; (8) a wool hat; (9) a polaroid photo, blank."
+  },
+  {
+   "id": "C-ep07-scout",
+   "group": "挿絵",
+   "title": "ep07 LIFE!：通知が溜まったスマホ（読めない）",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_scout_ep07.png",
+   "post": "assets/cutaways/scout_ep07.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: close-up of a smartphone face up on a bed showing a pile of unread notification bubbles (no readable text, just shapes) glowing in the dark room; Gonbe's paw pushing it away."
+  },
+  {
+   "id": "C-ep07-iceland",
+   "group": "挿絵",
+   "title": "ep07 LIFE!：氷河と滝の大地を、ロングボードで下る小さな影",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_iceland_ep07.png",
+   "post": "assets/cutaways/iceland_ep07.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a vast Icelandic landscape: a long empty road winding down green mountains toward a glacier and waterfall, a tiny figure on a longboard riding down it, huge sky."
+  },
+  {
+   "id": "P-ep08",
+   "group": "小物",
+   "title": "ep08 ラ・ラ・ランド の小物9個",
+   "chat": "same:P-ep03",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "sheet_props_ep08.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a small upright piano; (2) a vinyl record; (3) a jazz club neon-shaped lamp with no letters. Row 2: (4) a yellow dress on a hanger; (5) a vintage microphone; (6) a coffee cup. Row 3: (7) a script stapled, blank pages; (8) a pair of tap shoes; (9) a string of warm bulbs."
+  },
+  {
+   "id": "C-ep08-nomikai",
+   "group": "挿絵",
+   "title": "ep08 ラ・ラ・ランド：飲み会で「将来どうすんの？」",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_nomikai_ep08.png",
+   "post": "assets/cutaways/nomikai_ep08.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a noisy izakaya table at night, several coworkers drawn as dark featureless silhouettes laughing, Gonbe in flannel shirt in the middle holding a beer, smiling politely but empty-eyed (still sleepy half-closed eyes)."
+  },
+  {
+   "id": "C-ep08-freeway",
+   "group": "挿絵",
+   "title": "ep08 ラ・ラ・ランド：渋滞した高速道路のランプで、車の上で踊る人たち（影）",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_freeway_ep08.png",
+   "post": "assets/cutaways/freeway_ep08.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a sunny Los Angeles freeway ramp jammed with colorful cars, many tiny people drawn as simple dark silhouettes dancing on the car roofs, bright blue sky, palm trees, joyful energy, no text."
+  },
+  {
+   "id": "P-ep09",
+   "group": "小物",
+   "title": "ep09 フランシス・ハ の小物9個",
+   "chat": "same:P-ep03",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "sheet_props_ep09.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a small mailbox with a blank name slot; (2) a pair of ballet shoes; (3) a paper bag of groceries. Row 2: (4) a wedding invitation card, blank; (5) a smartphone face down; (6) a cardboard moving box, plain. Row 3: (7) a bicycle bell; (8) a coffee cup with lid; (9) a stack of plain envelopes."
+  },
+  {
+   "id": "C-ep09-insta",
+   "group": "挿絵",
+   "title": "ep09 フランシス・ハ：スマホに流れる結婚・家・赤ちゃんのアイコン（読めない）",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_insta_ep09.png",
+   "post": "assets/cutaways/insta_ep09.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: Gonbe in a striped long-sleeve shirt lying on his bed at night holding up a smartphone over his face; floating above it, simple cute icons of a wedding ring, a little house and a baby bottle drift up like bubbles (no text)."
+  },
+  {
+   "id": "C-ep09-monochrome",
+   "group": "挿絵",
+   "title": "ep09 フランシス・ハ：モノクロの街を、走ってはしゃぐ女の子（影）",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_monochrome_ep09.png",
+   "post": "assets/cutaways/monochrome_ep09.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a black-and-white city street (grayscale only), a young woman drawn as a simple dark silhouette running and skipping joyfully down the sidewalk past brownstone buildings, motion lines, no text."
+  },
+  {
+   "id": "P-ep10",
+   "group": "小物",
+   "title": "ep10 PERFECT DAYS の小物9個",
+   "chat": "same:P-ep03",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "sheet_props_ep10.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a cassette tape with a blank label; (2) a small cassette player; (3) a paperback book, plain cover. Row 2: (4) a film camera, compact; (5) a small potted seedling; (6) a canned coffee, plain. Row 3: (7) a bicycle; (8) a toilet-cleaning brush and bucket, cute; (9) a stack of developed photos, blank."
+  },
+  {
+   "id": "C-ep10-donichi",
+   "group": "挿絵",
+   "title": "ep10 PERFECT DAYS：日曜の夜、YouTubeの光と寝ぐせ",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_donichi_ep10.png",
+   "post": "assets/cutaways/donichi_ep10.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: Sunday night in a small dark one-room apartment: Gonbe lying on the floor in a crumpled blanket, face lit only by a phone screen (no image), empty snack bags around, the window dark."
+  },
+  {
+   "id": "C-ep10-komorebi",
+   "group": "挿絵",
+   "title": "ep10 PERFECT DAYS：木もれ日を見上げる、作業着の後ろ姿（影）",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_komorebi_ep10.png",
+   "post": "assets/cutaways/komorebi_ep10.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a quiet Tokyo park at noon, sunlight filtering through tree leaves (komorebi) in soft dappled patterns, a person in a plain navy work uniform seen from behind as a simple silhouette, looking up, holding a small camera."
+  },
+  {
+   "id": "P-ep11",
+   "group": "小物",
+   "title": "ep11 ニュー・シネマ・パラダイス の小物9個",
+   "chat": "same:P-ep03",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "sheet_props_ep11.png",
+   "post": "python3 scripts/slice_sheet.py <画像> props 名前:表示名 …",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) an old film projector; (2) a film reel; (3) a strip of film. Row 2: (4) a small bicycle; (5) a vintage movie ticket, blank; (6) a cinema seat, single. Row 3: (7) an old radio; (8) a box of old photos; (9) a plain envelope tied with string."
+  },
+  {
+   "id": "C-ep11-netetu",
+   "group": "挿絵",
+   "title": "ep11 ニュー・シネマ・パラダイス：名作を再生したまま、スマホを見ているごんべぇ",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_netetu_ep11.png",
+   "post": "assets/cutaways/netetu_ep11.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: Gonbe in a faded green sweatshirt on his sofa at night, a TV in front of him playing (only soft light, no image), but he is looking down at his phone, bored; a cold blue room."
+  },
+  {
+   "id": "C-ep11-projection",
+   "group": "挿絵",
+   "title": "ep11 ニュー・シネマ・パラダイス：映写室の小窓から、光の帯が客席へのびる",
+   "chat": "same:C-ep03-slack",
+   "attach": [
+    "keyvisual.png"
+   ],
+   "save": "cut_projection_ep11.png",
+   "post": "assets/cutaways/projection_ep11.png",
+   "prompt": "STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: inside a tiny old projection booth: a vintage film projector throwing a bright beam through a small square window into a dark Sicilian village cinema below, a little boy and an old man drawn as warm silhouettes watching together."
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+{
+ "gonbe_outfit": "gonbe_sweat",
+ "johndoe_outfit": "johndoe_turtle",
+ "room": {
+  "tint": "#c87a3a",
+  "tintA": 0.14,
+  "window": "stars",
+  "poster": "（オリジナル）古い映画館と星空",
+  "props_sheet": "sheet_props_ep11.png"
+ },
+ "cutaways": [
+  {
+   "file": "cutaways/netetu_ep11.png",
+   "label": "名作を再生したまま、スマホを見ているごんべぇ"
+  },
+  {
+   "file": "cutaways/projection_ep11.png",
+   "label": "映写室の小窓から、光の帯が客席へのびる"
+  }
+ ]
+}

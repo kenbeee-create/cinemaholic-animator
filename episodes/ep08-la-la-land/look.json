@@ -1,0 +1,21 @@
+{
+ "gonbe_outfit": "gonbe_flannel",
+ "johndoe_outfit": "johndoe_tee",
+ "room": {
+  "tint": "#5a4aa0",
+  "tintA": 0.14,
+  "window": "neon",
+  "poster": "（オリジナル）夜の丘とベンチ",
+  "props_sheet": "sheet_props_ep08.png"
+ },
+ "cutaways": [
+  {
+   "file": "cutaways/nomikai_ep08.png",
+   "label": "飲み会で「将来どうすんの？」"
+  },
+  {
+   "file": "cutaways/freeway_ep08.png",
+   "label": "渋滞した高速道路のランプで、車の上で踊る人たち（影）"
+  }
+ ]
+}

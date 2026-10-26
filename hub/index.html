@@ -58,8 +58,8 @@ footer{color:var(--dim);font-size:12px;padding:30px 0}
 </head>
 <body>
 <div class="wrap">
-<header><h1>シネマホリック まとめ</h1><p>道具・プロンプト・画像・資料へのリンクを全部ここに。更新：2026-10-25</p></header>
-<nav><a href="#tools">道具</a><a href="#prompts">ChatGPTプロンプト</a><a href="#batch">まとめ作り</a><a href="#sbp">絵コンテ用</a><a href="#images">添付する画像</a><a href="#todo">必要な素材</a><a href="#preview">確認用</a><a href="#docs">資料</a></nav>
+<header><h1>シネマホリック まとめ</h1><p>道具・プロンプト・画像・資料へのリンクを全部ここに。更新：2026-10-26</p></header>
+<nav><a href="#tools">道具</a><a href="#prompts">ChatGPTプロンプト</a><a href="#batch">まとめ作り</a><a href="#batch2">バッチ2</a><a href="#sbp">絵コンテ用</a><a href="#images">添付する画像</a><a href="#todo">必要な素材</a><a href="#preview">確認用</a><a href="#docs">資料</a></nav>
 
 <section id="tools"><h2 class="sec">道具</h2><div class="tools"><a class="tool" href="../tools/studio/"><b>スタジオ</b><span>部屋のセットに2人を置いて、カットごとにカメラ・セリフ・表情・動きを決めて会話シーンを作る</span></a><a class="tool" href="../tools/chat-maker/"><b>トーク画面メーカー</b><span>冒頭のトーク画面（S1）。メッセージを打つと動く画面になる</span></a><a class="tool" href="../tools/movie-card-maker/"><b>映画紹介メーカー</b><span>処方箋ふうの映画紹介（ポスター・効きめ・もらえる薬局）</span></a><a class="tool" href="../tools/card-maker/"><b>文字の画面メーカー</b><span>バックボーン（S5）・名言（S7）・処方箋（S8）</span></a><a class="tool" href="../"><b>（旧）アニメーター</b><span>最初に作ったキャラを動かす道具</span></a></div>
 <p class="note">どれもスマホ・PCのブラウザで使えます。「JSONをコピー」して Claude に渡すと、同じ見た目で高画質に書き出します。</p></section>
@@ -1350,6 +1350,499 @@ Vertical 9:16 background illustration, no characters. The door side of the attac
 </code></pre>
 <p>あとの処理：assets/backgrounds/door.png</p></div></details></section>
 
+<section id="batch2"><h2 class="sec">素材のまとめ作り（バッチ2・本編10本ぶん：服・小物・挿絵）</h2>
+<p class="note">服は座りの絵を添付して「元の画像を編集」。小物と挿絵は完成図を添付。一覧は資料の「シーズン1」。</p>
+
+<p>全36本（服 9・小物シート 9・挿絵 18）。上から順に。服はキャラごとに同じチャットで続けると、体の形がそろいやすい。</p>
+
+<details class="step"><summary>使い方</summary><div class="inner">
+<ul>
+<li>服：座りの絵（<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a> か <a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>）を添付して、<strong>毎回「元の画像を編集」</strong>と頼む（前に作った服をさらに編集しない）</li>
+<li>小物・挿絵：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a> を添付。小物は無地のマゼンタ背景で頼む（自動で切り抜く）</li>
+<li>できた画像は保存名でClaudeに送る。切り抜き・リグ作り・登録はClaude</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>種類</th>
+<th>内容</th>
+<th>チャット</th>
+<th>保存名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O-gonbe_jacket</td>
+<td>服</td>
+<td>ごんべぇ：紺のジャケット＋白T（オフィスカジュアル）（ep04）</td>
+<td>新しいチャット</td>
+<td><code>gonbe_jacket.png</code></td>
+</tr>
+<tr>
+<td>O-gonbe_cardigan_shirt</td>
+<td>服</td>
+<td>ごんべぇ：白シャツ＋グレーのカーディガン（ep05）</td>
+<td>O-gonbe_jacketと同じ</td>
+<td><code>gonbe_cardigan_shirt.png</code></td>
+</tr>
+<tr>
+<td>O-gonbe_vest</td>
+<td>服</td>
+<td>ごんべぇ：ワイシャツ＋ニットベスト＋社員証（ep06）</td>
+<td>O-gonbe_jacketと同じ</td>
+<td><code>gonbe_vest.png</code></td>
+</tr>
+<tr>
+<td>O-gonbe_knit</td>
+<td>服</td>
+<td>ごんべぇ：マスタードのざっくりニット（ep07）</td>
+<td>O-gonbe_jacketと同じ</td>
+<td><code>gonbe_knit.png</code></td>
+</tr>
+<tr>
+<td>O-gonbe_border</td>
+<td>服</td>
+<td>ごんべぇ：ボーダーT＋デニムジャケット（ep09）</td>
+<td>O-gonbe_jacketと同じ</td>
+<td><code>gonbe_border.png</code></td>
+</tr>
+<tr>
+<td>O-gonbe_coverall</td>
+<td>服</td>
+<td>ごんべぇ：紺のカバーオール（作業着ふう）（ep10）</td>
+<td>O-gonbe_jacketと同じ</td>
+<td><code>gonbe_coverall.png</code></td>
+</tr>
+<tr>
+<td>O-gonbe_sweat</td>
+<td>服</td>
+<td>ごんべぇ：古着のくすんだ緑スウェット（ep11）</td>
+<td>O-gonbe_jacketと同じ</td>
+<td><code>gonbe_sweat.png</code></td>
+</tr>
+<tr>
+<td>O-johndoe_aloha</td>
+<td>服</td>
+<td>じょんどぅー：派手めのアロハシャツ（ep05）</td>
+<td>新しいチャット</td>
+<td><code>johndoe_aloha.png</code></td>
+</tr>
+<tr>
+<td>O-johndoe_turtle</td>
+<td>服</td>
+<td>じょんどぅー：黒のタートルネック（ep11）</td>
+<td>O-johndoe_alohaと同じ</td>
+<td><code>johndoe_turtle.png</code></td>
+</tr>
+<tr>
+<td>P-ep03</td>
+<td>小物</td>
+<td>ep03 ロッキー の小物9個</td>
+<td>新しいチャット</td>
+<td><code>sheet_props_ep03.png</code></td>
+</tr>
+<tr>
+<td>C-ep03-slack</td>
+<td>挿絵</td>
+<td>ep03 ロッキー：会社のパソコンに昇進のお知らせ、拍手の絵文字が並ぶ（文字は読めない）</td>
+<td>新しいチャット</td>
+<td><code>cut_slack_ep03.png</code></td>
+</tr>
+<tr>
+<td>C-ep03-typewriter</td>
+<td>挿絵</td>
+<td>ep03 ロッキー：安アパートの夜、タイプライターに向かう影（3日半）</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_typewriter_ep03.png</code></td>
+</tr>
+<tr>
+<td>P-ep04</td>
+<td>小物</td>
+<td>ep04 マイレージ、マイライフ の小物9個</td>
+<td>P-ep03と同じ</td>
+<td><code>sheet_props_ep04.png</code></td>
+</tr>
+<tr>
+<td>C-ep04-shiryou</td>
+<td>挿絵</td>
+<td>ep04 マイレージ、マイライフ：誰も見ない会議の資料</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_shiryou_ep04.png</code></td>
+</tr>
+<tr>
+<td>C-ep04-audition</td>
+<td>挿絵</td>
+<td>ep04 マイレージ、マイライフ：廊下で待つ、仕事を失った人たち（影）</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_audition_ep04.png</code></td>
+</tr>
+<tr>
+<td>P-ep05</td>
+<td>小物</td>
+<td>ep05 トゥルーマン・ショー の小物9個</td>
+<td>P-ep03と同じ</td>
+<td><code>sheet_props_ep05.png</code></td>
+</tr>
+<tr>
+<td>C-ep05-aisowarai</td>
+<td>挿絵</td>
+<td>ep05 トゥルーマン・ショー：上司の話に笑うごんべぇ（上司は影）</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_aisowarai_ep05.png</code></td>
+</tr>
+<tr>
+<td>C-ep05-seaside</td>
+<td>挿絵</td>
+<td>ep05 トゥルーマン・ショー：パステルの家が並ぶ、作り物みたいに完ぺきな海辺の町</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_seaside_ep05.png</code></td>
+</tr>
+<tr>
+<td>P-ep06</td>
+<td>小物</td>
+<td>ep06 ドリーム の小物9個</td>
+<td>P-ep03と同じ</td>
+<td><code>sheet_props_ep06.png</code></td>
+</tr>
+<tr>
+<td>C-ep06-ai5min</td>
+<td>挿絵</td>
+<td>ep06 ドリーム：AIの5分と、ごんべぇの3時間</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_ai5min_ep06.png</code></td>
+</tr>
+<tr>
+<td>C-ep06-ibm</td>
+<td>挿絵</td>
+<td>ep06 ドリーム：1960年代の巨大な計算機の部屋（人は影）</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_ibm_ep06.png</code></td>
+</tr>
+<tr>
+<td>P-ep07</td>
+<td>小物</td>
+<td>ep07 LIFE! の小物9個</td>
+<td>P-ep03と同じ</td>
+<td><code>sheet_props_ep07.png</code></td>
+</tr>
+<tr>
+<td>C-ep07-scout</td>
+<td>挿絵</td>
+<td>ep07 LIFE!：通知が溜まったスマホ（読めない）</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_scout_ep07.png</code></td>
+</tr>
+<tr>
+<td>C-ep07-iceland</td>
+<td>挿絵</td>
+<td>ep07 LIFE!：氷河と滝の大地を、ロングボードで下る小さな影</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_iceland_ep07.png</code></td>
+</tr>
+<tr>
+<td>P-ep08</td>
+<td>小物</td>
+<td>ep08 ラ・ラ・ランド の小物9個</td>
+<td>P-ep03と同じ</td>
+<td><code>sheet_props_ep08.png</code></td>
+</tr>
+<tr>
+<td>C-ep08-nomikai</td>
+<td>挿絵</td>
+<td>ep08 ラ・ラ・ランド：飲み会で「将来どうすんの？」</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_nomikai_ep08.png</code></td>
+</tr>
+<tr>
+<td>C-ep08-freeway</td>
+<td>挿絵</td>
+<td>ep08 ラ・ラ・ランド：渋滞した高速道路のランプで、車の上で踊る人たち（影）</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_freeway_ep08.png</code></td>
+</tr>
+<tr>
+<td>P-ep09</td>
+<td>小物</td>
+<td>ep09 フランシス・ハ の小物9個</td>
+<td>P-ep03と同じ</td>
+<td><code>sheet_props_ep09.png</code></td>
+</tr>
+<tr>
+<td>C-ep09-insta</td>
+<td>挿絵</td>
+<td>ep09 フランシス・ハ：スマホに流れる結婚・家・赤ちゃんのアイコン（読めない）</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_insta_ep09.png</code></td>
+</tr>
+<tr>
+<td>C-ep09-monochrome</td>
+<td>挿絵</td>
+<td>ep09 フランシス・ハ：モノクロの街を、走ってはしゃぐ女の子（影）</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_monochrome_ep09.png</code></td>
+</tr>
+<tr>
+<td>P-ep10</td>
+<td>小物</td>
+<td>ep10 PERFECT DAYS の小物9個</td>
+<td>P-ep03と同じ</td>
+<td><code>sheet_props_ep10.png</code></td>
+</tr>
+<tr>
+<td>C-ep10-donichi</td>
+<td>挿絵</td>
+<td>ep10 PERFECT DAYS：日曜の夜、YouTubeの光と寝ぐせ</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_donichi_ep10.png</code></td>
+</tr>
+<tr>
+<td>C-ep10-komorebi</td>
+<td>挿絵</td>
+<td>ep10 PERFECT DAYS：木もれ日を見上げる、作業着の後ろ姿（影）</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_komorebi_ep10.png</code></td>
+</tr>
+<tr>
+<td>P-ep11</td>
+<td>小物</td>
+<td>ep11 ニュー・シネマ・パラダイス の小物9個</td>
+<td>P-ep03と同じ</td>
+<td><code>sheet_props_ep11.png</code></td>
+</tr>
+<tr>
+<td>C-ep11-netetu</td>
+<td>挿絵</td>
+<td>ep11 ニュー・シネマ・パラダイス：名作を再生したまま、スマホを見ているごんべぇ</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_netetu_ep11.png</code></td>
+</tr>
+<tr>
+<td>C-ep11-projection</td>
+<td>挿絵</td>
+<td>ep11 ニュー・シネマ・パラダイス：映写室の小窓から、光の帯が客席へのびる</td>
+<td>C-ep03-slackと同じ</td>
+<td><code>cut_projection_ep11.png</code></td>
+</tr>
+</tbody>
+</table>
+</div></details>
+<details class="step"><summary>O-gonbe_jacket ごんべぇ：紺のジャケット＋白T（オフィスカジュアル）（ep04）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_jacket.png</code></p>
+<pre><code>Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: an unstructured navy blazer over a plain white T-shirt, beige chino trousers. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background.
+</code></pre>
+<p>あとの処理：assets/characters/gonbe/outfits/jacket/ に置き、頭と体を分けるリグを作る</p>
+</div></details>
+<details class="step"><summary>O-gonbe_cardigan_shirt ごんべぇ：白シャツ＋グレーのカーディガン（ep05）</summary><div class="inner">
+<p>チャット：O-gonbe_jacket と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_cardigan_shirt.png</code></p>
+<pre><code>Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a white button-up shirt with a thin grey cardigan, navy trousers. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background.
+</code></pre>
+<p>あとの処理：assets/characters/gonbe/outfits/cardigan_shirt/ に置き、頭と体を分けるリグを作る</p>
+</div></details>
+<details class="step"><summary>O-gonbe_vest ごんべぇ：ワイシャツ＋ニットベスト＋社員証（ep06）</summary><div class="inner">
+<p>チャット：O-gonbe_jacket と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_vest.png</code></p>
+<pre><code>Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a light-blue dress shirt with a brown knit sweater vest and a plain ID badge on a lanyard (blank badge, no text), navy trousers. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background.
+</code></pre>
+<p>あとの処理：assets/characters/gonbe/outfits/vest/ に置き、頭と体を分けるリグを作る</p>
+</div></details>
+<details class="step"><summary>O-gonbe_knit ごんべぇ：マスタードのざっくりニット（ep07）</summary><div class="inner">
+<p>チャット：O-gonbe_jacket と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_knit.png</code></p>
+<pre><code>Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a chunky mustard-yellow cable-knit sweater, dark olive cargo pants. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background.
+</code></pre>
+<p>あとの処理：assets/characters/gonbe/outfits/knit/ に置き、頭と体を分けるリグを作る</p>
+</div></details>
+<details class="step"><summary>O-gonbe_border ごんべぇ：ボーダーT＋デニムジャケット（ep09）</summary><div class="inner">
+<p>チャット：O-gonbe_jacket と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_border.png</code></p>
+<pre><code>Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a navy-and-cream striped long-sleeve T-shirt under a faded denim jacket, black pants. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background.
+</code></pre>
+<p>あとの処理：assets/characters/gonbe/outfits/border/ に置き、頭と体を分けるリグを作る</p>
+</div></details>
+<details class="step"><summary>O-gonbe_coverall ごんべぇ：紺のカバーオール（作業着ふう）（ep10）</summary><div class="inner">
+<p>チャット：O-gonbe_jacket と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_coverall.png</code></p>
+<pre><code>Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a plain navy work coverall jacket over a grey T-shirt, navy work pants (no logos, no name tag). Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background.
+</code></pre>
+<p>あとの処理：assets/characters/gonbe/outfits/coverall/ に置き、頭と体を分けるリグを作る</p>
+</div></details>
+<details class="step"><summary>O-gonbe_sweat ごんべぇ：古着のくすんだ緑スウェット（ep11）</summary><div class="inner">
+<p>チャット：O-gonbe_jacket と同じチャットで続けて　添付：<a class="file" href="../assets/characters/gonbe/sit_source.png" download="sit_source.png"><code>gonbe/sit_source.png</code> ⬇</a>　保存名：<code>gonbe_sweat.png</code></p>
+<pre><code>Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a faded dusty-green vintage crewneck sweatshirt (plain, no print), light-blue jeans. Keep his dark-brown knit beanie ON. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background.
+</code></pre>
+<p>あとの処理：assets/characters/gonbe/outfits/sweat/ に置き、頭と体を分けるリグを作る</p>
+</div></details>
+<details class="step"><summary>O-johndoe_aloha じょんどぅー：派手めのアロハシャツ（ep05）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>　保存名：<code>johndoe_aloha.png</code></p>
+<pre><code>Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a loose short-sleeved Hawaiian shirt with a simple pattern of big mustard and dusty-red flowers (no text), grey shorts. His eyes must stay completely hidden by the fur. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background.
+</code></pre>
+<p>あとの処理：assets/characters/johndoe/outfits/aloha/ に置き、頭と体を分けるリグを作る</p>
+</div></details>
+<details class="step"><summary>O-johndoe_turtle じょんどぅー：黒のタートルネック（ep11）</summary><div class="inner">
+<p>チャット：O-johndoe_aloha と同じチャットで続けて　添付：<a class="file" href="../assets/characters/johndoe/sit_source.png" download="sit_source.png"><code>johndoe/sit_source.png</code> ⬇</a>　保存名：<code>johndoe_turtle.png</code></p>
+<pre><code>Edit the ORIGINAL attached image (create an edited image). Change ONLY his clothes: a fitted black turtleneck sweater, grey shorts — like a serious film critic. His eyes must stay completely hidden by the fur. Keep his face, eyes, fur, body shape, pose, position, size and canvas EXACTLY identical; change only the clothes. Same colors style and line thickness. Transparent background.
+</code></pre>
+<p>あとの処理：assets/characters/johndoe/outfits/turtle/ に置き、頭と体を分けるリグを作る</p>
+</div></details>
+<details class="step"><summary>P-ep03 ep03 ロッキー の小物9個</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_ep03.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a pair of worn boxing gloves hanging by laces; (2) a jump rope; (3) a carton of eggs. Row 2: (4) a plain grey sweatshirt folded; (5) a small dumbbell; (6) a plain alarm clock. Row 3: (7) a plain trophy with no text; (8) a hand towel; (9) a pair of old running shoes.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>C-ep03-slack ep03 ロッキー：会社のパソコンに昇進のお知らせ、拍手の絵文字が並ぶ（文字は読めない）</summary><div class="inner">
+<p>チャット：新しいチャット　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_slack_ep03.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a laptop screen in a dim office showing a blank chat window full of tiny confetti and clapping-hand icons (no readable text), Gonbe's paw frozen over the keyboard, in a navy suit sleeve.
+</code></pre>
+<p>あとの処理：assets/cutaways/slack_ep03.png</p>
+</div></details>
+<details class="step"><summary>C-ep03-typewriter ep03 ロッキー：安アパートの夜、タイプライターに向かう影（3日半）</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_typewriter_ep03.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a cheap small apartment at night, a lone figure drawn only as a dark featureless silhouette typing on a typewriter by a desk lamp, crumpled papers everywhere, a TV in the corner glowing (no image on it).
+</code></pre>
+<p>あとの処理：assets/cutaways/typewriter_ep03.png</p>
+</div></details>
+<details class="step"><summary>P-ep04 ep04 マイレージ、マイライフ の小物9個</summary><div class="inner">
+<p>チャット：P-ep03 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_ep04.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a small carry-on suitcase; (2) a neck pillow; (3) a plain boarding pass with no text. Row 2: (4) a backpack; (5) an airline-style coffee cup, plain; (6) a hotel key card, plain. Row 3: (7) a laptop closed; (8) a toy airplane; (9) a plain luggage tag.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>C-ep04-shiryou ep04 マイレージ、マイライフ：誰も見ない会議の資料</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_shiryou_ep04.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a meeting room where everyone's faces are dark featureless silhouettes looking at their phones, while Gonbe (in a navy blazer) holds up a neat chart on a screen that no one is looking at (chart with simple shapes, no text).
+</code></pre>
+<p>あとの処理：assets/cutaways/shiryou_ep04.png</p>
+</div></details>
+<details class="step"><summary>C-ep04-audition ep04 マイレージ、マイライフ：廊下で待つ、仕事を失った人たち（影）</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_audition_ep04.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a plain office interview room, a single chair, a row of different ordinary people drawn only as dark featureless silhouettes waiting on chairs in a hallway, cold light, quiet and sad.
+</code></pre>
+<p>あとの処理：assets/cutaways/audition_ep04.png</p>
+</div></details>
+<details class="step"><summary>P-ep05 ep05 トゥルーマン・ショー の小物9個</summary><div class="inner">
+<p>チャット：P-ep03 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_ep05.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a small toy sailboat; (2) a plain studio spotlight; (3) a vintage TV camera on a tripod. Row 2: (4) a plain lunchbox; (5) a sun hat; (6) a small model of a cute pastel house. Row 3: (7) a plain coffee mug; (8) a briefcase; (9) a clapperboard with no writing.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>C-ep05-aisowarai ep05 トゥルーマン・ショー：上司の話に笑うごんべぇ（上司は影）</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_aisowarai_ep05.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: an office break room: Gonbe in a white shirt and grey cardigan forcing a big fake smile with sweat, while his boss is drawn only as a dark featureless silhouette talking with big gestures.
+</code></pre>
+<p>あとの処理：assets/cutaways/aisowarai_ep05.png</p>
+</div></details>
+<details class="step"><summary>C-ep05-seaside ep05 トゥルーマン・ショー：パステルの家が並ぶ、作り物みたいに完ぺきな海辺の町</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_seaside_ep05.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a too-perfect pastel seaside small town with neat white picket fences and identical cute houses under a clear blue sky, a faint grid line visible in the sky like a painted backdrop, no people, no text.
+</code></pre>
+<p>あとの処理：assets/cutaways/seaside_ep05.png</p>
+</div></details>
+<details class="step"><summary>P-ep06 ep06 ドリーム の小物9個</summary><div class="inner">
+<p>チャット：P-ep03 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_ep06.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a small toy rocket; (2) a chalkboard with simple chalk curves and dots (no numbers, no letters); (3) a vintage room-sized computer cabinet in miniature with blinking lights. Row 2: (4) a slide rule; (5) a stack of punch cards (blank); (6) a pair of cat-eye glasses. Row 3: (7) a pencil and eraser; (8) a thermos; (9) a globe.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>C-ep06-ai5min ep06 ドリーム：AIの5分と、ごんべぇの3時間</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_ai5min_ep06.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: an office at night: Gonbe in a light-blue shirt and knit vest, exhausted, surrounded by piles of paper, while on the next desk a sleek laptop glows smugly with a tiny cute robot icon (no text); a big round wall clock.
+</code></pre>
+<p>あとの処理：assets/cutaways/ai5min_ep06.png</p>
+</div></details>
+<details class="step"><summary>C-ep06-ibm ep06 ドリーム：1960年代の巨大な計算機の部屋（人は影）</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_ibm_ep06.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a 1960s computing room with huge refrigerator-sized computer cabinets with reels and blinking lights; several women drawn only as dark featureless silhouettes in 1960s dresses studying a thick manual together, warm hopeful light.
+</code></pre>
+<p>あとの処理：assets/cutaways/ibm_ep06.png</p>
+</div></details>
+<details class="step"><summary>P-ep07 ep07 LIFE! の小物9個</summary><div class="inner">
+<p>チャット：P-ep03 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_ep07.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a vintage film camera; (2) a roll of film negatives; (3) a skateboard (longboard). Row 2: (4) a hiking backpack; (5) a thermos; (6) a paper map, folded, no text. Row 3: (7) a pair of binoculars; (8) a wool hat; (9) a polaroid photo, blank.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>C-ep07-scout ep07 LIFE!：通知が溜まったスマホ（読めない）</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_scout_ep07.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: close-up of a smartphone face up on a bed showing a pile of unread notification bubbles (no readable text, just shapes) glowing in the dark room; Gonbe's paw pushing it away.
+</code></pre>
+<p>あとの処理：assets/cutaways/scout_ep07.png</p>
+</div></details>
+<details class="step"><summary>C-ep07-iceland ep07 LIFE!：氷河と滝の大地を、ロングボードで下る小さな影</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_iceland_ep07.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a vast Icelandic landscape: a long empty road winding down green mountains toward a glacier and waterfall, a tiny figure on a longboard riding down it, huge sky.
+</code></pre>
+<p>あとの処理：assets/cutaways/iceland_ep07.png</p>
+</div></details>
+<details class="step"><summary>P-ep08 ep08 ラ・ラ・ランド の小物9個</summary><div class="inner">
+<p>チャット：P-ep03 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_ep08.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a small upright piano; (2) a vinyl record; (3) a jazz club neon-shaped lamp with no letters. Row 2: (4) a yellow dress on a hanger; (5) a vintage microphone; (6) a coffee cup. Row 3: (7) a script stapled, blank pages; (8) a pair of tap shoes; (9) a string of warm bulbs.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>C-ep08-nomikai ep08 ラ・ラ・ランド：飲み会で「将来どうすんの？」</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_nomikai_ep08.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a noisy izakaya table at night, several coworkers drawn as dark featureless silhouettes laughing, Gonbe in flannel shirt in the middle holding a beer, smiling politely but empty-eyed (still sleepy half-closed eyes).
+</code></pre>
+<p>あとの処理：assets/cutaways/nomikai_ep08.png</p>
+</div></details>
+<details class="step"><summary>C-ep08-freeway ep08 ラ・ラ・ランド：渋滞した高速道路のランプで、車の上で踊る人たち（影）</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_freeway_ep08.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a sunny Los Angeles freeway ramp jammed with colorful cars, many tiny people drawn as simple dark silhouettes dancing on the car roofs, bright blue sky, palm trees, joyful energy, no text.
+</code></pre>
+<p>あとの処理：assets/cutaways/freeway_ep08.png</p>
+</div></details>
+<details class="step"><summary>P-ep09 ep09 フランシス・ハ の小物9個</summary><div class="inner">
+<p>チャット：P-ep03 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_ep09.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a small mailbox with a blank name slot; (2) a pair of ballet shoes; (3) a paper bag of groceries. Row 2: (4) a wedding invitation card, blank; (5) a smartphone face down; (6) a cardboard moving box, plain. Row 3: (7) a bicycle bell; (8) a coffee cup with lid; (9) a stack of plain envelopes.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>C-ep09-insta ep09 フランシス・ハ：スマホに流れる結婚・家・赤ちゃんのアイコン（読めない）</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_insta_ep09.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: Gonbe in a striped long-sleeve shirt lying on his bed at night holding up a smartphone over his face; floating above it, simple cute icons of a wedding ring, a little house and a baby bottle drift up like bubbles (no text).
+</code></pre>
+<p>あとの処理：assets/cutaways/insta_ep09.png</p>
+</div></details>
+<details class="step"><summary>C-ep09-monochrome ep09 フランシス・ハ：モノクロの街を、走ってはしゃぐ女の子（影）</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_monochrome_ep09.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a black-and-white city street (grayscale only), a young woman drawn as a simple dark silhouette running and skipping joyfully down the sidewalk past brownstone buildings, motion lines, no text.
+</code></pre>
+<p>あとの処理：assets/cutaways/monochrome_ep09.png</p>
+</div></details>
+<details class="step"><summary>P-ep10 ep10 PERFECT DAYS の小物9個</summary><div class="inner">
+<p>チャット：P-ep03 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_ep10.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) a cassette tape with a blank label; (2) a small cassette player; (3) a paperback book, plain cover. Row 2: (4) a film camera, compact; (5) a small potted seedling; (6) a canned coffee, plain. Row 3: (7) a bicycle; (8) a toilet-cleaning brush and bucket, cute; (9) a stack of developed photos, blank.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>C-ep10-donichi ep10 PERFECT DAYS：日曜の夜、YouTubeの光と寝ぐせ</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_donichi_ep10.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: Sunday night in a small dark one-room apartment: Gonbe lying on the floor in a crumpled blanket, face lit only by a phone screen (no image), empty snack bags around, the window dark.
+</code></pre>
+<p>あとの処理：assets/cutaways/donichi_ep10.png</p>
+</div></details>
+<details class="step"><summary>C-ep10-komorebi ep10 PERFECT DAYS：木もれ日を見上げる、作業着の後ろ姿（影）</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_komorebi_ep10.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: a quiet Tokyo park at noon, sunlight filtering through tree leaves (komorebi) in soft dappled patterns, a person in a plain navy work uniform seen from behind as a simple silhouette, looking up, holding a small camera.
+</code></pre>
+<p>あとの処理：assets/cutaways/komorebi_ep10.png</p>
+</div></details>
+<details class="step"><summary>P-ep11 ep11 ニュー・シネマ・パラダイス の小物9個</summary><div class="inner">
+<p>チャット：P-ep03 と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>sheet_props_ep11.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Make a sprite sheet of 9 small props for the apartment room in the reference image, front view, no characters, no text or labels on anything. Arrange them in a clean 3x3 grid, each centered in its own cell, same scale, wide empty space between them. Square image. Background: solid flat pure magenta (#FF00FF), no shadow on the background. Row 1: (1) an old film projector; (2) a film reel; (3) a strip of film. Row 2: (4) a small bicycle; (5) a vintage movie ticket, blank; (6) a cinema seat, single. Row 3: (7) an old radio; (8) a box of old photos; (9) a plain envelope tied with string.
+</code></pre>
+<p>あとの処理：python3 scripts/slice_sheet.py &lt;画像&gt; props 名前:表示名 …</p>
+</div></details>
+<details class="step"><summary>C-ep11-netetu ep11 ニュー・シネマ・パラダイス：名作を再生したまま、スマホを見ているごんべぇ</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_netetu_ep11.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: Gonbe in a faded green sweatshirt on his sofa at night, a TV in front of him playing (only soft light, no image), but he is looking down at his phone, bored; a cold blue room.
+</code></pre>
+<p>あとの処理：assets/cutaways/netetu_ep11.png</p>
+</div></details>
+<details class="step"><summary>C-ep11-projection ep11 ニュー・シネマ・パラダイス：映写室の小窓から、光の帯が客席へのびる</summary><div class="inner">
+<p>チャット：C-ep03-slack と同じチャットで続けて　添付：<a class="file" href="../assets/keyvisual/keyvisual.png" download="keyvisual.png"><code>keyvisual.png</code> ⬇</a>　保存名：<code>cut_projection_ep11.png</code></p>
+<pre><code>STYLE LOCK — follow exactly, same art style as the attached reference image: flat 2D cartoon cel style, bold uniform-weight dark brown-black outlines (#1f150f) slightly hand-inked, flat color fills with only ONE simple shadow tone, NO gradients, NO airbrush, NO glow, NO texture, NO glossy highlights. Muted warm palette. Simple rounded shapes, low detail. No text, no letters, no logos, no watermarks. Vertical 9:16 full illustration with a complete background, main subject in the middle 80% of the frame, nothing important in the bottom-right corner. Real people are never depicted: anyone who is not Gonbe or Johndoe is a dark featureless silhouette. (Gonbe: brown floppy-eared dog, dark-brown knit beanie (always on), sleepy half-closed bored eyes (never wide, never teary), big dark nose.) Scene: inside a tiny old projection booth: a vintage film projector throwing a bright beam through a small square window into a dark Sicilian village cinema below, a little boy and an old man drawn as warm silhouettes watching together.
+</code></pre>
+<p>あとの処理：assets/cutaways/projection_ep11.png</p></div></details></section>
+
 <section id="sbp"><h2 class="sec">絵コンテ用プロンプト（エモーショナル版）</h2>
 <p class="note">映画館（新作予習・8コマ）と、高校時代のレンタル店（名作なのに観てない・10コマ）。どちらも新しいチャットで3枚添付 → 共通の前置き → ①から順に。</p>
 
@@ -1619,7 +2112,7 @@ Reply &quot;OK&quot; and wait for frame 1.
 
 <section id="preview"><h2 class="sec">確認用</h2><div class="prev"><figure><a href="../docs/storyboard/theater_storyboard.jpg"><img loading="lazy" src="../docs/storyboard/theater_storyboard.jpg" alt=""></a><figcaption>新作予習：映画館のイメージ絵コンテ（予告の見せ方3つ）</figcaption></figure><figure><video src="../hub/media/theater-demo.mp4" controls playsinline preload="metadata"></video><figcaption>新作予習：映画館の動き見本（8秒）</figcaption></figure><figure><a href="../docs/storyboard/ep02_her_storyboard.jpg"><img loading="lazy" src="../docs/storyboard/ep02_her_storyboard.jpg" alt=""></a><figcaption>her 構成v2の絵コンテ（47秒・26コマ）</figcaption></figure><figure><video src="../hub/media/ep02-her-draft.mp4" controls playsinline preload="metadata"></video><figcaption>her 構成v2の下書き動画</figcaption></figure><figure><a href="../docs/storyboard/ep01_v2_storyboard.jpg"><img loading="lazy" src="../docs/storyboard/ep01_v2_storyboard.jpg" alt=""></a><figcaption>ファイト・クラブ 構成v2の絵コンテ（46秒・26コマ）</figcaption></figure><figure><video src="../hub/media/ep01-v2-draft.mp4" controls playsinline preload="metadata"></video><figcaption>ファイト・クラブ 構成v2の下書き動画</figcaption></figure><figure><video src="../hub/media/ep00-sample-draft.mp4" controls playsinline preload="metadata"></video><figcaption>下書き動画（試作の回）</figcaption></figure><figure><video src="../hub/media/ep00-sample.mp4" controls playsinline preload="metadata"></video><figcaption>通しの試作（約50秒・声なし）</figcaption></figure><figure><a href="../docs/storyboard/latest_storyboard.jpg"><img loading="lazy" src="../docs/storyboard/latest_storyboard.jpg" alt=""></a><figcaption>最新の絵コンテ（試作の実際のコマ）</figcaption></figure><figure><a href="../docs/storyboard/format_storyboard.jpg"><img loading="lazy" src="../docs/storyboard/format_storyboard.jpg" alt=""></a><figcaption>最初の絵コンテ（型）</figcaption></figure><figure><a href="../docs/storyboard/movie_intro_mock.jpg"><img loading="lazy" src="../docs/storyboard/movie_intro_mock.jpg" alt=""></a><figcaption>映画紹介の画面</figcaption></figure><figure><a href="../assets/characters/gonbe/_preview/expressions.png"><img loading="lazy" src="../assets/characters/gonbe/_preview/expressions.png" alt=""></a><figcaption>ごんべぇの表情</figcaption></figure></div></section>
 
-<section id="docs"><h2 class="sec">資料（GitHub）</h2><div class="docs"><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/characters.md">キャラクター設定書</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/opening.md">冒頭（トーク画面・タイトル）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/episode-look.md">回ごとの見た目（部屋と服）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/movie-card.md">映画紹介の画面</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/studio.md">スタジオの使い方</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/style-bible.md">絵柄のルール（AIっぽさを消す）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/production-flow.md">動画の作り方</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/format-v2.md">動画の構成v2（提案）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/quality-bar.md">品質基準</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/tone.md">トーン（色・文字）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/opening-lines.md">入りのひと言の台帳</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/storyboard/README.md">絵コンテ（型）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/studio-status.md">進捗</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/CLAUDE.md">CLAUDE.md（全体のルール）</a></div></section>
+<section id="docs"><h2 class="sec">資料（GitHub）</h2><div class="docs"><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/characters.md">キャラクター設定書</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/opening.md">冒頭（トーク画面・タイトル）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/episode-look.md">回ごとの見た目（部屋と服）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/movie-card.md">映画紹介の画面</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/studio.md">スタジオの使い方</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/style-bible.md">絵柄のルール（AIっぽさを消す）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/production-flow.md">動画の作り方</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/format-v2.md">動画の構成v2（提案）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/season1.md">シーズン1（本編10本）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/quality-bar.md">品質基準</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/tone.md">トーン（色・文字）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/opening-lines.md">入りのひと言の台帳</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/storyboard/README.md">絵コンテ（型）</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/docs/studio-status.md">進捗</a><a class="doc" href="https://github.com/kenbeee-create/cinemaholic-animator/blob/main/CLAUDE.md">CLAUDE.md（全体のルール）</a></div></section>
 
 <footer>このページは <code>python3 scripts/build_hub.py</code> で作り直せます。</footer>
 </div>

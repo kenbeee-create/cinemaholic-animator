@@ -1,0 +1,21 @@
+{
+ "gonbe_outfit": "gonbe_knit",
+ "johndoe_outfit": "johndoe_hoodie",
+ "room": {
+  "tint": "#6a8a9a",
+  "tintA": 0.14,
+  "window": "snow",
+  "poster": "（オリジナル）雪山とユキヒョウ",
+  "props_sheet": "sheet_props_ep07.png"
+ },
+ "cutaways": [
+  {
+   "file": "cutaways/scout_ep07.png",
+   "label": "通知が溜まったスマホ（読めない）"
+  },
+  {
+   "file": "cutaways/iceland_ep07.png",
+   "label": "氷河と滝の大地を、ロングボードで下る小さな影"
+  }
+ ]
+}

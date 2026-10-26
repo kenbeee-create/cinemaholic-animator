@@ -1,0 +1,21 @@
+{
+ "gonbe_outfit": "gonbe_border",
+ "johndoe_outfit": "johndoe_tee",
+ "room": {
+  "tint": "#8a8a8a",
+  "tintA": 0.14,
+  "window": "none",
+  "poster": "（オリジナル）街を走る女の子の影（モノクロ）",
+  "props_sheet": "sheet_props_ep09.png"
+ },
+ "cutaways": [
+  {
+   "file": "cutaways/insta_ep09.png",
+   "label": "スマホに流れる結婚・家・赤ちゃんのアイコン（読めない）"
+  },
+  {
+   "file": "cutaways/monochrome_ep09.png",
+   "label": "モノクロの街を、走ってはしゃぐ女の子（影）"
+  }
+ ]
+}
