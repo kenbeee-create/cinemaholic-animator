@@ -41,7 +41,7 @@ IMAGES = [
 ]
 
 DOCS = [
-    ("キャラクター設定書", "docs/characters.md"), ("冒頭（トーク画面・タイトル）", "docs/opening.md"),
+    ("目的（最初に読む）", "docs/purpose.md"), ("キャラクター設定書", "docs/characters.md"), ("冒頭（トーク画面・タイトル）", "docs/opening.md"),
     ("回ごとの見た目（部屋と服）", "docs/episode-look.md"), ("映画紹介の画面", "docs/movie-card.md"),
     ("スタジオの使い方", "docs/studio.md"), ("絵柄のルール（AIっぽさを消す）", "docs/style-bible.md"), ("動画の作り方", "docs/production-flow.md"), ("動画の構成v2（提案）", "docs/format-v2.md"), ("シーズン1（本編10本）", "docs/season1.md"),
     ("品質基準", "docs/quality-bar.md"), ("トーン（色・文字）", "docs/tone.md"),
