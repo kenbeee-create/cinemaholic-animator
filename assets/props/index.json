@@ -1,0 +1,220 @@
+{
+  "items": [
+    {
+      "file": "props/blanket.png",
+      "label": "ブランケット"
+    },
+    {
+      "file": "props/blister.png",
+      "label": "錠剤シート"
+    },
+    {
+      "file": "props/cactus.png",
+      "label": "サボテン"
+    },
+    {
+      "file": "props/capsule.png",
+      "label": "カプセル"
+    },
+    {
+      "file": "props/chips.png",
+      "label": "ポテチ"
+    },
+    {
+      "file": "props/clapper.png",
+      "label": "カチンコ"
+    },
+    {
+      "file": "props/clipboard.png",
+      "label": "カルテ"
+    },
+    {
+      "file": "props/clock.png",
+      "label": "時計"
+    },
+    {
+      "file": "props/coffee_cup.png",
+      "label": "コーヒーカップ"
+    },
+    {
+      "file": "props/comics.png",
+      "label": "漫画"
+    },
+    {
+      "file": "props/controller.png",
+      "label": "コントローラー"
+    },
+    {
+      "file": "props/corkboard.png",
+      "label": "コルクボード"
+    },
+    {
+      "file": "props/crt.png",
+      "label": "ブラウン管テレビ"
+    },
+    {
+      "file": "props/cupnoodle.png",
+      "label": "カップ麺"
+    },
+    {
+      "file": "props/cushion.png",
+      "label": "クッション"
+    },
+    {
+      "file": "props/dvds.png",
+      "label": "DVDの山"
+    },
+    {
+      "file": "props/firstaid.png",
+      "label": "救急箱"
+    },
+    {
+      "file": "props/frame.png",
+      "label": "額縁"
+    },
+    {
+      "file": "props/frame_empty.png",
+      "label": "空の額縁"
+    },
+    {
+      "file": "props/glasses3d.png",
+      "label": "3Dメガネ"
+    },
+    {
+      "file": "props/guitar.png",
+      "label": "ギター"
+    },
+    {
+      "file": "props/hangplant.png",
+      "label": "吊るした植物"
+    },
+    {
+      "file": "props/labcoat.png",
+      "label": "白衣"
+    },
+    {
+      "file": "props/medbag.png",
+      "label": "薬袋"
+    },
+    {
+      "file": "props/medbottle.png",
+      "label": "薬瓶"
+    },
+    {
+      "file": "props/necktie.png",
+      "label": "ネクタイ"
+    },
+    {
+      "file": "props/pamphlets.png",
+      "label": "パンフレット"
+    },
+    {
+      "file": "props/pennant.png",
+      "label": "ペナント"
+    },
+    {
+      "file": "props/phone_cracked.png",
+      "label": "割れたスマホ"
+    },
+    {
+      "file": "props/pizza.png",
+      "label": "ピザの箱"
+    },
+    {
+      "file": "props/popcorn.png",
+      "label": "ポップコーン"
+    },
+    {
+      "file": "props/poster_astronaut.png",
+      "label": "ポスター宇宙飛行士"
+    },
+    {
+      "file": "props/poster_balloon.png",
+      "label": "ポスター赤い風船"
+    },
+    {
+      "file": "props/poster_cassette.png",
+      "label": "ポスターカセット"
+    },
+    {
+      "file": "props/poster_cinema.png",
+      "label": "ポスター夜の映画館"
+    },
+    {
+      "file": "props/poster_neoncity.png",
+      "label": "ポスター雨のネオン街"
+    },
+    {
+      "file": "props/poster_sea.png",
+      "label": "ポスター夏の海"
+    },
+    {
+      "file": "props/poster_soap.png",
+      "label": "ポスター石けん"
+    },
+    {
+      "file": "props/poster_umbrella.png",
+      "label": "ポスター2本の傘"
+    },
+    {
+      "file": "props/poster_zombie.png",
+      "label": "ポスターゾンビの手"
+    },
+    {
+      "file": "props/projector.png",
+      "label": "プロジェクター"
+    },
+    {
+      "file": "props/record_frame.png",
+      "label": "額のレコード"
+    },
+    {
+      "file": "props/reel.png",
+      "label": "フィルムリール"
+    },
+    {
+      "file": "props/remote.png",
+      "label": "リモコン"
+    },
+    {
+      "file": "props/rxpaper.png",
+      "label": "処方箋の紙"
+    },
+    {
+      "file": "props/sneakers.png",
+      "label": "スニーカー"
+    },
+    {
+      "file": "props/soap.png",
+      "label": "石けん"
+    },
+    {
+      "file": "props/soda.png",
+      "label": "缶ジュース"
+    },
+    {
+      "file": "props/stamp.png",
+      "label": "はんこ"
+    },
+    {
+      "file": "props/stethoscope.png",
+      "label": "聴診器"
+    },
+    {
+      "file": "props/stringlights.png",
+      "label": "電球のひも"
+    },
+    {
+      "file": "props/vhs.png",
+      "label": "ビデオテープ"
+    },
+    {
+      "file": "props/vhs_blank.png",
+      "label": "ビデオテープ3本"
+    },
+    {
+      "file": "props/wallshelf.png",
+      "label": "壁の棚"
+    }
+  ]
+}

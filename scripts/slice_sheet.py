@@ -120,7 +120,7 @@ def main():
     boxes = blobs(alpha, min_area=int(rgb.shape[0] * rgb.shape[1] * 0.002))
     out_dir = os.path.join(ROOT, "assets", args.kind)
     os.makedirs(out_dir, exist_ok=True)
-    if args.kind == "fx":
+    if args.kind == "fx" and not args.names:
         names = FX_ORDER
     else:
         names = []

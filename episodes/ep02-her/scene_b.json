@@ -9,7 +9,35 @@
   "tintA": 0.14,
   "karte": "処方 No.02"
  },
- "items": [],
+ "items": [
+  {
+   "file": "props/poster_neoncity.png",
+   "label": "ポスター雨のネオン街",
+   "x": 470,
+   "y": 708,
+   "scale": 1.62,
+   "layer": "back",
+   "move": "none"
+  },
+  {
+   "file": "props/record_frame.png",
+   "label": "額のレコード",
+   "x": 760,
+   "y": 548,
+   "scale": 0.38,
+   "layer": "back",
+   "move": "none"
+  },
+  {
+   "file": "props/cupnoodle.png",
+   "label": "カップ麺",
+   "x": 560,
+   "y": 1300,
+   "scale": 0.4,
+   "layer": "back",
+   "move": "none"
+  }
+ ],
  "shots": [
   {
    "dur": 1.4,

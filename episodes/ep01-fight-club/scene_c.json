@@ -9,7 +9,44 @@
   "tintA": 0.12,
   "karte": "処方 No.01"
  },
- "items": [],
+ "items": [
+  {
+   "file": "props/poster_soap.png",
+   "label": "ポスター石けん",
+   "x": 470,
+   "y": 708,
+   "scale": 1.62,
+   "layer": "back",
+   "move": "none"
+  },
+  {
+   "file": "props/vhs_blank.png",
+   "label": "ビデオテープ3本",
+   "x": 720,
+   "y": 548,
+   "scale": 0.42,
+   "layer": "back",
+   "move": "none"
+  },
+  {
+   "file": "props/cactus.png",
+   "label": "サボテン",
+   "x": 930,
+   "y": 548,
+   "scale": 0.4,
+   "layer": "back",
+   "move": "none"
+  },
+  {
+   "file": "props/soap.png",
+   "label": "石けん",
+   "x": 560,
+   "y": 1300,
+   "scale": 0.45,
+   "layer": "back",
+   "move": "none"
+  }
+ ],
  "shots": [
   {
    "dur": 1.6,
