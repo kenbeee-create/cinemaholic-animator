@@ -1,0 +1,12 @@
+{
+  "_説明": "回ごとの進み具合。人が決めたこと（承認・公開）だけここに日付で書く。台本・下書き動画の有無はファイルから自動で判定する（scripts/build_status.py）",
+  "episodes": {
+    "ep01-fight-club": {"approved": null, "published": null},
+    "ep02-her": {"approved": null, "published": null}
+  },
+  "waiting_on_owner": [
+    "台本の承認・添削（ep01〜ep03、Claude Docsの台本チェック）",
+    "声のサンプル3行の録音",
+    "1か月に使える時間の目安"
+  ]
+}
